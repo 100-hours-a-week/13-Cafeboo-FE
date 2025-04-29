@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-      "format": "prettier --write .",
+    "format": "prettier --write .",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -54,6 +54,7 @@
     "typescript": "~5.4.4",
     "typescript-eslint": "^8.26.1",
     "vite": "^5.3.1",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.1.2"
   },
   "eslintConfig": {
