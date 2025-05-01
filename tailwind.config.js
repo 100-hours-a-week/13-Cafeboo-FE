@@ -24,7 +24,7 @@ export default {
         'dark-text': '#F5F5F5',
         'dark-content': '#D1D1D1',
         'dark-sub': '#AAAAAA',
-        'dark-border': '#C7B39C',
+        'dark-border': '#999999',
       },
     },
   },
