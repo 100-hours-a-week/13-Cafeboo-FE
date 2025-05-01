@@ -1,15 +1,12 @@
-import './App.css'
-import Routes from './routes';
+import Routes from '@/routes';
+import './index.css';
 
 function App() {
   return (
-    <>
-      <h1>CafeBoo 프로젝트</h1>
-      <div>
-        <Routes /> 
-      </div>
-    </>
-  )
+    <div className="w-full max-w-full sm:max-w-md lg:max-w-3xl xl:max-w-7xl mx-auto px-4">
+      <Routes />
+    </div>
+  );
 }
 
 export default App;
