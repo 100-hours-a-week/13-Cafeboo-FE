@@ -35,8 +35,8 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
   };
 
   // 다크모드에 따른 색상 설정
-  const headerBgColor = dark ? '#8B522B' : '#8C593D';
-  const textColor = dark ? '#F5F5F5' : '#FEFBF8';
+  const headerBgColor = dark ? '#121212' : '#FFFFFF';
+  const textColor = dark ? '#F5F5F5' : '#543122';
 
   return (
     <>
