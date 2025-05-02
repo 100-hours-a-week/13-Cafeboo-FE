@@ -5,6 +5,9 @@
 @import "tw-animate-css";
 @custom-variant dark (.dark &);
 
+@import 'react-time-picker/dist/TimePicker.css';
+@import 'react-clock/dist/Clock.css';
+
 @layer base {
   html {
     font-family: 'Pretendard', system-ui, sans-serif;
