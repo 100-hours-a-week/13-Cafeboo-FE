@@ -6,7 +6,7 @@ const DarkModeToggle = () => {
   const { dark, toggleDark } = useDarkMode();
 
   // 다크모드에 따른 텍스트 색상
-  const textColor = dark ? '#F5F5F5' : '#FEFBF8';
+  const textColor = dark ? '#F5F5F5' : '#543122';
 
   return (
     <button

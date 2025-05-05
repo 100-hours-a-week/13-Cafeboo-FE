@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import ReportPage from '@/pages/main/report/ReportPage';
+import ReportPage from '@/pages/report/ReportPage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 
 const ReportRoutes = () => (
