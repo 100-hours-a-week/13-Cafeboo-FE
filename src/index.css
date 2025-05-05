@@ -7,6 +7,8 @@
 
 @import 'react-time-picker/dist/TimePicker.css';
 @import 'react-clock/dist/Clock.css';
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 @layer base {
   html {
@@ -29,6 +31,20 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 12px !important;
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  z-index: 10;
+}
+
+.slick-dots li button:before {
+  color: white !important;  
+  font-size: 8px;
 }
 
 @theme inline {
@@ -136,6 +152,14 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;   
 }
 
 @layer base {

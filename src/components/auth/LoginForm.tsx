@@ -32,7 +32,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
         type="email"
         placeholder="아이디"
         {...register('email')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
       />
       {errors.email && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
@@ -45,7 +45,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
         type="password"
         placeholder="비밀번호"
         {...register('password')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
       />
       {errors.password && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">

@@ -63,7 +63,7 @@ const SignupForm = ({ onSubmit, checkNicknameAvailability }: SignupFormProps) =>
                 type="text"
                 placeholder="닉네임"
                 {...register('nickname')}
-                className="flex-grow min-w-0 py-2 px-4 rounded-lg text-base border text-[#56433C] bg-white border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+                className="flex-grow min-w-0 py-2 px-4 rounded-lg text-base border text-[#56433C] bg-white border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
                 />
                 <button
                 type="button"
@@ -88,7 +88,7 @@ const SignupForm = ({ onSubmit, checkNicknameAvailability }: SignupFormProps) =>
             type="email"
             placeholder="이메일"
             {...register('email')}
-            className="w-full py-2 px-4 rounded-lg text-base border text-[#56433C] bg-white border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+            className="w-full py-2 px-4 rounded-lg text-base border text-[#56433C] bg-white border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
             />
             {errors.email && (
                 <p className="text-[13px] text-red-500 mt-2 flex items-center gap-1">
@@ -106,9 +106,9 @@ const SignupForm = ({ onSubmit, checkNicknameAvailability }: SignupFormProps) =>
                 type={showPassword ? 'text' : 'password'}
                 placeholder="비밀번호"
                 {...register('password')}
-                className="w-full py-2 px-4 pr-10 rounded-lg text-base border text-[#56433C] bg-white border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+                className="w-full py-2 px-4 pr-10 rounded-lg text-base border text-[#56433C] bg-white border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
             />
-            <div className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#C7B39C] cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+            <div className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#C7C7CC] cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </div>
             </div>
@@ -128,9 +128,9 @@ const SignupForm = ({ onSubmit, checkNicknameAvailability }: SignupFormProps) =>
                 type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="비밀번호 확인"
                 {...register('confirmPassword')}
-                className="w-full py-2 px-4 pr-10 rounded-lg text-base border text-[#56433C] bg-white border-[#C7B39C] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+                className="w-full py-2 px-4 pr-10 rounded-lg text-base border text-[#56433C] bg-white border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
             />
-            <div className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#C7B39C] cursor-pointer" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+            <div className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#C7C7CC] cursor-pointer" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </div>
             </div>
@@ -146,7 +146,7 @@ const SignupForm = ({ onSubmit, checkNicknameAvailability }: SignupFormProps) =>
      
         <p className="text-base text-[#595959] text-center">
             이미 계정이 있으신가요?{' '}
-            <a href="/auth/login" className="text-[#E6783D] font-semibold">
+            <a href="/auth/login" className="text-[#FF8F00] font-semibold">
                 로그인
             </a>
         </p>
