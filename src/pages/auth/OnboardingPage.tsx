@@ -54,7 +54,7 @@ const OnboardingPage = () => {
             {step > 1 ? (
               <Button
                 variant="outline"
-                className="border-[#8C593D] text-[#8C593D]"
+                className="border-[#543122] text-[#543122]"
                 onClick={back}
               >
                 이전

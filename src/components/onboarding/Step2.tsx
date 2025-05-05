@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useOnboardingStore } from '@/stores/onboardingStore'
 import { Label } from '@/components/ui/label'
 import * as SliderPrimitive from '@radix-ui/react-slider';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { Tag } from '@/components/common/Tag'
 
 const DRINK_OPTIONS = [
   '아메리카노',
@@ -96,35 +96,15 @@ const Step2 = () => {
 
       {/* 선호하는 카페인 음료 */}
       <div>
-        <Label className="text-base text-[#56433C] mb-2 block font-semibold">선호하는 종류</Label>
-        <ToggleGroup
-          type="multiple"
-          className="flex flex-wrap gap-2"
+        <Label className="text-base text-[#543122] mb-2 block font-semibold">선호하는 종류(중복 선택 가능)</Label>
+        <div className="w-full ">
+          <Tag
+          items={DRINK_OPTIONS}
           value={caffeineInfo.userFavoriteDrinks || []}
-          onValueChange={(values) =>
-            updateCaffeine({ userFavoriteDrinks: values })
-          }
-        >
-          {DRINK_OPTIONS.map((drink) => (
-            <ToggleGroupItem
-              key={drink}
-              value={drink}
-              className="
-                flex-shrink-0          
-                whitespace-nowrap      
-                px-4 py-1       
-                rounded-full 
-                border 
-                border-[#C7B39C]
-                text-[#595959]
-                data-[state=on]:bg-[#543122]
-                data-[state=on]:text-white
-              "
-            >
-              {drink}
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
+          onChange={(values) => updateCaffeine({ userFavoriteDrinks: values })}
+          multiple
+          />
+        </div>
       </div>
     </div>
   )

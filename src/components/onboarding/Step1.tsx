@@ -86,7 +86,7 @@ const Step1 = () => {
               focus:outline-none focus:border-[#543122]
             "
           />
-          <span className="text-base text-[#595959] font-semibold">세</span>
+          <span className="text-base text-[#595959] font-semibold mr-2">세</span>
         </div>
       </div>
       {healthInfo.age != null && (healthInfo.age < 1 || healthInfo.age > 123) && (
