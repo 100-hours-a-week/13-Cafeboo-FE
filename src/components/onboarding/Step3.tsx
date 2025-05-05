@@ -19,7 +19,7 @@ const Step3 = () => {
           }
           className="
             w-1/2 rounded-lg border border-[#C7B39C] cursor-pointer
-            px-4 py-2 text-[#595959]
+            px-4 py-2 
             focus:outline-none focus:border-[#8C593D]
           "
         />
@@ -37,7 +37,7 @@ const Step3 = () => {
             onChange={(e) => updateSleep({ sleepStartTime: e.target.value })}
             className="w-1/2 cursor-pointer border-[#C7B39C] px-4"
           />
-          <span className="text-[#595959]">~</span>
+          <span>~</span>
           <Input
             type="time"
             step={60}

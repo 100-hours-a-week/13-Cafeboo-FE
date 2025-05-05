@@ -63,7 +63,7 @@ const Step1 = () => {
       <div className="flex items-center justify-between mb-8">
         <Label className="text-base text-[#56433C] font-semibold">나이</Label>
         <div className="flex items-center">
-          <span className="text-base text-[#595959] font-semibold">만</span>
+          <span className="text-base">만</span>
           <input
             type="text"
             inputMode="numeric"
@@ -73,7 +73,6 @@ const Step1 = () => {
               const v = e.target.value.replace(/\D/g, '');
               updateHealth({ age: v === '' ? undefined : Number(v) });
             }}
-            placeholder="입력"
             className="
               w-16             
               ml-2 mr-1   
@@ -82,11 +81,10 @@ const Step1 = () => {
               border border-[#C7B39C]
               rounded-lg
               text-base
-              text-[#595959] placeholder:text-[#595959]
               focus:outline-none focus:border-[#543122]
             "
           />
-          <span className="text-base text-[#595959] font-semibold mr-2">세</span>
+          <span className="text-base mr-2">세</span>
         </div>
       </div>
       {healthInfo.age != null && (healthInfo.age < 1 || healthInfo.age > 123) && (
@@ -108,7 +106,6 @@ const Step1 = () => {
               const v = e.target.value.replace(/\D/g, '');
               updateHealth({ height: v === '' ? undefined : Number(v) });
             }}
-            placeholder="입력"
             className="
               w-16             
               ml-2 mr-1   
@@ -117,11 +114,10 @@ const Step1 = () => {
               border border-[#C7B39C]
               rounded-lg
               text-base
-              text-[#595959] placeholder:text-[#595959]
               focus:outline-none focus:border-[#543122]
             "
           />
-          <span className="text-base text-[#595959] font-semibold">cm</span>
+          <span className="text-base">cm</span>
         </div>
       </div>
 
@@ -133,7 +129,6 @@ const Step1 = () => {
             type="text"
             inputMode="decimal"
             pattern="[0-9]*[.]?[0-9]*"
-            placeholder="입력"
             value={weightInput}
             onChange={(e) => {
               let v = e.target.value.replace(/[^0-9.]/g, '');
@@ -152,12 +147,11 @@ const Step1 = () => {
             className="
               w-16 mx-2 py-1 text-center
               border border-[#C7B39C]
-              rounded-lg text-base text-[#595959]
-              placeholder:text-[#595959]
+              rounded-lg text-base
               focus:outline-none focus:border-[#543122]
             "
           />
-          <span className="text-base text-[#595959] font-semibold">kg</span>
+          <span className="text-base">kg</span>
         </div>
       </div>
 

@@ -85,12 +85,11 @@ const Step2 = () => {
           className="
             w-16 mx-1 py-1 text-center 
             border border-[#C7B39C]
-            rounded-lg text-base text-[#595959]
-            placeholder:text-[#595959]
+            rounded-lg text-base
             focus:outline-none focus:border-[#543122]
           "
         />
-        <span className="text-base text-[#595959] font-semibold">잔</span>
+        <span className="text-base">잔</span>
         </div>
       </div>
 
