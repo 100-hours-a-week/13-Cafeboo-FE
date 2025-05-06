@@ -35,12 +35,13 @@ export function Tag({
             px-3 py-1
             h-7
             !rounded-full
-            border border-[#C7B39C]
-            text-sm text-[#595959]
+            border border-[#C7C7CC]
+            text-sm text-[#333333]
             whitespace-nowrap
             w-auto min-w-0 flex-none
-            data-[state=on]:bg-[#543122]
-            data-[state=on]:text-white
+            data-[state=on]:border-[#FF9B17]
+            data-[state=on]:bg-[#FF9B17]/20
+            data-[state=on]:text-[#333333]
         "
         >
           {item}
@@ -71,7 +72,7 @@ export function Tag({
           text-sm text-[#595959]
           whitespace-nowrap
           w-auto min-w-0 flex-none
-          data-[state=on]:bg-[#543122]
+          data-[state=on]:bg-[#FF9B17]
           data-[state=on]:text-white
       "
       >

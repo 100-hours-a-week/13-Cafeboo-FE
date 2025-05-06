@@ -18,7 +18,7 @@ const Step1 = () => {
     <div className="space-y-6 py-4">
       {/* 성별 */}
       <div className="mb-8">
-        <Label className="text-base text-[#56433C] mb-2 block font-semibold">
+        <Label className="text-base text-[#000000] mb-2 block font-semibold">
           성별
         </Label>
         <ToggleGroup
@@ -33,10 +33,11 @@ const Step1 = () => {
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-l-lg border border-[#D9D9D9]
               data-[state=on]:bg-white
-              data-[state=on]:border-[#543122]
-              data-[state=on]:text-[#56433C]
+              data-[state=on]:border-[#FF9B17]
+              data-[state=on]:text-[#333333]
               data-[state=off]:bg-[#F1F3F3]
               data-[state=off]:text-[#595959]
+              data-[state=off]:border-r-0
             "
           >
             남자
@@ -48,10 +49,11 @@ const Step1 = () => {
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-r-lg border border-[#D9D9D9]
               data-[state=on]:bg-white
-              data-[state=on]:border-[#543122]
-              data-[state=on]:text-[#56433C]
+              data-[state=on]:border-[#FF9B17]
+              data-[state=on]:text-[#333333]
               data-[state=off]:bg-[#F1F3F3]
               data-[state=off]:text-[#595959]
+              data-[state=off]:border-l-0
             "
           >
             여자
@@ -61,7 +63,7 @@ const Step1 = () => {
 
       {/* 나이 입력 (mobile numeric pad) */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#56433C] font-semibold">나이</Label>
+        <Label className="text-base text-[#000000] font-semibold">나이</Label>
         <div className="flex items-center">
           <span className="text-base">만</span>
           <input
@@ -78,10 +80,10 @@ const Step1 = () => {
               ml-2 mr-1   
               py-1       
               text-center
-              border border-[#C7B39C]
+              border border-[#C7C7CC]
               rounded-lg
               text-base
-              focus:outline-none focus:border-[#543122]
+              focus:outline-none focus:border-[#FF9B17]
             "
           />
           <span className="text-base mr-2">세</span>
@@ -95,7 +97,7 @@ const Step1 = () => {
 
       {/* 신장 입력 */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#56433C] font-semibold">신장</Label>
+        <Label className="text-base text-[#000000] font-semibold">신장</Label>
         <div className="flex items-center">
           <input
             type="text"
@@ -111,10 +113,10 @@ const Step1 = () => {
               ml-2 mr-1   
               py-1       
               text-center
-              border border-[#C7B39C]
+              border border-[#C7C7CC]
               rounded-lg
               text-base
-              focus:outline-none focus:border-[#543122]
+              focus:outline-none focus:border-[#FF9B17]
             "
           />
           <span className="text-base">cm</span>
@@ -123,7 +125,7 @@ const Step1 = () => {
 
       {/* 체중 입력 */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#56433C] font-semibold">체중</Label>
+        <Label className="text-base text-[#000000] font-semibold">체중</Label>
         <div className="flex items-center">
           <input
             type="text"
@@ -146,9 +148,9 @@ const Step1 = () => {
             }}
             className="
               w-16 mx-2 py-1 text-center
-              border border-[#C7B39C]
+              border border-[#C7C7CC]
               rounded-lg text-base
-              focus:outline-none focus:border-[#543122]
+              focus:outline-none focus:border-[#FF9B17]
             "
           />
           <span className="text-base">kg</span>
@@ -167,7 +169,7 @@ const Step1 = () => {
 
           return (
             <div key={key}>
-              <Label className="text-[#56433C] mb-2 block text-base font-semibold">
+              <Label className="text-[#000000] mb-2 block text-base font-semibold">
                 {label}
               </Label>
 
@@ -183,10 +185,11 @@ const Step1 = () => {
                     flex-1 py-2 text-sm font-medium text-center cursor-pointer
                     rounded-l-lg border border-[#D9D9D9]
                     data-[state=on]:bg-white
-                    data-[state=on]:border-[#543122]
-                    data-[state=on]:text-[#56433C]
+                    data-[state=on]:border-[#FF9B17]
+                    data-[state=on]:text-[#333333]
                     data-[state=off]:bg-[#F1F3F3]
                     data-[state=off]:text-[#595959]
+                    data-[state=off]:border-r-0
                   "
                 >
                   예
@@ -198,10 +201,11 @@ const Step1 = () => {
                     flex-1 py-2 text-sm font-medium text-center cursor-pointer
                     rounded-r-lg border border-[#D9D9D9]
                     data-[state=on]:bg-white
-                    data-[state=on]:border-[#543122]
-                    data-[state=on]:text-[#56433C]
+                    data-[state=on]:border-[#FF9B17]
+                    data-[state=on]:text-[#333333]
                     data-[state=off]:bg-[#F1F3F3]
                     data-[state=off]:text-[#595959]
+                    data-[state=off]:border-l-0
                   "
                 >
                   아니오
