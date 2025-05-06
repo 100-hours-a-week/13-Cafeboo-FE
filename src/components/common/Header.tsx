@@ -36,7 +36,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
 
   // 다크모드에 따른 색상 설정
   const headerBgColor = dark ? '#121212' : '#FFFFFF';
-  const textColor = dark ? '#F5F5F5' : '#543122';
+  const textColor = dark ? '#F5F5F5' : '#000000';
 
   return (
     <>
@@ -54,7 +54,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <div className="font-bold text-xl" style={{ color: textColor }}>
+            <div className="font-semibold text-xl" style={{ color: textColor }}>
               Cafeboo
             </div>
           )}
@@ -71,7 +71,6 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
 
           {/* 오른쪽: 다크모드 토글 + 햄버거 메뉴 */}
           <div className="flex items-center space-x-2">
-            <DarkModeToggle />
             <button
               onClick={() => setIsMenuOpen(true)}
               className="p-1 rounded-full hover:opacity-80"

@@ -92,7 +92,7 @@ import {
     return (
       <div className="flex">
         {/* 1) 고정된 Y축 영역 */}
-        <div className="h-[200px] w-10">
+        <div className="h-[180px] w-10">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={data}
@@ -114,7 +114,7 @@ import {
   
         {/* 2) 스크롤 가능한 바 차트 + X축 영역 */}
         <div className="flex-1 overflow-x-auto scrollbar-hide">
-          <div className="h-[200px] w-full relative" style={{ minWidth: `${minWidth}px` }} ref={containerRef}>
+          <div className="h-[180px] w-full relative" style={{ minWidth: `${minWidth}px` }} ref={containerRef}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 ref={chartRef}
@@ -130,6 +130,7 @@ import {
                   ticks={ticks}
                   tickFormatter={(val) => (val === 0 ? '' : String(val))}
                   minTickGap={0}
+                  interval={0}
                 />
                 <XAxis
                   dataKey="time"
@@ -165,7 +166,7 @@ import {
                   translate-x-[-50%] translate-y-[-24px] 
                   bg-gray-200 
                   rounded-full 
-                  px-1 py-[2px] 
+                  px-2 py-[1px]
                   text-[10px] 
                   font-semibold 
                   text-[#595959]
