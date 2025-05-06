@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { X, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '@/stores/useDarkMode';
 
@@ -22,6 +22,11 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
     navigate(href);
     onClose();
   };
+
+  const goHome = () => {
+    navigate('/main/home');
+    onClose();
+  };
   
   return (
     <>
@@ -43,27 +48,18 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
           backgroundColor: dark ? '#2C2C2C' : '#FFFFFF'
         }}
       >
-        <div className="flex justify-between items-center p-4 border-b"
+        <div
+          className="flex justify-between items-center p-4 border-b"
           style={{
             borderColor: dark ? '#444444' : '#E5E7EB',
-            backgroundColor: '#F99B11',
+            backgroundColor: '#FF9B17',
           }}
         >
-          <div className="text-base font-semibold"
-            style={{
-              color: dark ? '#F5F5F5' : '#000000'
-            }}
-          >
-            user님
-          </div>
-          <button
-            onClick={onClose}
-            className="p-1 rounded"
-            style={{
-              color: dark ? '#F5F5F5' : '#000000'
-            }}
-          >
-            <X size={20} />
+          <button onClick={goHome} className="p-1">
+            <Home size={20} className="text-white" />
+          </button>
+          <button onClick={onClose} className="p-1">
+            <X size={20} className="text-white" />
           </button>
         </div>
         <nav>

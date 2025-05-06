@@ -20,11 +20,8 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
                 flex items-center justify-center
                 w-6 h-6 rounded-full font-medium text-sm
                 ${isCurrent
-                  ? 'bg-[#543122] text-white'
-                  : 'border-2 text-[#543122] ' +
-                    (isCompleted
-                      ? 'border-[#543122]'
-                      : 'border-[#C7B39C]')}
+                  ? 'bg-[#FF9B17] text-white'
+                  : 'border-2 border-[#C7C7CC] text-[#C7C7CC]'}
               `}
             >
               {step}
@@ -35,8 +32,8 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
                 className={`
                   flex-1 mx-2
                   ${isCompleted
-                    ? 'border-t-2 border-solid border-[#543122]'
-                    : 'border-t-2 border-dashed border-[#C7B39C]'}
+                    ? 'border-t-2 border-solid border-[#C7C7CC]'
+                    : 'border-t-2 border-dashed border-[#C7C7CC]'}
                 `}
               />
             )}

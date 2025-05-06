@@ -12,8 +12,9 @@ const DRINK_OPTIONS = [
   '카푸치노',
   '디카페인',
   '바닐라라떼',
-  '에너지드링크',
-  '초코',
+  '에너지음료',
+  '모카',
+  '아이스커피',
   '마끼아또',
   '기타',
 ]
@@ -34,8 +35,8 @@ const Step2 = () => {
   return (
     <div className="space-y-6 py-4">
       {/* 카페인 민감도 */}
-      <div>
-        <Label className="text-base text-[#56433C] mb-2 block font-semibold">카페인 민감도</Label>
+      <div className="mb-10">
+        <Label className="text-base text-[#000000] mb-2 block font-semibold">카페인 민감도</Label>
         <SliderPrimitive.Root
           className="relative flex items-center mt-10 mb-10 ml-4 mr-8" 
           value={[value]}
@@ -44,12 +45,12 @@ const Step2 = () => {
           step={1}
           onValueChange={([v]) => updateCaffeine({ caffeineSensitivity: v })}
         >
-          <SliderPrimitive.Track className="relative flex-1 h-1 bg-[#C7B39C]/30 rounded-full">
-            <SliderPrimitive.Range className="absolute h-full bg-[#543122]" />
+          <SliderPrimitive.Track className="relative flex-1 h-1 bg-[#AAAAAA]/30 rounded-full">
+            <SliderPrimitive.Range className="absolute h-full bg-[#FF9B17]" />
           </SliderPrimitive.Track>
 
-          <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full bg-white border-2 border-[#543122]">
-            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#543122] text-white text-xs px-2 py-1 rounded-full">
+          <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full bg-white border-2 border-[#FF9B17]">
+            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FF9B17] text-white text-xs px-2 py-1 rounded-full">
               {value}
             </div>
           </SliderPrimitive.Thumb>
@@ -60,8 +61,8 @@ const Step2 = () => {
       </div>
 
       {/* 하루 평균 섭취량 */}
-      <div className="flex items-center justify-between mb-8">
-      <Label className="text-base text-[#56433C] font-semibold">하루 평균 카페인 음료 섭취량</Label>
+      <div className="flex items-center justify-between mt-10 mb-8">
+      <Label className="text-base text-[#000000] font-semibold">하루 평균 카페인 음료 섭취량</Label>
         <div className="flex items-center">
         <input
           type="text"
@@ -84,9 +85,9 @@ const Step2 = () => {
           }}
           className="
             w-16 mx-1 py-1 text-center 
-            border border-[#C7B39C]
+            border border-[#C7C7CC]
             rounded-lg text-base
-            focus:outline-none focus:border-[#543122]
+            focus:outline-none focus:border-[#FF9B17]
           "
         />
         <span className="text-base">잔</span>
@@ -94,8 +95,8 @@ const Step2 = () => {
       </div>
 
       {/* 선호하는 카페인 음료 */}
-      <div>
-        <Label className="text-base text-[#543122] mb-2 block font-semibold">선호하는 종류(중복 선택 가능)</Label>
+      <div className="mt-10">
+        <Label className="text-base text-[#000000] mt-4 mb-4 block font-semibold">선호하는 종류(중복 선택 가능)</Label>
         <div className="w-full ">
           <Tag
           items={DRINK_OPTIONS}

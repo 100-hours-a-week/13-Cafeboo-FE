@@ -26,13 +26,13 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
 
   return (
     <form onSubmit={handleSubmit(onLogin)} className="space-y-4 w-full max-w-xs mx-auto">
-      <h1 className="text-center text-[26px] font-bold text-[#543122] mt-12 mb-8">CafeBoo</h1>
+      <h1 className="text-center text-[26px] font-bold text-[#000000] mt-12 mb-8">CafeBoo</h1>
 
       <input
         type="email"
         placeholder="아이디"
         {...register('email')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FF9B17]"
       />
       {errors.email && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
@@ -45,7 +45,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
         type="password"
         placeholder="비밀번호"
         {...register('password')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#543122]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FF9B17]"
       />
       {errors.password && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
@@ -56,7 +56,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
 
       <button
         type="submit"
-        className="w-full py-2 rounded-lg bg-[#543122] text-[#FEFBF8] font-semibold mt-2"
+        className="w-full py-2 rounded-lg bg-[#FF9B17] text-[#FEFBF8] font-semibold mt-2"
       >
         로그인
       </button>

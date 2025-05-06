@@ -146,7 +146,7 @@ import {
                   {data.map((_, idx) => (
                     <Cell
                       key={idx}
-                      fill={'#F99B11'}
+                      fill={'#FF9B17'}
                     />
                   ))}
                 </Bar>

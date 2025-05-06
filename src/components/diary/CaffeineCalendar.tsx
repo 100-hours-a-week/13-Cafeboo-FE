@@ -57,8 +57,8 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
 
   const CoffeeBeanIcon = (amount: number) => {
     const color =
-    amount <= 199 ? '#AF8F6F' :
-    amount <= 400 ? '#74512D' : '#543310';
+    amount <= 199 ? '#FFE3C8' :
+    amount <= 400 ? '#FFC46E' : '#FFA634';
 
   return (
     <div
@@ -147,7 +147,7 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
                 <span
                     className={`z-10 ${isSelected} ${
                     day.currentMonth && amount > 0
-                        ? 'text-white'
+                        ? 'text-[#333333]'
                         : day.currentMonth
                         ? 'text-[#333333]'
                         : 'text-[#BFBFBF]'

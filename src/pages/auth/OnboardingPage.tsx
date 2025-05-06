@@ -43,7 +43,7 @@ const OnboardingPage = () => {
 
   return (
     <div className="h-screen w-full bg-white dark:bg-[#121212]">
-      <div className="flex-1 overflow-auto px-4 pt-6 max-w-md mx-auto">
+      <div className="flex-1 overflow-auto px-4 pt-6 mt-10 max-w-md mx-auto">
         <StepProgress currentStep={step} totalSteps={4} />
         {renderStep()}
       </div>
@@ -54,7 +54,7 @@ const OnboardingPage = () => {
             {step > 1 ? (
               <Button
                 variant="outline"
-                className="border-[#543122] text-[#543122]"
+                className="border-[#FF9B17] text-[#333333]"
                 onClick={back}
               >
                 이전
@@ -63,7 +63,7 @@ const OnboardingPage = () => {
               <div className="w-[6rem]" />
             )}
             <Button
-              className="bg-[#543122] text-white"
+              className="bg-[#FF9B17] text-white"
               onClick={step === 4 ? handleComplete : next}
             >
               {step === 4 ? '완료' : '다음'}
