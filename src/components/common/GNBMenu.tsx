@@ -45,12 +45,13 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
       >
         <div className="flex justify-between items-center p-4 border-b"
           style={{
-            borderColor: dark ? '#444444' : '#E5E7EB'
+            borderColor: dark ? '#444444' : '#E5E7EB',
+            backgroundColor: '#F99B11',
           }}
         >
           <div className="text-base font-semibold"
             style={{
-              color: dark ? '#F5F5F5' : '#56433C'
+              color: dark ? '#F5F5F5' : '#000000'
             }}
           >
             user님
@@ -59,7 +60,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
             onClick={onClose}
             className="p-1 rounded"
             style={{
-              color: dark ? '#F5F5F5' : '#56433C'
+              color: dark ? '#F5F5F5' : '#000000'
             }}
           >
             <X size={20} />
@@ -75,7 +76,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               style={{
                 color: item.disabled 
                   ? (dark ? '#777777' : '#9CA3AF') 
-                  : (dark ? '#F5F5F5' : '#56433C'),
+                  : (dark ? '#F5F5F5' : '#333333'),
                 borderColor: dark ? '#444444' : '#E5E7EB',
                 backgroundColor: dark ? '#2C2C2C' : '#FFFFFF',
                 opacity: item.disabled ? 0.5 : 1,
