@@ -35,7 +35,7 @@ export default function HomePage() {
       {/* 본문 */}
       <main className="pt-16 space-y-4">
         {/* Hero Banner */}
-        <div className="relative w-full rounded-xl overflow-hidden bg-black dark:bg-[#2C2C2C] shadow-[0_0_10px_rgba(0,0,0,0.15)]">
+        <div className="relative w-full rounded-xl overflow-hidden bg-black dark:bg-[#2C2C2C] shadow-[0_0_10px_rgba(0,0,0,0.1)]">
           <HeroBanner slides={slides} />
         </div>
 
@@ -44,7 +44,7 @@ export default function HomePage() {
         </h2>
 
         {/* 일일 섭취량 카드 */}
-        <div className="bg-white dark:bg-[#2C2C2C] rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.15)]">
+        <div className="bg-white dark:bg-[#2C2C2C] rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
           <DailyCaffeineIntakeGraph
             nickname={report.nickname}
             dailyCaffeineLimit={report.dailyCaffeineLimit}

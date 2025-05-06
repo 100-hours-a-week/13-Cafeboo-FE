@@ -19,7 +19,6 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
   const { dark } = useDarkMode();
 
   const menuItems = [
-    { label: 'Home', href: '/main/home' },
     { label: '카페인 히스토리', href: '/main/diary' },
     { label: '커피챗', href: '/main/coffeechat', disabled: true },
     { label: '챌린지', href: '/main/challenge', disabled: true },
