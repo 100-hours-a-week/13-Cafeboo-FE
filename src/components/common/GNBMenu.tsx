@@ -46,7 +46,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
         <div className="flex justify-between items-center p-4 border-b"
           style={{
             borderColor: dark ? '#444444' : '#E5E7EB',
-            backgroundColor: '#FFA726',
+            backgroundColor: '#F99B11',
           }}
         >
           <div className="text-base font-semibold"
