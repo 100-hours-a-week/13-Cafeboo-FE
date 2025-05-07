@@ -46,11 +46,11 @@ const Step2 = () => {
           onValueChange={([v]) => updateCaffeine({ caffeineSensitivity: v })}
         >
           <SliderPrimitive.Track className="relative flex-1 h-1 bg-[#AAAAAA]/30 rounded-full">
-            <SliderPrimitive.Range className="absolute h-full bg-[#FF9B17]" />
+            <SliderPrimitive.Range className="absolute h-full bg-[#FE9400]" />
           </SliderPrimitive.Track>
 
-          <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full bg-white border-2 border-[#FF9B17]">
-            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FF9B17] text-white text-xs px-2 py-1 rounded-full">
+          <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full bg-white border-2 border-[#FE9400]">
+            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FE9400] text-white text-xs px-2 py-1 rounded-full">
               {value}
             </div>
           </SliderPrimitive.Thumb>
@@ -87,7 +87,7 @@ const Step2 = () => {
             w-16 mx-1 py-1 text-center 
             border border-[#C7C7CC]
             rounded-lg text-base
-            focus:outline-none focus:border-[#FF9B17]
+            focus:outline-none focus:border-[#FE9400]
           "
         />
         <span className="text-base">잔</span>

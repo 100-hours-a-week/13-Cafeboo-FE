@@ -32,7 +32,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
         type="email"
         placeholder="아이디"
         {...register('email')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FF9B17]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FE9400]"
       />
       {errors.email && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
@@ -45,7 +45,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
         type="password"
         placeholder="비밀번호"
         {...register('password')}
-        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FF9B17]"
+        className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FE9400]"
       />
       {errors.password && (
               <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
@@ -56,7 +56,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
 
       <button
         type="submit"
-        className="w-full py-2 rounded-lg bg-[#FF9B17] text-[#FEFBF8] font-semibold mt-2"
+        className="w-full py-2 rounded-lg bg-[#FE9400] text-[#FEFBF8] font-semibold mt-2"
       >
         로그인
       </button>

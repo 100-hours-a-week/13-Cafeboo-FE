@@ -19,7 +19,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-bg dark:bg-dark-bg flex items-center justify-center">
+    <div className="min-h-screen w-full flex items-center justify-center">
         <div className="flex flex-col items-center w-full max-w-md">
             <LoginForm onLogin={handleLogin} />
             <SocialLogin onSocialLogin={handleSocialLogin} />

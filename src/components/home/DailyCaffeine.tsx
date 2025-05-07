@@ -45,14 +45,14 @@ export default function DailyCaffeine({
 
   return (
     <div className="flex items-center bg-white rounded-lg p-2 relative">
-      <div className="w-1/3 h-30 relative">
+      <div className="w-2/5 h-40 relative">
         <ResponsiveContainer>
           <PieChart>         
             <Pie
               data={[{ value: 100 }]}
               dataKey="value"
-              innerRadius="63%"
-              outerRadius="80%"
+              innerRadius="70%"
+              outerRadius="90%"
               startAngle={90}
               endAngle={-270}
             >
@@ -61,8 +61,8 @@ export default function DailyCaffeine({
             <Pie
               data={[{ value: consumed }]}
               dataKey="value"
-              innerRadius="63%"
-              outerRadius="80%"
+              innerRadius="70%"
+              outerRadius="90%"
               startAngle={91.5} // UX 개선을 위한 시각적 효과 처리
               endAngle={90-consumedAngle}
               cornerRadius={10}
@@ -72,17 +72,17 @@ export default function DailyCaffeine({
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-sm font-bold text-[#333333]">{consumed} mg</span>
-          <span className="text-xs text-[#595959]">/ {dailyCaffeineLimit} mg</span>
+          <span className="text-lg font-bold text-[#333333]">{consumed} mg</span>
+          <span className="text-sm text-[#595959]">/ {dailyCaffeineLimit} mg</span>
         </div>
       </div>
 
-      <div className="w-2/3 p-2">
+      <div className="w-3/5 p-4">
         <p className="text-base text-[#333333]">
           <span className="font-semibold">{nickname}</span>님, 
           <br></br>
           현재 권장량의 <span className="font-semibold" style={{ color: consumedColor }}>
-          {Math.round(ratio * 100)}%</span> 섭취 중이에요.
+          {Math.round(ratio * 100)}%</span>를 <br></br>섭취 중이에요.
         </p>
         <p className="mt-2 text-sm text-[#595959]">{intakeGuide}</p>
       </div>

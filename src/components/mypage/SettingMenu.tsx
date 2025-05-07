@@ -13,14 +13,6 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] overflow-hidden">
-      {/* 알림 설정 */}
-      <div 
-        className="flex items-center justify-between p-4 border-b border-gray-100"
-        onClick={onNavigateNotification}
-      >
-        <div className="text-[#333333]">알림 설정</div>
-        <ChevronRight className="text-[#333333]" size={20} />
-      </div>
 
       {/* 로그아웃 */}
       <div 

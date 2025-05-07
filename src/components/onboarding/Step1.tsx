@@ -33,7 +33,7 @@ const Step1 = () => {
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-l-lg border border-[#D9D9D9]
               data-[state=on]:bg-white
-              data-[state=on]:border-[#FF9B17]
+              data-[state=on]:border-[#FE9400]
               data-[state=on]:text-[#333333]
               data-[state=off]:bg-[#F1F3F3]
               data-[state=off]:text-[#595959]
@@ -49,7 +49,7 @@ const Step1 = () => {
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-r-lg border border-[#D9D9D9]
               data-[state=on]:bg-white
-              data-[state=on]:border-[#FF9B17]
+              data-[state=on]:border-[#FE9400]
               data-[state=on]:text-[#333333]
               data-[state=off]:bg-[#F1F3F3]
               data-[state=off]:text-[#595959]
@@ -83,7 +83,7 @@ const Step1 = () => {
               border border-[#C7C7CC]
               rounded-lg
               text-base
-              focus:outline-none focus:border-[#FF9B17]
+              focus:outline-none focus:border-[#FE9400]
             "
           />
           <span className="text-base mr-2">세</span>
@@ -116,7 +116,7 @@ const Step1 = () => {
               border border-[#C7C7CC]
               rounded-lg
               text-base
-              focus:outline-none focus:border-[#FF9B17]
+              focus:outline-none focus:border-[#FE9400]
             "
           />
           <span className="text-base">cm</span>
@@ -150,7 +150,7 @@ const Step1 = () => {
               w-16 mx-2 py-1 text-center
               border border-[#C7C7CC]
               rounded-lg text-base
-              focus:outline-none focus:border-[#FF9B17]
+              focus:outline-none focus:border-[#FE9400]
             "
           />
           <span className="text-base">kg</span>
@@ -185,7 +185,7 @@ const Step1 = () => {
                     flex-1 py-2 text-sm font-medium text-center cursor-pointer
                     rounded-l-lg border border-[#D9D9D9]
                     data-[state=on]:bg-white
-                    data-[state=on]:border-[#FF9B17]
+                    data-[state=on]:border-[#FE9400]
                     data-[state=on]:text-[#333333]
                     data-[state=off]:bg-[#F1F3F3]
                     data-[state=off]:text-[#595959]
@@ -201,7 +201,7 @@ const Step1 = () => {
                     flex-1 py-2 text-sm font-medium text-center cursor-pointer
                     rounded-r-lg border border-[#D9D9D9]
                     data-[state=on]:bg-white
-                    data-[state=on]:border-[#FF9B17]
+                    data-[state=on]:border-[#FE9400]
                     data-[state=on]:text-[#333333]
                     data-[state=off]:bg-[#F1F3F3]
                     data-[state=off]:text-[#595959]

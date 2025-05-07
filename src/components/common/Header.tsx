@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import GNBMenu from '@/components/common/GNBMenu';
 import DarkModeToggle from './DarkModeToggle';
 import { useDarkMode } from '@/stores/useDarkMode';
+import Logo from '@/assets/logo.svg' 
 
 interface HeaderProps {
   mode: 'logo' | 'title';
@@ -53,9 +54,11 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <div className="font-semibold text-xl" style={{ color: textColor }}>
-              Cafeboo
-            </div>
+            <img
+              src={Logo}
+              alt="Cafeboo"
+              className="h-9 w-auto"
+            />
           )}
 
           {/* 가운데: 타이틀 */}

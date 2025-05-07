@@ -99,21 +99,21 @@ const DiaryPage = () => {
           onMonthChange={handleMonthChange}
         />
 
-        <h2 className="mt-6 mb-3 text-lg text-[#000000] font-semibold">
+        <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
           {new Date(selectedDate).getMonth() + 1}월 {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
 
         <CaffeineList records={records} onEdit={handleEdit} />
 
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#FF9B17] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
+          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
           onClick={() => navigate('/main/report')}
         >
           <BarChart2 size={24} />
         </button>
 
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#56433C] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#745A50] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
           onClick={() => navigate('/home/add')}
         >
           <Plus size={24} />

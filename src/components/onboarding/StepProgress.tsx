@@ -20,7 +20,7 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
                 flex items-center justify-center
                 w-6 h-6 rounded-full font-medium text-sm
                 ${isCurrent
-                  ? 'bg-[#FF9B17] text-white'
+                  ? 'bg-[#FE9400] text-white'
                   : 'border-2 border-[#C7C7CC] text-[#C7C7CC]'}
               `}
             >

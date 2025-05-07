@@ -130,7 +130,7 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
                     fill={
                     period === "weekly" && entry.value > dailyLimit
                         ? "#ff4d4f"
-                        : "#FF9B17"
+                        : "#FE9400"
                     }
                     fillOpacity={0.8}
                 />
