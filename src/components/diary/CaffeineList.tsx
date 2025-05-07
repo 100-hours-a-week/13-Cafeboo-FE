@@ -24,8 +24,8 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
         title="기록이 없습니다"
         description={
             <>
-              <p>아직 등록된 카페인 섭취 기록이 없어요.</p>
-              <p>아래 버튼을 눌러 추가해보세요!</p>
+              <span>아직 등록된 카페인 섭취 기록이 없어요.</span>
+              <span>아래 버튼을 눌러 추가해보세요!</span>
             </>
           }
         icon={<FileText size={32} />}

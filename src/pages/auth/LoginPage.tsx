@@ -1,7 +1,6 @@
 import LoginForm, { LoginFormData } from '@/components/auth/LoginForm';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useNavigate } from 'react-router-dom';
-import DarkModeToggle from '@/components/common/DarkModeToggle';
 
 const LoginPage = () => {
   const navigate = useNavigate();

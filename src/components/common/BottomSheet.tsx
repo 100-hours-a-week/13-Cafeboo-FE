@@ -13,9 +13,10 @@ export interface BottomSheetProps {
   title?: string;
   description?: string;
   children: React.ReactNode;
-  onConfirm: () => void;
+  onConfirm?: () => void;   
   confirmLabel?: string;
   cancelLabel?: string;
+  hideConfirm?: boolean;        
 }
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
@@ -27,32 +28,42 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   onConfirm,
   confirmLabel = "저장",
   cancelLabel = "취소",
+  hideConfirm = false,
 }) => (
   <Drawer open={open} onOpenChange={onOpenChange}>
     <DrawerContent
       className="
-        fixed bottom-0 inset-x-0 
-        max-h-[70%]            
-        rounded-t-xl            
+        fixed bottom-0 inset-x-0
+        max-h-[90%]
+        rounded-t-xl
         bg-white dark:bg-[#121212]
-        shadow-lg              
+        shadow-lg
       "
     >
 
       {/* 상단 액션 바 */}
-      <div className="-mt-2 mb-4 flex justify-between items-center px-4 py-1">
+      <div
+        className={`-mt-2 mb-4 flex items-center px-4 py-1 ${
+          hideConfirm ? 'justify-end' : 'justify-between'
+        }`}
+      >
+        {/* 취소 버튼 */}
         <button
           onClick={() => onOpenChange(false)}
           className="text-[#56433C] text-sm"
         >
           {cancelLabel}
         </button>
-        <button
-          onClick={onConfirm}
-          className="text-[#56433C] text-sm font-medium"
-        >
-          {confirmLabel}
-        </button>
+
+        {/* confirm 버튼: hideConfirm 이 false이고 onConfirm 이 있을 때만 */}
+        {!hideConfirm && onConfirm && (
+          <button
+            onClick={onConfirm}
+            className="text-[#56433C] text-sm font-medium"
+          >
+            {confirmLabel}
+          </button>
+        )}
       </div>
 
       {/* 제목/설명 (선택) */}
