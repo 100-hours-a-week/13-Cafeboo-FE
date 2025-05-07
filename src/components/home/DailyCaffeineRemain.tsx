@@ -147,6 +147,7 @@ import {
                     <Cell
                       key={idx}
                       fill={'#FF9B17'}
+                      fillOpacity={0.8}
                     />
                   ))}
                 </Bar>

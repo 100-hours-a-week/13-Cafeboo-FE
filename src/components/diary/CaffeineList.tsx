@@ -35,7 +35,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
 
   const CoffeeBeanIcon = () => (
     <svg width="28" height="28" viewBox="0 0 28 28">
-    <circle cx="14" cy="14" r="14" fill="#F8EEDD" />
+    <circle cx="14" cy="14" r="14" fill="#FF9B17" fillOpacity={0.2} />
     <g transform="rotate(40, 14, 14)">
         <ellipse cx="14" cy="14" rx="5" ry="6.5" fill="#8C593D" />
         <path d="M14 8 C13 11, 13 17, 14 20 C15 17, 15 11, 14 7" fill="#5B3924" />
@@ -76,7 +76,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
             <span className="text-[#333333] font-medium">{record.caffeineAmount} mg</span>
             <ChevronRight
               size={18}
-              className="text-[#945945] cursor-pointer"
+              className="text-[#333333] cursor-pointer"
               onClick={() => onEdit(record.intakeId)}
             />
           </div>

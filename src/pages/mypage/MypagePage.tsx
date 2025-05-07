@@ -37,7 +37,7 @@ const MyPage: React.FC = () => {
     <div className="dark:bg-[#121212] min-h-screen">
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
-      <h2 className="mb-3 text-lg text-[#333333] font-semibold">
+      <h2 className="mb-3 text-lg text-[#000000] font-semibold">
               마이 페이지
         </h2>
         

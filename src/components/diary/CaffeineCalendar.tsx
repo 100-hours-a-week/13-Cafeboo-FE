@@ -139,7 +139,7 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
               className="aspect-square flex items-center justify-center relative"
             >
                 {isSelected && (
-                    <div className="absolute w-10 h-10 rounded-lg bg-[#808080]/30" />
+                    <div className="absolute w-10 h-10 rounded-lg bg-[#808080]/20" />
                 )}
 
                 {day.currentMonth && amount > 0 && CoffeeBeanIcon(amount)}

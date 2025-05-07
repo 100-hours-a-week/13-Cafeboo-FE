@@ -67,7 +67,7 @@ export default function HomePage() {
 
         {/* 카페인 추가 버튼 */}
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#56433C] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.4)]"
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#56433C] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
           onClick={() => navigate('/home/add')}
         >
           <Plus size={24} />

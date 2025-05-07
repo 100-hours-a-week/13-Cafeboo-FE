@@ -43,7 +43,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
         className="fixed top-0 left-0 w-full h-14 z-30"
         style={{ backgroundColor: headerBgColor }}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+        <div className="w-full max-w-full sm:max-w-md lg:max-w-3xl xl:max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
           {/* 왼쪽: 로고 또는 뒤로가기 */}
           {mode === 'title' ? (
             <button
