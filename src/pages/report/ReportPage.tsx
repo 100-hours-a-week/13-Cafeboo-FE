@@ -1,118 +1,120 @@
-import { useState, useEffect } from "react"
-import Header from "@/components/common/Header"
-import { Calendar, Plus } from "lucide-react"
-import DropdownSelector, { PeriodType } from "@/components/report/DropdownSelector"
-import PeriodFilterSelector from "@/components/report/PeriodFilterSelector"
-import ReportChart from "@/components/report/ReportChart"
-import ReportSummary from "@/components/report/ReportSummary"
-import ReportMessage from "@/components/report/ReportMessage"
-import { useNavigate } from "react-router-dom"
-import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
-import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
+import { useState, useEffect } from 'react';
+import Header from '@/components/common/Header';
+import { Calendar, Plus } from 'lucide-react';
+import DropdownSelector, {
+  PeriodType,
+} from '@/components/report/DropdownSelector';
+import PeriodFilterSelector from '@/components/report/PeriodFilterSelector';
+import ReportChart from '@/components/report/ReportChart';
+import ReportSummary from '@/components/report/ReportSummary';
+import ReportMessage from '@/components/report/ReportMessage';
+import { useNavigate } from 'react-router-dom';
+import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
+import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
 
 // ReportChart 에서 받도록 정의한 타입
 interface ReportApiData {
-  dailyIntakeTotals?: { date: string; caffeineMg: number }[]
-  dailyCaffeineLimit?: number
-  weeklyIntakeTotals?: { isoWeek: string; totalCaffeineMg: number }[]
-  monthlyIntakeTotals?: { month: number; totalCaffeineMg: number }[]
+  dailyIntakeTotals?: { date: string; caffeineMg: number }[];
+  dailyCaffeineLimit?: number;
+  weeklyIntakeTotals?: { isoWeek: string; totalCaffeineMg: number }[];
+  monthlyIntakeTotals?: { month: number; totalCaffeineMg: number }[];
 
-  dailyCaffeineAvg?: number
-  overLimitDays?: number
-  summaryMessage?: string
+  dailyCaffeineAvg?: number;
+  overLimitDays?: number;
+  summaryMessage?: string;
 }
 
 const ReportPage: React.FC = () => {
-  const [periodType, setPeriodType] = useState<PeriodType>("weekly")
-  const [selectedYear, setSelectedYear] = useState("2025년")
-  const [selectedMonth, setSelectedMonth] = useState("1월")
-  const [selectedWeek, setSelectedWeek] = useState("1주차")
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [periodType, setPeriodType] = useState<PeriodType>('weekly');
+  const [selectedYear, setSelectedYear] = useState('2025년');
+  const [selectedMonth, setSelectedMonth] = useState('1월');
+  const [selectedWeek, setSelectedWeek] = useState('1주차');
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   // 전체 API 응답 형태를 통째로 담을 state
-  const [reportData, setReportData] = useState<ReportApiData>({})
-  const navigate = useNavigate()
+  const [reportData, setReportData] = useState<ReportApiData>({});
+  const navigate = useNavigate();
 
-  const fetchReportData = (
-    year: string,
-    month?: string,
-    week?: string
-  ) => {
+  const fetchReportData = (year: string, month?: string, week?: string) => {
     // TODO: 실제 API 호출 → res.data 를 바로 setReportData(res.data)
     // 지금은 샘플 로직
-    if (periodType === "weekly") {
-        const daily = [
-          { date: "2024-12-29", caffeineMg: 400 },
-          { date: "2024-12-30", caffeineMg: 320 },
-          { date: "2024-12-31", caffeineMg: 250 },
-          { date: "2025-01-01", caffeineMg: 480 },
-          { date: "2025-01-02", caffeineMg: 250 },
-          { date: "2025-01-03", caffeineMg: 400 },
-          { date: "2025-01-04", caffeineMg: 500 },
-        ]
-        const avg = daily.reduce((sum, d) => sum + d.caffeineMg, 0) / daily.length
-        const over = daily.filter(d => d.caffeineMg > 400).length
-        const message = `이번 주에는 총 ${daily.length}일 중 ${over}일간 권장량을 초과했어요.`
-  
-        setReportData({
-          dailyIntakeTotals: daily,
-          dailyCaffeineLimit: 400,
-          dailyCaffeineAvg: Math.round(avg),
-          overLimitDays: over,
-          summaryMessage: message,
-        })
-      } else if (periodType === "monthly") {
-        const weekly = [
-          { isoWeek: "2025-W01", totalCaffeineMg: 1950 },
-          { isoWeek: "2025-W02", totalCaffeineMg: 1800 },
-          { isoWeek: "2025-W03", totalCaffeineMg: 1720 },
-          { isoWeek: "2025-W04", totalCaffeineMg: 2100 },
-          { isoWeek: "2025-W05", totalCaffeineMg: 1350 },
-        ]
-        const avg = Math.round(weekly.reduce((sum, w) => sum + w.totalCaffeineMg, 0) / weekly.length)
-        const message = `지난 달 평균 주간 섭취량은 ${avg}mg입니다.`
-  
-        setReportData({
-          weeklyIntakeTotals: weekly,
-          dailyCaffeineAvg: avg,
-          summaryMessage: message,
-        })
-      } else {
-        const monthly = Array.from({ length: 12 }, (_, i) => ({ month: i + 1, totalCaffeineMg: 7800 + i * 100 }))
-        const avg = Math.round(monthly.reduce((sum, m) => sum + m.totalCaffeineMg, 0) / monthly.length)
-        const message = `올해 평균 월간 섭취량은 ${avg}mg이에요.`
-  
-        setReportData({
-          monthlyIntakeTotals: monthly,
-          dailyCaffeineAvg: avg,
-          summaryMessage: message,
-        })
-      }
-  }
+    if (periodType === 'weekly') {
+      const daily = [
+        { date: '2024-12-29', caffeineMg: 400 },
+        { date: '2024-12-30', caffeineMg: 320 },
+        { date: '2024-12-31', caffeineMg: 250 },
+        { date: '2025-01-01', caffeineMg: 480 },
+        { date: '2025-01-02', caffeineMg: 250 },
+        { date: '2025-01-03', caffeineMg: 400 },
+        { date: '2025-01-04', caffeineMg: 500 },
+      ];
+      const avg =
+        daily.reduce((sum, d) => sum + d.caffeineMg, 0) / daily.length;
+      const over = daily.filter((d) => d.caffeineMg > 400).length;
+      const message = `이번 주에는 총 ${daily.length}일 중 ${over}일간 권장량을 초과했어요.`;
+
+      setReportData({
+        dailyIntakeTotals: daily,
+        dailyCaffeineLimit: 400,
+        dailyCaffeineAvg: Math.round(avg),
+        overLimitDays: over,
+        summaryMessage: message,
+      });
+    } else if (periodType === 'monthly') {
+      const weekly = [
+        { isoWeek: '2025-W01', totalCaffeineMg: 1950 },
+        { isoWeek: '2025-W02', totalCaffeineMg: 1800 },
+        { isoWeek: '2025-W03', totalCaffeineMg: 1720 },
+        { isoWeek: '2025-W04', totalCaffeineMg: 2100 },
+        { isoWeek: '2025-W05', totalCaffeineMg: 1350 },
+      ];
+      const avg = Math.round(
+        weekly.reduce((sum, w) => sum + w.totalCaffeineMg, 0) / weekly.length
+      );
+      const message = `지난 달 평균 주간 섭취량은 ${avg}mg입니다.`;
+
+      setReportData({
+        weeklyIntakeTotals: weekly,
+        dailyCaffeineAvg: avg,
+        summaryMessage: message,
+      });
+    } else {
+      const monthly = Array.from({ length: 12 }, (_, i) => ({
+        month: i + 1,
+        totalCaffeineMg: 7800 + i * 100,
+      }));
+      const avg = Math.round(
+        monthly.reduce((sum, m) => sum + m.totalCaffeineMg, 0) / monthly.length
+      );
+      const message = `올해 평균 월간 섭취량은 ${avg}mg이에요.`;
+
+      setReportData({
+        monthlyIntakeTotals: monthly,
+        dailyCaffeineAvg: avg,
+        summaryMessage: message,
+      });
+    }
+  };
 
   useEffect(() => {
-    fetchReportData(selectedYear, selectedMonth, selectedWeek)
-  }, [periodType, selectedYear, selectedMonth, selectedWeek])
+    fetchReportData(selectedYear, selectedMonth, selectedWeek);
+  }, [periodType, selectedYear, selectedMonth, selectedWeek]);
 
   const handlePeriodChange = (period: PeriodType) => {
-    setPeriodType(period)
+    setPeriodType(period);
     // useEffect 에서 다시 fetchReportData 가 불립니다
-  }
+  };
 
-  const handleFilterChange = (
-    year: string,
-    month?: string,
-    week?: string
-  ) => {
-    setSelectedYear(year)
-    if (month) setSelectedMonth(month)
-    if (week)  setSelectedWeek(week)
-  }
+  const handleFilterChange = (year: string, month?: string, week?: string) => {
+    setSelectedYear(year);
+    if (month) setSelectedMonth(month);
+    if (week) setSelectedWeek(week);
+  };
 
   const handleSubmitRecord = (record: CaffeineRecordInput) => {
-    console.log("최종 카페인 기록:", record)
-    setIsSheetOpen(false)
-  }
+    console.log('최종 카페인 기록:', record);
+    setIsSheetOpen(false);
+  };
 
   return (
     <div className="min-h-screen">
@@ -158,7 +160,7 @@ const ReportPage: React.FC = () => {
         {/* 플로팅 버튼 */}
         <button
           className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
-          onClick={() => navigate("/main/diary")}
+          onClick={() => navigate('/main/diary')}
         >
           <Calendar size={24} />
         </button>
@@ -170,12 +172,12 @@ const ReportPage: React.FC = () => {
         </button>
       </main>
       <CaffeineBottomSheet
-                    open={isSheetOpen}
-                    onOpenChange={setIsSheetOpen}
-                    onSubmitRecord={handleSubmitRecord}
-        />
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+        onSubmitRecord={handleSubmitRecord}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default ReportPage
+export default ReportPage;

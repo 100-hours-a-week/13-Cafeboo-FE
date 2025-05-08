@@ -15,7 +15,7 @@ interface GNBMenuProps {
 
 const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
   const navigate = useNavigate();
-  
+
   const handleNavigate = (href: string) => {
     navigate(href);
     onClose();
@@ -25,7 +25,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
     navigate('/main/home');
     onClose();
   };
-  
+
   return (
     <>
       {isOpen && (
@@ -34,13 +34,13 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
           className="absolute inset-0 bg-black/50 z-40"
         ></div>
       )}
-  
+
       <div
         className={`absolute top-0 right-0 h-full w-[80%] z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
-          backgroundColor: '#FFFFFF'
+          backgroundColor: '#FFFFFF',
         }}
       >
         <div
@@ -65,13 +65,11 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               disabled={item.disabled}
               className={`w-full text-left px-4 py-3 border-b`}
               style={{
-                color: item.disabled 
-                  ? '#9CA3AF'
-                  : '#000000',
-                borderColor:  '#E5E7EB',
+                color: item.disabled ? '#9CA3AF' : '#000000',
+                borderColor: '#E5E7EB',
                 backgroundColor: '#FFFFFF',
                 opacity: item.disabled ? 0.5 : 1,
-                cursor: item.disabled ? 'not-allowed' : 'pointer'
+                cursor: item.disabled ? 'not-allowed' : 'pointer',
               }}
             >
               {item.label}
@@ -82,5 +80,5 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
     </>
   );
 };
-  
+
 export default GNBMenu;

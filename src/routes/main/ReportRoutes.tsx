@@ -5,7 +5,7 @@ import NotFoundPage from '@/pages/common/NotFoundPage';
 const ReportRoutes = () => (
   <Routes>
     <Route path="/" element={<ReportPage />} />
-    <Route path="*" element={<NotFoundPage />} /> 
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 

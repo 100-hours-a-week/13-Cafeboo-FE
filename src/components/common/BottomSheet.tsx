@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
-} from "@/components/ui/drawer";
+} from '@/components/ui/drawer';
 
 export interface BottomSheetProps {
   open: boolean;
@@ -30,8 +30,8 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   description,
   children,
   onConfirm,
-  confirmLabel = "저장",
-  cancelLabel = "취소",
+  confirmLabel = '저장',
+  cancelLabel = '취소',
   hideConfirm = false,
   contentStyle,
 }) => (
@@ -80,12 +80,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         </DrawerHeader>
       )}
 
-      <div className="px-4 py-2 flex-1 overflow-auto">
-        {children}
-      </div>
+      <div className="px-4 py-2 flex-1 overflow-auto">{children}</div>
     </DrawerContent>
   </Drawer>
 );
-
-
-

@@ -1,7 +1,7 @@
 name: 📋 일반 이슈
 description: 기타 요청, 질문, 논의가 있을 때 사용해주세요.
-title: "[GENERAL] "
-labels: ["question", "discussion"]
+title: '[GENERAL] '
+labels: ['question', 'discussion']
 body:
   - type: textarea
     attributes:

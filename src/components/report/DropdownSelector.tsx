@@ -1,23 +1,23 @@
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from '@/components/ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu';
 
-export type PeriodType = 'weekly' | 'monthly' | 'yearly'
+export type PeriodType = 'weekly' | 'monthly' | 'yearly';
 
 interface DropdownSelectorProps {
-  selectedPeriod: PeriodType
-  onPeriodChange: (period: PeriodType) => void
+  selectedPeriod: PeriodType;
+  onPeriodChange: (period: PeriodType) => void;
 }
 
 const periodLabels: Record<PeriodType, string> = {
-  weekly:  '주별',
+  weekly: '주별',
   monthly: '월별',
-  yearly:  '연도별',
-}
+  yearly: '연도별',
+};
 
 const DropdownSelector: React.FC<DropdownSelectorProps> = ({
   selectedPeriod,
@@ -58,8 +58,7 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
 
-export default DropdownSelector
-
+export default DropdownSelector;

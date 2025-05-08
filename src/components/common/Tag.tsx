@@ -1,12 +1,12 @@
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 interface TagProps {
-  items: string[]
-  value: string[]
-  onChange: (newValue: string[]) => void
-  multiple?: boolean
-  scrollable?: boolean     
-  className?: string
+  items: string[];
+  value: string[];
+  onChange: (newValue: string[]) => void;
+  multiple?: boolean;
+  scrollable?: boolean;
+  className?: string;
 }
 
 export function Tag({
@@ -20,11 +20,11 @@ export function Tag({
   // 스크롤 가능 모드 vs 일반 래핑 모드용 클래스
   const containerClasses = scrollable
     ? `overflow-x-auto scrollbar-hide ${className}`
-    : `flex-wrap flex items-center gap-2 ${className}`
+    : `flex-wrap flex items-center gap-2 ${className}`;
 
   const toggleGroupClass = scrollable
     ? 'flex-nowrap flex items-center space-x-2'
-    : 'flex-wrap flex items-center gap-2'
+    : 'flex-wrap flex items-center gap-2';
 
   return (
     <div className={containerClasses}>
@@ -32,10 +32,10 @@ export function Tag({
         <ToggleGroup
           type="multiple"
           value={value}
-          onValueChange={val => onChange(val ?? [])}
+          onValueChange={(val) => onChange(val ?? [])}
           className={toggleGroupClass}
         >
-          {items.map(item => (
+          {items.map((item) => (
             <ToggleGroupItem
               key={item}
               value={item}
@@ -49,10 +49,10 @@ export function Tag({
         <ToggleGroup
           type="single"
           value={value[0] ?? ''}
-          onValueChange={val => onChange(val ? [val] : [])}
+          onValueChange={(val) => onChange(val ? [val] : [])}
           className={toggleGroupClass}
         >
-          {items.map(item => (
+          {items.map((item) => (
             <ToggleGroupItem
               key={item}
               value={item}
@@ -64,7 +64,5 @@ export function Tag({
         </ToggleGroup>
       )}
     </div>
-  )
+  );
 }
-
-

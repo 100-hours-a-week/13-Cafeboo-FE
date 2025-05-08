@@ -19,9 +19,20 @@ const formatDate = (date: Date) => {
 
 const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelect, onMonthChange }: CalendarProps) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date(year, month - 1, 1));
-  const [internalSelectedDate, setInternalSelectedDate] = useState(new Date(selectedDate));
+const CaffeineCalendar = ({
+  year,
+  month,
+  selectedDate,
+  caffeineData,
+  onDateSelect,
+  onMonthChange,
+}: CalendarProps) => {
+  const [currentMonth, setCurrentMonth] = useState(
+    new Date(year, month - 1, 1)
+  );
+  const [internalSelectedDate, setInternalSelectedDate] = useState(
+    new Date(selectedDate)
+  );
 
   useEffect(() => {
     setCurrentMonth(new Date(year, month - 1, 1));
@@ -36,7 +47,11 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
     const prevMonthDays = [];
     for (let i = 0; i < firstDayOfWeek; i++) {
       const prevDate = new Date(year, month, -i);
-      prevMonthDays.unshift({ date: prevDate, day: prevDate.getDate(), currentMonth: false });
+      prevMonthDays.unshift({
+        date: prevDate,
+        day: prevDate.getDate(),
+        currentMonth: false,
+      });
     }
 
     const currentMonthDays = [];
@@ -57,28 +72,27 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
 
   const CoffeeBeanIcon = (amount: number) => {
     const color =
-    amount <= 199 ? '#FFE3C8' :
-    amount <= 400 ? '#FFC46E' : '#FFA634';
+      amount <= 199 ? '#FFE3C8' : amount <= 400 ? '#FFC46E' : '#FFA634';
 
-  return (
-    <div
-      className="absolute w-8 h-8 rounded-full"
-      style={{ backgroundColor: color }}
-    />
-  );
+    return (
+      <div
+        className="absolute w-8 h-8 rounded-full"
+        style={{ backgroundColor: color }}
+      />
+    );
   };
 
   const handleDateSelect = async (date: Date, isCurrentMonth: boolean) => {
     const newMonth = date.getMonth() + 1;
     const newYear = date.getFullYear();
-  
+
     setInternalSelectedDate(date);
-  
+
     if (!isCurrentMonth) {
       setCurrentMonth(new Date(newYear, date.getMonth(), 1));
       onMonthChange(newYear, newMonth);
     }
-  
+
     await onDateSelect(formatDate(date));
   };
 
@@ -90,39 +104,53 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
     );
   };
 
-  const days = getDaysInMonth(currentMonth.getFullYear(), currentMonth.getMonth());
+  const days = getDaysInMonth(
+    currentMonth.getFullYear(),
+    currentMonth.getMonth()
+  );
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
       <div className="flex justify-between items-center mb-4">
-      <button
-        onClick={() => {
-            const newDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+        <button
+          onClick={() => {
+            const newDate = new Date(
+              currentMonth.getFullYear(),
+              currentMonth.getMonth() - 1,
+              1
+            );
             setCurrentMonth(newDate);
-            onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1); 
-        }}
+            onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1);
+          }}
         >
-        <ChevronLeft size={20} className="text-[#595959]" />
+          <ChevronLeft size={20} className="text-[#595959]" />
         </button>
         <h3 className="text-lg font-medium text-[#333333]">
-          {currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' })}
+          {currentMonth.toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          })}
         </h3>
         <button
-        onClick={() => {
-            const newDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+          onClick={() => {
+            const newDate = new Date(
+              currentMonth.getFullYear(),
+              currentMonth.getMonth() + 1,
+              1
+            );
             setCurrentMonth(newDate);
-            onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1); 
-        }}
+            onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1);
+          }}
         >
-        <ChevronRight size={20} className="text-[#595959]" />
+          <ChevronRight size={20} className="text-[#595959]" />
         </button>
       </div>
 
       <div className="mb-2">
         <div className="bg-[#FBF4E7] rounded-full grid grid-cols-7 gap-5 text-center text-base text-[#939393] py-1 px-3">
-            {daysOfWeek.map((day, idx) => (
-                <div key={idx}>{day}</div>
-            ))}
+          {daysOfWeek.map((day, idx) => (
+            <div key={idx}>{day}</div>
+          ))}
         </div>
       </div>
 
@@ -138,23 +166,23 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
               onClick={() => handleDateSelect(day.date, day.currentMonth)}
               className="aspect-square flex items-center justify-center relative"
             >
-                {isSelected && (
-                    <div className="absolute w-10 h-10 rounded-lg bg-[#808080]/20" />
-                )}
+              {isSelected && (
+                <div className="absolute w-10 h-10 rounded-lg bg-[#808080]/20" />
+              )}
 
-                {day.currentMonth && amount > 0 && CoffeeBeanIcon(amount)}
+              {day.currentMonth && amount > 0 && CoffeeBeanIcon(amount)}
 
-                <span
-                    className={`z-10 ${isSelected} ${
-                    day.currentMonth && amount > 0
-                        ? 'text-[#333333]'
-                        : day.currentMonth
-                        ? 'text-[#333333]'
-                        : 'text-[#BFBFBF]'
-                    }`}
-                >
-                    {day.day}
-                </span>
+              <span
+                className={`z-10 ${isSelected} ${
+                  day.currentMonth && amount > 0
+                    ? 'text-[#333333]'
+                    : day.currentMonth
+                      ? 'text-[#333333]'
+                      : 'text-[#BFBFBF]'
+                }`}
+              >
+                {day.day}
+              </span>
             </button>
           );
         })}
@@ -164,8 +192,3 @@ const CaffeineCalendar = ({ year, month, selectedDate, caffeineData, onDateSelec
 };
 
 export default CaffeineCalendar;
-
-
-
-
-

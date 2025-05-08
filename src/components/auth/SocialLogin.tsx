@@ -1,19 +1,21 @@
 import KakaoIcon from '@/components/auth/KaKaoIcon';
-import { Info } from 'lucide-react'
-import { useState } from 'react'
-import AlertModal from '@/components/common/AlertModal'
+import { Info } from 'lucide-react';
+import { useState } from 'react';
+import AlertModal from '@/components/common/AlertModal';
 
 interface SocialLoginProps {
   onSocialLogin: (platform: string) => Promise<void>;
 }
 
 const SocialLogin = ({ onSocialLogin }: SocialLoginProps) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="w-full max-w-xs mx-auto text-center mt-8">
       <div className="flex items-center justify-center my-6">
         <div className="h-px bg-[#939393] flex-1" />
-        <span className="mx-2 text-[#939393] text-sm">SNS 계정으로 로그인하기</span>
+        <span className="mx-2 text-[#939393] text-sm">
+          SNS 계정으로 로그인하기
+        </span>
         <div className="h-px bg-[#939393] flex-1" />
       </div>
 
@@ -26,7 +28,10 @@ const SocialLogin = ({ onSocialLogin }: SocialLoginProps) => {
 
       <p className="text-base text-[#595959]">
         아직 계정이 없으신가요?{' '}
-        <span className="text-base text-[#FF8F00] font-semibold cursor-pointer" onClick={() => setShowModal(true)}>
+        <span
+          className="text-base text-[#FF8F00] font-semibold cursor-pointer"
+          onClick={() => setShowModal(true)}
+        >
           회원가입
         </span>
       </p>

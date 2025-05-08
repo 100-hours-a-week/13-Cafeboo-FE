@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface StepProgressProps {
   currentStep: number;
@@ -19,9 +19,11 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
               className={`
                 flex items-center justify-center
                 w-6 h-6 rounded-full font-medium text-sm
-                ${isCurrent
-                  ? 'bg-[#FE9400] text-white'
-                  : 'border-2 border-[#C7C7CC] text-[#C7C7CC]'}
+                ${
+                  isCurrent
+                    ? 'bg-[#FE9400] text-white'
+                    : 'border-2 border-[#C7C7CC] text-[#C7C7CC]'
+                }
               `}
             >
               {step}
@@ -31,9 +33,11 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
               <div
                 className={`
                   flex-1 mx-2
-                  ${isCompleted
-                    ? 'border-t-2 border-solid border-[#C7C7CC]'
-                    : 'border-t-2 border-dashed border-[#C7C7CC]'}
+                  ${
+                    isCompleted
+                      ? 'border-t-2 border-solid border-[#C7C7CC]'
+                      : 'border-t-2 border-dashed border-[#C7C7CC]'
+                  }
                 `}
               />
             )}
@@ -45,5 +49,3 @@ const StepProgress = ({ currentStep, totalSteps }: StepProgressProps) => {
 };
 
 export default StepProgress;
-
-  

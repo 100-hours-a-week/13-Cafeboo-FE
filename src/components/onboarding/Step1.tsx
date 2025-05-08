@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useOnboardingStore } from '@/stores/onboardingStore';
@@ -8,11 +8,11 @@ const Step1 = () => {
   const gender = healthInfo.gender || 'male';
   const [weightInput, setWeightInput] = useState(
     healthInfo.weight != null ? String(healthInfo.weight) : ''
-  )
+  );
 
   useEffect(() => {
-    setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '')
-  }, [healthInfo.weight])
+    setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '');
+  }, [healthInfo.weight]);
 
   return (
     <div className="space-y-6 py-4">
@@ -24,7 +24,9 @@ const Step1 = () => {
         <ToggleGroup
           type="single"
           value={gender}
-          onValueChange={(v) => updateHealth({ gender: v as "male" | "female" })}
+          onValueChange={(v) =>
+            updateHealth({ gender: v as 'male' | 'female' })
+          }
           className="flex w-full"
         >
           <ToggleGroupItem
@@ -89,11 +91,12 @@ const Step1 = () => {
           <span className="text-base mr-2">세</span>
         </div>
       </div>
-      {healthInfo.age != null && (healthInfo.age < 1 || healthInfo.age > 123) && (
-            <p className="mt-1 text-sm text-red-500">
-              * 나이는 최소 1, 최대 123까지 유효합니다.
-            </p>
-      )}
+      {healthInfo.age != null &&
+        (healthInfo.age < 1 || healthInfo.age > 123) && (
+          <p className="mt-1 text-sm text-red-500">
+            * 나이는 최소 1, 최대 123까지 유효합니다.
+          </p>
+        )}
 
       {/* 신장 입력 */}
       <div className="flex items-center justify-between mb-8">
@@ -160,10 +163,10 @@ const Step1 = () => {
       {/* Boolean 토글 4개 */}
       <div className="grid grid-cols-2 gap-6">
         {[
-          { key: 'pregnancy',      label: '임신 여부'      },
-          { key: 'birthControl',   label: '피임약 복용'    },
-          { key: 'smoking',        label: '흡연 여부'      },
-          { key: 'liverDisease',   label: '간 관련 질병'   },
+          { key: 'pregnancy', label: '임신 여부' },
+          { key: 'birthControl', label: '피임약 복용' },
+          { key: 'smoking', label: '흡연 여부' },
+          { key: 'liverDisease', label: '간 관련 질병' },
         ].map(({ key, label }) => {
           const val = (healthInfo as any)[key] as boolean;
 
@@ -212,13 +215,11 @@ const Step1 = () => {
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>
-            );
-          })}
+          );
+        })}
       </div>
     </div>
   );
 };
 
 export default Step1;
-
-

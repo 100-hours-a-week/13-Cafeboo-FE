@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GNBMenu from '@/components/common/GNBMenu';
-import Logo from '@/assets/logo.svg' 
+import Logo from '@/assets/logo.svg';
 
 interface HeaderProps {
   mode: 'logo' | 'title';
@@ -13,7 +13,6 @@ interface HeaderProps {
 const Header = ({ mode, title, onBackClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  
 
   const menuItems = [
     { label: '카페인 히스토리', href: '/main/diary' },
@@ -35,7 +34,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
 
   return (
     <>
-      <header 
+      <header
         className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto md:left-184 lg:left-216 xl:left-248 2xl:left-312"
         style={{ backgroundColor: headerBgColor }}
       >
@@ -49,16 +48,12 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <img
-              src={Logo}
-              alt="Cafeboo"
-              className="h-9 w-auto"
-            />
+            <img src={Logo} alt="Cafeboo" className="h-9 w-auto" />
           )}
 
           {/* 가운데: 타이틀 */}
           {mode === 'title' && (
-            <h1 
+            <h1
               className="text-lg font-bold absolute left-1/2 transform -translate-x-1/2"
               style={{ color: textColor }}
             >
