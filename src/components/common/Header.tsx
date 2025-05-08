@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GNBMenu from '@/components/common/GNBMenu';
-import DarkModeToggle from './DarkModeToggle';
-import { useDarkMode } from '@/stores/useDarkMode';
 import Logo from '@/assets/logo.svg' 
 
 interface HeaderProps {
@@ -16,14 +14,12 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   
-  // 다크모드 상태 가져오기
-  const { dark } = useDarkMode();
 
   const menuItems = [
     { label: '카페인 히스토리', href: '/main/diary' },
     { label: '커피챗', href: '/main/coffeechat', disabled: true },
     { label: '챌린지', href: '/main/challenge', disabled: true },
-    { label: '마이페이지', href: '/main/mypage' },
+    { label: '마이 페이지', href: '/main/mypage' },
   ];
 
   const handleBack = () => {
@@ -34,14 +30,13 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
     }
   };
 
-  // 다크모드에 따른 색상 설정
-  const headerBgColor = dark ? '#121212' : '#FFFFFF';
-  const textColor = dark ? '#F5F5F5' : '#000000';
+  const headerBgColor = '#FFFFFF';
+  const textColor = '#000000';
 
   return (
     <>
       <header 
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto"
+        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto md:left-184 lg:left-216 xl:left-248 2xl:left-312"
         style={{ backgroundColor: headerBgColor }}
       >
         <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
@@ -75,7 +70,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="p-1 rounded-full hover:opacity-80"
+              className="p-1 rounded-full hover:opacity-80 cursor-pointer"
             >
               <Menu className="w-6 h-6" style={{ color: textColor }} />
             </button>

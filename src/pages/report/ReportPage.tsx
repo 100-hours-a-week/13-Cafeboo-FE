@@ -7,6 +7,8 @@ import ReportChart from "@/components/report/ReportChart"
 import ReportSummary from "@/components/report/ReportSummary"
 import ReportMessage from "@/components/report/ReportMessage"
 import { useNavigate } from "react-router-dom"
+import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
+import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
 
 // ReportChart 에서 받도록 정의한 타입
 interface ReportApiData {
@@ -25,6 +27,7 @@ const ReportPage: React.FC = () => {
   const [selectedYear, setSelectedYear] = useState("2025년")
   const [selectedMonth, setSelectedMonth] = useState("1월")
   const [selectedWeek, setSelectedWeek] = useState("1주차")
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
   // 전체 API 응답 형태를 통째로 담을 state
   const [reportData, setReportData] = useState<ReportApiData>({})
@@ -106,6 +109,11 @@ const ReportPage: React.FC = () => {
     if (week)  setSelectedWeek(week)
   }
 
+  const handleSubmitRecord = (record: CaffeineRecordInput) => {
+    console.log("최종 카페인 기록:", record)
+    setIsSheetOpen(false)
+  }
+
   return (
     <div className="min-h-screen">
       <Header mode="logo" />
@@ -149,18 +157,23 @@ const ReportPage: React.FC = () => {
 
         {/* 플로팅 버튼 */}
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
+          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
           onClick={() => navigate("/main/diary")}
         >
           <Calendar size={24} />
         </button>
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#745A50] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
-          onClick={() => navigate("/home/add")}
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
+          onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} />
         </button>
       </main>
+      <CaffeineBottomSheet
+                    open={isSheetOpen}
+                    onOpenChange={setIsSheetOpen}
+                    onSubmitRecord={handleSubmitRecord}
+        />
     </div>
   )
 }

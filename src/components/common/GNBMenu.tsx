@@ -1,6 +1,5 @@
 import { X, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useDarkMode } from '@/stores/useDarkMode';
 
 interface GNBMenuItem {
   label: string;
@@ -16,7 +15,6 @@ interface GNBMenuProps {
 
 const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
   const navigate = useNavigate();
-  const { dark } = useDarkMode();
   
   const handleNavigate = (href: string) => {
     navigate(href);
