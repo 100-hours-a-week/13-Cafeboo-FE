@@ -10,13 +10,17 @@ import {
 export interface BottomSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+
   title?: string;
   description?: string;
   children: React.ReactNode;
-  onConfirm?: () => void;   
+
+  onConfirm?: () => void;
   confirmLabel?: string;
   cancelLabel?: string;
-  hideConfirm?: boolean;        
+
+  hideConfirm?: boolean;
+  contentStyle?: React.CSSProperties;
 }
 
 export const BottomSheet: React.FC<BottomSheetProps> = ({
@@ -29,56 +33,49 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   confirmLabel = "저장",
   cancelLabel = "취소",
   hideConfirm = false,
+  contentStyle,
 }) => (
   <Drawer open={open} onOpenChange={onOpenChange}>
     <DrawerContent
       className="
         fixed bottom-0 inset-x-0
-        max-h-[90%]
-        rounded-t-xl
-        bg-white dark:bg-[#121212]
-        shadow-lg
+        rounded-t-xl bg-white shadow-lg
+        flex flex-col
       "
+      style={contentStyle}
     >
-
-      {/* 상단 액션 바 */}
-      <div
-        className={`-mt-2 mb-4 flex items-center px-4 py-1 ${
-          hideConfirm ? 'justify-end' : 'justify-between'
-        }`}
-      >
-        {/* 취소 버튼 */}
-        <button
-          onClick={() => onOpenChange(false)}
-          className="text-[#56433C] text-sm"
-        >
-          {cancelLabel}
-        </button>
-
-        {/* confirm 버튼: hideConfirm 이 false이고 onConfirm 이 있을 때만 */}
-        {!hideConfirm && onConfirm && (
+      {!hideConfirm && (
+        <div className="-mt-2 mb-4 flex justify-between items-center px-4 py-1">
           <button
-            onClick={onConfirm}
-            className="text-[#56433C] text-sm font-medium"
+            onClick={() => onOpenChange(false)}
+            className="text-[#FE9400] text-sm"
           >
-            {confirmLabel}
+            {cancelLabel}
           </button>
-        )}
-      </div>
-
-      {/* 제목/설명 (선택) */}
-      {(title || description) && (
-        <DrawerHeader className="px-4 pt-2">
-          {title && <DrawerTitle>{title}</DrawerTitle>}
-          {description && (
-            <DrawerDescription>{description}</DrawerDescription>
+          {onConfirm && (
+            <button
+              onClick={onConfirm}
+              className="text-[#FE9400] text-sm font-medium"
+            >
+              {confirmLabel}
+            </button>
           )}
+        </div>
+      )}
+
+      {(title || description) && (
+        <DrawerHeader className="mt-2 !pb-0 ">
+          {title && <DrawerTitle className="p-1">{title}</DrawerTitle>}
+          {description && <DrawerDescription>{description}</DrawerDescription>}
         </DrawerHeader>
       )}
 
-      {/* 실제 컨텐츠 */}
-      <div className="p-4 overflow-auto">{children}</div>
+      <div className="px-4 py-2 flex-1 overflow-auto">
+        {children}
+      </div>
     </DrawerContent>
   </Drawer>
 );
+
+
 

@@ -53,6 +53,18 @@ body {
   height: 100% !important;
 }
 
+.centered-datepicker {
+  position: fixed !important;
+  top: 50%    !important;
+  left: 50%   !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
+}
+
+.react-datepicker__input-container {
+  display: none;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

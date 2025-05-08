@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import Header from '@/components/common/Header';
@@ -5,9 +6,12 @@ import HeroBanner from '@/components/home/HeroBanner';
 import DailyCaffeineIntakeGraph from '@/components/home/DailyCaffeine';
 import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
 import BannerImage1 from '@/assets/banner1.png'
+import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
+import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
   // 임의 데이터
   const slides = [
@@ -27,6 +31,11 @@ export default function HomePage() {
       caffeineMg: Math.floor(Math.random() * 500),
     })),
   };
+
+  const handleSubmitRecord = (record: CaffeineRecordInput) => {
+    console.log("최종 카페인 기록:", record)
+    setIsSheetOpen(false)
+  }
 
   return (
     <div className="min-h-screen">
@@ -80,11 +89,16 @@ export default function HomePage() {
           shadow-[0_6px_10px_rgba(0,0,0,0.2)]
           z-20
         "
-          onClick={() => navigate('/home/add')}
+          onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} className='mr-2' />ADD DRINK
         </button>
       </main>
+      <CaffeineBottomSheet
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+        onSubmitRecord={handleSubmitRecord}
+      />
     </div>
   );
 }
