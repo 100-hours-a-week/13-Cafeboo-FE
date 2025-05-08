@@ -15,11 +15,7 @@ const DarkModeToggle = () => {
       aria-label={dark ? '라이트 모드로 전환' : '다크 모드로 전환'}
       style={{ color: textColor }}
     >
-      {dark ? (
-        <Sun className="w-5 h-5" />
-      ) : (
-        <Moon className="w-5 h-5" />
-      )}
+      {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
     </button>
   );
 };

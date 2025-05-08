@@ -1,34 +1,38 @@
-import Header from '@/components/common/Header'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
-import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
+import Header from '@/components/common/Header';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
+import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
 
 export default function DiaryEdit() {
-  const navigate = useNavigate()
-  const [drink, setDrink] = useState('아메리카노')
-  const [date, setDate] = useState('2025-09-03')
-  const [time, setTime] = useState('12:15')
-  const [amount, setAmount] = useState('150')
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const navigate = useNavigate();
+  const [drink, setDrink] = useState('아메리카노');
+  const [date, setDate] = useState('2025-09-03');
+  const [time, setTime] = useState('12:15');
+  const [amount, setAmount] = useState('150');
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const handleUpdate = () => {
     // TODO: API 호출
-    navigate('/main/diary')
-  }
+    navigate('/main/diary');
+  };
   const handleDelete = () => {
     // TODO: API 호출
-    navigate('/main/diary')
-  }
+    navigate('/main/diary');
+  };
 
   const handleSubmitRecord = (record: CaffeineRecordInput) => {
-    console.log("최종 카페인 기록:", record)
-    setIsSheetOpen(false)
-  }
+    console.log('최종 카페인 기록:', record);
+    setIsSheetOpen(false);
+  };
 
   return (
     <div className="min-h-screen">
-      <Header mode="title" title="카페인 기록 수정" onBackClick={() => navigate('/main/diary')} />
+      <Header
+        mode="title"
+        title="카페인 기록 수정"
+        onBackClick={() => navigate('/main/diary')}
+      />
 
       <main className="pt-16 space-y-6">
         {/* 음료 */}
@@ -50,7 +54,7 @@ export default function DiaryEdit() {
             <input
               type="date"
               value={date}
-              onChange={e => setDate(e.target.value)}
+              onChange={(e) => setDate(e.target.value)}
               className="bg-gray-200 rounded-md text-center px-4 py-1"
             />
           </div>
@@ -60,7 +64,7 @@ export default function DiaryEdit() {
             <input
               type="time"
               value={time}
-              onChange={e => setTime(e.target.value)}
+              onChange={(e) => setTime(e.target.value)}
               className="bg-gray-200 rounded-md text-center px-4 py-1"
             />
           </div>
@@ -70,17 +74,16 @@ export default function DiaryEdit() {
         <div className="flex items-center justify-between rounded-lg shadow-sm border border-gray-200 p-4">
           <span className="font-medium">카페인 함유량</span>
           <div className="flex items-center space-x-1 px-4 bg-gray-200 rounded-md cursor-pointer py-1">
-            <button
-              onClick={() => setIsSheetOpen(true)}
-            >
-              {amount}
-            </button>
+            <button onClick={() => setIsSheetOpen(true)}>{amount}</button>
             <span className="text-base">mg</span>
           </div>
         </div>
 
         {/* 수정·삭제 버튼 */}
-        <button onClick={handleUpdate} className="w-full py-3 h-12 rounded-lg bg-[#FE9400] text-[#FEFBF8] text-lg font-semibold mt-2 cursor-pointer">
+        <button
+          onClick={handleUpdate}
+          className="w-full py-3 h-12 rounded-lg bg-[#FE9400] text-[#FEFBF8] text-lg font-semibold mt-2 cursor-pointer"
+        >
           수정하기
         </button>
         <button
@@ -91,12 +94,10 @@ export default function DiaryEdit() {
         </button>
       </main>
       <CaffeineBottomSheet
-          open={isSheetOpen}
-          onOpenChange={setIsSheetOpen}
-          onSubmitRecord={handleSubmitRecord}
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+        onSubmitRecord={handleSubmitRecord}
       />
     </div>
-  )
+  );
 }
-
-

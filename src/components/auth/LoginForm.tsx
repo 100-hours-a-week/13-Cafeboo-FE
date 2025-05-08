@@ -1,31 +1,31 @@
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { AlertCircle, Info } from 'lucide-react'
-import AlertModal from '@/components/common/AlertModal'
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { AlertCircle, Info } from 'lucide-react';
+import AlertModal from '@/components/common/AlertModal';
 
 export interface LoginFormData {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 interface LoginFormProps {
-  onLogin: (data: LoginFormData) => Promise<void>
+  onLogin: (data: LoginFormData) => Promise<void>;
 }
 
 const schema = z.object({
-  email:    z.string().email('유효한 이메일을 입력하세요'),
+  email: z.string().email('유효한 이메일을 입력하세요'),
   password: z.string().min(1, '비밀번호를 입력하세요'),
-})
+});
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const {
     register,
     formState: { errors },
-  } = useForm<LoginFormData>({ resolver: zodResolver(schema) })
+  } = useForm<LoginFormData>({ resolver: zodResolver(schema) });
 
   return (
     <>
@@ -53,7 +53,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           {...register('password')}
           className="w-full py-2 px-4 rounded-lg border text-base text-[#56433C] bg-[#FFFFFF] border-[#C7C7CC] focus:outline-none focus:ring-1 focus:ring-[#FE9400]"
         />
-        
+
         {errors.password && (
           <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
             <AlertCircle className="w-3 h-3" />
@@ -83,7 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         showCancelButton={false}
       />
     </>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

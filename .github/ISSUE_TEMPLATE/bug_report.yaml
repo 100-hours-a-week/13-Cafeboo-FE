@@ -1,8 +1,8 @@
 # .github/ISSUE_TEMPLATE/bug_report.yaml
 name: 🐞 버그 리포트
 description: 버그를 신고하고 재현 과정을 공유해주세요.
-title: "[BUG] "
-labels: ["bug"]
+title: '[BUG] '
+labels: ['bug']
 body:
   - type: textarea
     attributes:

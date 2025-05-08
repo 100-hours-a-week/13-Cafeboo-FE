@@ -23,11 +23,11 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
       <EmptyState
         title="기록이 없습니다"
         description={
-            <>
-              <span>아직 등록된 카페인 섭취 기록이 없어요.</span>
-              <span>아래 버튼을 눌러 추가해보세요!</span>
-            </>
-          }
+          <>
+            <span>아직 등록된 카페인 섭취 기록이 없어요.</span>
+            <span>아래 버튼을 눌러 추가해보세요!</span>
+          </>
+        }
         icon={<FileText size={32} />}
       />
     );
@@ -35,11 +35,14 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
 
   const CoffeeBeanIcon = () => (
     <svg width="28" height="28" viewBox="0 0 28 28">
-    <circle cx="14" cy="14" r="14" fill="#FE9400" fillOpacity={0.2} />
-    <g transform="rotate(40, 14, 14)">
+      <circle cx="14" cy="14" r="14" fill="#FE9400" fillOpacity={0.2} />
+      <g transform="rotate(40, 14, 14)">
         <ellipse cx="14" cy="14" rx="5" ry="6.5" fill="#8C593D" />
-        <path d="M14 8 C13 11, 13 17, 14 20 C15 17, 15 11, 14 7" fill="#5B3924" />
-    </g>
+        <path
+          d="M14 8 C13 11, 13 17, 14 20 C15 17, 15 11, 14 7"
+          fill="#5B3924"
+        />
+      </g>
     </svg>
   );
 
@@ -47,10 +50,10 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
     const [hourStr, minute] = time.split(':');
     let hour = parseInt(hourStr, 10);
     const meridiem = hour < 12 ? '오전' : '오후';
-  
+
     if (hour === 0) hour = 12;
     else if (hour > 12) hour -= 12;
-  
+
     return `${meridiem} ${hour}:${minute}`;
   };
 
@@ -63,7 +66,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
           onClick={() => onEdit(record.intakeId)}
         >
           <div className="flex items-center gap-2">
-          <CoffeeBeanIcon />
+            <CoffeeBeanIcon />
             <div className="flex flex-col gap-1 ml-1">
               <span className="text-[#333333] font-medium">
                 {record.drinkName} {record.drinkCount}잔
@@ -74,11 +77,10 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-[#333333] font-medium">{record.caffeineAmount} mg</span>
-            <ChevronRight
-              size={18}
-              className="text-[#333333] cursor-pointer"
-            />
+            <span className="text-[#333333] font-medium">
+              {record.caffeineAmount} mg
+            </span>
+            <ChevronRight size={18} className="text-[#333333] cursor-pointer" />
           </div>
         </div>
       ))}

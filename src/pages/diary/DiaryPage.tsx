@@ -4,8 +4,8 @@ import { BarChart2, Plus } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
 import { useNavigate } from 'react-router-dom';
-import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
-import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
+import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
+import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
 
 interface CaffeineRecord {
   intakeId: string;
@@ -55,9 +55,8 @@ const DiaryPage = () => {
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [records, setRecords] = useState<CaffeineRecord[]>([]);
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const navigate = useNavigate();
-  
 
   const fetchDailyRecords = async (date: string) => {
     return new Promise<void>((resolve) => {
@@ -91,9 +90,9 @@ const DiaryPage = () => {
   };
 
   const handleSubmitRecord = (record: CaffeineRecordInput) => {
-    console.log("최종 카페인 기록:", record)
-    setIsSheetOpen(false)
-  }
+    console.log('최종 카페인 기록:', record);
+    setIsSheetOpen(false);
+  };
 
   return (
     <div className="min-h-screen">
@@ -109,7 +108,8 @@ const DiaryPage = () => {
         />
 
         <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
-          {new Date(selectedDate).getMonth() + 1}월 {new Date(selectedDate).getDate()}일 카페인 기록
+          {new Date(selectedDate).getMonth() + 1}월{' '}
+          {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
 
         <CaffeineList records={records} onEdit={handleEdit} />
@@ -129,13 +129,12 @@ const DiaryPage = () => {
         </button>
       </main>
       <CaffeineBottomSheet
-          open={isSheetOpen}
-          onOpenChange={setIsSheetOpen}
-          onSubmitRecord={handleSubmitRecord}
-        />
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+        onSubmitRecord={handleSubmitRecord}
+      />
     </div>
   );
 };
 
 export default DiaryPage;
-

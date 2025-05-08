@@ -1,22 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", 
-    "./index.html", 
-  ],
-  darkMode: "class",
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'bg': '#FEFBF8',
+        bg: '#FEFBF8',
         'btn-text': '#FEFBF8',
-        'comp': '#FFFFFF',
-        'primary': '#8C593D',
-        'text': '#56433C',
-        'content': '#595959',
-        'sub': '#939393',
-        'border': '#C7B39C',
-        
+        comp: '#FFFFFF',
+        primary: '#8C593D',
+        text: '#56433C',
+        content: '#595959',
+        sub: '#939393',
+        border: '#C7B39C',
+
         // 다크 모드 색상
         'dark-bg': '#121212',
         'dark-btn-text': '#F5F5F5',
@@ -33,4 +30,4 @@ export default {
     extend: {},
   },
   plugins: [],
-}
+};

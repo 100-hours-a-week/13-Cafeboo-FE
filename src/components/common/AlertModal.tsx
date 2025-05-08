@@ -1,18 +1,18 @@
 // src/components/common/AlertModal.tsx
-import React, { useEffect, useMemo } from 'react'
-import { createPortal } from 'react-dom'
+import React, { useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface AlertModalProps {
-  isOpen: boolean
-  icon?: React.ReactNode
-  title?: string
-  message: string
-  onClose: () => void
-  onConfirm?: () => void
-  confirmText?: string
-  showCancelButton?: boolean
-  cancelText?: string
-  onCancel?: () => void
+  isOpen: boolean;
+  icon?: React.ReactNode;
+  title?: string;
+  message: string;
+  onClose: () => void;
+  onConfirm?: () => void;
+  confirmText?: string;
+  showCancelButton?: boolean;
+  cancelText?: string;
+  onCancel?: () => void;
 }
 
 export default function AlertModal({
@@ -29,19 +29,19 @@ export default function AlertModal({
 }: AlertModalProps) {
   // 1) 앱 루트(#root) 내부에 modal-container 생성
   const container = useMemo(() => {
-    const appRoot = document.getElementById('root')
-    if (!appRoot) return null
+    const appRoot = document.getElementById('root');
+    if (!appRoot) return null;
 
-    let el = appRoot.querySelector<HTMLDivElement>('#modal-container')
+    let el = appRoot.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
-      el = document.createElement('div')
-      el.id = 'modal-container'
-      appRoot.appendChild(el)
+      el = document.createElement('div');
+      el.id = 'modal-container';
+      appRoot.appendChild(el);
     }
-    return el
-  }, [])
+    return el;
+  }, []);
 
-  if (!isOpen || !container) return null
+  if (!isOpen || !container) return null;
 
   // 2) 모달 JSX
   const modal = (
@@ -55,7 +55,7 @@ export default function AlertModal({
       {/* 모달 박스 */}
       <div
         className="relative bg-white rounded-lg shadow-lg w-10/12 max-w-sm mx-auto overflow-hidden"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center p-6 space-y-4 text-center">
           {/* 아이콘 */}
@@ -63,21 +63,21 @@ export default function AlertModal({
 
           {/* 제목 */}
           {title && (
-            <h2 className="text-lg font-semibold text-gray-800">
-              {title}
-            </h2>
+            <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
           )}
 
           {/* 메시지 */}
           <p className="text-gray-600 whitespace-pre-wrap">{message}</p>
 
           {/* 버튼 그룹 */}
-          <div className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}>
+          <div
+            className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}
+          >
             {showCancelButton && (
               <button
                 onClick={() => {
-                  onCancel?.()
-                  onClose()
+                  onCancel?.();
+                  onClose();
                 }}
                 className="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded-md cursor-pointer"
               >
@@ -86,8 +86,8 @@ export default function AlertModal({
             )}
             <button
               onClick={() => {
-                onConfirm?.()
-                onClose()
+                onConfirm?.();
+                onClose();
               }}
               className="flex-1 px-4 py-2 bg-[#FE9400] text-white rounded-md cursor-pointer"
             >
@@ -97,9 +97,8 @@ export default function AlertModal({
         </div>
       </div>
     </div>
-  )
+  );
 
   // 3) portal
-  return createPortal(modal, container)
+  return createPortal(modal, container);
 }
-

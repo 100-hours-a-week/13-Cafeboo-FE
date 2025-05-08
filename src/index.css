@@ -1,14 +1,14 @@
 @import '@/styles/font.css';
 
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "tw-animate-css";
+@import 'tw-animate-css';
 @custom-variant dark (.dark &);
 
 @import 'react-time-picker/dist/TimePicker.css';
 @import 'react-clock/dist/Clock.css';
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 @layer base {
   html {
@@ -43,7 +43,7 @@ body {
 }
 
 .slick-dots li button:before {
-  color: white !important;  
+  color: white !important;
   font-size: 8px;
 }
 
@@ -55,8 +55,8 @@ body {
 
 .centered-datepicker {
   position: fixed !important;
-  top: 50%    !important;
-  left: 50%   !important;
+  top: 50% !important;
+  left: 50% !important;
   transform: translate(-50%, -50%) !important;
   z-index: 9999 !important;
 }
@@ -177,7 +177,7 @@ body {
 }
 .scrollbar-hide {
   -ms-overflow-style: none;
-  scrollbar-width: none;   
+  scrollbar-width: none;
 }
 
 @layer base {
@@ -185,5 +185,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-

@@ -7,13 +7,12 @@ interface SettingsMenuProps {
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({
   onLogout,
-  onDeleteAccount
+  onDeleteAccount,
 }) => {
   return (
     <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-
       {/* 로그아웃 */}
-      <div 
+      <div
         className="flex items-center justify-between p-4 border-b border-gray-200"
         onClick={onLogout}
       >
@@ -22,7 +21,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
       </div>
 
       {/* 회원 탈퇴 */}
-      <div 
+      <div
         className="flex items-center justify-between p-4"
         onClick={onDeleteAccount}
       >

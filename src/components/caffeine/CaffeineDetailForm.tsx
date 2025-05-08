@@ -1,50 +1,50 @@
-import { useState, useRef } from 'react'
-import { format } from 'date-fns'
-import { Clock, Minus, Plus } from 'lucide-react'
+import { useState, useRef } from 'react';
+import { format } from 'date-fns';
+import { Clock, Minus, Plus } from 'lucide-react';
 
 export interface DrinkSize {
-  drinkId: string
-  caffeineAmount: number
-  size: string
-  volume: number
+  drinkId: string;
+  caffeineAmount: number;
+  size: string;
+  volume: number;
 }
 
 export interface DrinkDetail {
-  id: string
-  drinkName: string
-  type: 'Coffee' | 'Tea' | 'Others'
-  temperature: 'HOT' | 'ICED' | 'BASIC'
-  data: Record<string, DrinkSize>
+  id: string;
+  drinkName: string;
+  type: 'Coffee' | 'Tea' | 'Others';
+  temperature: 'HOT' | 'ICED' | 'BASIC';
+  data: Record<string, DrinkSize>;
 }
 
 export interface CaffeineRecordInput {
-  drinkId: string
-  drink_size_Id: string
-  drinkCount: number
-  caffeineAmount: number
-  intakeTime: string
+  drinkId: string;
+  drink_size_Id: string;
+  drinkCount: number;
+  caffeineAmount: number;
+  intakeTime: string;
 }
 
 export interface CaffeineDetailFormProps {
-  drink: DrinkDetail
-  onSubmit: (data: CaffeineRecordInput) => void
+  drink: DrinkDetail;
+  onSubmit: (data: CaffeineRecordInput) => void;
 }
 
 export default function CaffeineDetailForm({
   drink,
   onSubmit,
 }: CaffeineDetailFormProps) {
-  const sizes = Object.values(drink.data)
-  const [selectedSize, setSelectedSize] = useState<DrinkSize>(sizes[0])
-  const [count, setCount] = useState<number>(1)
-  const [intakeTime, setIntakeTime] = useState<Date>(new Date())
-  const inputRef = useRef<HTMLInputElement>(null)
+  const sizes = Object.values(drink.data);
+  const [selectedSize, setSelectedSize] = useState<DrinkSize>(sizes[0]);
+  const [count, setCount] = useState<number>(1);
+  const [intakeTime, setIntakeTime] = useState<Date>(new Date());
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // 소수점 첫째 자리까지 표시
-  const caffeineTotal = (selectedSize.caffeineAmount * count).toFixed(1)
+  const caffeineTotal = (selectedSize.caffeineAmount * count).toFixed(1);
 
-  const handleMinus = () => setCount(c => Math.max(1, c - 1))
-  const handlePlus  = () => setCount(c => Math.min(20, c + 1))
+  const handleMinus = () => setCount((c) => Math.max(1, c - 1));
+  const handlePlus = () => setCount((c) => Math.min(20, c + 1));
   const handleSubmit = () => {
     onSubmit({
       drinkId: drink.id,
@@ -52,17 +52,17 @@ export default function CaffeineDetailForm({
       drinkCount: count,
       caffeineAmount: parseFloat(caffeineTotal),
       intakeTime: intakeTime.toISOString(),
-    })
-  }
+    });
+  };
 
   // 네이티브 피커 띄우기
   const openNativePicker = () => {
     if (inputRef.current?.showPicker) {
-      inputRef.current.showPicker()
+      inputRef.current.showPicker();
     } else {
-      inputRef.current?.click()
+      inputRef.current?.click();
     }
-  }
+  };
 
   return (
     <div className="flex flex-col h-full px-6 pt-6 justify-center">
@@ -73,8 +73,8 @@ export default function CaffeineDetailForm({
 
       {/* 사이즈 선택 */}
       <div className="flex justify-center w-full mb-6 gap-4">
-        {sizes.map(size => {
-          const isSel = size.drinkId === selectedSize.drinkId
+        {sizes.map((size) => {
+          const isSel = size.drinkId === selectedSize.drinkId;
           return (
             <button
               key={size.drinkId}
@@ -89,11 +89,9 @@ export default function CaffeineDetailForm({
               <span className="text-sm font-medium text-gray-700">
                 {size.size}
               </span>
-              <span className="text-xs text-gray-500">
-                {size.volume} ml
-              </span>
+              <span className="text-xs text-gray-500">{size.volume} ml</span>
             </button>
-          )
+          );
         })}
       </div>
 
@@ -124,11 +122,11 @@ export default function CaffeineDetailForm({
         type="datetime-local"
         ref={inputRef}
         value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
-        onChange={e => setIntakeTime(new Date(e.currentTarget.value))}
+        onChange={(e) => setIntakeTime(new Date(e.currentTarget.value))}
         className="absolute"
         style={{
           top: '85%',
-          left: 'calc(50% - 150px)',   // 버튼 그룹 중앙 기준, 아이콘 위치만큼 이동
+          left: 'calc(50% - 150px)', // 버튼 그룹 중앙 기준, 아이콘 위치만큼 이동
           transform: 'translateY(-50%)',
           width: '2.5rem',
           height: '2.5rem',
@@ -136,7 +134,7 @@ export default function CaffeineDetailForm({
           border: 'none',
           padding: 0,
           margin: 0,
-          zIndex:100,
+          zIndex: 100,
         }}
       />
 
@@ -178,14 +176,5 @@ export default function CaffeineDetailForm({
         </button>
       </div>
     </div>
-  )
+  );
 }
-
-
-
-
-
-
-
-
-

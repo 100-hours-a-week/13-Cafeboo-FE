@@ -11,7 +11,7 @@ const MainRoutes = () => (
     <Route path="diary/*" element={<DiaryRoutes />} />
     <Route path="report/*" element={<ReportRoutes />} />
     <Route path="mypage/*" element={<MypageRoutes />} />
-    <Route path="*" element={<NotFoundPage />} /> 
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 

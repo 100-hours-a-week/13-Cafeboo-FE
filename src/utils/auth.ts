@@ -1,4 +1,3 @@
 export const checkLoginStatus = (): boolean => {
-    return false; 
+  return false;
 };
-  

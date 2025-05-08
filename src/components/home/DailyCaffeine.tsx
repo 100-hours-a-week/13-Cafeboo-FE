@@ -1,9 +1,4 @@
-import {
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 export interface DailyCaffeineProps {
   nickname: string;
@@ -29,7 +24,7 @@ export default function DailyCaffeine({
     '#FF5722', // 75% → deep orange
     '#F44336', // 100% → red
   ];
-  
+
   function getConsumedColor(ratio: number) {
     // ratio: 0~1 사이
     const idx = Math.min(
@@ -38,7 +33,7 @@ export default function DailyCaffeine({
     );
     return SCALE[idx];
   }
-  
+
   const consumedColor = getConsumedColor(ratio);
   const remainingColor = '#E5E5E5';
   const consumedAngle = ratio * 360;
@@ -47,7 +42,7 @@ export default function DailyCaffeine({
     <div className="flex items-center bg-white rounded-lg p-2 relative">
       <div className="w-2/5 h-40 relative">
         <ResponsiveContainer>
-          <PieChart>         
+          <PieChart>
             <Pie
               data={[{ value: 100 }]}
               dataKey="value"
@@ -64,7 +59,7 @@ export default function DailyCaffeine({
               innerRadius="70%"
               outerRadius="90%"
               startAngle={91.5} // UX 개선을 위한 시각적 효과 처리
-              endAngle={90-consumedAngle}
+              endAngle={90 - consumedAngle}
               cornerRadius={10}
             >
               <Cell fill={consumedColor} />
@@ -72,17 +67,24 @@ export default function DailyCaffeine({
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-lg font-bold text-[#333333]">{consumed} mg</span>
-          <span className="text-sm text-[#595959]">/ {dailyCaffeineLimit} mg</span>
+          <span className="text-lg font-bold text-[#333333]">
+            {consumed} mg
+          </span>
+          <span className="text-sm text-[#595959]">
+            / {dailyCaffeineLimit} mg
+          </span>
         </div>
       </div>
 
       <div className="w-3/5 p-4">
         <p className="text-base text-[#333333]">
-          <span className="font-semibold">{nickname}</span>님, 
+          <span className="font-semibold">{nickname}</span>님,
           <br></br>
-          현재 권장량의 <span className="font-semibold" style={{ color: consumedColor }}>
-          {Math.round(ratio * 100)}%</span>를 <br></br>섭취 중이에요.
+          현재 권장량의{' '}
+          <span className="font-semibold" style={{ color: consumedColor }}>
+            {Math.round(ratio * 100)}%
+          </span>
+          를 <br></br>섭취 중이에요.
         </p>
         <p className="mt-2 text-sm text-[#595959]">{intakeGuide}</p>
       </div>

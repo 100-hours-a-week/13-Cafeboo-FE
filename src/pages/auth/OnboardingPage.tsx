@@ -24,11 +24,16 @@ const OnboardingPage = () => {
 
   const renderStep = () => {
     switch (step) {
-      case 1: return <Step1 />;
-      case 2: return <Step2 />;
-      case 3: return <Step3 />;
-      case 4: return <Step4 />;
-      default: return null;
+      case 1:
+        return <Step1 />;
+      case 2:
+        return <Step2 />;
+      case 3:
+        return <Step3 />;
+      case 4:
+        return <Step4 />;
+      default:
+        return null;
     }
   };
 
@@ -45,17 +50,17 @@ const OnboardingPage = () => {
         {/* 스티키 Footer */}
         <div className="sticky bottom-0 inset-x-0 bg-white px-4 py-6">
           <div className="flex justify-between">
-            {step > 1
-              ? (
-                <Button
-                  variant="outline"
-                  className="border-[#FE9400] text-[#333333]"
-                  onClick={back}
-                >
-                  이전
-                </Button>
-              )
-              : <div className="w-24" />}
+            {step > 1 ? (
+              <Button
+                variant="outline"
+                className="border-[#FE9400] text-[#333333]"
+                onClick={back}
+              >
+                이전
+              </Button>
+            ) : (
+              <div className="w-24" />
+            )}
             <Button
               className="bg-[#FE9400] text-white"
               onClick={step === 4 ? handleComplete : next}
