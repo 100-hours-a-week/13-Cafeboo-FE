@@ -1,30 +1,20 @@
 import { ChevronRight } from 'lucide-react';
 
 interface SettingsMenuProps {
-  onNavigateNotification: () => void;
   onLogout: () => void;
   onDeleteAccount: () => void;
 }
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({
-  onNavigateNotification,
   onLogout,
   onDeleteAccount
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] overflow-hidden">
-      {/* 알림 설정 */}
-      <div 
-        className="flex items-center justify-between p-4 border-b border-gray-100"
-        onClick={onNavigateNotification}
-      >
-        <div className="text-[#333333]">알림 설정</div>
-        <ChevronRight className="text-[#333333]" size={20} />
-      </div>
+    <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
 
       {/* 로그아웃 */}
       <div 
-        className="flex items-center justify-between p-4 border-b border-gray-100"
+        className="flex items-center justify-between p-4 border-b border-gray-200"
         onClick={onLogout}
       >
         <div className="text-[#333333]">로그아웃</div>

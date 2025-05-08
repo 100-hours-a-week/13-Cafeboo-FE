@@ -18,7 +18,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   onEditClick
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] p-4 mb-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
       {/* 프로필 영역 */}
       <div className="flex items-center justify-between mb-4" onClick={onEditClick}>
         <div className="flex items-center">
@@ -30,7 +30,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 className="w-full h-full rounded-full object-cover"
               />
             ) : (
-              <div className="w-full h-full rounded-full bg-[#FF9B17] flex items-center justify-center">
+              <div className="w-full h-full rounded-full bg-[#FE9400] flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-white">
                   <path 
                     d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" 
@@ -44,7 +44,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             )}
           </div>
           <div>
-            <p className="text-lg font-medium text-[#333333]">{nickname}</p>
+            <p className="text-lg font-medium text-[#000000]">{nickname}</p>
             <p className="text-sm text-[#595959]">내 정보 수정</p>
           </div>
         </div>
@@ -57,17 +57,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       {/* 통계 영역 */}
       <div className="grid grid-cols-3 gap-2 text-center">
         <div className="p-2">
-          <p className="text-lg font-semibold text-[#333333] mb-1">{caffeineLimit} mg</p>
+          <p className="text-base font-semibold text-[#333333] mb-1">{caffeineLimit} mg</p>
           <p className="text-xs text-[#595959]">일일 권장 섭취량</p>
         </div>
         
         <div className="p-2 border-x border-gray-200">
-          <p className="text-lg font-semibold text-[#333333] mb-1">{beanCount}개</p>
+          <p className="text-base font-semibold text-[#333333] mb-1">{beanCount}개</p>
           <p className="text-xs text-[#595959]">커피콩 갯수</p>
         </div>
         
         <div className="p-2">
-          <p className="text-lg font-semibold text-[#333333] mb-1">{challengeCount}회</p>
+          <p className="text-base font-semibold text-[#333333] mb-1">{challengeCount}회</p>
           <p className="text-xs text-[#595959]">챌린지 참여 횟수</p>
         </div>
       </div>

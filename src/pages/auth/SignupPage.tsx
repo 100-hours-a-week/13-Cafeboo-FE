@@ -16,7 +16,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center dark:bg-[#121212]">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center">
       <div className="absolute top-4 right-4">
         <DarkModeToggle />
       </div>

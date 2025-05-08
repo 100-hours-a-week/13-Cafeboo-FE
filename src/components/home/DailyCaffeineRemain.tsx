@@ -146,7 +146,8 @@ import {
                   {data.map((_, idx) => (
                     <Cell
                       key={idx}
-                      fill={'#FF9B17'}
+                      fill={'#FE9400'}
+                      fillOpacity={0.8}
                     />
                   ))}
                 </Bar>
@@ -171,7 +172,7 @@ import {
                   font-semibold 
                   text-[#595959]
                   shadow-[0_0_0_2px_rgba(255,255,255,0.7)]
-                  z-20
+                  z-10
                   transform
                 "
                 style={{ left: `${nowX + BAR_WIDTH / 2}px` }}

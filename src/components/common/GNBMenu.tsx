@@ -1,6 +1,5 @@
 import { X, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useDarkMode } from '@/stores/useDarkMode';
 
 interface GNBMenuItem {
   label: string;
@@ -16,7 +15,6 @@ interface GNBMenuProps {
 
 const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
   const navigate = useNavigate();
-  const { dark } = useDarkMode();
   
   const handleNavigate = (href: string) => {
     navigate(href);
@@ -33,33 +31,30 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-black/30 dark:bg-black/50 z-40"
-          style={{
-            backgroundColor: dark ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.3)'
-          }}
+          className="absolute inset-0 bg-black/50 z-40"
         ></div>
       )}
   
       <div
-        className={`fixed top-0 right-0 h-full max-w-xs sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl shadow-lg z-50 transition-transform duration-300 ${
+        className={`absolute top-0 right-0 h-full w-[80%] z-50 transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
-          backgroundColor: dark ? '#2C2C2C' : '#FFFFFF'
+          backgroundColor: '#FFFFFF'
         }}
       >
         <div
           className="flex justify-between items-center p-4 border-b"
           style={{
-            borderColor: dark ? '#444444' : '#E5E7EB',
-            backgroundColor: '#FF9B17',
+            borderColor: '#E5E7EB',
+            backgroundColor: '#FE9400',
           }}
         >
           <button onClick={goHome} className="p-1">
-            <Home size={20} className="text-white" />
+            <Home size={20} className="text-white cursor-pointer" />
           </button>
           <button onClick={onClose} className="p-1">
-            <X size={20} className="text-white" />
+            <X size={20} className="text-white cursor-pointer" />
           </button>
         </div>
         <nav>
@@ -71,10 +66,10 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               className={`w-full text-left px-4 py-3 border-b`}
               style={{
                 color: item.disabled 
-                  ? (dark ? '#777777' : '#9CA3AF') 
-                  : (dark ? '#F5F5F5' : '#333333'),
-                borderColor: dark ? '#444444' : '#E5E7EB',
-                backgroundColor: dark ? '#2C2C2C' : '#FFFFFF',
+                  ? '#9CA3AF'
+                  : '#000000',
+                borderColor:  '#E5E7EB',
+                backgroundColor: '#FFFFFF',
                 opacity: item.disabled ? 0.5 : 1,
                 cursor: item.disabled ? 'not-allowed' : 'pointer'
               }}

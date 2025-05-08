@@ -1,7 +1,6 @@
 import LoginForm, { LoginFormData } from '@/components/auth/LoginForm';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useNavigate } from 'react-router-dom';
-import DarkModeToggle from '@/components/common/DarkModeToggle';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-bg dark:bg-dark-bg flex items-center justify-center">
+    <div className="min-h-screen w-full flex items-center justify-center">
         <div className="flex flex-col items-center w-full max-w-md">
             <LoginForm onLogin={handleLogin} />
             <SocialLogin onSocialLogin={handleSocialLogin} />

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from '@/components/common/Header';
-import { Plus } from 'lucide-react';
+import { BarChart2, Plus } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
 import { useNavigate } from 'react-router-dom';
+import CaffeineBottomSheet from "@/components/caffeine/CaffeineBootmSheet";
+import type { CaffeineRecordInput } from "@/components/caffeine/CaffeineDetailForm"
 
 interface CaffeineRecord {
   intakeId: string;
@@ -53,7 +55,9 @@ const DiaryPage = () => {
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [records, setRecords] = useState<CaffeineRecord[]>([]);
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
   const navigate = useNavigate();
+  
 
   const fetchDailyRecords = async (date: string) => {
     return new Promise<void>((resolve) => {
@@ -83,11 +87,16 @@ const DiaryPage = () => {
   };
 
   const handleEdit = (intakeId: string) => {
-    navigate(`/edit/${intakeId}`);
+    navigate(`/main/diary/edit/${intakeId}`);
   };
 
+  const handleSubmitRecord = (record: CaffeineRecordInput) => {
+    console.log("최종 카페인 기록:", record)
+    setIsSheetOpen(false)
+  }
+
   return (
-    <div className="dark:bg-[#121212] min-h-screen">
+    <div className="min-h-screen">
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
         <CaffeineCalendar
@@ -99,19 +108,31 @@ const DiaryPage = () => {
           onMonthChange={handleMonthChange}
         />
 
-        <h2 className="mt-6 mb-3 text-lg text-[#333333] font-semibold">
+        <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
           {new Date(selectedDate).getMonth() + 1}월 {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
 
         <CaffeineList records={records} onEdit={handleEdit} />
 
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#56433C] text-white flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.4)]"
-          onClick={() => navigate('/home/add')}
+          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
+          onClick={() => navigate('/main/report')}
+        >
+          <BarChart2 size={24} />
+        </button>
+
+        <button
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
+          onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} />
         </button>
       </main>
+      <CaffeineBottomSheet
+          open={isSheetOpen}
+          onOpenChange={setIsSheetOpen}
+          onSubmitRecord={handleSubmitRecord}
+        />
     </div>
   );
 };

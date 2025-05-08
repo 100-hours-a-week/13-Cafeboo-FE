@@ -20,7 +20,7 @@ const Step3 = () => {
           className="
             w-1/2 rounded-lg border border-[#C7C7CC] cursor-pointer
             px-4 py-2 
-            focus:outline-none focus:border-[#FF9B17]
+            focus:outline-none focus:border-[#FE9400]
           "
         />
       </div>
@@ -35,7 +35,7 @@ const Step3 = () => {
             placeholder="시작 시간 선택"
             value={sleepInfo.sleepStartTime ?? '12:00'}
             onChange={(e) => updateSleep({ sleepStartTime: e.target.value })}
-            className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FF9B17]"
+            className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
           <span>~</span>
           <Input
@@ -44,7 +44,7 @@ const Step3 = () => {
             placeholder="종료 시간 선택"
             value={sleepInfo.sleepEndTime ?? '12:00'}
             onChange={(e) => updateSleep({ sleepEndTime: e.target.value })}
-            className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FF9B17]" 
+            className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]" 
           />
         </div>
       </div>
