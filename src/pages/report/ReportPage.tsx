@@ -109,7 +109,7 @@ const ReportPage: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Header mode="logo" />
-      <main className="w-full max-w-full mx-auto pt-16 space-y-4">
+      <main className="pt-16 space-y-4">
         <DropdownSelector
           selectedPeriod={periodType}
           onPeriodChange={handlePeriodChange}

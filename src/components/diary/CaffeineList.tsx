@@ -55,11 +55,12 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       {records.map((record) => (
         <div
           key={record.intakeId}
-          className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] px-4 py-3 flex items-center justify-between"
+          className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-3 flex items-center justify-between"
+          onClick={() => onEdit(record.intakeId)}
         >
           <div className="flex items-center gap-2">
           <CoffeeBeanIcon />
@@ -77,7 +78,6 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
             <ChevronRight
               size={18}
               className="text-[#333333] cursor-pointer"
-              onClick={() => onEdit(record.intakeId)}
             />
           </div>
         </div>

@@ -9,59 +9,53 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
 const OnboardingPage = () => {
-    const navigate = useNavigate();
-    const { step, next, back, reset, healthInfo, caffeineInfo, sleepInfo } = useOnboardingStore();
-  
-    const handleComplete = async () => {
-      // 1) API 호출로 healthInfo, caffeineInfo, sleepInfo 전송
-  
-      // 2) 전역 스토어 초기화
-      reset();
-  
-      // 3) 홈으로 이동
-      navigate('/auth/login');
-    };
+  const navigate = useNavigate();
+  const { step, next, back, reset } = useOnboardingStore();
 
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return <Step1 />;
-      case 2:
-        return <Step2 />;
-      case 3:
-        return <Step3 />;
-      case 4:
-        return <Step4 />;
-      default:
-        return null;
-    }
+  const handleComplete = async () => {
+    // TODO: API 호출
+    reset();
+    navigate('/auth/login');
   };
 
   useEffect(() => {
     reset();
   }, [reset]);
 
-  return (
-    <div className="h-screen w-full bg-white">
-      <div className="flex-1 overflow-auto px-4 pt-6 mt-10 max-w-md mx-auto">
-        <StepProgress currentStep={step} totalSteps={4} />
-        {renderStep()}
-      </div>
+  const renderStep = () => {
+    switch (step) {
+      case 1: return <Step1 />;
+      case 2: return <Step2 />;
+      case 3: return <Step3 />;
+      case 4: return <Step4 />;
+      default: return null;
+    }
+  };
 
-      <div className="fixed bottom-0 inset-x-0">
-        <div className="max-w-md w-full mx-auto px-4 py-6 bg-white">
-          <div className="flex justify-between px-4">
-            {step > 1 ? (
-              <Button
-                variant="outline"
-                className="border-[#FE9400] text-[#333333]"
-                onClick={back}
-              >
-                이전
-              </Button>
-            ) : (
-              <div className="w-[6rem]" />
-            )}
+  return (
+    <div className="min-h-screen flex justify-center bg-white">
+      {/* 모바일 프레임: 390px 고정, relative 로 자식 절대 위치 기준 */}
+      <div className="relative w-[390px] h-screen flex flex-col">
+        {/* 스크롤 가능한 본문 */}
+        <div className="flex-1 overflow-auto px-4 pt-6 mt-10">
+          <StepProgress currentStep={step} totalSteps={4} />
+          {renderStep()}
+        </div>
+
+        {/* 스티키 Footer */}
+        <div className="sticky bottom-0 inset-x-0 bg-white px-4 py-6">
+          <div className="flex justify-between">
+            {step > 1
+              ? (
+                <Button
+                  variant="outline"
+                  className="border-[#FE9400] text-[#333333]"
+                  onClick={back}
+                >
+                  이전
+                </Button>
+              )
+              : <div className="w-24" />}
             <Button
               className="bg-[#FE9400] text-white"
               onClick={step === 4 ? handleComplete : next}

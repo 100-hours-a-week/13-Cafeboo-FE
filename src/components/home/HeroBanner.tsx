@@ -29,10 +29,10 @@ export default function HeroBanner({
   };
 
   return (
-    <div className="relative w-full h-48 md:h-64 overflow-hidden">
+    <div className="relative w-full h-48 overflow-hidden">
       <Slider {...settings} className="h-full">
         {slides.map((slide, idx) => (
-          <div key={idx} className="w-full h-48 md:h-64">
+          <div key={idx} className="w-full h-48">
             <img
               src={slide.imageUrl}
               alt={slide.text}

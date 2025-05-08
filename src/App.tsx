@@ -13,8 +13,12 @@ function App() {
   }, []); 
 
   return (
-    <div ref={layoutRef} className="w-full max-w-md mx-auto px-4 overflow-x-hidden">
-      <Routes />
+    <div ref={layoutRef} className="min-h-screen flex items-center justify-start bg-orange-100">
+      <div className="pl-0 md:pl-128 lg:pl-160 xl:pl-192 2xl:pl-256">
+        <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-4">
+          <Routes />
+        </div>
+      </div>
     </div>
   );
 }

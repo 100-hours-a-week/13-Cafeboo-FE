@@ -38,11 +38,21 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   <Drawer open={open} onOpenChange={onOpenChange}>
     <DrawerContent
       className="
-        fixed bottom-0 inset-x-0
+        absolute bottom-0
+        w-full max-w-md
         rounded-t-xl bg-white shadow-lg
         flex flex-col
+        ml-0
+        md:ml-128 
+        lg:ml-160      
+        xl:ml-192   
+        2xl:ml-256  
       "
-      style={contentStyle}
+      style={{
+        ...contentStyle,
+        left: 0,
+        right: 0,
+      }}
     >
       {!hideConfirm && (
         <div className="-mt-2 mb-4 flex justify-between items-center px-4 py-1">

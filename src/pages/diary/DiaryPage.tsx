@@ -87,7 +87,7 @@ const DiaryPage = () => {
   };
 
   return (
-    <div className="dark:bg-[#121212] min-h-screen">
+    <div className="min-h-screen">
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
         <CaffeineCalendar
@@ -106,14 +106,14 @@ const DiaryPage = () => {
         <CaffeineList records={records} onEdit={handleEdit} />
 
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
+          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#745A50] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
           onClick={() => navigate('/main/report')}
         >
           <BarChart2 size={24} />
         </button>
 
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#745A50] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"
           onClick={() => navigate('/home/add')}
         >
           <Plus size={24} />

@@ -46,7 +46,7 @@ export default function AlertModal({
   // 2) 모달 JSX
   const modal = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="absolute inset-0 z-50 flex items-center justify-center"
       onClick={onClose}
     >
       {/* 반투명 오버레이 */}

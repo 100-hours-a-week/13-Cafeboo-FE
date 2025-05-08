@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Tag } from '@/components/common/Tag'
-import { Search } from 'lucide-react'
+import { Coffee , Frown, Search } from 'lucide-react'
 import EmptyState from '@/components/common/EmptyState'
 
 export interface Drink {
@@ -106,43 +106,42 @@ export default function CaffeineSelectForm({
             onChange={vals => setBrandFilter(vals[0] || '기본')}
             multiple={false}
             scrollable
-            className="overflow-x-auto whitespace-nowrap"
+            className="whitespace-nowrap"
           />
 
           {/* 타입 필터 */}
-          <div className="flex border-b border-gray-200">
+          <div className="flex">
             {TYPES.map(type => (
-            <button
+              <button
                 key={type}
                 onClick={() => setTypeFilter(type)}
                 className={`
-                flex-1 text-center py-2 text-sm font-medium
-                ${typeFilter === type
-                    ? 'border-b-2 border-[#FE9400] text-[#FE9400]'
-                    : 'text-gray-400 hover:text-gray-800'}
-                transition-colors
+                  flex-1 text-center py-2 text-sm font-medium
+                  border-b-2 transition-colors
+                  ${typeFilter === type
+                    ? 'border-[#FE9400] text-[#FE9400]'
+                    : 'border-gray-200 text-gray-400 hover:text-gray-800'}
                 `}
-            >
+              >
                 {type}
-            </button>
+              </button>
             ))}
-        </div>
+          </div>
         </div>
 
         {/* 리스트 영역 */}
         <div className="pb-4 space-y-4">
           {filtered.length === 0 ? (
             <EmptyState
-              title="결과가 없습니다"
-              description="다른 키워드로 검색해보세요."
-              icon={null}
+              title="데이터가 없습니다"
+              icon={<Coffee size={32}/>}
             />
           ) : (
             filtered.map(drink => (
               <div
                 key={drink.id}
                 onClick={() => onSelectDrink(drink)}
-                className="flex items-center justify-between p-2 hover:bg-gray-100 rounded cursor-pointer"
+                className="flex items-center justify-between p-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-none"
               >
                 <div>
                   <div className="flex items-center gap-1.5">
@@ -151,7 +150,7 @@ export default function CaffeineSelectForm({
                     </span>
                     {drink.temperature !== 'BASIC' && (
                       <span
-                        className={`text-xs font-medium px-1.5 py-0.5 rounded-full border ${
+                        className={`text-xs font-medium px-1.5 rounded-full border ${
                           drink.temperature === 'ICED'
                             ? 'border-blue-600 text-blue-600'
                             : 'border-red-600 text-red-600'

@@ -29,7 +29,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
   return (
     <>
-      <form className="space-y-4 w-full max-w-xs mx-auto">
+      <form className="space-y-4 w-full mx-auto px-4">
         <h1 className="text-center text-[26px] font-bold text-[#000000] mt-12 mb-8">
           CafeBoo
         </h1>

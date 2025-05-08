@@ -45,7 +45,7 @@ export default function HomePage() {
       {/* 본문 */}
       <main className="pt-16 space-y-4">
         {/* Hero Banner */}
-        <div className="relative w-full rounded-xl overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <div className="relative w-full overflow-hidden rounded-lg shadow-sm border border-gray-200">
           <HeroBanner slides={slides} />
         </div>
 
@@ -54,7 +54,7 @@ export default function HomePage() {
         </h2>
 
         {/* 일일 섭취량 카드 */}
-        <div className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <DailyCaffeineIntakeGraph
             nickname={report.nickname}
             dailyCaffeineLimit={report.dailyCaffeineLimit}
@@ -68,7 +68,7 @@ export default function HomePage() {
         </h2>
 
         {/* 시간대별 잔여량 카드 */}
-        <div className="bg-white rounded-xl pl-2 pr-2 pt-2 shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <div className="bg-white pl-2 pr-2 pt-2 rounded-lg shadow-sm border border-gray-200">
           <DailyCaffeineRemain
             caffeineByHour={report.caffeineByHour} 
             sleepSensitiveThreshold={report.sleepSensitiveThreshold}
@@ -83,11 +83,17 @@ export default function HomePage() {
           left-1/2 transform -translate-x-1/2
           w-40 h-12
           rounded-full
+          font-semibold
           text-base
           bg-[#FE9400]
           text-white flex items-center justify-center
           shadow-[0_6px_10px_rgba(0,0,0,0.2)]
           z-20
+          md:left-184
+          lg:left-216      
+          xl:left-248   
+          2xl:left-312
+          cursor-pointer
         "
           onClick={() => setIsSheetOpen(true)}
         >

@@ -51,7 +51,28 @@ const drinksRaw: RawDrink[] = [
     }
   },
   {
-    id: '4', drinkName: '자몽에이드', type: 'Others', cafesName: '스타벅스', temperature: 'BASIC', data: {
+    id: '4', drinkName: '아메리카노', type: 'Coffee', cafesName: '스타벅스', temperature: 'HOT', data: {
+      '1': { drinkId: '1', caffeineAmount: 75, size: 'Regular', volume: 355 },
+      '2': { drinkId: '2', caffeineAmount: 150, size: 'Large', volume: 700 },
+    }
+  },
+  {
+    id: '5', drinkName: '카페라떼', type: 'Coffee', cafesName: '스타벅스', temperature: 'HOT', data: {
+      '3': { drinkId: '3', caffeineAmount: 60.5, size: 'Regular', volume: 355 },
+      '4': { drinkId: '4', caffeineAmount: 120.5, size: 'Large', volume: 700 },
+      '5': { drinkId: '5', caffeineAmount: 180.5, size: 'Big', volume: 355 },
+      '6': { drinkId: '6', caffeineAmount: 240.5, size: 'MoreBig', volume: 700 },
+    }
+  },
+  {
+    id: '6', drinkName: '얼그레이 티', type: 'Tea', cafesName: '스타벅스', temperature: 'ICED', data: {
+      '5': { drinkId: '5', caffeineAmount: 40, size: 'Tall', volume: 355 },
+      '6': { drinkId: '6', caffeineAmount: 80, size: 'Grande', volume: 700 },
+      '7': { drinkId: '7', caffeineAmount: 120, size: 'Venti', volume: 1000 },
+    }
+  },
+  {
+    id: '7', drinkName: '자몽에이드', type: 'Others', cafesName: '스타벅스', temperature: 'BASIC', data: {
       '8': { drinkId: '8', caffeineAmount: 40, size: 'Tall', volume: 355 },
       '9': { drinkId: '9', caffeineAmount: 80, size: 'Grande', volume: 700 },
       '10': { drinkId: '10', caffeineAmount: 120, size: 'Venti', volume: 1000 },
@@ -132,7 +153,7 @@ export default function CaffeineBottomSheet({
             if (!o) setSelected(null)
           }}
           hideConfirm
-          contentStyle={{ height: 'calc(var(--vh) * 0.7)', zIndex: 60 }}
+          contentStyle={{ height: 'calc(var(--vh) * 0.5)', zIndex: 60 }}
         >
           <CaffeineDetailForm
             drink={detail}

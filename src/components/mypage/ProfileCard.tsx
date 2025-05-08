@@ -18,7 +18,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   onEditClick
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] p-4 mb-4">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
       {/* 프로필 영역 */}
       <div className="flex items-center justify-between mb-4" onClick={onEditClick}>
         <div className="flex items-center">
