@@ -65,7 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
         <button
           type="button"
           onClick={() => setShowModal(true)}
-          className="w-full py-2 rounded-lg bg-[#FE9400] text-[#FEFBF8] font-semibold mt-2"
+          className="w-full py-2 rounded-lg bg-[#FE9400] text-[#FEFBF8] font-semibold mt-2 cursor-pointer"
         >
           로그인
         </button>

@@ -26,7 +26,7 @@ const SocialLogin = ({ onSocialLogin }: SocialLoginProps) => {
 
       <p className="text-base text-[#595959]">
         아직 계정이 없으신가요?{' '}
-        <span className="text-base text-[#FF8F00] font-semibold" onClick={() => setShowModal(true)}>
+        <span className="text-base text-[#FF8F00] font-semibold cursor-pointer" onClick={() => setShowModal(true)}>
           회원가입
         </span>
       </p>
