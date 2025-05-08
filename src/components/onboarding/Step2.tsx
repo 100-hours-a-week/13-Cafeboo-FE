@@ -49,7 +49,7 @@ const Step2 = () => {
             <SliderPrimitive.Range className="absolute h-full bg-[#FE9400]" />
           </SliderPrimitive.Track>
 
-          <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full bg-white border-2 border-[#FE9400]">
+          <SliderPrimitive.Thumb className="relative block h-6 w-6 rounded-full bg-white border-2 border-[#FE9400]">
             <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FE9400] text-white text-xs px-2 py-1 rounded-full">
               {value}
             </div>

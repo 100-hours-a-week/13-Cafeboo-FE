@@ -1,13 +1,11 @@
 import { ChevronRight } from 'lucide-react';
 
 interface SettingsMenuProps {
-  onNavigateNotification: () => void;
   onLogout: () => void;
   onDeleteAccount: () => void;
 }
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({
-  onNavigateNotification,
   onLogout,
   onDeleteAccount
 }) => {
