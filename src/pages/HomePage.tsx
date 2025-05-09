@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
 import Header from '@/components/common/Header';
@@ -22,13 +22,13 @@ export default function HomePage() {
 
   const report = {
     nickname: 'User',
-    dailyCaffeineLimit: 400,
-    dailyCaffeineIntakeMg: 135,
-    sleepSensitiveThreshold: 100,
+    dailyCaffeineLimit: 1000,
+    dailyCaffeineIntakeMg: 600,
+    sleepSensitiveThreshold: 1000,
     intakeGuide: '지금 커피를 추가로 마시면 수면에 영향을 줄 수 있어요.',
     caffeineByHour: Array.from({ length: 24 }, (_, i) => ({
       time: `${String(i).padStart(2, '0')}:00`,
-      caffeineMg: Math.floor(Math.random() * 500),
+      caffeineMg: Math.floor(Math.random() * 1000),
     })),
   };
 
@@ -36,6 +36,7 @@ export default function HomePage() {
     console.log('최종 카페인 기록:', record);
     setIsSheetOpen(false);
   };
+
 
   return (
     <div className="min-h-screen">
@@ -88,8 +89,8 @@ export default function HomePage() {
           text-white flex items-center justify-center
           shadow-[0_6px_10px_rgba(0,0,0,0.2)]
           z-20
-          md:left-184
-          lg:left-216      
+          md:left-120
+          lg:left-184      
           xl:left-248   
           2xl:left-312
           cursor-pointer
