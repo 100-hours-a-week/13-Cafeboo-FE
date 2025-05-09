@@ -159,13 +159,13 @@ const ReportPage: React.FC = () => {
 
         {/* 플로팅 버튼 */}
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
+          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
           onClick={() => navigate('/main/diary')}
         >
           <Calendar size={24} />
         </button>
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-132 md:left-224 lg:left-256 xl:left-288 2xl:left-352"
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
           onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} />

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { format } from 'date-fns';
 import { Clock, Minus, Plus } from 'lucide-react';
+import Regular from '@/assets/regular.png'
 
 export interface DrinkSize {
   drinkId: string;
@@ -75,17 +76,22 @@ export default function CaffeineDetailForm({
       <div className="flex justify-center w-full mb-6 gap-4">
         {sizes.map((size) => {
           const isSel = size.drinkId === selectedSize.drinkId;
+          const imgSrc = Regular;
           return (
             <button
               key={size.drinkId}
               onClick={() => setSelectedSize(size)}
               className={`flex flex-col items-center p-2 rounded-xl border transition ${
                 isSel
-                  ? 'bg-[#FE9400]/20 border-[#FE9400]'
+                  ? 'bg-gray-50 border-[#FE9400] border-2'
                   : 'bg-gray-50 border-gray-200'
               }`}
             >
-              <div className="w-12 h-12 bg-gray-200 rounded-lg mb-2" />
+              <img
+                src={imgSrc}
+                alt={`${size.size} cup`}
+                className="w-12 h-auto mb-2"
+              />
               <span className="text-sm font-medium text-gray-700">
                 {size.size}
               </span>
