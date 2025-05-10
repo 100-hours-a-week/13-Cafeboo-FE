@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+
 const Step4 = () => {
   return (
     <div className="flex flex-col items-center justify-center px-4 mt-20 space-y-6">

@@ -3,6 +3,20 @@ import { useOnboardingStore } from '@/stores/onboardingStore';
 import { Label } from '@/components/ui/label';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Tag } from '@/components/common/Tag';
+import { AlertCircle } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  averageDailyCaffeineIntake: z
+    .number()
+    .min(0, "카페인 섭취량은 최소 0잔 이상이어야 합니다.")
+    .max(15, "카페인 섭취량은 최대 15잔 이하여야 합니다."),
+});
+
+// ✅ React Hook Form에서 타입 정의
+type FormData = z.infer<typeof formSchema>;
 
 const DRINK_OPTIONS = [
   '아메리카노',
@@ -21,17 +35,24 @@ const DRINK_OPTIONS = [
 
 const Step2 = () => {
   const { caffeineInfo, updateCaffeine } = useOnboardingStore();
-  const value = caffeineInfo.caffeineSensitivity ?? 50;
-
-  const [dailyIntakeInput, setDailyIntakeInput] = useState(
-    caffeineInfo.dailyIntake != null ? String(caffeineInfo.dailyIntake) : ''
+  const [averageDailyCaffeineIntake, setAverageDailyCaffeineIntakeInput] = useState(
+    caffeineInfo.averageDailyCaffeineIntake != null ? String(caffeineInfo.averageDailyCaffeineIntake) : ''
   );
 
+    const {
+      trigger,
+      setValue,
+      formState: { errors },
+    } = useForm<FormData>({
+      resolver: zodResolver(formSchema),
+    });
+
+
   useEffect(() => {
-    setDailyIntakeInput(
-      caffeineInfo.dailyIntake != null ? String(caffeineInfo.dailyIntake) : ''
+    setAverageDailyCaffeineIntakeInput(
+      caffeineInfo.averageDailyCaffeineIntake != null ? String(caffeineInfo.averageDailyCaffeineIntake) : ''
     );
-  }, [caffeineInfo.dailyIntake]);
+  }, [caffeineInfo.averageDailyCaffeineIntake]);
 
   return (
     <div className="space-y-6 py-4">
@@ -42,7 +63,7 @@ const Step2 = () => {
         </Label>
         <SliderPrimitive.Root
           className="relative flex items-center mt-10 mb-10 ml-4 mr-8"
-          value={[value]}
+          value={[caffeineInfo.caffeineSensitivity]}
           min={0}
           max={100}
           step={1}
@@ -54,7 +75,7 @@ const Step2 = () => {
 
           <SliderPrimitive.Thumb className="relative block h-6 w-6 rounded-full bg-white border-2 border-[#FE9400]">
             <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FE9400] text-white text-xs px-2 py-1 rounded-full">
-              {value}
+              {caffeineInfo.caffeineSensitivity}
             </div>
           </SliderPrimitive.Thumb>
 
@@ -77,7 +98,7 @@ const Step2 = () => {
             type="text"
             inputMode="decimal"
             pattern="[0-9]*[.]?[0-9]*"
-            value={dailyIntakeInput}
+            value={averageDailyCaffeineIntake}
             onChange={(e) => {
               let v = e.target.value.replace(/[^0-9.]/g, '');
               const parts = v.split('.');
@@ -85,12 +106,14 @@ const Step2 = () => {
                 parts[1] = parts[1].slice(0, 1);
                 v = parts[0] + '.' + parts[1];
               }
-              setDailyIntakeInput(v);
+              setAverageDailyCaffeineIntakeInput(v);
+              setValue("averageDailyCaffeineIntake", Number(v));
+              trigger("averageDailyCaffeineIntake"); 
             }}
             onBlur={() => {
-              const num = parseFloat(dailyIntakeInput);
-              if (!isNaN(num)) updateCaffeine({ dailyIntake: num });
-              else updateCaffeine({ dailyIntake: undefined });
+              const num = parseFloat(averageDailyCaffeineIntake);
+              if (!isNaN(num)) updateCaffeine({ averageDailyCaffeineIntake: num });
+              else updateCaffeine({ averageDailyCaffeineIntake: undefined });
             }}
             className="
             w-16 mx-1 py-1 text-center 
@@ -102,6 +125,12 @@ const Step2 = () => {
           <span className="text-base">잔</span>
         </div>
       </div>
+      {errors.averageDailyCaffeineIntake && (
+          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" />
+            {errors.averageDailyCaffeineIntake.message}
+          </p>
+      )}
 
       {/* 선호하는 카페인 음료 */}
       <div className="mt-10">

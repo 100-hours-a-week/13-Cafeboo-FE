@@ -2,17 +2,48 @@ import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useOnboardingStore } from '@/stores/onboardingStore';
+import { AlertCircle } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  age: z
+    .number()
+    .min(1, "나이는 최소 1세 이상이어야 합니다.")
+    .max(123, "나이는 최대 123세 이하이어야 합니다."),
+  height: z
+    .number()
+    .min(62, "신장은 최소 63 cm 이상이어야 합니다.")
+    .max(251, "신장은 최대 251 cm 이하이어야 합니다."),
+  weight: z
+    .number()
+    .min(6.5, "체중은 최소 6.5 kg 이상이어야 합니다.")
+    .max(635, "체중은 최대 635 kg 이하이어야 합니다."),
+});
+
+// ✅ React Hook Form에서 타입 정의
+type FormData = z.infer<typeof formSchema>;
 
 const Step1 = () => {
   const { healthInfo, updateHealth } = useOnboardingStore();
-  const gender = healthInfo.gender || 'male';
   const [weightInput, setWeightInput] = useState(
     healthInfo.weight != null ? String(healthInfo.weight) : ''
   );
 
+  const {
+    trigger,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
+
   useEffect(() => {
+    setValue("age", healthInfo.age ?? '');
+    setValue("height", healthInfo.height ?? '');
     setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '');
-  }, [healthInfo.weight]);
+  }, [healthInfo, setValue]);
 
   return (
     <div className="space-y-6 py-4">
@@ -23,14 +54,14 @@ const Step1 = () => {
         </Label>
         <ToggleGroup
           type="single"
-          value={gender}
-          onValueChange={(v) =>
-            updateHealth({ gender: v as 'male' | 'female' })
-          }
+          value={healthInfo.gender??'M'}
+          onValueChange={(v) =>{
+            if (v) updateHealth({ gender: v as 'M' | 'F' });
+          }}
           className="flex w-full"
         >
           <ToggleGroupItem
-            value="male"
+            value="M"
             className="
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-l-lg border border-[#D9D9D9]
@@ -46,7 +77,7 @@ const Step1 = () => {
           </ToggleGroupItem>
 
           <ToggleGroupItem
-            value="female"
+            value="F"
             className="
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-r-lg border border-[#D9D9D9]
@@ -76,6 +107,8 @@ const Step1 = () => {
             onChange={(e) => {
               const v = e.target.value.replace(/\D/g, '');
               updateHealth({ age: v === '' ? undefined : Number(v) });
+              setValue("age", Number(v));
+              trigger("age"); 
             }}
             className="
               w-16             
@@ -91,12 +124,12 @@ const Step1 = () => {
           <span className="text-base mr-2">세</span>
         </div>
       </div>
-      {healthInfo.age != null &&
-        (healthInfo.age < 1 || healthInfo.age > 123) && (
-          <p className="mt-1 text-sm text-red-500">
-            * 나이는 최소 1, 최대 123까지 유효합니다.
+      {errors.age && (
+          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" />
+            {errors.age.message}
           </p>
-        )}
+      )}
 
       {/* 신장 입력 */}
       <div className="flex items-center justify-between mb-8">
@@ -110,6 +143,8 @@ const Step1 = () => {
             onChange={(e) => {
               const v = e.target.value.replace(/\D/g, '');
               updateHealth({ height: v === '' ? undefined : Number(v) });
+              setValue("height", Number(v));
+              trigger("height"); 
             }}
             className="
               w-16             
@@ -125,6 +160,12 @@ const Step1 = () => {
           <span className="text-base">cm</span>
         </div>
       </div>
+      {errors.height && (
+          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" />
+            {errors.height.message}
+          </p>
+      )}
 
       {/* 체중 입력 */}
       <div className="flex items-center justify-between mb-8">
@@ -143,6 +184,8 @@ const Step1 = () => {
                 v = parts[0] + '.' + parts[1];
               }
               setWeightInput(v);
+              setValue("weight", Number(v));
+              trigger("weight"); 
             }}
             onBlur={() => {
               const num = parseFloat(weightInput);
@@ -159,14 +202,20 @@ const Step1 = () => {
           <span className="text-base">kg</span>
         </div>
       </div>
+      {errors.weight && (
+          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+            <AlertCircle className="w-3 h-3" />
+            {errors.weight.message}
+          </p>
+      )}
 
       {/* Boolean 토글 4개 */}
       <div className="grid grid-cols-2 gap-6">
         {[
-          { key: 'pregnancy', label: '임신 여부' },
-          { key: 'birthControl', label: '피임약 복용' },
-          { key: 'smoking', label: '흡연 여부' },
-          { key: 'liverDisease', label: '간 관련 질병' },
+          { key: 'isPregnant', label: '임신 여부' },
+          { key: 'isTakingBirthPill', label: '피임약 복용' },
+          { key: 'isSmoking', label: '흡연 여부' },
+          { key: 'hasLiverDisease', label: '간 관련 질병' },
         ].map(({ key, label }) => {
           const val = (healthInfo as any)[key] as boolean;
 
@@ -179,7 +228,11 @@ const Step1 = () => {
               <ToggleGroup
                 type="single"
                 value={val ? 'yes' : 'no'}
-                onValueChange={(v) => updateHealth({ [key]: v === 'yes' })}
+                onValueChange={(v) => {
+                  if (v) {
+                    updateHealth({ [key]: v === 'yes' });
+                  }
+                }}
                 className="flex w-full"
               >
                 <ToggleGroupItem

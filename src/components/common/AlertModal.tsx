@@ -1,5 +1,5 @@
 // src/components/common/AlertModal.tsx
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface AlertModalProps {
@@ -27,10 +27,12 @@ export default function AlertModal({
   cancelText = '취소',
   onCancel,
 }: AlertModalProps) {
-  // 1) 앱 루트(#root) 내부에 modal-container 생성
-  const container = useMemo(() => {
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const [awaitingConfirm, setAwaitingConfirm] = useState<(() => void) | null>(null);
+
+  useEffect(() => {
     const appRoot = document.getElementById('root');
-    if (!appRoot) return null;
+    if (!appRoot) return;
 
     let el = appRoot.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
@@ -38,17 +40,29 @@ export default function AlertModal({
       el.id = 'modal-container';
       appRoot.appendChild(el);
     }
-    return el;
+    setContainer(el);
+
+    return () => {
+      // 모달이 닫힐 때 컨테이너 정리
+      if (el) {
+        el.remove();
+      }
+    };
   }, []);
 
+  const handleConfirm = () => {
+    if (awaitingConfirm) {
+      awaitingConfirm();
+    }
+    onConfirm?.();
+    onClose();
+  };
+
+  // 컨테이너가 생성되지 않았거나 열려있지 않으면 렌더링하지 않음
   if (!isOpen || !container) return null;
 
-  // 2) 모달 JSX
   const modal = (
-    <div
-      className="absolute inset-0 z-50 flex items-center justify-center"
-      onClick={onClose}
-    >
+    <div className="absolute inset-0 z-50 flex items-center justify-center" onClick={onClose}>
       {/* 반투명 오버레이 */}
       <div className="absolute inset-0 bg-black/50" />
 
@@ -62,17 +76,13 @@ export default function AlertModal({
           {icon && <div>{icon}</div>}
 
           {/* 제목 */}
-          {title && (
-            <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
-          )}
+          {title && <h2 className="text-lg font-semibold text-gray-800">{title}</h2>}
 
           {/* 메시지 */}
           <p className="text-gray-600 whitespace-pre-wrap">{message}</p>
 
           {/* 버튼 그룹 */}
-          <div
-            className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}
-          >
+          <div className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}>
             {showCancelButton && (
               <button
                 onClick={() => {
@@ -85,10 +95,7 @@ export default function AlertModal({
               </button>
             )}
             <button
-              onClick={() => {
-                onConfirm?.();
-                onClose();
-              }}
+              onClick={handleConfirm}
               className="flex-1 px-4 py-2 bg-[#FE9400] text-white rounded-md cursor-pointer"
             >
               {confirmText}
@@ -99,6 +106,6 @@ export default function AlertModal({
     </div>
   );
 
-  // 3) portal
   return createPortal(modal, container);
 }
+
