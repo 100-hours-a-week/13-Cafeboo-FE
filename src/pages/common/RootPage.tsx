@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { checkLoginStatus } from '@/utils/auth';
-import SplashScreen from '@/components/common/SplashScreen';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 const RootPage = () => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ const RootPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <SplashScreen />;
+  if (loading) return <LoadingSpinner size='large' type='clip'/>;
   return <Navigate to={isLogin ? '/main/home' : '/auth/login'} />;
 };
 

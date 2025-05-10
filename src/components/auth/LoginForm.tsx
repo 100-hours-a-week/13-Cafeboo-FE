@@ -19,7 +19,7 @@ const schema = z.object({
   password: z.string().min(1, '비밀번호를 입력하세요'),
 });
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProps> = () => {
   const [showModal, setShowModal] = useState(false);
 
   const {

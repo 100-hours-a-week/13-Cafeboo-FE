@@ -15,10 +15,10 @@ const Step3 = () => {
         <Input
           type="time"
           step={60}
-          value={sleepInfo.caffeineIntakeTime ?? '12:00'}
-          onChange={(e) => updateSleep({ caffeineIntakeTime: e.target.value })}
+          value={sleepInfo.frequentDrinkTime ?? '12:00'}
+          onChange={(e) => updateSleep({ frequentDrinkTime: e.target.value })}
           className="
-            w-1/2 rounded-lg border border-[#C7C7CC] cursor-pointer
+            w-full rounded-lg border border-[#C7C7CC] cursor-pointer
             px-4 py-2 
             focus:outline-none focus:border-[#FE9400]
           "
@@ -35,8 +35,8 @@ const Step3 = () => {
             type="time"
             step={60}
             placeholder="시작 시간 선택"
-            value={sleepInfo.sleepStartTime ?? '12:00'}
-            onChange={(e) => updateSleep({ sleepStartTime: e.target.value })}
+            value={sleepInfo.sleepTime ?? '12:00'}
+            onChange={(e) => updateSleep({ sleepTime: e.target.value })}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
           <span>~</span>
@@ -44,8 +44,8 @@ const Step3 = () => {
             type="time"
             step={60}
             placeholder="종료 시간 선택"
-            value={sleepInfo.sleepEndTime ?? '12:00'}
-            onChange={(e) => updateSleep({ sleepEndTime: e.target.value })}
+            value={sleepInfo.wakeUpTime ?? '12:00'}
+            onChange={(e) => updateSleep({ wakeUpTime: e.target.value })}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
         </div>

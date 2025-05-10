@@ -1,6 +1,7 @@
 import LoginForm, { LoginFormData } from '@/components/auth/LoginForm';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useNavigate } from 'react-router-dom';
+import { requestKakaoLogin } from "@/api/authApi";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,9 +13,13 @@ const LoginPage = () => {
   };
 
   const handleSocialLogin = async (platform: string) => {
-    console.log(`${platform} 로그인`);
-    // 예시: 소셜 로그인 성공
-    navigate('/main/home');
+    if(platform=='kakao'){
+      try {
+        await requestKakaoLogin();
+      } catch (error) {
+        console.error("카카오 로그인 요청 실패:", error);
+      }
+    }
   };
 
   return (
