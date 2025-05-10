@@ -56,6 +56,8 @@ const DiaryPage = () => {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [records, setRecords] = useState<CaffeineRecord[]>([]);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
+
   const navigate = useNavigate();
 
   const fetchDailyRecords = async (date: string) => {
@@ -71,6 +73,16 @@ const DiaryPage = () => {
   useEffect(() => {
     fetchDailyRecords(selectedDate);
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLarge(window.innerWidth >= 450);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
@@ -115,16 +127,15 @@ const DiaryPage = () => {
         <CaffeineList records={records} onEdit={handleEdit} />
 
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
+          className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => navigate('/main/report')}
         >
           <BarChart2 size={24} />
         </button>
-
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
+          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => setIsSheetOpen(true)}
-        >
+          >
           <Plus size={24} />
         </button>
       </main>

@@ -35,7 +35,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
   return (
     <>
       <header
-        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto xs:left-40 sm:left-88 md:left-120 lg:left-184 xl:left-248 2xl:left-312"
+        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto lg:left-184 xl:left-248 2xl:left-312"
         style={{ backgroundColor: headerBgColor }}
       >
         <div className="w-full mx-auto px-4 h-full flex items-center justify-between">

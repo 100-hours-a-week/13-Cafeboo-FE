@@ -21,7 +21,7 @@ const SocialLogin = ({ onSocialLogin }: SocialLoginProps) => {
 
       <button
         onClick={() => onSocialLogin('kakao')}
-        className="w-12 h-12 bg-yellow-300 rounded-full flex items-center justify-center mx-auto mb-6"
+        className="w-12 h-12 bg-yellow-300 rounded-full flex items-center justify-center mx-auto mb-6 cursor-pointer"
       >
         <KakaoIcon />
       </button>
