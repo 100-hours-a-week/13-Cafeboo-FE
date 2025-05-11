@@ -1,7 +1,10 @@
 import { useState, useRef } from 'react';
 import { format } from 'date-fns';
 import { Clock, Minus, Plus } from 'lucide-react';
-import Regular from '@/assets/regular.png';
+import Small from '@/assets/small.png';
+import Medium from '@/assets/medium.png';
+import Large from '@/assets/large.png';
+import ExtraLarge from '@/assets/extralarge.png';
 
 export interface DrinkSize {
   drinkSizeId: number;
@@ -39,6 +42,11 @@ export default function CaffeineDetailForm({
   const [intakeTime, setIntakeTime] = useState<Date>(new Date());
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const sizeImages = [Medium, Large, ExtraLarge]; 
+  if (sizes.length === 4) {
+    sizeImages.unshift(Small); 
+  }
+
   // 카페인 총량 계산 (소수점 첫째 자리까지)
   const caffeineTotal = (selectedSize.caffeine_mg * count).toFixed(1);
 
@@ -75,20 +83,21 @@ export default function CaffeineDetailForm({
 
       {/* 사이즈 선택 */}
       <div className="flex justify-center w-full mb-6 gap-4">
-        {sizes.map((size) => {
+        {sizes.map((size, index) => {
           const isSelected = size.drinkSizeId === selectedSize.drinkSizeId;
+          const imgSrc = sizeImages[index];
           return (
             <button
               key={size.drinkSizeId}
               onClick={() => setSelectedSize(size)}
               className={`flex flex-col items-center p-2 rounded-xl border transition ${
                 isSelected
-                  ? 'bg-gray-50 border-[#FE9400] border-2'
+                  ? 'bg-[#FE9400]/20 border-[#FE9400] border-1'
                   : 'bg-gray-50 border-gray-200'
               }`}
             >
               <img
-                src={Regular}
+                src={imgSrc}
                 alt={`${size.size} cup`}
                 className="w-12 h-auto mb-2"
               />

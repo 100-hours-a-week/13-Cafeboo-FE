@@ -29,6 +29,10 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
     }
   };
 
+  const goHome = () => {
+    navigate('/main/home')
+  }
+
   const headerBgColor = '#FFFFFF';
   const textColor = '#000000';
 
@@ -48,7 +52,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <img src={Logo} alt="Cafeboo" className="h-9 w-auto" />
+            <img src={Logo} alt="Cafeboo" className="h-9 w-auto cursor-pointer" onClick={goHome} />
           )}
 
           {/* 가운데: 타이틀 */}

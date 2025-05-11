@@ -48,6 +48,7 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         lg:ml-128      
         xl:ml-192   
         2xl:ml-256  
+        [&>div:first-child]:bg-gray-300
       "
       style={{
         ...contentStyle,
