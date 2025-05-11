@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
+import Logo from '@/assets/logo.svg';
 
 export interface LoginFormData {
   email: string;
@@ -30,8 +31,8 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   return (
     <>
       <form className="space-y-4 w-full mx-auto px-4">
-        <h1 className="text-center text-[26px] font-bold text-[#000000] mt-12 mb-8">
-          CafeBoo
+        <h1 className="flex justify-center text-[26px] font-bold text-[#000000] mt-12 mb-8">
+          <img src={Logo} alt="Cafeboo" className="h-12 text-center w-auto" />
         </h1>
 
         <input

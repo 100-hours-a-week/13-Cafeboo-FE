@@ -29,13 +29,17 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
     }
   };
 
+  const goHome = () => {
+    navigate('/main/home')
+  }
+
   const headerBgColor = '#FFFFFF';
   const textColor = '#000000';
 
   return (
     <>
       <header
-        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto xs:left-40 sm:left-88 md:left-120 lg:left-184 xl:left-248 2xl:left-312"
+        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto lg:left-184 xl:left-248 2xl:left-312"
         style={{ backgroundColor: headerBgColor }}
       >
         <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
@@ -48,7 +52,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <img src={Logo} alt="Cafeboo" className="h-9 w-auto" />
+            <img src={Logo} alt="Cafeboo" className="h-9 w-auto cursor-pointer" onClick={goHome} />
           )}
 
           {/* 가운데: 타이틀 */}

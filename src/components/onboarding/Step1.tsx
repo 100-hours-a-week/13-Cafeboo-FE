@@ -14,7 +14,7 @@ const formSchema = z.object({
     .max(123, "나이는 최대 123세 이하이어야 합니다."),
   height: z
     .number()
-    .min(62, "신장은 최소 63 cm 이상이어야 합니다.")
+    .min(63, "신장은 최소 63 cm 이상이어야 합니다.")
     .max(251, "신장은 최대 251 cm 이하이어야 합니다."),
   weight: z
     .number()

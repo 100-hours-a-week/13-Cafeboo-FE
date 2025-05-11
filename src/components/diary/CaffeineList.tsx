@@ -1,5 +1,4 @@
 import { ChevronRight, FileText } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import EmptyState from '@/components/common/EmptyState';
 
 interface CaffeineListProps {
@@ -9,6 +8,7 @@ interface CaffeineListProps {
 
 interface CaffeineRecord {
   intakeId: string;
+  drinkId: string;
   drinkName: string;
   drinkCount: number;
   caffeineAmount: number;
@@ -16,7 +16,6 @@ interface CaffeineRecord {
 }
 
 const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
-  const navigate = useNavigate();
 
   if (records.length === 0) {
     return (
@@ -62,7 +61,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
       {records.map((record) => (
         <div
           key={record.intakeId}
-          className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-3 flex items-center justify-between"
+          className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-3 flex items-center justify-between cursor-pointer"
           onClick={() => onEdit(record.intakeId)}
         >
           <div className="flex items-center gap-2">

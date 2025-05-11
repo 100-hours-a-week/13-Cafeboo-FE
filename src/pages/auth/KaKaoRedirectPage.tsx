@@ -20,8 +20,8 @@ const KakaoRedirectPage = () => {
       try {
         const response = await apiClient.post("/api/v1/auth/kakao", { code });
 
-        console.log(response.data);
-        const { userId, accessToken, requiresOnboarding } = response.data;
+        console.log(response.data.data);
+        const { userId, accessToken, requiresOnboarding } = response.data.data;
 
         // Access Token 로컬스토리지 저장
         localStorage.setItem("access_token", accessToken);

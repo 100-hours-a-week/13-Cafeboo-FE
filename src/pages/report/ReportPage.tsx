@@ -30,6 +30,8 @@ const ReportPage: React.FC = () => {
   const [selectedMonth, setSelectedMonth] = useState('1월');
   const [selectedWeek, setSelectedWeek] = useState('1주차');
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
+
 
   // 전체 API 응답 형태를 통째로 담을 state
   const [reportData, setReportData] = useState<ReportApiData>({});
@@ -100,6 +102,17 @@ const ReportPage: React.FC = () => {
     fetchReportData(selectedYear, selectedMonth, selectedWeek);
   }, [periodType, selectedYear, selectedMonth, selectedWeek]);
 
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLarge(window.innerWidth >= 450);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   const handlePeriodChange = (period: PeriodType) => {
     setPeriodType(period);
     // useEffect 에서 다시 fetchReportData 가 불립니다
@@ -159,13 +172,13 @@ const ReportPage: React.FC = () => {
 
         {/* 플로팅 버튼 */}
         <button
-          className="fixed bottom-18 right-6 w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
+          className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => navigate('/main/diary')}
         >
           <Calendar size={24} />
         </button>
         <button
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] sm:left-128 md:left-160 lg:left-224 xl:left-288 2xl:left-352"
+          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} />

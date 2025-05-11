@@ -86,7 +86,7 @@ export default function DailyCaffeine({
           </span>
           를 <br></br>섭취 중이에요.
         </p>
-        <p className="mt-2 text-sm text-[#595959]">{intakeGuide}</p>
+        <p className="mt-2 text-sm text-[#595959] overflow-hidden line-clamp-2">{intakeGuide}</p>
       </div>
     </div>
   );

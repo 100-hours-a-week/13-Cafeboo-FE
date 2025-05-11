@@ -29,14 +29,14 @@ export default function HeroBanner({
   };
 
   return (
-    <div className="relative w-full h-48 overflow-hidden">
+    <div className="relative w-full aspect-16/8 overflow-hidden">
       <Slider {...settings} className="h-full">
         {slides.map((slide, idx) => (
-          <div key={idx} className="w-full h-48">
+          <div key={idx} className="w-full h-full">
             <img
               src={slide.imageUrl}
               alt={slide.text}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain object-center"
             />
             {/* 텍스트 오버레이 */}
             <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center">

@@ -17,7 +17,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
         onClick={onLogout}
       >
         <div className="text-[#333333]">로그아웃</div>
-        <ChevronRight className="text-[#333333]" size={20} />
+        <ChevronRight className="text-[#333333] cursor-pointer" size={20} />
       </div>
 
       {/* 회원 탈퇴 */}
@@ -26,7 +26,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
         onClick={onDeleteAccount}
       >
         <div className="text-[#333333]">회원 탈퇴</div>
-        <ChevronRight className="text-[#333333]" size={20} />
+        <ChevronRight className="text-[#333333] cursor-pointer" size={20} />
       </div>
     </div>
   );

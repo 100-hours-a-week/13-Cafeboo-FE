@@ -1,71 +1,84 @@
 import { useState, useMemo } from 'react';
 import { Tag } from '@/components/common/Tag';
-import { Coffee, Frown, Search } from 'lucide-react';
+import { Coffee, Search } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
 
-export interface Drink {
-  id: string;
-  drinkName: string;
-  cafesName: string;
-  caffeineAmount: string;
-  type: 'Coffee' | 'Tea' | 'Others';
-  temperature: 'HOT' | 'ICED' | 'BASIC';
+interface DrinkSize {
+  drinkSizeId: number;
+  size: string;
+  capacity_ml: number;
+  caffeine_mg: number;
 }
 
-export interface CaffeineRecord {
-  drinkId: string;
-  intakeTime: string;
+interface Drink {
+  drinkId: number;
+  name: string;
+  type: 'COFFEE' | 'TEA' | 'OTHER';
+  temperature: 'HOT' | 'ICED' | 'BASIC';
+  sizes: DrinkSize[];
+}
+
+interface Cafe {
+  cafeName: string;
+  drinks: Drink[];
+}
+
+interface FilteredDrink {
+  cafeName: string;
+  drinkId: number;
+  name: string;
+  temperature: string;
+  caffeineAmount: string;
 }
 
 export interface CaffeineSelectFormProps {
-  drinkList: Drink[];
-  recentRecord?: CaffeineRecord;
-  onSelectDrink: (drink: Drink) => void;
+  drinkData: any[]; 
+  onSelectDrink: (cafeName: string, drinkId: number) => void;
 }
 
-const TYPES = ['All', 'Coffee', 'Tea', 'Others'] as const;
+const TYPES = ['ALL', 'COFFEE', 'TEA', 'OTHER'] as const;
 
 export default function CaffeineSelectForm({
-  drinkList,
-  recentRecord,
+  drinkData,
   onSelectDrink,
 }: CaffeineSelectFormProps) {
   const [search, setSearch] = useState<string>('');
-  const [typeFilter, setTypeFilter] = useState<(typeof TYPES)[number]>('All');
+  const [typeFilter, setTypeFilter] = useState<(typeof TYPES)[number]>('ALL');
+  const [brandFilter, setBrandFilter] = useState<string>(drinkData[0]?.cafeName || '');
 
-  // 브랜드 옵션: '기본' + 실제 카페 이름 목록
+  // ✅ 브랜드 옵션 동적 생성 
   const brandOptions = useMemo(() => {
-    const names = Array.from(
-      new Set(
-        drinkList
-          .filter((d) => d.temperature !== 'BASIC')
-          .map((d) => d.cafesName)
-      )
+    return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName)));
+  }, [drinkData]);
+
+  // ✅ 필터링 로직 최적화
+  const filteredDrinks = useMemo<FilteredDrink[]>(() => {
+    if (!brandFilter) return [];
+  
+    return (
+      drinkData
+        .find((cafe:Cafe) => cafe.cafeName === brandFilter)
+        ?.drinks.filter((drink:Drink) => {
+          if (typeFilter !== 'ALL' && drink.type !== typeFilter) return false;
+          if (search && !drink.name.toLowerCase().includes(search.toLowerCase())) {
+            return false;
+          }
+          return true;
+        })
+        .map((drink:Drink) => ({
+          cafeName: brandFilter,
+          drinkId: drink.drinkId,
+          name: drink.name,
+          temperature: drink.temperature,
+          caffeineAmount:
+            drink.sizes.length > 1
+              ? `${Math.min(...drink.sizes.map((s) => s.caffeine_mg))} ~ ${Math.max(
+                  ...drink.sizes.map((s) => s.caffeine_mg)
+                )} mg`
+              : `${drink.sizes[0].caffeine_mg} mg`,
+        })) ?? []
     );
-    return ['기본', ...names];
-  }, [drinkList]);
-
-  // 브랜드 기본값: '기본'
-  const [brandFilter, setBrandFilter] = useState<string>('기본');
-
-  // 필터링 로직
-  const filtered = useMemo(() => {
-    return drinkList.filter((d) => {
-      // 타입 필터
-      if (typeFilter !== 'All' && d.type !== typeFilter) return false;
-      // 브랜드 필터
-      if (brandFilter === '기본') {
-        if (d.temperature !== 'BASIC') return false;
-      } else {
-        if (d.temperature === 'BASIC') return false;
-        if (d.cafesName !== brandFilter) return false;
-      }
-      // 검색 필터
-      if (search && !d.drinkName.toLowerCase().includes(search.toLowerCase()))
-        return false;
-      return true;
-    });
-  }, [drinkList, typeFilter, brandFilter, search]);
+  }, [drinkData, search, typeFilter, brandFilter]);
 
   return (
     <div className="flex flex-col h-full">
@@ -101,7 +114,7 @@ export default function CaffeineSelectForm({
           <Tag
             items={brandOptions}
             value={[brandFilter]}
-            onChange={(vals) => setBrandFilter(vals[0] || '기본')}
+            onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0])}
             multiple={false}
             scrollable
             className="whitespace-nowrap"
@@ -131,19 +144,19 @@ export default function CaffeineSelectForm({
 
         {/* 리스트 영역 */}
         <div className="pb-4 space-y-4">
-          {filtered.length === 0 ? (
+          {filteredDrinks.length === 0 ? (
             <EmptyState title="데이터가 없습니다" icon={<Coffee size={32} />} />
           ) : (
-            filtered.map((drink) => (
+            filteredDrinks.map((drink) => (
               <div
-                key={drink.id}
-                onClick={() => onSelectDrink(drink)}
-                className="flex items-center justify-between p-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-none"
+                key={drink.drinkId}
+                onClick={() => onSelectDrink(drink.cafeName, drink.drinkId)}
+                className="flex items-center justify-between px-2 pt-1 pb-2 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-none"
               >
                 <div>
                   <div className="flex items-center gap-1.5">
                     <span className="font-medium text-gray-800 text-base">
-                      {drink.drinkName}
+                      {drink.name}
                     </span>
                     {drink.temperature !== 'BASIC' && (
                       <span

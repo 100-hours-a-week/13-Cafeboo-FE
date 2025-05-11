@@ -15,9 +15,9 @@ function App() {
   return (
     <div
       ref={layoutRef}
-      className="min-h-screen flex items-center justify-start bg-orange-100"
+      className="min-h-screen flex items-center justify-start bg-[#FE9400]/10"
     >
-      <div className="pl-0 xs:pl-26 sm:pl-30 md:pl-64 lg:pl-128 xl:pl-192 2xl:pl-256">
+      <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-256">
         <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-4 scrollbar-hide">
           <Routes />
         </div>

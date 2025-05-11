@@ -37,7 +37,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
 
       <div
         className={`absolute top-0 right-0 h-full w-[80%] z-50 transition-transform duration-300 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? 'translate-x-0' : 'translate-x-[110%]'
         }`}
         style={{
           backgroundColor: '#FFFFFF',
