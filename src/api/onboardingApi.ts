@@ -25,7 +25,7 @@ export const useSubmitHealthInfo = (userId: string) => {
         wakeUpTime: sleepInfo.wakeUpTime,
       };
 
-      return apiClient.post(`/api/v1/user/${userId}/health`, parsedData);
+      return apiClient.post(`/api/v1/users/${userId}/health`, parsedData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["onboarding"] });;
@@ -37,9 +37,9 @@ export const useSubmitHealthInfo = (userId: string) => {
 export const useSubmitCaffeineInfo = (userId: string) => {
   const queryClient = useQueryClient();
   return useMutation<
-    AxiosResponse<any>,       // 성공 시 응답 타입
-    Error,                    // 에러 타입
-    { caffeineInfo: CaffeineInfo; sleepInfo: SleepInfo } // 변수 타입
+    AxiosResponse<any>,       
+    Error,                   
+    { caffeineInfo: CaffeineInfo; sleepInfo: SleepInfo } 
   >({
     mutationFn: async ({ caffeineInfo, sleepInfo }: { caffeineInfo: CaffeineInfo; sleepInfo: SleepInfo }) => {
       const parsedData = {
@@ -49,7 +49,7 @@ export const useSubmitCaffeineInfo = (userId: string) => {
         userFavoriteDrinks: caffeineInfo.userFavoriteDrinks || [],
       };
 
-      return apiClient.post(`/api/v1/user/${userId}/caffeine`, parsedData);
+      return apiClient.post(`/api/v1/users/${userId}/caffeine`, parsedData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["onboarding"] });;

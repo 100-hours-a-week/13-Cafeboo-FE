@@ -36,7 +36,7 @@ export default function HeroBanner({
             <img
               src={slide.imageUrl}
               alt={slide.text}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-contain object-center"
             />
             {/* 텍스트 오버레이 */}
             <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center">

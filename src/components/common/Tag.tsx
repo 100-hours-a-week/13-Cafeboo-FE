@@ -1,4 +1,5 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { useEffect, useState } from 'react';
 
 interface TagProps {
   items: string[];
@@ -17,9 +18,26 @@ export function Tag({
   scrollable = false,
   className = '',
 }: TagProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // 초기 로드 시 화면 크기 확인
+    handleResize();
+
+    // 리사이즈 이벤트 리스너
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   // 스크롤 가능 모드 vs 일반 래핑 모드용 클래스
   const containerClasses = scrollable
-    ? `overflow-x-auto scrollbar-hide ${className}`
+    ? `overflow-x-auto ${isMobile ? "scrollbar-hide" : ""} ${className}`
     : `flex-wrap flex items-center gap-2 ${className}`;
 
   const toggleGroupClass = scrollable
