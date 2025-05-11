@@ -26,7 +26,7 @@ export default function CaffeineBottomSheet({
   onOpenChange,
   onSubmitRecord,
 }: CaffeineBottomSheetProps) {
-  const [selected, setSelected] = useState<{ cafeName: string; drinkId: number } | null>(null);
+  const [selected, setSelected] = useState<{ cafeName: string; drinkId: number} | null>(null);
 
   const detail: DrinkDetail | null = useMemo(() => {
     if (!selected) return null;

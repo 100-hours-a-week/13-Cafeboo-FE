@@ -18,9 +18,9 @@ export interface DrinkDetail {
 
 export interface CaffeineRecordInput {
   drinkId: number;
-  drinkSizeId: number;
+  drinkSize: string;
   drinkCount: number;
-  totalCaffeineAmount: number;
+  CaffeineAmount: number;
   intakeTime: string;
 }
 
@@ -50,9 +50,9 @@ export default function CaffeineDetailForm({
   const handleSubmit = () => {
     onSubmit({
       drinkId: drink.drinkid,
-      drinkSizeId: selectedSize.drinkSizeId,
+      drinkSize: selectedSize.size,
       drinkCount: count,
-      totalCaffeineAmount: parseFloat(caffeineTotal),
+      CaffeineAmount: parseFloat(caffeineTotal),
       intakeTime: format(intakeTime, "yyyy-MM-dd'T'HH:mm"),
     });
   };

@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Tag } from '../common/Tag';
+import { AlertCircle, Info } from 'lucide-react';
+import AlertModal from '@/components/common/AlertModal';
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useHealthInfo } from '@/api/healthInfoApi';
+import { useCaffeineInfo } from '@/api/caffeineInfoApi';
 
 // 온보딩에서 쓰던 옵션 배열들
 const DRINK_OPTIONS = [
@@ -22,61 +29,136 @@ const DRINK_OPTIONS = [
   '기타',
 ];
 
+
+const formSchema = z.object({
+  age: z
+    .number({required_error: "나이를 입력해주세요."})
+    .min(1, "나이는 최소 1세 이상이어야 합니다.")
+    .max(123, "나이는 최대 123세 이하이어야 합니다."),
+  height: z
+    .number({required_error: "신장을 입력해주세요."})
+    .min(63, "신장은 최소 63 cm 이상이어야 합니다.")
+    .max(251, "신장은 최대 251 cm 이하이어야 합니다."),
+  weight: z
+    .number(({required_error: "체중을 입력해주세요."}))
+    .min(6.5, "체중은 최소 6.5 kg 이상이어야 합니다.")
+    .max(635, "체중은 최대 635 kg 이하이어야 합니다."),
+  averageDailyCaffeineIntake: z
+    .number(({required_error: "카페인 섭취량을 입력해주세요."}))
+    .min(0, "카페인 섭취량은 최소 0잔 이상이어야 합니다.")
+    .max(15, "카페인 섭취량은 최대 15잔 이하여야 합니다.")
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 export interface HealthInfoEditorProps {
   onSave: (data: {
     gender: string;
     age: number;
     height: number;
     weight: number;
-    pregnancy: boolean;
-    birthControl: boolean;
-    smoking: boolean;
-    liverDisease: boolean;
+    isPregnant: boolean;
+    isTakingBirthPill: boolean;
+    isSmoking: boolean;
+    hasLiverDisease: boolean;
     caffeineSensitivity: number;
-    dailyIntake: number;
+    averageDailyCaffeineIntake: number;
     userFavoriteDrinks: string[];
-    usualIntakeTimes: string;
-    sleepStartTime: string;
-    sleepEndTime: string;
+    frequentDrinkTime: string;
+    sleepTime: string;
+    wakeUpTime: string;
   }) => Promise<void>;
 }
 
 export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
-  // 1) Health 스토어 대신 로컬 state
-  const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [age, setAge] = useState<number>(27);
-  const [height, setHeight] = useState<number>(170);
-  const [weight, setWeight] = useState<number>(58);
-  const [pregnancy, setPregnancy] = useState(false);
-  const [birthControl, setBirthControl] = useState(false);
-  const [smoking, setSmoking] = useState(false);
-  const [liverDisease, setLiverDisease] = useState(false);
+  const { data: initHealth }       = useHealthInfo();
+  const { data: initCaffeine }     = useCaffeineInfo();
+  const [showAlertModal, setShowAlertModal] = useState(false);
 
-  const [caffeineSensitivity, setCaffeineSensitivity] = useState(50);
-  const [dailyIntake, setDailyIntake] = useState<number>(2);
-  const [userFavoriteDrinks, setUserFavoriteDrinks] = useState<string[]>([]);
-  const [usualIntakeTimes, setUsualIntakeTimes] = useState('10:00');
-  const [sleepStartTime, setSleepStartTime] = useState('22:00');
-  const [sleepEndTime, setSleepEndTime] = useState('07:00');
+  const [ageInput, setAgeInput] = useState('');
+  const [heightInput, setHeightInput] = useState('');
+  const [weightInput, setWeightInput] = useState('');
+  const [caffeineInput, setCaffeineInput] = useState('');
+
+  const [gender, setGender] = useState<'M' | 'F'>(initHealth?.gender ?? 'M');
+  const [isPregnant, setPregnancy] = useState(initHealth?.isPregnant ?? false);
+  const [isTakingBirthPill, setBirthControl] = useState(initHealth?.isTakingBirthPill ?? false);
+  const [isSmoking, setSmoking] = useState(initHealth?.isSmoking ?? false);
+  const [hasLiverDisease, setHasLiverDisease] = useState(initHealth?.hasLiverDisease ?? false);
+  const [sleepTime, setSleepStartTime] = useState(initHealth?.sleepTime ?? '22:00');
+  const [wakeUpTime, setSleepEndTime] = useState(initHealth?.wakeUpTime ?? '07:00');
+  const [caffeineSensitivity, setCaffeineSensitivity] = useState(initCaffeine?.caffeineSensitivity ?? 50);
+  const [userFavoriteDrinks, setUserFavoriteDrinks] = useState<string[]>(initCaffeine?.userFavoriteDrinks ?? []);
+  const [frequentDrinkTime, setUsualIntakeTimes] = useState(initCaffeine?.frequentDrinkTime ?? '12:00');
+
+
+  const {
+    trigger,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      age: initHealth?.age ?? undefined,
+      height: initHealth?.height ?? undefined,
+      weight: initHealth?.weight ?? undefined,
+      averageDailyCaffeineIntake: initCaffeine?.averageDailyCaffeineIntake ?? undefined,
+    },
+  });
+
+  useEffect(() => {
+    if (initHealth) {
+      setGender(initHealth.gender);
+      setPregnancy(initHealth.isPregnant);
+      setBirthControl(initHealth.isTakingBirthPill);
+      setSmoking(initHealth.isSmoking);
+      setHasLiverDisease(initHealth.hasLiverDisease);
+      setSleepStartTime(initHealth.sleepTime);
+      setSleepEndTime(initHealth.wakeUpTime);
+      setValue('age', initHealth.age);
+      setValue('height', initHealth.height);
+      setValue('weight', initHealth.weight);
+    }
+  }, [initHealth, setValue]);
+
+  useEffect(() => {
+    if (initCaffeine) {
+      setCaffeineSensitivity(initCaffeine.caffeineSensitivity);
+      setUserFavoriteDrinks(initCaffeine.userFavoriteDrinks);
+      setUsualIntakeTimes(initCaffeine.frequentDrinkTime);
+      setValue('averageDailyCaffeineIntake', initCaffeine.averageDailyCaffeineIntake);
+    }
+  }, [initCaffeine, setValue]);
 
   const handleSave = async () => {
-    await onSave({
+    const valid = await trigger([
+      'age', 'height', 'weight', 'averageDailyCaffeineIntake'
+    ]);
+    if (!valid) {
+      setShowAlertModal(true);
+      return;
+    }
+
+    onSave({
       gender,
-      age,
-      height,
-      weight,
-      pregnancy,
-      birthControl,
-      smoking,
-      liverDisease,
+      age: watch('age'),
+      height: watch('height'),
+      weight: watch('weight'),
+      isPregnant,
+      isTakingBirthPill,
+      isSmoking,
+      hasLiverDisease,
       caffeineSensitivity,
-      dailyIntake,
+      averageDailyCaffeineIntake: watch('averageDailyCaffeineIntake'),
       userFavoriteDrinks,
-      usualIntakeTimes,
-      sleepStartTime,
-      sleepEndTime,
+      frequentDrinkTime,
+      sleepTime,
+      wakeUpTime,
     });
   };
+
 
   return (
     <div className="space-y-6 p-4">
@@ -86,11 +168,13 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         <ToggleGroup
           type="single"
           value={gender}
-          onValueChange={(v) => setGender(v as 'male' | 'female')}
+          onValueChange={(v) =>{
+            if  (v && v !== gender) setGender(v as "M" | "F");
+          }}
           className="flex w-full"
         >
           <ToggleGroupItem
-            value="male"
+            value="M"
             className="
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-l-lg border border-[#D9D9D9]
@@ -106,7 +190,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           </ToggleGroupItem>
 
           <ToggleGroupItem
-            value="female"
+            value="F"
             className="
               flex-1 py-2 text-sm font-medium text-center cursor-pointer
               rounded-r-lg border border-[#D9D9D9]
@@ -123,85 +207,71 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         </ToggleGroup>
       </div>
 
-      {/* 나이 입력 (mobile numeric pad) */}
-      <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">나이</Label>
-        <div className="flex items-center">
-          <span className="text-base">만</span>
-          <input
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            value={age}
-            onChange={(e) => setAge(+e.target.value)}
-            className="
-              w-16             
-              ml-2 mr-1   
-              py-1       
-              text-center
-              border border-[#C7C7CC]
-              rounded-lg
-              text-base
-              focus:outline-none focus:border-[#FE9400]
-            "
-          />
-          <span className="text-base mr-2">세</span>
+      <div className="flex items-center justify-between mt-8">
+          <Label className="text-base text-[#000000] font-semibold">나이</Label>
+          <div className="flex items-center">
+            <span className="text-base">만</span>
+            <input type="text" inputMode="numeric"
+              value={ageInput}
+              onChange={e=>{
+                const v=e.target.value.replace(/[^0-9]/g,'');
+                setAgeInput(v);
+                const num=parseInt(v,10);
+                if(!isNaN(num)) setValue('age',num);
+                trigger('age');
+              }}
+              className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
+            <span className="text-base mr-2">세</span>
+          </div>
         </div>
-      </div>
+        {errors.age && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.age.message}</p>}
 
-      {/* 신장 입력 */}
-      <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">신장</Label>
-        <div className="flex items-center">
-          <input
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            value={height}
-            onChange={(e) => setHeight(+e.target.value)}
-            className="
-              w-16             
-              ml-2 mr-1   
-              py-1       
-              text-center
-              border border-[#C7C7CC]
-              rounded-lg
-              text-base
-              focus:outline-none focus:border-[#FE9400]
-            "
-          />
-          <span className="text-base">cm</span>
+        {/* 신장 */}
+        <div className="flex items-center justify-between mt-8">
+          <Label className="text-base text-[#000000] font-semibold">신장</Label>
+          <div className="flex items-center">
+            <input type="text" inputMode="numeric"
+              value={heightInput}
+              onChange={e=>{
+                const v=e.target.value.replace(/[^0-9]/g,'');
+                setHeightInput(v);
+                const num=parseInt(v,10);
+                if(!isNaN(num)) setValue('height',num);
+                trigger('height');
+              }}
+              className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
+            <span className="text-base">cm</span>
+          </div>
         </div>
-      </div>
+        {errors.height && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.height.message}</p>}
 
-      {/* 체중 입력 */}
-      <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">체중</Label>
-        <div className="flex items-center">
-          <input
-            type="text"
-            inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
-            value={weight}
-            onChange={(e) => setWeight(+e.target.value)}
-            className="
-              w-16 mx-2 py-1 text-center
-              border border-[#C7C7CC]
-              rounded-lg text-base
-              focus:outline-none focus:border-[#FE9400]
-            "
-          />
-          <span className="text-base">kg</span>
+        {/* 체중 */}
+        <div className="flex items-center justify-between mt-8">
+          <Label className="text-base text-[#000000] font-semibold">체중</Label>
+          <div className="flex items-center">
+            <input type="text" inputMode="decimal"
+              value={weightInput}
+              onChange={e=>{
+                let v=e.target.value.replace(/[^0-9.]/g,'');
+                const parts=v.split('.');
+                if(parts.length>1){ parts[1]=parts[1].slice(0,1); v=parts[0]+'.'+parts[1]; }
+                setWeightInput(v);
+                const num=parseFloat(v);
+                if(!isNaN(num)) setValue('weight',num);
+                trigger('weight');
+              }}
+              className="w-16 mx-2 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
+            <span className="text-base">kg</span>
+          </div>
         </div>
-      </div>
-
+        {errors.weight && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.weight.message}</p>}
       {/* Boolean 토글 4개 */}
       <div className="grid grid-cols-2 gap-6">
         {[
-          { val: pregnancy, setter: setPregnancy, label: '임신 여부' },
-          { val: birthControl, setter: setBirthControl, label: '피임약 복용' },
-          { val: smoking, setter: setSmoking, label: '흡연 여부' },
-          { val: liverDisease, setter: setLiverDisease, label: '간 질환 여부' },
+          { val: isPregnant, setter: setPregnancy, label: '임신 여부' },
+          { val: isTakingBirthPill, setter: setBirthControl, label: '피임약 복용' },
+          { val: isSmoking, setter: setSmoking, label: '흡연 여부' },
+          { val: hasLiverDisease, setter: setHasLiverDisease, label: '간 질환 여부' },
         ].map(({ val, setter, label }) => (
           <div key={label}>
             <Label className="text-[#000000] mb-2 block text-base font-semibold">
@@ -211,7 +281,11 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             <ToggleGroup
               type="single"
               value={val ? 'yes' : 'no'}
-              onValueChange={(v) => setter(v === 'yes')}
+              onValueChange={v => {
+                if ((v === 'yes') !== val) {
+                  setter(v === 'yes');
+                }
+              }}
               className="flex w-full"
             >
               <ToggleGroupItem
@@ -292,9 +366,19 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           <input
             type="text"
             inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
-            value={dailyIntake}
-            onChange={(e) => setDailyIntake(+e.target.value)}
+            value={caffeineInput}
+            onChange={e => {
+              let v = e.target.value.replace(/[^0-9.]/g, '');
+              const parts = v.split('.');
+              if (parts.length > 1) {
+                parts[1] = parts[1].slice(0, 1);
+                v = parts[0] + '.' + parts[1];
+              }
+              setCaffeineInput(v);
+              const num = parseFloat(v);
+              if (!isNaN(num)) setValue('averageDailyCaffeineIntake', num);
+              trigger('averageDailyCaffeineIntake');
+            }}
             className="
             w-16 mx-1 py-1 text-center 
             border border-[#C7C7CC]
@@ -305,6 +389,12 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           <span className="text-base">잔</span>
         </div>
       </div>
+      {errors.averageDailyCaffeineIntake && (
+        <p className="text-sm text-red-500 flex items-center gap-1">
+          <AlertCircle className="w-4 h-4" />
+          {errors.averageDailyCaffeineIntake.message}
+        </p>
+      )}
 
       {/* 선호 음료 */}
       <div className="mt-10">
@@ -329,10 +419,10 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         <Input
           type="time"
           step={60}
-          value={usualIntakeTimes ?? '12:00'}
+          value={frequentDrinkTime ?? '12:00'}
           onChange={(e) => setUsualIntakeTimes}
           className="
-            w-1/2 rounded-lg border border-[#C7C7CC] cursor-pointer
+            w-full rounded-lg border border-[#C7C7CC] cursor-pointer
             px-4 py-2 
             focus:outline-none focus:border-[#FE9400]
           "
@@ -349,7 +439,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             type="time"
             step={60}
             placeholder="시작 시간 선택"
-            value={sleepStartTime}
+            value={sleepTime}
             onChange={(e) => setSleepStartTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
@@ -358,7 +448,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             type="time"
             step={60}
             placeholder="종료 시간 선택"
-            value={sleepEndTime}
+            value={wakeUpTime}
             onChange={(e) => setSleepEndTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
@@ -367,13 +457,22 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 저장 버튼 */}
       <div className="py-4">
-        <Button
+        <button
           onClick={handleSave}
           className="w-full py-3 h-12 rounded-lg bg-[#FE9400] text-[#FEFBF8] text-lg font-semibold mt-2 cursor-pointer"
         >
           저장하기
-        </Button>
+        </button>
       </div>
+
+      <AlertModal
+        isOpen={showAlertModal}
+        icon={<Info size={36} className="text-[#FE9400]" />}
+        onClose={() => setShowAlertModal(false)}
+        title="입력 오류"
+        message="올바른 값을 입력해주세요"
+        showCancelButton={false}
+      />
     </div>
   );
 }

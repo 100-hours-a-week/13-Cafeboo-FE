@@ -18,11 +18,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   onEditClick,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
+    <div>
       {/* 프로필 영역 */}
       <div
         className="flex items-center justify-between mb-4"
-        onClick={onEditClick}
       >
         <div className="flex items-center">
           <div className="relative w-10 h-10 mr-3">
@@ -61,7 +60,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             <p className="text-sm text-[#595959]">내 정보 수정</p>
           </div>
         </div>
-        <ChevronRight className="text-[#333333]" size={20} />
+        <ChevronRight className="text-[#333333] cursor-pointer" onClick={onEditClick} size={20} />
       </div>
 
       {/* 구분선 */}

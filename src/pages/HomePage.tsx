@@ -32,15 +32,15 @@ export default function HomePage() {
   const handleSubmitRecord = async (record: CaffeineRecordInput) => {
     try {
       const response = await recordCaffeineIntake({
-        drinkId: record.drinkId,
-        drinkSize: record.drinkSizeId,
+        drinkId: record.drinkId.toString(),
+        drinkSize: record.drinkSize,
         intakeTime: record.intakeTime,
         drinkCount: record.drinkCount,
-        totalCaffeineAmount: Number(record.totalCaffeineAmount.toFixed(1)), 
+        CaffeineAmount: Number(record.CaffeineAmount.toFixed(1)), 
       });
       console.log("카페인 섭취 기록 성공:", response);
     } catch (err: any) {
-      console.error("카페인 섭취 기록 오류:", err.response?.data?.message || err.message);
+      console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);
     }
