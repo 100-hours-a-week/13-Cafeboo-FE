@@ -1,6 +1,6 @@
 import apiClient from "@/api/apiClient";
 import { useQuery } from "@tanstack/react-query";
-import { useQueryHooks } from "@/hooks/useAueryHooks";
+import { useQueryHooks } from "@/hooks/useQueryHooks";
 
 export const getDailyCaffeineReport = async () => {
   const response = await apiClient.get("/api/v1/reports/daily");

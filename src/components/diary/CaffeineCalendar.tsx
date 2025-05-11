@@ -110,7 +110,7 @@ const CaffeineCalendar = ({
   );
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
+    <>
       <div className="flex justify-between items-center mb-4">
         <button
           onClick={() => {
@@ -187,7 +187,7 @@ const CaffeineCalendar = ({
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 

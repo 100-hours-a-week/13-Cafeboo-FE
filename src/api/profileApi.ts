@@ -1,6 +1,6 @@
 import apiClient from './apiClient';
 import { useQuery } from '@tanstack/react-query';
-import { useQueryHooks } from '@/hooks/useAueryHooks';
+import { useQueryHooks } from '@/hooks/useQueryHooks';
 
 export const fetchUserProfile = async () => {
   const userId = localStorage.getItem("userId");

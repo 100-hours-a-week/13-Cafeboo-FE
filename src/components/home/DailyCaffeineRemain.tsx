@@ -42,6 +42,23 @@ export default function DailyCaffeineRemain({
     }
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // 초기 로드 시 화면 크기 확인
+    handleResize();
+
+    // 리사이즈 이벤트 리스너
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       updateNowX();
@@ -49,18 +66,6 @@ export default function DailyCaffeineRemain({
 
     return () => clearTimeout(timeout);
   }, [nowIndex, data]);
-
-  useEffect(() => {
-    const observer = new ResizeObserver(() => {
-      updateNowX();
-    });
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -113,7 +118,7 @@ export default function DailyCaffeineRemain({
       </div>
 
       {/* 2) 스크롤 가능한 바 차트 + X축 영역 */}
-      <div className="flex-1 overflow-x-auto scrollbar-hide">
+      <div   className={`flex-1 overflow-x-auto ${isMobile ? 'scrollbar-hide' : ''}`}>
         <div
           className="h-[180px] w-full relative"
           style={{ minWidth: `${minWidth}px` }}

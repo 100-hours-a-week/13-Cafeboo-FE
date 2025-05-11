@@ -13,7 +13,8 @@ import { recordCaffeineIntake } from '@/api/caffeineApi';
 import { useDailyCaffeineReport } from '@/api/dailyReportApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
-import { Info } from 'lucide-react';
+import { Info, AlertTriangle } from 'lucide-react';
+import EmptyState from '@/components/common/EmptyState';
 
 export default function HomePage() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function HomePage() {
     { imageUrl: BannerImage3, text: '' },
   ];
 
-  const { data: report, isLoading, isError, error, showModal, setShowModal } = useDailyCaffeineReport();
+  const { data: report, isLoading, isError, error } = useDailyCaffeineReport();
 
   const handleSubmitRecord = async (record: CaffeineRecordInput) => {
     try {
@@ -38,29 +39,12 @@ export default function HomePage() {
         drinkCount: record.drinkCount,
         CaffeineAmount: Number(record.CaffeineAmount.toFixed(1)), 
       });
-      console.log("카페인 섭취 기록 성공:", response);
+      console.log("카페인 섭취 등록 성공:", response);
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
-      setIsAlertOpen(true);
     }
   };
-
-  if (showModal) {
-    return (
-      <AlertModal
-        isOpen={showModal}
-        icon={<Info size={36} className="text-[#FE9400]" />}
-        title="데이터 로딩 오류"
-        message="데이터 로드 중 문제가 발생했습니다."
-        onClose={() => setShowModal(false)}
-        onConfirm={() => setShowModal(false)}
-        confirmText="확인"
-        showCancelButton={false}
-      />
-    );
-  }
-
 
   return (
     <div className="min-h-screen">
@@ -85,9 +69,11 @@ export default function HomePage() {
                 <LoadingSpinner type="clip" size="small" fullScreen={false} />
               </div>
             ) : isError ? (
-              <div className="text-center text-red-500">
-                오류 발생: {(error as Error).message}
-              </div>
+              <EmptyState
+                title="데이터 로딩 실패"
+                description={(error as Error).message}
+                icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
+              />
             ) : (
               <DailyCaffeineIntakeGraph
                 nickname={report?.nickname}
@@ -109,9 +95,11 @@ export default function HomePage() {
               <LoadingSpinner type="clip" size="small" fullScreen={false} />
             </div>
           ) : isError ? (
-            <div className="text-center text-red-500">
-              오류 발생: {(error as Error).message}
-            </div>
+            <EmptyState
+              title="데이터 로딩 실패"
+              description={(error as Error).message}
+              icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
+            />
           ) : (
             <DailyCaffeineRemain
               caffeineByHour={report?.caffeineByHour ?? []}

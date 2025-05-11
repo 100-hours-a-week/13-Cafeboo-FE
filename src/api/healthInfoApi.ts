@@ -1,6 +1,6 @@
 import apiClient from './apiClient';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useQueryHooks } from '@/hooks/useAueryHooks';
+import { useQueryHooks } from '@/hooks/useQueryHooks';
 
 // ✅ 사용자 건강 정보 조회 API
 export const fetchHealthInfo = async () => {

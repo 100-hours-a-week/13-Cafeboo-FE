@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Header from '@/components/common/Header';
 import { BarChart2, Plus } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
@@ -6,40 +6,11 @@ import CaffeineList from '@/components/diary/CaffeineList';
 import { useNavigate } from 'react-router-dom';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
 import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
-
-interface CaffeineRecord {
-  intakeId: string;
-  drinkName: string;
-  drinkCount: number;
-  caffeineAmount: number;
-  intakeTime: string;
-}
-
-const caffeineData = {
-  '2025-03-02': 450,
-  '2025-03-03': 220,
-  '2025-03-05': 90,
-  '2025-03-09': 150,
-};
-
-const dailyRecordsData: { [date: string]: CaffeineRecord[] } = {
-  '2025-03-09': [
-    {
-      intakeId: '1',
-      drinkName: '아메리카노',
-      drinkCount: 1,
-      caffeineAmount: 150,
-      intakeTime: '12:15',
-    },
-    {
-      intakeId: '2',
-      drinkName: '아메리카노',
-      drinkCount: 1,
-      caffeineAmount: 150,
-      intakeTime: '12:15',
-    },
-  ],
-};
+import { useCalendar } from '@/api/calendarApi';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+import EmptyState from '@/components/common/EmptyState';
+import { AlertTriangle } from "lucide-react";
+import { useDailyIntake } from '@/api/calendarListApi';
 
 // 날짜 포맷 유틸
 const formatDate = (date: Date) => {
@@ -54,25 +25,31 @@ const DiaryPage = () => {
   const [selectedDate, setSelectedDate] = useState(formatDate(today));
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
-  const [records, setRecords] = useState<CaffeineRecord[]>([]);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
-
   const navigate = useNavigate();
 
-  const fetchDailyRecords = async (date: string) => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        const data = dailyRecordsData[date] || [];
-        setRecords(data);
-        resolve();
-      }, 300);
-    });
-  };
+  const { data: calendarData, isLoading: loadingCalendar, isError: errorCalendar, error } = useCalendar(year, month);
+  const { data: dailyData, isLoading: loadingDaily, isError: errorDaily, error: dailyError } = useDailyIntake(selectedDate);
 
-  useEffect(() => {
-    fetchDailyRecords(selectedDate);
-  }, []);
+  const caffeineData = useMemo(() => {
+    const map: Record<string, number> = {};
+    calendarData?.dailyIntakeList.forEach(item => {
+      map[item.date] = item.totalCaffeineMg;
+    });
+    return map;
+  }, [calendarData]);
+
+  const records = useMemo(() => {
+    return dailyData?.intakeList.map(entry => ({
+      intakeId: entry.intakeId,
+      drinkId: entry.drinkId,
+      drinkName: entry.drinkName,
+      drinkCount: entry.drinkCount,
+      caffeineAmount: entry.caffeineMg,
+      intakeTime: entry.intakeTime.slice(11,16),
+    })) ?? [];
+  }, [dailyData]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,26 +60,25 @@ const DiaryPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
-    await fetchDailyRecords(date);
   };
 
   const handleMonthChange = (newYear: number, newMonth: number) => {
-    const newDate = `${newYear}-${String(newMonth).padStart(2, '0')}-01`;
     setYear(newYear);
     setMonth(newMonth);
-    setSelectedDate(newDate);
-    fetchDailyRecords(newDate);
+    setSelectedDate(`${newYear}-${String(newMonth).padStart(2, '0')}-01`);
   };
 
   const handleEdit = (intakeId: string) => {
-    navigate(`/main/diary/edit/${intakeId}`);
+    const record = records.find(r => r.intakeId === intakeId);
+    if (record) {
+      navigate(`/main/diary/edit/${intakeId}`, { state: record });
+    }
   };
 
   const handleSubmitRecord = (record: CaffeineRecordInput) => {
-    console.log('최종 카페인 기록:', record);
+    console.log('최종 카페인 기록:', record.intakeTime);
     setIsSheetOpen(false);
   };
 
@@ -110,30 +86,54 @@ const DiaryPage = () => {
     <div className="min-h-screen">
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
-        <CaffeineCalendar
-          year={year}
-          month={month}
-          selectedDate={selectedDate}
-          caffeineData={caffeineData}
-          onDateSelect={handleDateSelect}
-          onMonthChange={handleMonthChange}
-        />
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
+        {loadingCalendar ? (
+              <div className="flex justify-center items-center h-32">
+                <LoadingSpinner type="clip" size="small" fullScreen={false} />
+              </div>
+            ) : errorCalendar ? (
+              <EmptyState
+                title="데이터 로딩 실패"
+                description={(error as Error).message}
+                icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
+              />
+            ) : (
+              <CaffeineCalendar
+              year={year}
+              month={month}
+              selectedDate={selectedDate}
+              caffeineData={caffeineData}
+              onDateSelect={date => handleDateSelect(date)}
+              onMonthChange={handleMonthChange}
+            />
+            )}
+        </div>
 
         <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
           {new Date(selectedDate).getMonth() + 1}월{' '}
           {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
 
-        <CaffeineList records={records} onEdit={handleEdit} />
+        {loadingDaily ? (
+           <LoadingSpinner type="clip" size="small" fullScreen={false} />
+        ) : errorDaily ? (
+          <EmptyState
+            title="데이터 로딩 실패"
+            description={(error as Error).message}
+            icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
+          />
+        ) : (
+          <CaffeineList records={records} onEdit={handleEdit} />
+        )}
 
         <button
-          className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
+          className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => navigate('/main/report')}
         >
           <BarChart2 size={24} />
         </button>
         <button
-          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
+          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
           onClick={() => setIsSheetOpen(true)}
           >
           <Plus size={24} />
