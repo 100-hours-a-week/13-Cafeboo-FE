@@ -37,7 +37,7 @@ export default function ReportPage() {
   const today = new Date();
   const defaultYear = String(today.getFullYear());
   const defaultMonth = String(today.getMonth() + 1);
-  const defaultWeek = `${Math.ceil(today.getDate() / 7)}주차`;
+  const defaultWeek = `${Math.ceil(today.getDate() / 7)}`;
 
   const [periodType, setPeriodType] = useState<PeriodType>('weekly');
   const [selectedYear, setSelectedYear] = useState(defaultYear);
@@ -115,7 +115,6 @@ export default function ReportPage() {
       } else {
         refetchYearly();
       }
-      console.log(selectedYear, selectedMonth, selectedWeek);
     }, [periodType, selectedYear, selectedMonth, selectedWeek]);
 
   useEffect(() => {

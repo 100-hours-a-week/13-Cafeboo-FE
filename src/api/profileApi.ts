@@ -16,9 +16,9 @@ export const useUserProfile = () => {
   const query = useQuery({
     queryKey: ['userProfile'],
     queryFn: fetchUserProfile,
-    staleTime: 300000,       
-    gcTime: 600000,        
-    refetchInterval: 300000,    
+    staleTime: 0,                
+    gcTime: 0,        
+    refetchInterval: 1000,    
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,

@@ -77,7 +77,7 @@ const DiaryPage = () => {
   const handleEdit = (intakeId: string) => {
     const record = records.find(r => r.intakeId === intakeId);
     if (record) {
-      navigate(`/main/diary/edit/${intakeId}`, { state: record });
+      navigate(`/main/diary/edit/${intakeId}`, { state: {record} });
     }
   };
 
@@ -91,8 +91,8 @@ const DiaryPage = () => {
         caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
       });
       console.log("카페인 섭취 등록 성공:", response);
-      refetchCalendar();
-      refetchDaily();
+      //refetchCalendar();
+      //refetchDaily();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
@@ -105,17 +105,6 @@ const DiaryPage = () => {
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
-        {loadingCalendar ? (
-              <div className="flex justify-center items-center h-32">
-                <LoadingSpinner type="clip" size="small" fullScreen={false} />
-              </div>
-            ) : errorCalendar ? (
-              <EmptyState
-                title="데이터 로딩 실패"
-                description={(error as Error).message}
-                icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
-              />
-            ) : (
               <CaffeineCalendar
               year={year}
               month={month}
@@ -124,7 +113,7 @@ const DiaryPage = () => {
               onDateSelect={date => handleDateSelect(date)}
               onMonthChange={handleMonthChange}
             />
-            )}
+            )
         </div>
 
         <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">

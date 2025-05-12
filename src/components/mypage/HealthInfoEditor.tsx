@@ -75,10 +75,10 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
   const { data: initCaffeine }     = useCaffeineInfo();
   const [showAlertModal, setShowAlertModal] = useState(false);
 
-  const [ageInput, setAgeInput] = useState('');
-  const [heightInput, setHeightInput] = useState('');
-  const [weightInput, setWeightInput] = useState('');
-  const [caffeineInput, setCaffeineInput] = useState('');
+  const [ageInput, setAgeInput] = useState(initHealth?.age ?? undefined);
+  const [heightInput, setHeightInput] = useState(initHealth?.height ?? undefined);
+  const [weightInput, setWeightInput] = useState(initHealth?.weight ?? undefined);
+  const [caffeineInput, setCaffeineInput] = useState(initCaffeine?.averageDailyCaffeineIntake ?? undefined);
 
   const [gender, setGender] = useState<'M' | 'F'>(initHealth?.gender ?? 'M');
   const [isPregnant, setPregnancy] = useState(initHealth?.isPregnant ?? false);

@@ -11,7 +11,6 @@ import {
 } from 'recharts';
 
 export interface DailyCaffeineRemainProps {
-  // 백엔드 데이터
   caffeineByHour: Array<{ time: string; caffeineMg: number }>;
   sleepSensitiveThreshold: number;
 }
@@ -188,6 +187,12 @@ export default function DailyCaffeineRemain({
               Now
             </div>
           )}
+          { 
+          <div className="flex items-center ml-10 text-xs text-[#333333]">
+            <span className="inline-block w-4 border-[#543122] mr-2 border-b-2 border-dashed" />
+            수면 영향 임계선: {sleepSensitiveThreshold} mg
+          </div>
+        }
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-// src/components/common/AlertModal.tsx
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 

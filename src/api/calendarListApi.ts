@@ -25,12 +25,12 @@ export const fetchDailyIntake = async (
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('사용자 정보가 없습니다.');
 
-  const response = await apiClient.get<DailyCalendarResponse>(
+  const response = await apiClient.get(
     `/api/v1/caffeine-intakes/daily`,
     { params: { date } }
   );
 
-  return response.data;
+  return response.data.data;
 };
 
 // ✅ React Query 훅
