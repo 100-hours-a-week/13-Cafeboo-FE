@@ -72,10 +72,10 @@ export default function CaffeineSelectForm({
           temperature: drink.temperature,
           caffeineAmount:
             drink.sizes.length > 1
-              ? `${Math.min(...drink.sizes.map((s) => s.caffeine_mg))} ~ ${Math.max(
+              ? `${Math.min(...drink.sizes.map((s) => s.caffeine_mg)).toFixed(1)} ~ ${Math.max(
                   ...drink.sizes.map((s) => s.caffeine_mg)
-                )} mg`
-              : `${drink.sizes[0].caffeine_mg} mg`,
+                ).toFixed(1)} mg`
+              : `${drink.sizes[0].caffeine_mg.toFixed(1)} mg`,
         })) ?? []
     );
   }, [drinkData, search, typeFilter, brandFilter]);
@@ -117,7 +117,7 @@ export default function CaffeineSelectForm({
             onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0])}
             multiple={false}
             scrollable
-            className="whitespace-nowrap"
+            className="whitespace-nowrap pb-1"
           />
 
           {/* 타입 필터 */}
@@ -161,9 +161,9 @@ export default function CaffeineSelectForm({
                     {drink.temperature !== 'BASIC' && (
                       <span
                         className={`text-xs font-medium px-1.5 rounded-full border ${
-                          drink.temperature === 'ICED'
-                            ? 'border-blue-600 text-blue-600'
-                            : 'border-red-600 text-red-600'
+                          drink.temperature === 'HOT'
+                            ? 'border-red-600 text-red-600'
+                            : 'border-blue-600 text-blue-600'
                         }`}
                       >
                         {drink.temperature.toUpperCase()}
