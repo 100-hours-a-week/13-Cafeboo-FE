@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 export const deleteUser = async () => {
   const userId = localStorage.getItem("userId");
   if (!userId) throw new Error('사용자 정보가 없습니다.');
-  await apiClient.delete(`/api/v1/user/${userId}`);
+  await apiClient.delete(`/api/v1/users/${userId}`);
 };
 
 export const useDeleteUser = () => {

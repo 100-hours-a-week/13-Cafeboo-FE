@@ -10,6 +10,8 @@ import {
   Cell,
 } from 'recharts';
 import { PeriodType } from './DropdownSelector';
+import EmptyState from '../common/EmptyState';
+import { FileText } from 'lucide-react';
 
 interface ReportApiData {
   dailyIntakeTotals?: { date: string; caffeineMg: number }[];
@@ -36,10 +38,8 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
 
   if (!hasData) {
     return (
-      <div className="w-full bg-white rounded-xl p-4 shadow-sm mb-4">
-        <div className="flex justify-center items-center h-40 text-gray-400">
-          데이터가 없습니다
-        </div>
+      <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 mb-4 mx-auto py-4">
+        <EmptyState title="데이터가 없습니다" icon={<FileText size={32} />} />
       </div>
     );
   }

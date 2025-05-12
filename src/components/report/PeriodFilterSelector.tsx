@@ -1,5 +1,3 @@
-'use client';
-
 import { useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';
 import {
@@ -19,7 +17,6 @@ interface PeriodFilterSelectorProps {
   onYearChange: (year: string) => void;
   onMonthChange?: (month: string) => void;
   onWeekChange?: (week: string) => void;
-  onFilterChange: (year: string, month?: string, week?: string) => void;
 }
 
 export default function PeriodFilterSelector({
@@ -30,19 +27,19 @@ export default function PeriodFilterSelector({
   onYearChange,
   onMonthChange,
   onWeekChange,
-  onFilterChange,
 }: PeriodFilterSelectorProps) {
   // 오늘 날짜 기준 기본값
   const today = new Date();
   const defaultYear = `${today.getFullYear()}년`;
   const defaultMonth = `${today.getMonth() + 1}월`;
 
-  // 주차 생성: 한 주를 토요일 시작→금요일 끝으로 보고, 해당 월에 몇 주가 있는지 계산
+  // 주차 생성: 한 주를 일요일 시작→토요일 끝으로 보고, 해당 월에 몇 주가 있는지 계산
   function getWeekOptions(yearNum: number, monthNum: number) {
-    const firstDay = new Date(yearNum, monthNum - 1, 1).getDay(); // 0=일,6=토
+    const firstDayOfMonth = new Date(yearNum, monthNum - 1, 1).getDay(); 
     const lastDate = new Date(yearNum, monthNum, 0).getDate();
-    const offset = (firstDay + 1) % 7;
+    const offset = firstDayOfMonth;        
     const weeksCount = Math.ceil((lastDate + offset) / 7);
+  
     return Array.from({ length: weeksCount }, (_, i) => `${i + 1}주차`);
   }
 
@@ -56,32 +53,33 @@ export default function PeriodFilterSelector({
     []
   );
   const numYear = parseInt((selectedYear ?? defaultYear).replace('년', ''), 10);
-  const numMonth = parseInt(
-    (selectedMonth ?? defaultMonth).replace('월', ''),
-    10
-  );
-  const weeks = useMemo(
-    () => getWeekOptions(numYear, numMonth),
-    [numYear, numMonth]
-  );
+  const numMonth = parseInt((selectedMonth ?? defaultMonth).replace('월', ''), 10);
 
-  // 화면에 사용할 값 (prop이 없으면 default)
+  const weeks = useMemo(() => getWeekOptions(numYear, numMonth), [numYear, numMonth]);
+
   const yearValue = selectedYear ?? defaultYear;
   const monthValue = selectedMonth ?? defaultMonth;
-  const weekValue = selectedWeek ?? weeks[weeks.length - 1]; // 기본: 마지막 주차
+  const weekValue = selectedWeek ?? weeks[0]; 
+
+  const firstWeek = weeks[0];
 
   // 변경 핸들러 래핑
   const handleYear = (y: string) => {
-    onYearChange(y);
-    onFilterChange(y, monthValue, weekValue);
+    onYearChange(y.replace('년', ''));
+    if (period === 'weekly' && onWeekChange) {
+      onWeekChange(firstWeek);  
+    }
   };
+
   const handleMonth = (m: string) => {
-    onMonthChange?.(m);
-    onFilterChange(yearValue, m, weekValue);
+    onMonthChange?.(m.replace('월', ''));
+    if (period === 'weekly' && onWeekChange) {
+      onWeekChange(firstWeek);
+    }
   };
+  
   const handleWeek = (w: string) => {
     onWeekChange?.(w);
-    onFilterChange(yearValue, monthValue, w);
   };
 
   // 공통 버튼 스타일

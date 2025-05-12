@@ -1,103 +1,244 @@
+import { useState, useMemo } from 'react';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Header from '@/components/common/Header';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
-import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
+import { BottomSheet } from '@/components/common/BottomSheet';
+import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
+import CaffeineDetailForm, { CaffeineRecordInput, DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
+import drinkData from '@/data/cafe_drinks.json';
+import { useUpdateCaffeineIntake, useDeleteCaffeineIntake, UpdateIntakePayload } from '@/api/caffeineIntakeApi';
+import AlertModal from '@/components/common/AlertModal';
+import { Info } from 'lucide-react';
+
+interface ApiRecord {
+  intakeId: string;
+  drinkId: string;
+  drinkName: string;
+  drinkCount: number;
+  caffeineMg: number;
+  intakeTime: string; 
+}
 
 export default function DiaryEdit() {
   const navigate = useNavigate();
-  const [drink, setDrink] = useState('아메리카노');
-  const [date, setDate] = useState('2025-09-03');
-  const [time, setTime] = useState('12:15');
-  const [amount, setAmount] = useState('150');
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const location = useLocation();
+  const orig = (location.state as { record?: ApiRecord })?.record;
+  if (!orig) {
+    return <Navigate to="/main/diary" replace />;
+  }
 
-  const handleUpdate = () => {
-    // TODO: API 호출
-    navigate('/main/diary');
-  };
-  const handleDelete = () => {
-    // TODO: API 호출
-    navigate('/main/diary');
+  const {
+    updateIntakeAsync,
+    isUpdating,
+    isUpdateError,
+    updateError
+  } = useUpdateCaffeineIntake(orig.intakeId);
+  
+  const {
+    deleteIntakeAsync,
+    isDeleting,
+    isDeleteError,
+    deleteError
+  } = useDeleteCaffeineIntake(orig.intakeId);
+
+  const [drinkId, setDrinkId] = useState<string>(orig.drinkId);
+  const [drinkName, setDrinkName] = useState(orig.drinkName);
+  const [date, setDate]           = useState(orig.intakeTime.slice(0, 10));
+  const [time, setTime]           = useState(orig.intakeTime.slice(11, 16));
+  const [count, setCount]         = useState(String(orig.drinkCount));
+  const [amount, setAmount]       = useState(orig.caffeineMg);
+
+  const [selectOpen, setSelectOpen] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  const [selectedDrink, setSelectedDrink] = useState<{ cafeName: string; drinkId: number } | null>(null);
+
+  const detail: DrinkDetail | null = useMemo(() => {
+    if (!selectedDrink) return null;
+    const cafe = drinkData.find(c => c.cafeName === selectedDrink.cafeName);
+    const d = cafe?.drinks.find(dd => dd.drinkId === selectedDrink.drinkId);
+    if (!d) return null;
+    return {
+      drinkid: d.drinkId,
+      name: d.name,
+      sizes: d.sizes.map(s => ({
+        drinkSizeId: s.drinkSizeId,
+        size: s.size,
+        capacity_ml: s.capacity_ml,
+        caffeine_mg: s.caffeine_mg
+      }))
+    };
+  }, [selectedDrink]);
+
+  const openDetail = () => {
+    if (!selectedDrink) {
+      for (const cafe of drinkData) {
+        if (cafe.drinks.some(d => d.drinkId === Number(drinkId))) {
+          setSelectedDrink({ cafeName: cafe.cafeName, drinkId: Number(drinkId) });
+          break;
+        }
+      }
+    }
+    setDetailOpen(true);
   };
 
-  const handleSubmitRecord = (record: CaffeineRecordInput) => {
-    console.log('최종 카페인 기록:', record);
-    setIsSheetOpen(false);
+  const handleUpdate = async () => {
+    const payload: Partial<UpdateIntakePayload> = {};
+    if (drinkId !== orig.drinkId) payload.drinkId = drinkId;
+    const iso = `${date}T${time}`;
+    if (iso !== orig.intakeTime) payload.intakeTime = iso;
+    const nCount = Number(count);
+    if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
+    if (amount !== orig.caffeineMg) payload.caffeineAmount = amount;
+
+    if (detail && detail.sizes.some(s => s.caffeine_mg === amount)) {
+      const size = detail.sizes.find(s => s.caffeine_mg === amount);
+      if (size) payload.drinkSize = size.size;
+    }
+
+    if (Object.keys(payload).length === 0) {
+      alert('변경된 내용이 없습니다.');
+      return;
+    }
+
+    try {
+      console.log(payload);
+      await updateIntakeAsync(payload);
+      navigate('/main/diary');
+    } catch(err:any) {
+      setAlertMessage(err.message ?? '수정에 실패했습니다.');
+      setIsAlertOpen(true);
+    }
+  };
+
+  // 삭제
+  const handleDelete = async () => {
+    try {
+      await deleteIntakeAsync();
+      navigate('/main/diary');
+    } catch(err:any) {
+      setAlertMessage(err.message ?? '삭제에 실패했습니다.');
+      setIsAlertOpen(true);
+    }
+  };
+
+  // 2차 시트에서 값 받아서 state 업데이트
+  const handleSubmitRecord = (rec: CaffeineRecordInput) => {
+    if (rec.drinkId)     setDrinkId(rec.drinkId.toString());
+    if (rec.intakeTime)  { setDate(rec.intakeTime.slice(0,10)); setTime(rec.intakeTime.slice(11,16)); }
+    if (rec.drinkCount !== undefined) setCount(String(rec.drinkCount));
+    if (rec.caffeineAmount !== undefined) setAmount(rec.caffeineAmount);
+
+    setDetailOpen(false);
+    setSelectOpen(false);
   };
 
   return (
     <div className="min-h-screen">
-      <Header
-        mode="title"
-        title="카페인 기록 수정"
-        onBackClick={() => navigate('/main/diary')}
-      />
+      <Header mode="title" title="카페인 기록 수정" onBackClick={() => navigate('/main/diary')} />
 
-      <main className="pt-16 space-y-6">
+      <main className="pt-16 space-y-6 p-4">
         {/* 음료 */}
-        <div className="flex items-center justify-between rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">음료</span>
           <button
-            className="px-4 bg-gray-200 rounded-md cursor-pointer py-1"
-            onClick={() => setIsSheetOpen(true)}
+            className="px-4 py-1 bg-gray-200 rounded"
+            onClick={() => setSelectOpen(true)}
           >
-            {drink}
+            {drinkName}
           </button>
         </div>
 
-        {/* 날짜·시간 묶음 */}
-        <div className="rounded-lg shadow-sm border border-gray-200">
-          {/* 날짜 */}
-          <div className="p-4 flex items-center justify-between border-b border-gray-200">
+        {/* 날짜·시간 */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <span className="font-medium">날짜</span>
             <input
               type="date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="bg-gray-200 rounded-md text-center px-4 py-1"
+              onChange={e => setDate(e.target.value)}
+              className="px-4 py-1 bg-gray-200 rounded text-center"
             />
           </div>
-          {/* 시간 */}
-          <div className="p-4 flex items-center justify-between">
+          <div className="flex items-center justify-between p-4">
             <span className="font-medium">시간</span>
             <input
               type="time"
               value={time}
-              onChange={(e) => setTime(e.target.value)}
-              className="bg-gray-200 rounded-md text-center px-4 py-1"
+              onChange={e => setTime(e.target.value)}
+              className="px-4 py-1 bg-gray-200 rounded text-center"
             />
           </div>
         </div>
 
         {/* 카페인 함유량 */}
-        <div className="flex items-center justify-between rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">카페인 함유량</span>
-          <div className="flex items-center space-x-1 px-4 bg-gray-200 rounded-md cursor-pointer py-1">
-            <button onClick={() => setIsSheetOpen(true)}>{amount}</button>
-            <span className="text-base">mg</span>
-          </div>
+          <button
+            className="px-4 py-1 bg-gray-200 rounded"
+            onClick={openDetail}
+          >
+            {amount} mg
+          </button>
         </div>
 
-        {/* 수정·삭제 버튼 */}
+        {/* 수정 / 삭제 */}
         <button
           onClick={handleUpdate}
-          className="w-full py-3 h-12 rounded-lg bg-[#FE9400] text-[#FEFBF8] text-lg font-semibold mt-2 cursor-pointer"
+          disabled={isUpdating}
+          className="w-full py-3 bg-[#FE9400] text-white rounded-lg font-semibold cursor-pointer"
         >
-          수정하기
+          {'수정하기'}
         </button>
         <button
           onClick={handleDelete}
-          className="w-full text-center text-red-500 cursor-pointer"
+          disabled={isDeleting}
+          className="w-full mt-1 text-red-500 cursor-pointer"
         >
-          삭제하기
+          {'삭제하기'}
         </button>
       </main>
-      <CaffeineBottomSheet
-        open={isSheetOpen}
-        onOpenChange={setIsSheetOpen}
-        onSubmitRecord={handleSubmitRecord}
-      />
+
+      {/* 1) 음료 선택 바텀시트 */}
+      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} hideConfirm>
+        <CaffeineSelectForm
+          drinkData={drinkData}
+          onSelectDrink={(cafeName, dId) => {
+            setSelectedDrink({ cafeName, drinkId: dId });
+            setSelectOpen(false);
+            setDetailOpen(true);
+          }}
+        />
+      </BottomSheet>
+
+      {/* 2) 상세 입력 바텀시트 */}
+      {detail && (
+        <BottomSheet open={detailOpen} onOpenChange={setDetailOpen} hideConfirm>
+          <CaffeineDetailForm
+            drink={detail}
+            initial={{
+              drinkId: String(drinkId),
+              drinkSize: detail.sizes[0].size,
+              intakeTime: `${date}T${time}`,
+              drinkCount: Number(count),
+              caffeineAmount: amount
+            }}
+            onSubmit={handleSubmitRecord}
+          />
+        </BottomSheet>
+      )}
+        <AlertModal
+          isOpen={isAlertOpen}
+          icon={<Info size={36} className="text-[#FE9400]" />}
+          title="데이터 전송 오류"
+          message={alertMessage}
+          onClose={() => setIsAlertOpen(false)}
+          onConfirm={() => setIsAlertOpen(false)}
+          confirmText="확인"
+          showCancelButton={false}
+          />
     </div>
   );
 }
+

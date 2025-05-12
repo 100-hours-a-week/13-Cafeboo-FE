@@ -7,7 +7,7 @@ import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
 import BannerImage1 from '@/assets/Banner01.png';
 import BannerImage2 from '@/assets/Banner02.png';
 import BannerImage3 from '@/assets/Banner03.png';
-import CaffeineBottomSheet from '@/components/caffeine/CaffeineBootmSheet';
+import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
 import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
 import { recordCaffeineIntake } from '@/api/caffeineApi';
 import { useDailyCaffeineReport } from '@/api/dailyReportApi';
@@ -28,7 +28,7 @@ export default function HomePage() {
     { imageUrl: BannerImage3, text: '' },
   ];
 
-  const { data: report, isLoading, isError, error } = useDailyCaffeineReport();
+  const { data: report, isLoading, isError, error, refetch } = useDailyCaffeineReport();
 
   const handleSubmitRecord = async (record: CaffeineRecordInput) => {
     try {
@@ -37,21 +37,21 @@ export default function HomePage() {
         drinkSize: record.drinkSize,
         intakeTime: record.intakeTime,
         drinkCount: record.drinkCount,
-        CaffeineAmount: Number(record.CaffeineAmount.toFixed(1)), 
+        caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
       });
       console.log("카페인 섭취 등록 성공:", response);
+      refetch();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
+      setIsAlertOpen(true);       
     }
   };
 
   return (
     <div className="min-h-screen">
-      {/* 헤더 */}
       <Header mode="logo" />
 
-      {/* 본문 */}
       <main className="pt-16 space-y-4">
         {/* Hero Banner */}
         <div className="w-full overflow-hidden rounded-lg shadow-sm border border-gray-200">

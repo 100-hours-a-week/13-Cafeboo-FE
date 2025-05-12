@@ -1,4 +1,9 @@
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export interface DailyCaffeineProps {
   nickname: string;
@@ -79,14 +84,38 @@ export default function DailyCaffeine({
       <div className="w-3/5 p-4">
         <p className="text-base text-[#333333]">
           <span className="font-semibold">{nickname}</span>님,
-          <br></br>
-          현재 권장량의{' '}
-          <span className="font-semibold" style={{ color: consumedColor }}>
-            {Math.round(ratio * 100)}%
-          </span>
-          를 <br></br>섭취 중이에요.
+          <br/>
+          {ratio > 1 ? (
+          <>
+            현재 권장량의{' '}
+            <span className="font-semibold" style={{ color: consumedColor }}>
+              {Math.round(ratio * 100)}%
+            </span>
+            를 <br />
+            초과하여 섭취했어요.
+          </>
+        ) : (
+          <>
+            현재 권장량의{' '}
+            <span className="font-semibold" style={{ color: consumedColor }}>
+              {Math.round(ratio * 100)}%
+            </span>
+            를 <br />
+            섭취 중이에요.
+          </>
+        )}
+
         </p>
-        <p className="mt-2 text-sm text-[#595959] overflow-hidden line-clamp-2">{intakeGuide}</p>
+        <Popover>
+        <PopoverTrigger asChild>
+          <p className="mt-2 text-sm text-[#595959] overflow-hidden line-clamp-2 cursor-pointer">
+            {intakeGuide}
+          </p>
+        </PopoverTrigger>
+        <PopoverContent className="w-72">
+          <p className="text-sm text-[#595959]">{intakeGuide}</p>
+        </PopoverContent>
+      </Popover>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { useQueryHooks } from '@/hooks/useQueryHooks';
 export const fetchUserProfile = async () => {
   const userId = localStorage.getItem("userId");
   if (!userId) throw new Error('사용자 정보가 없습니다.');
-  const response = await apiClient.get(`/api/v1/user/${userId}/profile`);
+  const response = await apiClient.get(`/api/v1/users/${userId}/profile`);
   if (response.data?.data) {
     return response.data.data;
   }

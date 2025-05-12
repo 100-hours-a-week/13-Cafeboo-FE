@@ -2478,12 +2478,6 @@
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 120.0
-          },
-          {
-            "drinkSizeId": 307,
-            "size": "L",
-            "capacity_ml": 355,
-            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2498,12 +2492,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 160.0
-          },
-          {
-            "drinkSizeId": 308,
-            "size": "L",
-            "capacity_ml": 355,
-            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2518,12 +2506,6 @@
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 210.0
-          },
-          {
-            "drinkSizeId": 309,
-            "size": "L",
-            "capacity_ml": 355,
-            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2538,12 +2520,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 310,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 195.0
           }
         ]
       },
@@ -2558,12 +2534,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 311,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 195.0
           }
         ]
       },
@@ -2578,12 +2548,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 312,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 117.0
           }
         ]
       },
@@ -2598,12 +2562,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 313,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 117.0
           }
         ]
       },
@@ -2618,12 +2576,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 314,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 208.0
           }
         ]
       },
@@ -2638,12 +2590,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 95.0
-          },
-          {
-            "drinkSizeId": 315,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2658,12 +2604,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 90.0
-          },
-          {
-            "drinkSizeId": 316,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2678,12 +2618,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 90.0
-          },
-          {
-            "drinkSizeId": 317,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2698,12 +2632,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 60.0
-          },
-          {
-            "drinkSizeId": 318,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2718,12 +2646,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 65.0
-          },
-          {
-            "drinkSizeId": 319,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2738,12 +2660,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 40.0
-          },
-          {
-            "drinkSizeId": 320,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 123.0
           }
         ]
       },
@@ -2758,12 +2674,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 40.0
-          },
-          {
-            "drinkSizeId": 321,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 117.0
           }
         ]
       },
@@ -2778,12 +2688,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 5.0
-          },
-          {
-            "drinkSizeId": 322,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 117.0
           }
         ]
       },
@@ -2792,53 +2696,19 @@
         "name": "밀크쉐이크 (초코)",
         "type": "COFFEE",
         "temperature": "ICED",
-        "sizes": []
-      },
-      {
-        "drinkId": 111,
-        "name": "제철 맞은 딸기 라떼",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": []
-      },
-      {
-        "drinkId": 112,
-        "name": "제철 맞은 딸기 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": []
-      },
-      {
-        "drinkId": 113,
-        "name": "제철 맞은 딸기 요거트 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": []
-      },
-      {
-        "drinkId": 114,
-        "name": "밀크쉐이크 (초코)",
-        "type": "OTHER",
-        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 303,
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 5.0
-          },
-          {
-            "drinkSizeId": 323,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 78.0
           }
         ]
       },
       {
-        "drinkId": 115,
+        "drinkId": 111,
         "name": "제철 맞은 딸기 라떼",
-        "type": "OTHER",
+        "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
@@ -2846,19 +2716,13 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 5.0
-          },
-          {
-            "drinkSizeId": 324,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 84.0
           }
         ]
       },
       {
-        "drinkId": 116,
+        "drinkId": 112,
         "name": "제철 맞은 딸기 라떼",
-        "type": "OTHER",
+        "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
@@ -2866,19 +2730,13 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 30.0
-          },
-          {
-            "drinkSizeId": 325,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 52.0
           }
         ]
       },
       {
-        "drinkId": 117,
+        "drinkId": 113,
         "name": "제철 맞은 딸기 요거트 라떼",
-        "type": "OTHER",
+        "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
@@ -2886,12 +2744,6 @@
             "size": "R",
             "capacity_ml": 355,
             "caffeine_mg": 5.0
-          },
-          {
-            "drinkSizeId": 326,
-            "size": "L",
-            "capacity_ml": 472,
-            "caffeine_mg": 52.0
           }
         ]
       }
@@ -2901,13 +2753,69 @@
     "cafeName": "빽다방",
     "drinks": [
       {
-        "drinkId": 118,
+        "drinkId": 114,
         "name": "더블에스프레소",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 327,
+            "drinkSizeId": 307,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 6.0
+          }
+        ]
+      },
+      {
+        "drinkId": 115,
+        "name": "에스프레소 콤프레또",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 308,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 6.0
+          }
+        ]
+      },
+      {
+        "drinkId": 116,
+        "name": "아메리카노",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 309,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 6.0
+          }
+        ]
+      },
+      {
+        "drinkId": 117,
+        "name": "아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 310,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 39.0
+          }
+        ]
+      },
+      {
+        "drinkId": 118,
+        "name": "빽사이즈 아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 311,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 6.0
@@ -2916,12 +2824,12 @@
       },
       {
         "drinkId": 119,
-        "name": "에스프레소 콤프레또",
+        "name": "원조커피",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 328,
+            "drinkSizeId": 312,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 6.0
@@ -2930,12 +2838,12 @@
       },
       {
         "drinkId": 120,
-        "name": "아메리카노",
+        "name": "원조커피",
         "type": "COFFEE",
-        "temperature": "HOT",
+        "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 329,
+            "drinkSizeId": 313,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 6.0
@@ -2944,68 +2852,12 @@
       },
       {
         "drinkId": 121,
-        "name": "아메리카노",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 330,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 39.0
-          }
-        ]
-      },
-      {
-        "drinkId": 122,
-        "name": "빽사이즈 아메리카노",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 331,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
-          }
-        ]
-      },
-      {
-        "drinkId": 123,
-        "name": "원조커피",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 332,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
-          }
-        ]
-      },
-      {
-        "drinkId": 124,
-        "name": "원조커피",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 333,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
-          }
-        ]
-      },
-      {
-        "drinkId": 125,
         "name": "빽사이즈 원조커피",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 334,
+            "drinkSizeId": 314,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 6.0
@@ -3013,13 +2865,13 @@
         ]
       },
       {
-        "drinkId": 126,
+        "drinkId": 122,
         "name": "원조커피 제로슈거",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 335,
+            "drinkSizeId": 315,
             "size": "R",
             "capacity_ml": 59,
             "caffeine_mg": 237.0
@@ -3027,13 +2879,13 @@
         ]
       },
       {
-        "drinkId": 127,
+        "drinkId": 123,
         "name": "원조커피 제로슈거",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 336,
+            "drinkSizeId": 316,
             "size": "R",
             "capacity_ml": 59,
             "caffeine_mg": 181.0
@@ -3041,13 +2893,13 @@
         ]
       },
       {
-        "drinkId": 128,
+        "drinkId": 124,
         "name": "빽사이즈 카페라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 337,
+            "drinkSizeId": 317,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 237.0
@@ -3055,8 +2907,288 @@
         ]
       },
       {
-        "drinkId": 129,
+        "drinkId": 125,
         "name": "바닐라라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 318,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 126,
+        "name": "바닐라라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 319,
+            "size": "R",
+            "capacity_ml": 946,
+            "caffeine_mg": 474.0
+          }
+        ]
+      },
+      {
+        "drinkId": 127,
+        "name": "카페모카",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 320,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 406.0
+          }
+        ]
+      },
+      {
+        "drinkId": 128,
+        "name": "카페모카",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 321,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 371.0
+          }
+        ]
+      },
+      {
+        "drinkId": 129,
+        "name": "카라멜마키아또",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 322,
+            "size": "R",
+            "capacity_ml": 946,
+            "caffeine_mg": 564.0
+          }
+        ]
+      },
+      {
+        "drinkId": 130,
+        "name": "카라멜마키아또",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 323,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 489.0
+          }
+        ]
+      },
+      {
+        "drinkId": 131,
+        "name": "달달연유라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 324,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 452.0
+          }
+        ]
+      },
+      {
+        "drinkId": 132,
+        "name": "달달연유라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 325,
+            "size": "R",
+            "capacity_ml": 946,
+            "caffeine_mg": 474.0
+          }
+        ]
+      },
+      {
+        "drinkId": 133,
+        "name": "바나나카페라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 326,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 134,
+        "name": "바나나카페라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 327,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 135,
+        "name": "블랙펄카페라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 328,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 136,
+        "name": "아이스크림 카페라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 329,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 137,
+        "name": "아이스크림 바닐라라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 330,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 138,
+        "name": "아이스크림 카페모카",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 331,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 139,
+        "name": "콜드브루",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 332,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 140,
+        "name": "콜드브루",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 333,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 141,
+        "name": "콜드브루 라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 334,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 119.0
+          }
+        ]
+      },
+      {
+        "drinkId": 142,
+        "name": "콜드브루 라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 335,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 119.0
+          }
+        ]
+      },
+      {
+        "drinkId": 143,
+        "name": "콜드브루 라떼(연유)",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 336,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 118.0
+          }
+        ]
+      },
+      {
+        "drinkId": 144,
+        "name": "콜드브루 라떼(연유)",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 337,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 145,
+        "name": "콜드브루 라떼(흑당)",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
@@ -3069,22 +3201,22 @@
         ]
       },
       {
-        "drinkId": 130,
-        "name": "바닐라라떼",
+        "drinkId": 146,
+        "name": "콜드브루 라떼(흑당)",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 339,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 474.0
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
           }
         ]
       },
       {
-        "drinkId": 131,
-        "name": "카페모카",
+        "drinkId": 147,
+        "name": "디카페인 콜드브루",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
@@ -3092,13 +3224,13 @@
             "drinkSizeId": 340,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 406.0
+            "caffeine_mg": 209.0
           }
         ]
       },
       {
-        "drinkId": 132,
-        "name": "카페모카",
+        "drinkId": 148,
+        "name": "디카페인 콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
@@ -3106,69 +3238,69 @@
             "drinkSizeId": 341,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 371.0
+            "caffeine_mg": 209.0
           }
         ]
       },
       {
-        "drinkId": 133,
-        "name": "카라멜마키아또",
+        "drinkId": 149,
+        "name": "디카페인 콜드브루 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
             "drinkSizeId": 342,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 564.0
+            "capacity_ml": 473,
+            "caffeine_mg": 209.0
           }
         ]
       },
       {
-        "drinkId": 134,
-        "name": "카라멜마키아또",
+        "drinkId": 150,
+        "name": "디카페인 콜드브루 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 343,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 489.0
+            "capacity_ml": 710,
+            "caffeine_mg": 209.0
           }
         ]
       },
       {
-        "drinkId": 135,
-        "name": "달달연유라떼",
+        "drinkId": 151,
+        "name": "디카페인 콜드브루 라떼(연유)",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
             "drinkSizeId": 344,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 452.0
+            "capacity_ml": 473,
+            "caffeine_mg": 195.0
           }
         ]
       },
       {
-        "drinkId": 136,
-        "name": "달달연유라떼",
+        "drinkId": 152,
+        "name": "디카페인 콜드브루 라떼(연유)",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 345,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 474.0
+            "capacity_ml": 710,
+            "caffeine_mg": 195.0
           }
         ]
       },
       {
-        "drinkId": 137,
-        "name": "바나나카페라떼",
+        "drinkId": 153,
+        "name": "디카페인 콜드브루 라떼(흑당)",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
@@ -3176,13 +3308,13 @@
             "drinkSizeId": 346,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 195.0
           }
         ]
       },
       {
-        "drinkId": 138,
-        "name": "바나나카페라떼",
+        "drinkId": 154,
+        "name": "디카페인 콜드브루 라떼(흑당)",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
@@ -3190,298 +3322,74 @@
             "drinkSizeId": 347,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 195.0
           }
         ]
       },
       {
-        "drinkId": 139,
-        "name": "블랙펄카페라떼",
-        "type": "COFFEE",
+        "drinkId": 155,
+        "name": "아이스티샷추가(아샷추)",
+        "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 348,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 15.0
           }
         ]
       },
       {
-        "drinkId": 140,
-        "name": "아이스크림 카페라떼",
-        "type": "COFFEE",
+        "drinkId": 156,
+        "name": "빽사이즈 아이스티샷추가",
+        "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 349,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 15.0
           }
         ]
       },
       {
-        "drinkId": 141,
-        "name": "아이스크림 바닐라라떼",
-        "type": "COFFEE",
+        "drinkId": 157,
+        "name": "바나나커피쉐이크",
+        "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 350,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 15.0
           }
         ]
       },
       {
-        "drinkId": 142,
-        "name": "아이스크림 카페모카",
-        "type": "COFFEE",
+        "drinkId": 158,
+        "name": "원조빽스치노",
+        "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 351,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 143,
-        "name": "콜드브루",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 352,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 144,
-        "name": "콜드브루",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 353,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 145,
-        "name": "콜드브루 라떼",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 354,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 119.0
-          }
-        ]
-      },
-      {
-        "drinkId": 146,
-        "name": "콜드브루 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 355,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 119.0
-          }
-        ]
-      },
-      {
-        "drinkId": 147,
-        "name": "콜드브루 라떼(연유)",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 356,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 118.0
-          }
-        ]
-      },
-      {
-        "drinkId": 148,
-        "name": "콜드브루 라떼(연유)",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 357,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 149,
-        "name": "콜드브루 라떼(흑당)",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 358,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 150,
-        "name": "콜드브루 라떼(흑당)",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 359,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 151,
-        "name": "디카페인 콜드브루",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 360,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 209.0
-          }
-        ]
-      },
-      {
-        "drinkId": 152,
-        "name": "디카페인 콜드브루",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 361,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 209.0
-          }
-        ]
-      },
-      {
-        "drinkId": 153,
-        "name": "디카페인 콜드브루 라떼",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 362,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 209.0
-          }
-        ]
-      },
-      {
-        "drinkId": 154,
-        "name": "디카페인 콜드브루 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 363,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 209.0
-          }
-        ]
-      },
-      {
-        "drinkId": 155,
-        "name": "디카페인 콜드브루 라떼(연유)",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 364,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 195.0
-          }
-        ]
-      },
-      {
-        "drinkId": 156,
-        "name": "디카페인 콜드브루 라떼(연유)",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 365,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 195.0
-          }
-        ]
-      },
-      {
-        "drinkId": 157,
-        "name": "디카페인 콜드브루 라떼(흑당)",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 366,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 195.0
-          }
-        ]
-      },
-      {
-        "drinkId": 158,
-        "name": "디카페인 콜드브루 라떼(흑당)",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 367,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 15.0
           }
         ]
       },
       {
         "drinkId": 159,
-        "name": "아이스티샷추가(아샷추)",
-        "type": "TEA",
+        "name": "녹차빽스치노",
+        "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 368,
+            "drinkSizeId": 352,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 15.0
@@ -3490,12 +3398,12 @@
       },
       {
         "drinkId": 160,
-        "name": "빽사이즈 아이스티샷추가",
-        "type": "TEA",
+        "name": "쿠키크런치빽스치노",
+        "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 369,
+            "drinkSizeId": 353,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 15.0
@@ -3504,12 +3412,12 @@
       },
       {
         "drinkId": 161,
-        "name": "바나나커피쉐이크",
+        "name": "피스타치오빽스치노",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 370,
+            "drinkSizeId": 354,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 15.0
@@ -3518,12 +3426,12 @@
       },
       {
         "drinkId": 162,
-        "name": "원조빽스치노",
+        "name": "퐁당치노 원조커피",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 371,
+            "drinkSizeId": 355,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 15.0
@@ -3532,68 +3440,12 @@
       },
       {
         "drinkId": 163,
-        "name": "녹차빽스치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 372,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
-          }
-        ]
-      },
-      {
-        "drinkId": 164,
-        "name": "쿠키크런치빽스치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 373,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 15.0
-          }
-        ]
-      },
-      {
-        "drinkId": 165,
-        "name": "피스타치오빽스치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 374,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
-          }
-        ]
-      },
-      {
-        "drinkId": 166,
-        "name": "퐁당치노 원조커피",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 375,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 15.0
-          }
-        ]
-      },
-      {
-        "drinkId": 167,
         "name": "초코라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 376,
+            "drinkSizeId": 356,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 93.0
@@ -3601,13 +3453,13 @@
         ]
       },
       {
-        "drinkId": 168,
+        "drinkId": 164,
         "name": "초코라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 377,
+            "drinkSizeId": 357,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 167.0
@@ -3615,13 +3467,13 @@
         ]
       },
       {
-        "drinkId": 169,
+        "drinkId": 165,
         "name": "녹차라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 378,
+            "drinkSizeId": 358,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 119.0
@@ -3629,13 +3481,13 @@
         ]
       },
       {
-        "drinkId": 170,
+        "drinkId": 166,
         "name": "녹차라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 379,
+            "drinkSizeId": 359,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 280.0
@@ -3643,13 +3495,13 @@
         ]
       },
       {
-        "drinkId": 171,
+        "drinkId": 167,
         "name": "민트초코라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 380,
+            "drinkSizeId": 360,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 260.0
@@ -3657,13 +3509,13 @@
         ]
       },
       {
-        "drinkId": 172,
+        "drinkId": 168,
         "name": "민트초코라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 381,
+            "drinkSizeId": 361,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 11.0
@@ -3671,13 +3523,13 @@
         ]
       },
       {
-        "drinkId": 173,
+        "drinkId": 169,
         "name": "토피넛라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 382,
+            "drinkSizeId": 362,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 10.0
@@ -3685,13 +3537,13 @@
         ]
       },
       {
-        "drinkId": 174,
+        "drinkId": 170,
         "name": "토피넛라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 383,
+            "drinkSizeId": 363,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 206.0
@@ -3699,13 +3551,13 @@
         ]
       },
       {
-        "drinkId": 175,
+        "drinkId": 171,
         "name": "밀크티",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 384,
+            "drinkSizeId": 364,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 15.0
@@ -3713,13 +3565,13 @@
         ]
       },
       {
-        "drinkId": 176,
+        "drinkId": 172,
         "name": "밀크티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 385,
+            "drinkSizeId": 365,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 16.0
@@ -3727,13 +3579,13 @@
         ]
       },
       {
-        "drinkId": 177,
+        "drinkId": 173,
         "name": "블랙펄밀크티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 386,
+            "drinkSizeId": 366,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 208.0
@@ -3741,13 +3593,13 @@
         ]
       },
       {
-        "drinkId": 178,
+        "drinkId": 174,
         "name": "달콤아이스티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 387,
+            "drinkSizeId": 367,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 152.0
@@ -3755,13 +3607,13 @@
         ]
       },
       {
-        "drinkId": 179,
+        "drinkId": 175,
         "name": "빽사이즈 달콤아이스티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 388,
+            "drinkSizeId": 368,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 30.0
@@ -3769,13 +3621,13 @@
         ]
       },
       {
-        "drinkId": 180,
+        "drinkId": 176,
         "name": "피치우롱스위티",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 389,
+            "drinkSizeId": 369,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 38.0
@@ -3783,13 +3635,13 @@
         ]
       },
       {
-        "drinkId": 181,
+        "drinkId": 177,
         "name": "피치우롱스위티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 390,
+            "drinkSizeId": 370,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 51.0
@@ -3797,13 +3649,69 @@
         ]
       },
       {
-        "drinkId": 182,
+        "drinkId": 178,
         "name": "우롱티",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 391,
+            "drinkSizeId": 371,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 51.0
+          }
+        ]
+      },
+      {
+        "drinkId": 179,
+        "name": "우롱티",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 372,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 133.0
+          }
+        ]
+      },
+      {
+        "drinkId": 180,
+        "name": "레몬얼그레이티",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 373,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 133.0
+          }
+        ]
+      },
+      {
+        "drinkId": 181,
+        "name": "레몬얼그레이티",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 374,
+            "size": "R",
+            "capacity_ml": 710,
+            "caffeine_mg": 77.0
+          }
+        ]
+      },
+      {
+        "drinkId": 182,
+        "name": "오렌지자몽블랙티",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 375,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 51.0
@@ -3812,68 +3720,12 @@
       },
       {
         "drinkId": 183,
-        "name": "우롱티",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 392,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 133.0
-          }
-        ]
-      },
-      {
-        "drinkId": 184,
-        "name": "레몬얼그레이티",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 393,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 133.0
-          }
-        ]
-      },
-      {
-        "drinkId": 185,
-        "name": "레몬얼그레이티",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 394,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 77.0
-          }
-        ]
-      },
-      {
-        "drinkId": 186,
-        "name": "오렌지자몽블랙티",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 395,
-            "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 51.0
-          }
-        ]
-      },
-      {
-        "drinkId": 187,
         "name": "오렌지자몽블랙티",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 396,
+            "drinkSizeId": 376,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 32.0
@@ -3881,13 +3733,13 @@
         ]
       },
       {
-        "drinkId": 188,
+        "drinkId": 184,
         "name": "체리콕콕",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 397,
+            "drinkSizeId": 377,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 65.0
@@ -3900,13 +3752,13 @@
     "cafeName": "텐퍼센트",
     "drinks": [
       {
-        "drinkId": 189,
+        "drinkId": 185,
         "name": "다크아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 398,
+            "drinkSizeId": 378,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 71.0
@@ -3914,13 +3766,13 @@
         ]
       },
       {
-        "drinkId": 190,
+        "drinkId": 186,
         "name": "다크아메리카노",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 399,
+            "drinkSizeId": 379,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 92.0
@@ -3928,13 +3780,13 @@
         ]
       },
       {
-        "drinkId": 191,
+        "drinkId": 187,
         "name": "미디엄아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 400,
+            "drinkSizeId": 380,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 67.0
@@ -3942,13 +3794,13 @@
         ]
       },
       {
-        "drinkId": 192,
+        "drinkId": 188,
         "name": "미디엄아메리카노",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 401,
+            "drinkSizeId": 381,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 72.0
@@ -3956,13 +3808,13 @@
         ]
       },
       {
-        "drinkId": 193,
+        "drinkId": 189,
         "name": "카페라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 402,
+            "drinkSizeId": 382,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 72.0
@@ -3970,13 +3822,13 @@
         ]
       },
       {
-        "drinkId": 194,
+        "drinkId": 190,
         "name": "카페라떼",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 403,
+            "drinkSizeId": 383,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 90.0
@@ -3984,13 +3836,13 @@
         ]
       },
       {
-        "drinkId": 195,
+        "drinkId": 191,
         "name": "아인슈페너",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 404,
+            "drinkSizeId": 384,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 90.0
@@ -3998,13 +3850,13 @@
         ]
       },
       {
-        "drinkId": 196,
+        "drinkId": 192,
         "name": "아인슈페너",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 405,
+            "drinkSizeId": 385,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 23.0
@@ -4012,13 +3864,69 @@
         ]
       },
       {
-        "drinkId": 197,
+        "drinkId": 193,
         "name": "바닐라라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 406,
+            "drinkSizeId": 386,
+            "size": "R",
+            "capacity_ml": 384,
+            "caffeine_mg": 191.8
+          }
+        ]
+      },
+      {
+        "drinkId": 194,
+        "name": "바닐라라떼",
+        "type": "COFFEE",
+        "temperature": "ICE",
+        "sizes": [
+          {
+            "drinkSizeId": 387,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 191.8
+          }
+        ]
+      },
+      {
+        "drinkId": 195,
+        "name": "돌체라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 388,
+            "size": "R",
+            "capacity_ml": 384,
+            "caffeine_mg": 161.9
+          }
+        ]
+      },
+      {
+        "drinkId": 196,
+        "name": "돌체라떼",
+        "type": "COFFEE",
+        "temperature": "ICE",
+        "sizes": [
+          {
+            "drinkSizeId": 389,
+            "size": "R",
+            "capacity_ml": 473,
+            "caffeine_mg": 161.9
+          }
+        ]
+      },
+      {
+        "drinkId": 197,
+        "name": "카페모카",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 390,
             "size": "R",
             "capacity_ml": 384,
             "caffeine_mg": 191.8
@@ -4027,12 +3935,12 @@
       },
       {
         "drinkId": 198,
-        "name": "바닐라라떼",
+        "name": "카페모카",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 407,
+            "drinkSizeId": 391,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 191.8
@@ -4041,40 +3949,40 @@
       },
       {
         "drinkId": 199,
-        "name": "돌체라떼",
+        "name": "돌체콜드브루라떼",
         "type": "COFFEE",
-        "temperature": "HOT",
+        "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 408,
+            "drinkSizeId": 392,
             "size": "R",
             "capacity_ml": 384,
-            "caffeine_mg": 161.9
+            "caffeine_mg": 191.8
           }
         ]
       },
       {
         "drinkId": 200,
-        "name": "돌체라떼",
+        "name": "토닉커피",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 409,
+            "drinkSizeId": 393,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 161.9
+            "caffeine_mg": 191.8
           }
         ]
       },
       {
         "drinkId": 201,
-        "name": "카페모카",
+        "name": "쇼콜라프레소",
         "type": "COFFEE",
-        "temperature": "HOT",
+        "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 410,
+            "drinkSizeId": 394,
             "size": "R",
             "capacity_ml": 384,
             "caffeine_mg": 191.8
@@ -4083,12 +3991,12 @@
       },
       {
         "drinkId": 202,
-        "name": "카페모카",
+        "name": "플랫화이트",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 411,
+            "drinkSizeId": 395,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 191.8
@@ -4097,12 +4005,12 @@
       },
       {
         "drinkId": 203,
-        "name": "돌체콜드브루라떼",
+        "name": "솔티드밀크카라멜",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 412,
+            "drinkSizeId": 396,
             "size": "R",
             "capacity_ml": 384,
             "caffeine_mg": 191.8
@@ -4111,12 +4019,12 @@
       },
       {
         "drinkId": 204,
-        "name": "토닉커피",
+        "name": "텐라떼",
         "type": "COFFEE",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 413,
+            "drinkSizeId": 397,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 191.8
@@ -4125,54 +4033,54 @@
       },
       {
         "drinkId": 205,
-        "name": "쇼콜라프레소",
-        "type": "COFFEE",
-        "temperature": "ICE",
+        "name": "리얼초코",
+        "type": "OTHER",
+        "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 414,
+            "drinkSizeId": 398,
             "size": "R",
             "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 272.32
           }
         ]
       },
       {
         "drinkId": 206,
-        "name": "플랫화이트",
-        "type": "COFFEE",
+        "name": "리얼초코",
+        "type": "OTHER",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 415,
+            "drinkSizeId": 399,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 272.32
           }
         ]
       },
       {
         "drinkId": 207,
-        "name": "솔티드밀크카라멜",
-        "type": "COFFEE",
-        "temperature": "ICE",
+        "name": "로얄밀크티",
+        "type": "TEA",
+        "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 416,
+            "drinkSizeId": 400,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "capacity_ml": 473,
+            "caffeine_mg": 298.02
           }
         ]
       },
       {
         "drinkId": 208,
-        "name": "텐라떼",
-        "type": "COFFEE",
+        "name": "로얄밀크티",
+        "type": "TEA",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 417,
+            "drinkSizeId": 401,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 191.8
@@ -4181,54 +4089,54 @@
       },
       {
         "drinkId": 209,
-        "name": "리얼초코",
-        "type": "OTHER",
+        "name": "블랙자몽티",
+        "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 418,
+            "drinkSizeId": 402,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 272.32
+            "capacity_ml": 473,
+            "caffeine_mg": 193.0
           }
         ]
       },
       {
         "drinkId": 210,
-        "name": "리얼초코",
-        "type": "OTHER",
+        "name": "블랙자몽티",
+        "type": "TEA",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 419,
+            "drinkSizeId": 403,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 272.32
+            "caffeine_mg": 161.9
           }
         ]
       },
       {
         "drinkId": 211,
-        "name": "로얄밀크티",
+        "name": "제로 피치 스윗티",
         "type": "TEA",
-        "temperature": "HOT",
+        "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 420,
+            "drinkSizeId": 404,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 298.02
+            "caffeine_mg": 139.56
           }
         ]
       },
       {
         "drinkId": 212,
-        "name": "로얄밀크티",
+        "name": "제로 석류 스윗티",
         "type": "TEA",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 421,
+            "drinkSizeId": 405,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 191.8
@@ -4237,68 +4145,12 @@
       },
       {
         "drinkId": 213,
-        "name": "블랙자몽티",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 422,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 193.0
-          }
-        ]
-      },
-      {
-        "drinkId": 214,
-        "name": "블랙자몽티",
-        "type": "TEA",
-        "temperature": "ICE",
-        "sizes": [
-          {
-            "drinkSizeId": 423,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 161.9
-          }
-        ]
-      },
-      {
-        "drinkId": 215,
-        "name": "제로 피치 스윗티",
-        "type": "TEA",
-        "temperature": "ICE",
-        "sizes": [
-          {
-            "drinkSizeId": 424,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 139.56
-          }
-        ]
-      },
-      {
-        "drinkId": 216,
-        "name": "제로 석류 스윗티",
-        "type": "TEA",
-        "temperature": "ICE",
-        "sizes": [
-          {
-            "drinkSizeId": 425,
-            "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 191.8
-          }
-        ]
-      },
-      {
-        "drinkId": 217,
         "name": "제로 체리 콕",
         "type": "OTHER",
         "temperature": "ICE",
         "sizes": [
           {
-            "drinkSizeId": 426,
+            "drinkSizeId": 406,
             "size": "R",
             "capacity_ml": 384,
             "caffeine_mg": 80.52
@@ -4311,19 +4163,19 @@
     "cafeName": "메가커피",
     "drinks": [
       {
-        "drinkId": 218,
+        "drinkId": 214,
         "name": "에스프레소",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 427,
+            "drinkSizeId": 407,
             "size": "Solo",
             "capacity_ml": 473,
             "caffeine_mg": 80.52
           },
           {
-            "drinkSizeId": 428,
+            "drinkSizeId": 408,
             "size": "Doppio",
             "capacity_ml": 384,
             "caffeine_mg": 90.57
@@ -4331,13 +4183,13 @@
         ]
       },
       {
-        "drinkId": 219,
+        "drinkId": 215,
         "name": "아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 429,
+            "drinkSizeId": 409,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 90.57
@@ -4345,13 +4197,13 @@
         ]
       },
       {
-        "drinkId": 220,
+        "drinkId": 216,
         "name": "아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 430,
+            "drinkSizeId": 410,
             "size": "R",
             "capacity_ml": 384,
             "caffeine_mg": 44.52
@@ -4359,13 +4211,13 @@
         ]
       },
       {
-        "drinkId": 221,
+        "drinkId": 217,
         "name": "카페라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 431,
+            "drinkSizeId": 411,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 40.53
@@ -4373,13 +4225,13 @@
         ]
       },
       {
-        "drinkId": 222,
+        "drinkId": 218,
         "name": "카페모카",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 432,
+            "drinkSizeId": 412,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 12.5
@@ -4387,13 +4239,13 @@
         ]
       },
       {
-        "drinkId": 223,
+        "drinkId": 219,
         "name": "카푸치노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 433,
+            "drinkSizeId": 413,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 10.2
@@ -4401,13 +4253,13 @@
         ]
       },
       {
-        "drinkId": 224,
+        "drinkId": 220,
         "name": "바닐라라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 434,
+            "drinkSizeId": 414,
             "size": "R",
             "capacity_ml": 473,
             "caffeine_mg": 4.7
@@ -4415,13 +4267,13 @@
         ]
       },
       {
-        "drinkId": 225,
+        "drinkId": 221,
         "name": "바닐라아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 435,
+            "drinkSizeId": 415,
             "size": "R",
             "capacity_ml": 59,
             "caffeine_mg": 104.8
@@ -4429,13 +4281,13 @@
         ]
       },
       {
-        "drinkId": 226,
+        "drinkId": 222,
         "name": "바닐라아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 436,
+            "drinkSizeId": 416,
             "size": "R",
             "capacity_ml": 147,
             "caffeine_mg": 184.7
@@ -4443,13 +4295,13 @@
         ]
       },
       {
-        "drinkId": 227,
+        "drinkId": 223,
         "name": "헤이즐넛라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 437,
+            "drinkSizeId": 417,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 204.2
@@ -4457,13 +4309,13 @@
         ]
       },
       {
-        "drinkId": 228,
+        "drinkId": 224,
         "name": "헤이즐넛아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 438,
+            "drinkSizeId": 418,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 199.7
@@ -4471,13 +4323,13 @@
         ]
       },
       {
-        "drinkId": 229,
+        "drinkId": 225,
         "name": "헤이즐넛아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 439,
+            "drinkSizeId": 419,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 189.9
@@ -4485,13 +4337,13 @@
         ]
       },
       {
-        "drinkId": 230,
+        "drinkId": 226,
         "name": "카라멜마키아또",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 440,
+            "drinkSizeId": 420,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 199.1
@@ -4499,13 +4351,13 @@
         ]
       },
       {
-        "drinkId": 231,
+        "drinkId": 227,
         "name": "꿀아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 441,
+            "drinkSizeId": 421,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 233.2
@@ -4513,13 +4365,13 @@
         ]
       },
       {
-        "drinkId": 232,
+        "drinkId": 228,
         "name": "꿀아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 442,
+            "drinkSizeId": 422,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 232.5
@@ -4527,13 +4379,13 @@
         ]
       },
       {
-        "drinkId": 233,
+        "drinkId": 229,
         "name": "메가리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 443,
+            "drinkSizeId": 423,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 201.4
@@ -4541,13 +4393,13 @@
         ]
       },
       {
-        "drinkId": 234,
+        "drinkId": 230,
         "name": "연유라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 444,
+            "drinkSizeId": 424,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 192.3
@@ -4555,13 +4407,13 @@
         ]
       },
       {
-        "drinkId": 235,
+        "drinkId": 231,
         "name": "헛캐리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 445,
+            "drinkSizeId": 425,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 195.1
@@ -4569,13 +4421,13 @@
         ]
       },
       {
-        "drinkId": 236,
+        "drinkId": 232,
         "name": "헛캐리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 446,
+            "drinkSizeId": 426,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 220.7
@@ -4583,13 +4435,13 @@
         ]
       },
       {
-        "drinkId": 237,
+        "drinkId": 233,
         "name": "왕메가헛캐리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 447,
+            "drinkSizeId": 427,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 211.5
@@ -4597,13 +4449,13 @@
         ]
       },
       {
-        "drinkId": 238,
+        "drinkId": 234,
         "name": "왕메가카페라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 448,
+            "drinkSizeId": 428,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 204.6
@@ -4611,13 +4463,13 @@
         ]
       },
       {
-        "drinkId": 239,
+        "drinkId": 235,
         "name": "할메가미숫커피",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 449,
+            "drinkSizeId": 429,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 209.8
@@ -4625,13 +4477,13 @@
         ]
       },
       {
-        "drinkId": 240,
+        "drinkId": 236,
         "name": "할메가커피",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 450,
+            "drinkSizeId": 430,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 196.7
@@ -4639,13 +4491,13 @@
         ]
       },
       {
-        "drinkId": 241,
+        "drinkId": 237,
         "name": "왕할메가커피",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 451,
+            "drinkSizeId": 431,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 206.7
@@ -4653,13 +4505,13 @@
         ]
       },
       {
-        "drinkId": 242,
+        "drinkId": 238,
         "name": "큐브라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 452,
+            "drinkSizeId": 432,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 208.0
@@ -4667,13 +4519,13 @@
         ]
       },
       {
-        "drinkId": 243,
+        "drinkId": 239,
         "name": "콜드브루라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 453,
+            "drinkSizeId": 433,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 199.4
@@ -4681,13 +4533,13 @@
         ]
       },
       {
-        "drinkId": 244,
+        "drinkId": 240,
         "name": "콜드브루오리지널",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 454,
+            "drinkSizeId": 434,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 198.6
@@ -4695,13 +4547,13 @@
         ]
       },
       {
-        "drinkId": 245,
+        "drinkId": 241,
         "name": "라이트 바닐라 아몬드라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 455,
+            "drinkSizeId": 435,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 290.8
@@ -4709,13 +4561,13 @@
         ]
       },
       {
-        "drinkId": 246,
+        "drinkId": 242,
         "name": "커피프라페",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 456,
+            "drinkSizeId": 436,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 194.2
@@ -4723,13 +4575,13 @@
         ]
       },
       {
-        "drinkId": 247,
+        "drinkId": 243,
         "name": "딸기라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 457,
+            "drinkSizeId": 437,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 181.6
@@ -4737,13 +4589,13 @@
         ]
       },
       {
-        "drinkId": 248,
+        "drinkId": 244,
         "name": "녹차",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 458,
+            "drinkSizeId": 438,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 181.2
@@ -4751,13 +4603,13 @@
         ]
       },
       {
-        "drinkId": 249,
+        "drinkId": 245,
         "name": "녹차",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 459,
+            "drinkSizeId": 439,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 234.6
@@ -4765,13 +4617,13 @@
         ]
       },
       {
-        "drinkId": 250,
+        "drinkId": 246,
         "name": "얼그레이",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 460,
+            "drinkSizeId": 440,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 347.1
@@ -4779,13 +4631,13 @@
         ]
       },
       {
-        "drinkId": 251,
+        "drinkId": 247,
         "name": "얼그레이",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 461,
+            "drinkSizeId": 441,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 172.9
@@ -4793,13 +4645,13 @@
         ]
       },
       {
-        "drinkId": 252,
+        "drinkId": 248,
         "name": "제로 복숭아 아이스티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 462,
+            "drinkSizeId": 442,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 99.6
@@ -4807,13 +4659,13 @@
         ]
       },
       {
-        "drinkId": 253,
+        "drinkId": 249,
         "name": "복숭아아이스티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 463,
+            "drinkSizeId": 443,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 196.4
@@ -4821,13 +4673,13 @@
         ]
       },
       {
-        "drinkId": 254,
+        "drinkId": 250,
         "name": "왕메가아이스티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 464,
+            "drinkSizeId": 444,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 313.4
@@ -4835,13 +4687,13 @@
         ]
       },
       {
-        "drinkId": 255,
+        "drinkId": 251,
         "name": "허니자몽블랙티",
         "type": "TEA",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 465,
+            "drinkSizeId": 445,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 216.7
@@ -4849,13 +4701,13 @@
         ]
       },
       {
-        "drinkId": 256,
+        "drinkId": 252,
         "name": "허니자몽블랙티",
         "type": "TEA",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 466,
+            "drinkSizeId": 446,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 131.7
@@ -4863,13 +4715,13 @@
         ]
       },
       {
-        "drinkId": 257,
+        "drinkId": 253,
         "name": "녹차프라페",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 467,
+            "drinkSizeId": 447,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 217.0
@@ -4877,13 +4729,13 @@
         ]
       },
       {
-        "drinkId": 258,
+        "drinkId": 254,
         "name": "녹차라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 468,
+            "drinkSizeId": 448,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 156.4
@@ -4891,13 +4743,13 @@
         ]
       },
       {
-        "drinkId": 259,
+        "drinkId": 255,
         "name": "로얄밀크티라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 469,
+            "drinkSizeId": 449,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 206.2
@@ -4905,13 +4757,13 @@
         ]
       },
       {
-        "drinkId": 260,
+        "drinkId": 256,
         "name": "흑당버블밀크티라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 470,
+            "drinkSizeId": 450,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 102.6
@@ -4919,13 +4771,13 @@
         ]
       },
       {
-        "drinkId": 261,
+        "drinkId": 257,
         "name": "흑당밀크티라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 471,
+            "drinkSizeId": 451,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 35.6
@@ -4933,13 +4785,13 @@
         ]
       },
       {
-        "drinkId": 262,
+        "drinkId": 258,
         "name": "왕메가초코",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 472,
+            "drinkSizeId": 452,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 65.3
@@ -4947,13 +4799,13 @@
         ]
       },
       {
-        "drinkId": 263,
+        "drinkId": 259,
         "name": "핫초코",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 473,
+            "drinkSizeId": 453,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 78.5
@@ -4961,13 +4813,13 @@
         ]
       },
       {
-        "drinkId": 264,
+        "drinkId": 260,
         "name": "오레오초코라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 474,
+            "drinkSizeId": 454,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 73.4
@@ -4975,13 +4827,13 @@
         ]
       },
       {
-        "drinkId": 265,
+        "drinkId": 261,
         "name": "토피넛라떼",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 475,
+            "drinkSizeId": 455,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 87.2
@@ -4989,13 +4841,13 @@
         ]
       },
       {
-        "drinkId": 266,
+        "drinkId": 262,
         "name": "아이스초코",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 476,
+            "drinkSizeId": 456,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 14.5
@@ -5003,13 +4855,13 @@
         ]
       },
       {
-        "drinkId": 267,
+        "drinkId": 263,
         "name": "코코넛 커피 스무디",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 477,
+            "drinkSizeId": 457,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 24.0
@@ -5017,13 +4869,13 @@
         ]
       },
       {
-        "drinkId": 268,
+        "drinkId": 264,
         "name": "딸기쿠키프라페",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 478,
+            "drinkSizeId": 458,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 41.2
@@ -5031,13 +4883,13 @@
         ]
       },
       {
-        "drinkId": 269,
+        "drinkId": 265,
         "name": "쿠키프라페",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 479,
+            "drinkSizeId": 459,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 61.5
@@ -5045,13 +4897,13 @@
         ]
       },
       {
-        "drinkId": 270,
+        "drinkId": 266,
         "name": "리얼초코프라페",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 480,
+            "drinkSizeId": 460,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 70.9
@@ -5059,13 +4911,13 @@
         ]
       },
       {
-        "drinkId": 271,
+        "drinkId": 267,
         "name": "민트프라페",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 481,
+            "drinkSizeId": 461,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 198.8
@@ -5073,13 +4925,13 @@
         ]
       },
       {
-        "drinkId": 272,
+        "drinkId": 268,
         "name": "초코허니퐁크러쉬",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 482,
+            "drinkSizeId": 462,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 114.5
@@ -5087,13 +4939,13 @@
         ]
       },
       {
-        "drinkId": 273,
+        "drinkId": 269,
         "name": "흑당버블밀크티라떼",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 483,
+            "drinkSizeId": 463,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 135.9
@@ -5101,13 +4953,13 @@
         ]
       },
       {
-        "drinkId": 274,
+        "drinkId": 270,
         "name": "체리콕",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 484,
+            "drinkSizeId": 464,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 106.2
@@ -5115,13 +4967,13 @@
         ]
       },
       {
-        "drinkId": 275,
+        "drinkId": 271,
         "name": "디카페인 라이트 바닐라 아몬드라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 485,
+            "drinkSizeId": 465,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 118.1
@@ -5129,13 +4981,13 @@
         ]
       },
       {
-        "drinkId": 276,
+        "drinkId": 272,
         "name": "디카페인 왕메가카페라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 486,
+            "drinkSizeId": 466,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 14.3
@@ -5143,13 +4995,13 @@
         ]
       },
       {
-        "drinkId": 277,
+        "drinkId": 273,
         "name": "디카페인 핫캐리커노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 487,
+            "drinkSizeId": 467,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 30.6
@@ -5157,13 +5009,13 @@
         ]
       },
       {
-        "drinkId": 278,
+        "drinkId": 274,
         "name": "디카페인 아이스캐리커노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 488,
+            "drinkSizeId": 468,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 35.6
@@ -5171,13 +5023,13 @@
         ]
       },
       {
-        "drinkId": 279,
+        "drinkId": 275,
         "name": "디카페인 왕메가핫캐리커노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 489,
+            "drinkSizeId": 469,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 21.9
@@ -5185,13 +5037,13 @@
         ]
       },
       {
-        "drinkId": 280,
+        "drinkId": 276,
         "name": "디카페인 에스프레소",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 490,
+            "drinkSizeId": 470,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 11.1
@@ -5199,13 +5051,13 @@
         ]
       },
       {
-        "drinkId": 281,
+        "drinkId": 277,
         "name": "디카페인 아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 491,
+            "drinkSizeId": 471,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 56.2
@@ -5213,13 +5065,13 @@
         ]
       },
       {
-        "drinkId": 282,
+        "drinkId": 278,
         "name": "디카페인 꿀아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 492,
+            "drinkSizeId": 472,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 54.0
@@ -5227,13 +5079,13 @@
         ]
       },
       {
-        "drinkId": 283,
+        "drinkId": 279,
         "name": "디카페인 카페라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 493,
+            "drinkSizeId": 473,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 21.3
@@ -5241,13 +5093,13 @@
         ]
       },
       {
-        "drinkId": 284,
+        "drinkId": 280,
         "name": "디카페인 카푸치노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 494,
+            "drinkSizeId": 474,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 173.8
@@ -5255,13 +5107,13 @@
         ]
       },
       {
-        "drinkId": 285,
+        "drinkId": 281,
         "name": "디카페인 바닐라라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 495,
+            "drinkSizeId": 475,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 2.6
@@ -5269,13 +5121,13 @@
         ]
       },
       {
-        "drinkId": 286,
+        "drinkId": 282,
         "name": "디카페인 헤이즐넛 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 496,
+            "drinkSizeId": 476,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 6.8
@@ -5283,13 +5135,13 @@
         ]
       },
       {
-        "drinkId": 287,
+        "drinkId": 283,
         "name": "디카페인 카라멜마키아또",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 497,
+            "drinkSizeId": 477,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 32.1
@@ -5297,13 +5149,13 @@
         ]
       },
       {
-        "drinkId": 288,
+        "drinkId": 284,
         "name": "디카페인 연유라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 498,
+            "drinkSizeId": 478,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 5.6
@@ -5311,13 +5163,13 @@
         ]
       },
       {
-        "drinkId": 289,
+        "drinkId": 285,
         "name": "디카페인 카페모카",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 499,
+            "drinkSizeId": 479,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 10.0
@@ -5325,13 +5177,13 @@
         ]
       },
       {
-        "drinkId": 290,
+        "drinkId": 286,
         "name": "디카페인 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 500,
+            "drinkSizeId": 480,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 14.3
@@ -5339,13 +5191,13 @@
         ]
       },
       {
-        "drinkId": 291,
+        "drinkId": 287,
         "name": "디카페인 메가리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 501,
+            "drinkSizeId": 481,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 23.9
@@ -5353,13 +5205,13 @@
         ]
       },
       {
-        "drinkId": 292,
+        "drinkId": 288,
         "name": "디카페인 꿀아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 502,
+            "drinkSizeId": 482,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 9.5
@@ -5367,13 +5219,13 @@
         ]
       },
       {
-        "drinkId": 293,
+        "drinkId": 289,
         "name": "디카페인 헤이즐넛 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 503,
+            "drinkSizeId": 483,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 11.2
@@ -5381,13 +5233,13 @@
         ]
       },
       {
-        "drinkId": 294,
+        "drinkId": 290,
         "name": "디카페인 바닐라 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 504,
+            "drinkSizeId": 484,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 9.1
@@ -5395,13 +5247,13 @@
         ]
       },
       {
-        "drinkId": 295,
+        "drinkId": 291,
         "name": "콜드브루디카페인",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 505,
+            "drinkSizeId": 485,
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 5.3
@@ -5409,13 +5261,13 @@
         ]
       },
       {
-        "drinkId": 296,
+        "drinkId": 292,
         "name": "콜드브루디카페인라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 506,
+            "drinkSizeId": 486,
             "size": "R",
             "capacity_ml": 946,
             "caffeine_mg": 13.1
@@ -5428,19 +5280,19 @@
     "cafeName": "이디야",
     "drinks": [
       {
-        "drinkId": 297,
+        "drinkId": 293,
         "name": "카페 아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 507,
+            "drinkSizeId": 487,
             "size": "L",
             "capacity_ml": 59,
             "caffeine_mg": 4.9
           },
           {
-            "drinkSizeId": 508,
+            "drinkSizeId": 488,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 11.4
@@ -5448,19 +5300,19 @@
         ]
       },
       {
-        "drinkId": 298,
+        "drinkId": 294,
         "name": "카페 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 509,
+            "drinkSizeId": 489,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 11.3
           },
           {
-            "drinkSizeId": 510,
+            "drinkSizeId": 490,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 17.0
@@ -5468,19 +5320,19 @@
         ]
       },
       {
-        "drinkId": 299,
+        "drinkId": 295,
         "name": "카페 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 511,
+            "drinkSizeId": 491,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 14.4
           },
           {
-            "drinkSizeId": 512,
+            "drinkSizeId": 492,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 11.3
@@ -5488,19 +5340,19 @@
         ]
       },
       {
-        "drinkId": 300,
+        "drinkId": 296,
         "name": "카페 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 513,
+            "drinkSizeId": 493,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 11.4
           },
           {
-            "drinkSizeId": 514,
+            "drinkSizeId": 494,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 8.9
@@ -5508,19 +5360,19 @@
         ]
       },
       {
-        "drinkId": 301,
+        "drinkId": 297,
         "name": "바닐라 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 515,
+            "drinkSizeId": 495,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 8.4
           },
           {
-            "drinkSizeId": 516,
+            "drinkSizeId": 496,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 9.4
@@ -5528,19 +5380,19 @@
         ]
       },
       {
-        "drinkId": 302,
+        "drinkId": 298,
         "name": "바닐라 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 517,
+            "drinkSizeId": 497,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 4.8
           },
           {
-            "drinkSizeId": 518,
+            "drinkSizeId": 498,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 7.8
@@ -5548,13 +5400,13 @@
         ]
       },
       {
-        "drinkId": 303,
+        "drinkId": 299,
         "name": "카푸치노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 519,
+            "drinkSizeId": 499,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 8.2
@@ -5562,13 +5414,13 @@
         ]
       },
       {
-        "drinkId": 304,
+        "drinkId": 300,
         "name": "카푸치노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 520,
+            "drinkSizeId": 500,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 9.8
@@ -5576,19 +5428,19 @@
         ]
       },
       {
-        "drinkId": 305,
+        "drinkId": 301,
         "name": "카페모카",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 521,
+            "drinkSizeId": 501,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 14.9
           },
           {
-            "drinkSizeId": 522,
+            "drinkSizeId": 502,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 22.8
@@ -5596,19 +5448,19 @@
         ]
       },
       {
-        "drinkId": 306,
+        "drinkId": 302,
         "name": "카페모카",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 523,
+            "drinkSizeId": 503,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 21.9
           },
           {
-            "drinkSizeId": 524,
+            "drinkSizeId": 504,
             "size": "EX",
             "capacity_ml": 710,
             "caffeine_mg": 10.8
@@ -5616,13 +5468,13 @@
         ]
       },
       {
-        "drinkId": 307,
+        "drinkId": 303,
         "name": "카라멜 마끼아또",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 525,
+            "drinkSizeId": 505,
             "size": "L",
             "capacity_ml": 946,
             "caffeine_mg": 10.9
@@ -5630,13 +5482,13 @@
         ]
       },
       {
-        "drinkId": 308,
+        "drinkId": 304,
         "name": "카라멜 마키아또",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 526,
+            "drinkSizeId": 506,
             "size": "EX",
             "capacity_ml": 710,
             "caffeine_mg": 8.7
@@ -5644,19 +5496,19 @@
         ]
       },
       {
-        "drinkId": 309,
+        "drinkId": 305,
         "name": "카라멜 마끼아또",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 527,
+            "drinkSizeId": 507,
             "size": "L",
             "capacity_ml": 710,
             "caffeine_mg": 11.2
           },
           {
-            "drinkSizeId": 528,
+            "drinkSizeId": 508,
             "size": "EX",
             "capacity_ml": 710,
             "caffeine_mg": 8.8
@@ -5664,19 +5516,19 @@
         ]
       },
       {
-        "drinkId": 310,
+        "drinkId": 306,
         "name": "연유 카페 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 529,
+            "drinkSizeId": 509,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 13.1
           },
           {
-            "drinkSizeId": 530,
+            "drinkSizeId": 510,
             "size": "EX",
             "capacity_ml": 591,
             "caffeine_mg": 9.9
@@ -5684,19 +5536,87 @@
         ]
       },
       {
-        "drinkId": 311,
+        "drinkId": 307,
         "name": "연유 카페 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 531,
+            "drinkSizeId": 511,
             "size": "L",
             "capacity_ml": 591,
             "caffeine_mg": 14.0
           },
           {
-            "drinkSizeId": 532,
+            "drinkSizeId": 512,
+            "size": "EX",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          }
+        ]
+      },
+      {
+        "drinkId": 308,
+        "name": "민트 모카",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 513,
+            "size": "L",
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 309,
+        "name": "민트 모카",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 514,
+            "size": "L",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          }
+        ]
+      },
+      {
+        "drinkId": 310,
+        "name": "화이트 초콜릿 모카",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 515,
+            "size": "L",
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
+          },
+          {
+            "drinkSizeId": 516,
+            "size": "EX",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          }
+        ]
+      },
+      {
+        "drinkId": 311,
+        "name": "화이트 초콜릿 모카",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 517,
+            "size": "L",
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
+          },
+          {
+            "drinkSizeId": 518,
             "size": "EX",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
@@ -5705,94 +5625,26 @@
       },
       {
         "drinkId": 312,
-        "name": "민트 모카",
+        "name": "에스프레소 콘파냐",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 533,
-            "size": "L",
-            "capacity_ml": 651,
+            "drinkSizeId": 519,
+            "size": "Solo",
+            "capacity_ml": 680,
             "caffeine_mg": 237.0
           }
         ]
       },
       {
         "drinkId": 313,
-        "name": "민트 모카",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 534,
-            "size": "L",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          }
-        ]
-      },
-      {
-        "drinkId": 314,
-        "name": "화이트 초콜릿 모카",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 535,
-            "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
-          },
-          {
-            "drinkSizeId": 536,
-            "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          }
-        ]
-      },
-      {
-        "drinkId": 315,
-        "name": "화이트 초콜릿 모카",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 537,
-            "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
-          },
-          {
-            "drinkSizeId": 538,
-            "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          }
-        ]
-      },
-      {
-        "drinkId": 316,
-        "name": "에스프레소 콘파냐",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 539,
-            "size": "Solo",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 317,
         "name": "에스프레소 마끼아또",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 540,
+            "drinkSizeId": 520,
             "size": "Solo",
             "capacity_ml": 532,
             "caffeine_mg": 200.0
@@ -5800,13 +5652,13 @@
         ]
       },
       {
-        "drinkId": 318,
+        "drinkId": 314,
         "name": "에스프레소",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 541,
+            "drinkSizeId": 521,
             "size": "Solo",
             "capacity_ml": 651,
             "caffeine_mg": 321.0
@@ -5814,19 +5666,19 @@
         ]
       },
       {
-        "drinkId": 319,
+        "drinkId": 315,
         "name": "연유 콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 542,
+            "drinkSizeId": 522,
             "size": "L",
             "capacity_ml": 532,
             "caffeine_mg": 200.0
           },
           {
-            "drinkSizeId": 543,
+            "drinkSizeId": 523,
             "size": "EX",
             "capacity_ml": 680,
             "caffeine_mg": 321.0
@@ -5834,20 +5686,82 @@
         ]
       },
       {
-        "drinkId": 320,
+        "drinkId": 316,
         "name": "흑당 콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 544,
+            "drinkSizeId": 524,
             "size": "L",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           },
           {
-            "drinkSizeId": 545,
+            "drinkSizeId": 525,
             "size": "EX",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          }
+        ]
+      },
+      {
+        "drinkId": 317,
+        "name": "디카페인 연유 콜드브루",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 526,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 171.0
+          },
+          {
+            "drinkSizeId": 527,
+            "size": "EX",
+            "capacity_ml": 651,
+            "caffeine_mg": 254.0
+          }
+        ]
+      },
+      {
+        "drinkId": 318,
+        "name": "콜드브루 화이트 비엔나",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 528,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 171.0
+          }
+        ]
+      },
+      {
+        "drinkId": 319,
+        "name": "디카페인 콜드브루 화이트 비엔나",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 529,
+            "size": "R",
+            "capacity_ml": 680,
+            "caffeine_mg": 254.0
+          }
+        ]
+      },
+      {
+        "drinkId": 320,
+        "name": "콜드브루 니트로",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 530,
+            "size": "R",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           }
@@ -5855,74 +5769,12 @@
       },
       {
         "drinkId": 321,
-        "name": "디카페인 연유 콜드브루",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 546,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 171.0
-          },
-          {
-            "drinkSizeId": 547,
-            "size": "EX",
-            "capacity_ml": 651,
-            "caffeine_mg": 254.0
-          }
-        ]
-      },
-      {
-        "drinkId": 322,
-        "name": "콜드브루 화이트 비엔나",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 548,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 171.0
-          }
-        ]
-      },
-      {
-        "drinkId": 323,
-        "name": "디카페인 콜드브루 화이트 비엔나",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 549,
-            "size": "R",
-            "capacity_ml": 680,
-            "caffeine_mg": 254.0
-          }
-        ]
-      },
-      {
-        "drinkId": 324,
-        "name": "콜드브루 니트로",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 550,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          }
-        ]
-      },
-      {
-        "drinkId": 325,
         "name": "디카페인 콜드브루 니트로",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 551,
+            "drinkSizeId": 531,
             "size": "R",
             "capacity_ml": 651,
             "caffeine_mg": 237.0
@@ -5930,19 +5782,19 @@
         ]
       },
       {
-        "drinkId": 326,
+        "drinkId": 322,
         "name": "콜드브루 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 552,
+            "drinkSizeId": 532,
             "size": "R",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           },
           {
-            "drinkSizeId": 553,
+            "drinkSizeId": 533,
             "size": "EX",
             "capacity_ml": 680,
             "caffeine_mg": 237.0
@@ -5950,20 +5802,88 @@
         ]
       },
       {
-        "drinkId": 327,
+        "drinkId": 323,
         "name": "디카페인 콜드브루 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 554,
+            "drinkSizeId": 534,
             "size": "R",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           },
           {
-            "drinkSizeId": 555,
+            "drinkSizeId": 535,
             "size": "EX",
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 324,
+        "name": "콜드브루 아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 536,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          },
+          {
+            "drinkSizeId": 537,
+            "size": "EX",
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 325,
+        "name": "디카페인 콜드브루 아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 538,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 194.0
+          },
+          {
+            "drinkSizeId": 539,
+            "size": "EX",
+            "capacity_ml": 532,
+            "caffeine_mg": 194.0
+          }
+        ]
+      },
+      {
+        "drinkId": 326,
+        "name": "아포가토 오리지널",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 540,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          }
+        ]
+      },
+      {
+        "drinkId": 327,
+        "name": "넛츠 크림 라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 541,
+            "size": "L",
             "capacity_ml": 651,
             "caffeine_mg": 237.0
           }
@@ -5971,80 +5891,12 @@
       },
       {
         "drinkId": 328,
-        "name": "콜드브루 아메리카노",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 556,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          },
-          {
-            "drinkSizeId": 557,
-            "size": "EX",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 329,
-        "name": "디카페인 콜드브루 아메리카노",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 558,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 194.0
-          },
-          {
-            "drinkSizeId": 559,
-            "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 194.0
-          }
-        ]
-      },
-      {
-        "drinkId": 330,
-        "name": "아포가토 오리지널",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 560,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          }
-        ]
-      },
-      {
-        "drinkId": 331,
-        "name": "넛츠 크림 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 561,
-            "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 332,
         "name": "바닐라 오트 콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 562,
+            "drinkSizeId": 542,
             "size": "R",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
@@ -6052,13 +5904,13 @@
         ]
       },
       {
-        "drinkId": 333,
+        "drinkId": 329,
         "name": "디카페인 바닐라 오트 콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 563,
+            "drinkSizeId": 543,
             "size": "R",
             "capacity_ml": 680,
             "caffeine_mg": 237.0
@@ -6066,19 +5918,19 @@
         ]
       },
       {
-        "drinkId": 334,
+        "drinkId": 330,
         "name": "민트모히또 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 564,
+            "drinkSizeId": 544,
             "size": "L",
             "capacity_ml": 40,
             "caffeine_mg": 79.0
           },
           {
-            "drinkSizeId": 565,
+            "drinkSizeId": 545,
             "size": "EX",
             "capacity_ml": 40,
             "caffeine_mg": 79.0
@@ -6086,19 +5938,19 @@
         ]
       },
       {
-        "drinkId": 335,
+        "drinkId": 331,
         "name": "민트모히또 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 566,
+            "drinkSizeId": 546,
             "size": "L",
             "capacity_ml": 30,
             "caffeine_mg": 79.0
           },
           {
-            "drinkSizeId": 567,
+            "drinkSizeId": 547,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 104.0
@@ -6106,19 +5958,19 @@
         ]
       },
       {
-        "drinkId": 336,
+        "drinkId": 332,
         "name": "시그니처 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 568,
+            "drinkSizeId": 548,
             "size": "L",
             "capacity_ml": 680,
             "caffeine_mg": 155.0
           },
           {
-            "drinkSizeId": 569,
+            "drinkSizeId": 549,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 52.0
@@ -6126,19 +5978,19 @@
         ]
       },
       {
-        "drinkId": 337,
+        "drinkId": 333,
         "name": "시그니처 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 570,
+            "drinkSizeId": 550,
             "size": "L",
             "capacity_ml": 680,
             "caffeine_mg": 104.0
           },
           {
-            "drinkSizeId": 571,
+            "drinkSizeId": 551,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 104.0
@@ -6146,19 +5998,19 @@
         ]
       },
       {
-        "drinkId": 338,
+        "drinkId": 334,
         "name": "달달 커피",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 572,
+            "drinkSizeId": 552,
             "size": "L",
             "capacity_ml": 680,
             "caffeine_mg": 155.0
           },
           {
-            "drinkSizeId": 573,
+            "drinkSizeId": 553,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 52.0
@@ -6166,19 +6018,19 @@
         ]
       },
       {
-        "drinkId": 339,
+        "drinkId": 335,
         "name": "꿀 미숫커피",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 574,
+            "drinkSizeId": 554,
             "size": "L",
             "capacity_ml": 414,
             "caffeine_mg": 2.0
           },
           {
-            "drinkSizeId": 575,
+            "drinkSizeId": 555,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 124.0
@@ -6186,19 +6038,19 @@
         ]
       },
       {
-        "drinkId": 340,
+        "drinkId": 336,
         "name": "꿀 화이트 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 576,
+            "drinkSizeId": 556,
             "size": "L",
             "capacity_ml": 414,
             "caffeine_mg": 4.0
           },
           {
-            "drinkSizeId": 577,
+            "drinkSizeId": 557,
             "size": "EX",
             "capacity_ml": 414,
             "caffeine_mg": 104.0
@@ -6211,13 +6063,13 @@
     "cafeName": "할리스",
     "drinks": [
       {
-        "drinkId": 341,
+        "drinkId": 337,
         "name": "에스프레소 (Solo)",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 578,
+            "drinkSizeId": 558,
             "size": "Solo",
             "capacity_ml": 680,
             "caffeine_mg": 155.0
@@ -6225,13 +6077,13 @@
         ]
       },
       {
-        "drinkId": 342,
+        "drinkId": 338,
         "name": "에스프레소 (Doppio)",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 579,
+            "drinkSizeId": 559,
             "size": "Doppio",
             "capacity_ml": 414,
             "caffeine_mg": 4.0
@@ -6239,13 +6091,13 @@
         ]
       },
       {
-        "drinkId": 343,
+        "drinkId": 339,
         "name": "아포가토",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 580,
+            "drinkSizeId": 560,
             "size": "R",
             "capacity_ml": 680,
             "caffeine_mg": 5.0
@@ -6253,25 +6105,25 @@
         ]
       },
       {
-        "drinkId": 344,
+        "drinkId": 340,
         "name": "아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 581,
+            "drinkSizeId": 561,
             "size": "R",
             "capacity_ml": 414,
             "caffeine_mg": 156.0
           },
           {
-            "drinkSizeId": 582,
+            "drinkSizeId": 562,
             "size": "G",
             "capacity_ml": 680,
             "caffeine_mg": 234.0
           },
           {
-            "drinkSizeId": 583,
+            "drinkSizeId": 563,
             "size": "V",
             "capacity_ml": 414,
             "caffeine_mg": 4.0
@@ -6279,25 +6131,25 @@
         ]
       },
       {
-        "drinkId": 345,
+        "drinkId": 341,
         "name": "아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 584,
+            "drinkSizeId": 564,
             "size": "R",
             "capacity_ml": 680,
             "caffeine_mg": 5.0
           },
           {
-            "drinkSizeId": 585,
+            "drinkSizeId": 565,
             "size": "G",
             "capacity_ml": 151,
             "caffeine_mg": 79.0
           },
           {
-            "drinkSizeId": 586,
+            "drinkSizeId": 566,
             "size": "V",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
@@ -6305,25 +6157,25 @@
         ]
       },
       {
-        "drinkId": 346,
+        "drinkId": 342,
         "name": "카페 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 587,
+            "drinkSizeId": 567,
             "size": "R",
             "capacity_ml": 414,
             "caffeine_mg": 78.0
           },
           {
-            "drinkSizeId": 588,
+            "drinkSizeId": 568,
             "size": "G",
             "capacity_ml": 414,
             "caffeine_mg": 2.0
           },
           {
-            "drinkSizeId": 589,
+            "drinkSizeId": 569,
             "size": "V",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
@@ -6331,25 +6183,25 @@
         ]
       },
       {
-        "drinkId": 347,
+        "drinkId": 343,
         "name": "카페 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 590,
+            "drinkSizeId": 570,
             "size": "R",
             "capacity_ml": 651,
             "caffeine_mg": 237.0
           },
           {
-            "drinkSizeId": 591,
+            "drinkSizeId": 571,
             "size": "G",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           },
           {
-            "drinkSizeId": 592,
+            "drinkSizeId": 572,
             "size": "V",
             "capacity_ml": 680,
             "caffeine_mg": 237.0
@@ -6357,19 +6209,99 @@
         ]
       },
       {
-        "drinkId": 348,
+        "drinkId": 344,
         "name": "카푸치노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 593,
+            "drinkSizeId": 573,
             "size": "R",
             "capacity_ml": 532,
             "caffeine_mg": 158.0
           },
           {
-            "drinkSizeId": 594,
+            "drinkSizeId": 574,
+            "size": "G",
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 345,
+        "name": "카페 모카",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 575,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          },
+          {
+            "drinkSizeId": 576,
+            "size": "G",
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
+          }
+        ]
+      },
+      {
+        "drinkId": 346,
+        "name": "카페 모카",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 577,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 236.0
+          },
+          {
+            "drinkSizeId": 578,
+            "size": "G",
+            "capacity_ml": 680,
+            "caffeine_mg": 276.0
+          }
+        ]
+      },
+      {
+        "drinkId": 347,
+        "name": "카라멜 마키아또",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 579,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 79.0
+          },
+          {
+            "drinkSizeId": 580,
+            "size": "G",
+            "capacity_ml": 680,
+            "caffeine_mg": 110.0
+          }
+        ]
+      },
+      {
+        "drinkId": 348,
+        "name": "카라멜 마키아또",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 581,
+            "size": "R",
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
+          },
+          {
+            "drinkSizeId": 582,
             "size": "G",
             "capacity_ml": 651,
             "caffeine_mg": 237.0
@@ -6378,104 +6310,24 @@
       },
       {
         "drinkId": 349,
-        "name": "카페 모카",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 595,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          },
-          {
-            "drinkSizeId": 596,
-            "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 350,
-        "name": "카페 모카",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 597,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 236.0
-          },
-          {
-            "drinkSizeId": 598,
-            "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 276.0
-          }
-        ]
-      },
-      {
-        "drinkId": 351,
-        "name": "카라멜 마키아또",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 599,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 79.0
-          },
-          {
-            "drinkSizeId": 600,
-            "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 110.0
-          }
-        ]
-      },
-      {
-        "drinkId": 352,
-        "name": "카라멜 마키아또",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 601,
-            "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
-          },
-          {
-            "drinkSizeId": 602,
-            "size": "G",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
-          }
-        ]
-      },
-      {
-        "drinkId": 353,
         "name": "바닐라 딜라이트",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 603,
+            "drinkSizeId": 583,
             "size": "R",
             "capacity_ml": 25,
             "caffeine_mg": 61.0
           },
           {
-            "drinkSizeId": 604,
+            "drinkSizeId": 584,
             "size": "G",
             "capacity_ml": 50,
             "caffeine_mg": 122.0
           },
           {
-            "drinkSizeId": 605,
+            "drinkSizeId": 585,
             "size": "V",
             "capacity_ml": 150,
             "caffeine_mg": 93.0
@@ -6483,25 +6335,25 @@
         ]
       },
       {
-        "drinkId": 354,
+        "drinkId": 350,
         "name": "바닐라 딜라이트",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 606,
+            "drinkSizeId": 586,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 114.0
           },
           {
-            "drinkSizeId": 607,
+            "drinkSizeId": 587,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 171.0
           },
           {
-            "drinkSizeId": 608,
+            "drinkSizeId": 588,
             "size": "V",
             "capacity_ml": 591,
             "caffeine_mg": 228.0
@@ -6509,25 +6361,25 @@
         ]
       },
       {
-        "drinkId": 355,
+        "drinkId": 351,
         "name": "콜드브루",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 609,
+            "drinkSizeId": 589,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 114.0
           },
           {
-            "drinkSizeId": 610,
+            "drinkSizeId": 590,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 171.0
           },
           {
-            "drinkSizeId": 611,
+            "drinkSizeId": 591,
             "size": "V",
             "capacity_ml": 591,
             "caffeine_mg": 228.0
@@ -6535,25 +6387,25 @@
         ]
       },
       {
-        "drinkId": 356,
+        "drinkId": 352,
         "name": "콜드브루 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 612,
+            "drinkSizeId": 592,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 127.0
           },
           {
-            "drinkSizeId": 613,
+            "drinkSizeId": 593,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 190.0
           },
           {
-            "drinkSizeId": 614,
+            "drinkSizeId": 594,
             "size": "V",
             "capacity_ml": 591,
             "caffeine_mg": 254.0
@@ -6561,25 +6413,25 @@
         ]
       },
       {
-        "drinkId": 357,
+        "drinkId": 353,
         "name": "콜드브루 딜라이트",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 615,
+            "drinkSizeId": 595,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 127.0
           },
           {
-            "drinkSizeId": 616,
+            "drinkSizeId": 596,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 190.0
           },
           {
-            "drinkSizeId": 617,
+            "drinkSizeId": 597,
             "size": "V",
             "capacity_ml": 591,
             "caffeine_mg": 254.0
@@ -6587,25 +6439,25 @@
         ]
       },
       {
-        "drinkId": 358,
+        "drinkId": 354,
         "name": "디카페인 바닐라 딜라이트",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 618,
+            "drinkSizeId": 598,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 127.0
           },
           {
-            "drinkSizeId": 619,
+            "drinkSizeId": 599,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 190.0
           },
           {
-            "drinkSizeId": 620,
+            "drinkSizeId": 600,
             "size": "V",
             "capacity_ml": 354,
             "caffeine_mg": 132.0
@@ -6613,25 +6465,25 @@
         ]
       },
       {
-        "drinkId": 359,
+        "drinkId": 355,
         "name": "디카페인 바닐라 딜라이트",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 621,
+            "drinkSizeId": 601,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 198.0
           },
           {
-            "drinkSizeId": 622,
+            "drinkSizeId": 602,
             "size": "G",
             "capacity_ml": 354,
             "caffeine_mg": 132.0
           },
           {
-            "drinkSizeId": 623,
+            "drinkSizeId": 603,
             "size": "V",
             "capacity_ml": 472,
             "caffeine_mg": 198.0
@@ -6639,248 +6491,316 @@
         ]
       },
       {
-        "drinkId": 360,
+        "drinkId": 356,
         "name": "디카페인 카페 라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 624,
+            "drinkSizeId": 604,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 127.0
           },
           {
-            "drinkSizeId": 625,
+            "drinkSizeId": 605,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 190.5
           },
           {
-            "drinkSizeId": 626,
+            "drinkSizeId": 606,
             "size": "V",
             "capacity_ml": 354,
             "caffeine_mg": 127.0
+          }
+        ]
+      },
+      {
+        "drinkId": 357,
+        "name": "디카페인 카페 라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 607,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 190.5
+          },
+          {
+            "drinkSizeId": 608,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 83.0
+          },
+          {
+            "drinkSizeId": 609,
+            "size": "V",
+            "capacity_ml": 472,
+            "caffeine_mg": 124.5
+          }
+        ]
+      },
+      {
+        "drinkId": 358,
+        "name": "디카페인 아메리카노",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 610,
+            "size": "R",
+            "capacity_ml": 591,
+            "caffeine_mg": 166.0
+          },
+          {
+            "drinkSizeId": 611,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 83.0
+          },
+          {
+            "drinkSizeId": 612,
+            "size": "V",
+            "capacity_ml": 472,
+            "caffeine_mg": 124.5
+          }
+        ]
+      },
+      {
+        "drinkId": 359,
+        "name": "디카페인 아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 613,
+            "size": "R",
+            "capacity_ml": 591,
+            "caffeine_mg": 166.0
+          },
+          {
+            "drinkSizeId": 614,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 195.0
+          },
+          {
+            "drinkSizeId": 615,
+            "size": "V",
+            "capacity_ml": 472,
+            "caffeine_mg": 292.5
+          }
+        ]
+      },
+      {
+        "drinkId": 360,
+        "name": "돌체 라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 616,
+            "size": "R",
+            "capacity_ml": 591,
+            "caffeine_mg": 390.0
+          },
+          {
+            "drinkSizeId": 617,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 195.0
           }
         ]
       },
       {
         "drinkId": 361,
-        "name": "디카페인 카페 라떼",
+        "name": "돌체 라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 627,
+            "drinkSizeId": 618,
             "size": "R",
             "capacity_ml": 472,
-            "caffeine_mg": 190.5
+            "caffeine_mg": 292.5
           },
           {
-            "drinkSizeId": 628,
+            "drinkSizeId": 619,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 83.0
-          },
-          {
-            "drinkSizeId": 629,
-            "size": "V",
-            "capacity_ml": 472,
-            "caffeine_mg": 124.5
+            "capacity_ml": 591,
+            "caffeine_mg": 390.0
           }
         ]
       },
       {
         "drinkId": 362,
-        "name": "디카페인 아메리카노",
+        "name": "블랙아리아 딥라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 630,
+            "drinkSizeId": 620,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 166.0
-          },
-          {
-            "drinkSizeId": 631,
-            "size": "G",
             "capacity_ml": 354,
-            "caffeine_mg": 83.0
+            "caffeine_mg": 195.0
           },
           {
-            "drinkSizeId": 632,
-            "size": "V",
+            "drinkSizeId": 621,
+            "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 124.5
+            "caffeine_mg": 292.5
+          },
+          {
+            "drinkSizeId": 622,
+            "size": "V",
+            "capacity_ml": 591,
+            "caffeine_mg": 390.0
           }
         ]
       },
       {
         "drinkId": 363,
-        "name": "디카페인 아메리카노",
+        "name": "블랙아리아 딥라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 633,
+            "drinkSizeId": 623,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 166.0
-          },
-          {
-            "drinkSizeId": 634,
-            "size": "G",
             "capacity_ml": 354,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 25.0
           },
           {
-            "drinkSizeId": 635,
-            "size": "V",
+            "drinkSizeId": 624,
+            "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 292.5
+            "caffeine_mg": 37.5
+          },
+          {
+            "drinkSizeId": 625,
+            "size": "V",
+            "capacity_ml": 591,
+            "caffeine_mg": 50.0
           }
         ]
       },
       {
         "drinkId": 364,
-        "name": "돌체 라떼",
+        "name": "블랙아리아 아메리카노",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 636,
+            "drinkSizeId": 626,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 390.0
+            "capacity_ml": 354,
+            "caffeine_mg": 25.0
           },
           {
-            "drinkSizeId": 637,
+            "drinkSizeId": 627,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 195.0
+            "capacity_ml": 472,
+            "caffeine_mg": 37.5
+          },
+          {
+            "drinkSizeId": 628,
+            "size": "V",
+            "capacity_ml": 591,
+            "caffeine_mg": 50.0
           }
         ]
       },
       {
         "drinkId": 365,
-        "name": "돌체 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 638,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 292.5
-          },
-          {
-            "drinkSizeId": 639,
-            "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 390.0
-          }
-        ]
-      },
-      {
-        "drinkId": 366,
-        "name": "블랙아리아 딥라떼",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 640,
-            "size": "R",
-            "capacity_ml": 354,
-            "caffeine_mg": 195.0
-          },
-          {
-            "drinkSizeId": 641,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 292.5
-          },
-          {
-            "drinkSizeId": 642,
-            "size": "V",
-            "capacity_ml": 591,
-            "caffeine_mg": 390.0
-          }
-        ]
-      },
-      {
-        "drinkId": 367,
-        "name": "블랙아리아 딥라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 643,
-            "size": "R",
-            "capacity_ml": 354,
-            "caffeine_mg": 25.0
-          },
-          {
-            "drinkSizeId": 644,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 37.5
-          },
-          {
-            "drinkSizeId": 645,
-            "size": "V",
-            "capacity_ml": 591,
-            "caffeine_mg": 50.0
-          }
-        ]
-      },
-      {
-        "drinkId": 368,
-        "name": "블랙아리아 아메리카노",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 646,
-            "size": "R",
-            "capacity_ml": 354,
-            "caffeine_mg": 25.0
-          },
-          {
-            "drinkSizeId": 647,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 37.5
-          },
-          {
-            "drinkSizeId": 648,
-            "size": "V",
-            "capacity_ml": 591,
-            "caffeine_mg": 50.0
-          }
-        ]
-      },
-      {
-        "drinkId": 369,
         "name": "블랙아리아 아메리카노",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 649,
+            "drinkSizeId": 629,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 3.0
           },
           {
-            "drinkSizeId": 650,
+            "drinkSizeId": 630,
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 4.5
           },
           {
-            "drinkSizeId": 651,
+            "drinkSizeId": 631,
             "size": "V",
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
+          }
+        ]
+      },
+      {
+        "drinkId": 366,
+        "name": "로얄 밀크티 라떼",
+        "type": "OTHER",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 632,
+            "size": "R",
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
+          }
+        ]
+      },
+      {
+        "drinkId": 367,
+        "name": "로얄 밀크티 라떼",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 633,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
+          }
+        ]
+      },
+      {
+        "drinkId": 368,
+        "name": "로얄 밀크 버블티",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 634,
+            "size": "R",
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
+          },
+          {
+            "drinkSizeId": 635,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
+          }
+        ]
+      },
+      {
+        "drinkId": 369,
+        "name": "제주 말차 라떼",
+        "type": "OTHER",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 636,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
+          },
+          {
+            "drinkSizeId": 637,
+            "size": "G",
             "capacity_ml": 591,
             "caffeine_mg": 6.0
           }
@@ -6888,106 +6808,38 @@
       },
       {
         "drinkId": 370,
-        "name": "로얄 밀크티 라떼",
+        "name": "제주 말차 라떼",
         "type": "OTHER",
-        "temperature": "HOT",
+        "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 652,
+            "drinkSizeId": 638,
             "size": "R",
             "capacity_ml": 354,
             "caffeine_mg": 3.0
+          },
+          {
+            "drinkSizeId": 639,
+            "size": "G",
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           }
         ]
       },
       {
         "drinkId": 371,
-        "name": "로얄 밀크티 라떼",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 653,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
-          }
-        ]
-      },
-      {
-        "drinkId": 372,
-        "name": "로얄 밀크 버블티",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 654,
-            "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 6.0
-          },
-          {
-            "drinkSizeId": 655,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
-          }
-        ]
-      },
-      {
-        "drinkId": 373,
-        "name": "제주 말차 라떼",
-        "type": "OTHER",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 656,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
-          },
-          {
-            "drinkSizeId": 657,
-            "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 6.0
-          }
-        ]
-      },
-      {
-        "drinkId": 374,
-        "name": "제주 말차 라떼",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 658,
-            "size": "R",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
-          },
-          {
-            "drinkSizeId": 659,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
-          }
-        ]
-      },
-      {
-        "drinkId": 375,
         "name": "민트초코",
         "type": "OTHER",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 660,
+            "drinkSizeId": 640,
             "size": "R",
             "capacity_ml": 591,
             "caffeine_mg": 6.0
           },
           {
-            "drinkSizeId": 661,
+            "drinkSizeId": 641,
             "size": "G",
             "capacity_ml": 354,
             "caffeine_mg": 93.0
@@ -6995,8 +6847,224 @@
         ]
       },
       {
-        "drinkId": 376,
+        "drinkId": 372,
         "name": "민트초코",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 642,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 139.5
+          },
+          {
+            "drinkSizeId": 643,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 93.0
+          }
+        ]
+      },
+      {
+        "drinkId": 373,
+        "name": "핫/아이스 초코",
+        "type": "OTHER",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 644,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 139.5
+          },
+          {
+            "drinkSizeId": 645,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 153.0
+          }
+        ]
+      },
+      {
+        "drinkId": 374,
+        "name": "핫/아이스 초코",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 646,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 229.5
+          },
+          {
+            "drinkSizeId": 647,
+            "size": "G",
+            "capacity_ml": 591,
+            "caffeine_mg": 306.0
+          }
+        ]
+      },
+      {
+        "drinkId": 375,
+        "name": "화이트초코",
+        "type": "OTHER",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 648,
+            "size": "R",
+            "capacity_ml": 354,
+            "caffeine_mg": 153.0
+          },
+          {
+            "drinkSizeId": 649,
+            "size": "G",
+            "capacity_ml": 472,
+            "caffeine_mg": 229.5
+          }
+        ]
+      },
+      {
+        "drinkId": 376,
+        "name": "화이트초코",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 650,
+            "size": "R",
+            "capacity_ml": 591,
+            "caffeine_mg": 306.0
+          },
+          {
+            "drinkSizeId": 651,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 153.0
+          }
+        ]
+      },
+      {
+        "drinkId": 377,
+        "name": "복숭아 얼그레이",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 652,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 229.5
+          },
+          {
+            "drinkSizeId": 653,
+            "size": "G",
+            "capacity_ml": 591,
+            "caffeine_mg": 306.0
+          }
+        ]
+      },
+      {
+        "drinkId": 378,
+        "name": "복숭아 얼그레이",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 654,
+            "size": "R",
+            "capacity_ml": 354,
+            "caffeine_mg": 153.0
+          },
+          {
+            "drinkSizeId": 655,
+            "size": "G",
+            "capacity_ml": 472,
+            "caffeine_mg": 229.5
+          }
+        ]
+      },
+      {
+        "drinkId": 379,
+        "name": "해남 녹차",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 656,
+            "size": "G",
+            "capacity_ml": 591,
+            "caffeine_mg": 306.0
+          }
+        ]
+      },
+      {
+        "drinkId": 380,
+        "name": "해남 녹차",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 657,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 51.0
+          }
+        ]
+      },
+      {
+        "drinkId": 381,
+        "name": "얼그레이",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 658,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 51.0
+          }
+        ]
+      },
+      {
+        "drinkId": 382,
+        "name": "얼그레이",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 659,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 51.0
+          }
+        ]
+      },
+      {
+        "drinkId": 383,
+        "name": "헤이즐넛 초코칩 할라치노",
+        "type": "OTHER",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 660,
+            "size": "R",
+            "capacity_ml": 472,
+            "caffeine_mg": 76.5
+          },
+          {
+            "drinkSizeId": 661,
+            "size": "G",
+            "capacity_ml": 354,
+            "caffeine_mg": 129.0
+          }
+        ]
+      },
+      {
+        "drinkId": 384,
+        "name": "콜드브루 모카 할라치노",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
@@ -7004,39 +7072,39 @@
             "drinkSizeId": 662,
             "size": "R",
             "capacity_ml": 472,
-            "caffeine_mg": 139.5
+            "caffeine_mg": 193.5
           },
           {
             "drinkSizeId": 663,
             "size": "G",
             "capacity_ml": 354,
-            "caffeine_mg": 93.0
+            "caffeine_mg": 129.0
           }
         ]
       },
       {
-        "drinkId": 377,
-        "name": "핫/아이스 초코",
+        "drinkId": 385,
+        "name": "제주 말차 할라치노",
         "type": "OTHER",
-        "temperature": "HOT",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 664,
             "size": "R",
             "capacity_ml": 472,
-            "caffeine_mg": 139.5
+            "caffeine_mg": 193.5
           },
           {
             "drinkSizeId": 665,
             "size": "G",
             "capacity_ml": 354,
-            "caffeine_mg": 153.0
+            "caffeine_mg": 3.0
           }
         ]
       },
       {
-        "drinkId": 378,
-        "name": "핫/아이스 초코",
+        "drinkId": 386,
+        "name": "민트 초코칩 할라치노",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
@@ -7044,246 +7112,30 @@
             "drinkSizeId": 666,
             "size": "R",
             "capacity_ml": 472,
-            "caffeine_mg": 229.5
+            "caffeine_mg": 4.5
           },
           {
             "drinkSizeId": 667,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
-          }
-        ]
-      },
-      {
-        "drinkId": 379,
-        "name": "화이트초코",
-        "type": "OTHER",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 668,
-            "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 153.0
-          },
-          {
-            "drinkSizeId": 669,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 229.5
-          }
-        ]
-      },
-      {
-        "drinkId": 380,
-        "name": "화이트초코",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 670,
-            "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
-          },
-          {
-            "drinkSizeId": 671,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 153.0
-          }
-        ]
-      },
-      {
-        "drinkId": 381,
-        "name": "복숭아 얼그레이",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 672,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 229.5
-          },
-          {
-            "drinkSizeId": 673,
-            "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
-          }
-        ]
-      },
-      {
-        "drinkId": 382,
-        "name": "복숭아 얼그레이",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 674,
-            "size": "R",
-            "capacity_ml": 354,
-            "caffeine_mg": 153.0
-          },
-          {
-            "drinkSizeId": 675,
-            "size": "G",
-            "capacity_ml": 472,
-            "caffeine_mg": 229.5
-          }
-        ]
-      },
-      {
-        "drinkId": 383,
-        "name": "해남 녹차",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 676,
-            "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
-          }
-        ]
-      },
-      {
-        "drinkId": 384,
-        "name": "해남 녹차",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 677,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
-          }
-        ]
-      },
-      {
-        "drinkId": 385,
-        "name": "얼그레이",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 678,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
-          }
-        ]
-      },
-      {
-        "drinkId": 386,
-        "name": "얼그레이",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 679,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
+            "caffeine_mg": 3.0
           }
         ]
       },
       {
         "drinkId": 387,
-        "name": "헤이즐넛 초코칩 할라치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 680,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 76.5
-          },
-          {
-            "drinkSizeId": 681,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 129.0
-          }
-        ]
-      },
-      {
-        "drinkId": 388,
-        "name": "콜드브루 모카 할라치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 682,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 193.5
-          },
-          {
-            "drinkSizeId": 683,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 129.0
-          }
-        ]
-      },
-      {
-        "drinkId": 389,
-        "name": "제주 말차 할라치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 684,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 193.5
-          },
-          {
-            "drinkSizeId": 685,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
-          }
-        ]
-      },
-      {
-        "drinkId": 390,
-        "name": "민트 초코칩 할라치노",
-        "type": "OTHER",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 686,
-            "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
-          },
-          {
-            "drinkSizeId": 687,
-            "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
-          }
-        ]
-      },
-      {
-        "drinkId": 391,
         "name": "콜드브루 할라치노",
         "type": "OTHER",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 688,
+            "drinkSizeId": 668,
             "size": "R",
             "capacity_ml": 472,
             "caffeine_mg": 4.5
           },
           {
-            "drinkSizeId": 689,
+            "drinkSizeId": 669,
             "size": "G",
             "capacity_ml": 354,
             "caffeine_mg": 8.0
