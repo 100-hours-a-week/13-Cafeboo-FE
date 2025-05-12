@@ -55,9 +55,9 @@ export const useWeeklyReport = (
   const query = useQuery<WeeklyReportData, Error>({
     queryKey: ['weeklyReport', yearStr, monthStr, week],
     queryFn: () => fetchWeeklyReport(yearStr, monthStr, week),
-    staleTime: 300_000,
-    gcTime: 600_000,
-    refetchInterval: 300_000,
+    staleTime: 0,                
+    gcTime: 0,        
+    refetchInterval: 1000,    
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,

@@ -15,9 +15,9 @@ export const useCaffeineInfo = () => {
   const query = useQuery({
     queryKey: ['caffeineSettings'],
     queryFn: fetchCaffeineInfo,
-    staleTime: 300000,       
-    gcTime: 600000,        
-    refetchInterval: 300000,    
+    staleTime: 0,                
+    gcTime: 0,        
+    refetchInterval: 1000,      
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,

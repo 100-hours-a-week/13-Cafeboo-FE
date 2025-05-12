@@ -21,12 +21,12 @@ export const fetchCalendar = async (
   const userId = localStorage.getItem('userId');
   if (!userId) throw new Error('사용자 정보가 없습니다.');
 
-  const response = await apiClient.get<MonthlyCalendarResponse>(
+  const response = await apiClient.get(
     `/api/v1/caffeine-intakes/monthly`,
     { params: { year, month } }
   );
 
-  return response.data;
+  return response.data.data;
 };
 
 // ✅ React Query 훅 사용 결과 타입
@@ -46,9 +46,9 @@ export const useCalendar = (
   const query = useQuery<MonthlyCalendarResponse, Error>({
     queryKey: ['calendar', yearStr, monthStr],
     queryFn: () => fetchCalendar(yearStr, monthStr),
-    staleTime: 300000,     
-    gcTime: 600000,      
-    refetchInterval: 300000, 
+    staleTime: 0,                
+    gcTime: 0,        
+    refetchInterval: 1000,    
     refetchOnMount: true,
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,

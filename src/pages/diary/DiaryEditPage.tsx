@@ -14,7 +14,7 @@ interface ApiRecord {
   drinkId: string;
   drinkName: string;
   drinkCount: number;
-  caffeineMg: number;
+  caffeineAmount: number;
   intakeTime: string; 
 }
 
@@ -45,7 +45,7 @@ export default function DiaryEdit() {
   const [date, setDate]           = useState(orig.intakeTime.slice(0, 10));
   const [time, setTime]           = useState(orig.intakeTime.slice(11, 16));
   const [count, setCount]         = useState(String(orig.drinkCount));
-  const [amount, setAmount]       = useState(orig.caffeineMg);
+  const [amount, setAmount]       = useState(orig.caffeineAmount);
 
   const [selectOpen, setSelectOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -90,7 +90,7 @@ export default function DiaryEdit() {
     if (iso !== orig.intakeTime) payload.intakeTime = iso;
     const nCount = Number(count);
     if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
-    if (amount !== orig.caffeineMg) payload.caffeineAmount = amount;
+    if (amount !== orig.caffeineAmount) payload.caffeineAmount = amount;
 
     if (detail && detail.sizes.some(s => s.caffeine_mg === amount)) {
       const size = detail.sizes.find(s => s.caffeine_mg === amount);
@@ -143,7 +143,7 @@ export default function DiaryEdit() {
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">음료</span>
           <button
-            className="px-4 py-1 bg-gray-200 rounded"
+            className="px-4 py-1 bg-gray-200 rounded cursor-pointer"
             onClick={() => setSelectOpen(true)}
           >
             {drinkName}
@@ -158,7 +158,7 @@ export default function DiaryEdit() {
               type="date"
               value={date}
               onChange={e => setDate(e.target.value)}
-              className="px-4 py-1 bg-gray-200 rounded text-center"
+              className="px-4 py-1 bg-gray-200 rounded text-center cursor-pointer"
             />
           </div>
           <div className="flex items-center justify-between p-4">
@@ -176,7 +176,7 @@ export default function DiaryEdit() {
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">카페인 함유량</span>
           <button
-            className="px-4 py-1 bg-gray-200 rounded"
+            className="px-4 py-1 bg-gray-200 rounded cursor-pointer"
             onClick={openDetail}
           >
             {amount} mg

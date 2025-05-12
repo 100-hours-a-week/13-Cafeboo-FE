@@ -90,7 +90,7 @@ const MyPage: React.FC = () => {
               <ProfileCard
                   nickname={userProfile?.nickname}
                   profileImageUrl={userProfile?.profileImageUrl}
-                  caffeineLimit={userProfile?.DailyCaffeineLimitMg}
+                  caffeineLimit={userProfile?.dailyCaffeineLimitMg}
                   beanCount={userProfile?.coffeeBean}
                   challengeCount={userProfile?.challengeCount}
                   onEditClick={handleEditProfile}

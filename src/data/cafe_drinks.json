@@ -2176,7 +2176,7 @@
             "drinkSizeId": 255,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -2189,20 +2189,20 @@
           {
             "drinkSizeId": 256,
             "size": "T",
-            "capacity_ml": 473,
-            "caffeine_mg": 20.0
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
           },
           {
             "drinkSizeId": 257,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 25.0
+            "capacity_ml": 473,
+            "caffeine_mg": 130.0
           },
           {
             "drinkSizeId": 258,
             "size": "V",
-            "capacity_ml": 355,
-            "caffeine_mg": 195.0
+            "capacity_ml": 591,
+            "caffeine_mg": 180.0
           }
         ]
       },
@@ -2216,19 +2216,19 @@
             "drinkSizeId": 259,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 100.0
+            "caffeine_mg": 85.0
           },
           {
             "drinkSizeId": 260,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 130.0
+            "caffeine_mg": 110.0
           },
           {
             "drinkSizeId": 261,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 180.0
+            "caffeine_mg": 155.0
           }
         ]
       },
@@ -2242,19 +2242,19 @@
             "drinkSizeId": 262,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 85.0
+            "caffeine_mg": 130.0
           },
           {
             "drinkSizeId": 263,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 110.0
+            "caffeine_mg": 130.0
           },
           {
             "drinkSizeId": 264,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 155.0
+            "caffeine_mg": 200.0
           }
         ]
       },
@@ -2268,19 +2268,19 @@
             "drinkSizeId": 265,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 130.0
+            "caffeine_mg": 120.0
           },
           {
             "drinkSizeId": 266,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 130.0
+            "caffeine_mg": 155.0
           },
           {
             "drinkSizeId": 267,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 200.0
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -2294,19 +2294,19 @@
             "drinkSizeId": 268,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 120.0
+            "caffeine_mg": 10.0
           },
           {
             "drinkSizeId": 269,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 155.0
+            "caffeine_mg": 15.0
           },
           {
             "drinkSizeId": 270,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 20.0
           }
         ]
       },
@@ -2320,19 +2320,19 @@
             "drinkSizeId": 271,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 10.0
+            "caffeine_mg": 60.0
           },
           {
             "drinkSizeId": 272,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 90.0
           },
           {
             "drinkSizeId": 273,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 20.0
+            "caffeine_mg": 120.0
           }
         ]
       },
@@ -2346,19 +2346,19 @@
             "drinkSizeId": 274,
             "size": "T",
             "capacity_ml": 355,
-            "caffeine_mg": 60.0
+            "caffeine_mg": 10.0
           },
           {
             "drinkSizeId": 275,
             "size": "G",
             "capacity_ml": 473,
-            "caffeine_mg": 90.0
+            "caffeine_mg": 12.0
           },
           {
             "drinkSizeId": 276,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 120.0
+            "caffeine_mg": 15.0
           }
         ]
       }
@@ -2377,13 +2377,13 @@
             "drinkSizeId": 277,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 10.0
+            "caffeine_mg": 150.0
           },
           {
             "drinkSizeId": 279,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 15.0
+            "capacity_ml": 473,
+            "caffeine_mg": 200.0
           }
         ]
       },
@@ -2396,14 +2396,14 @@
           {
             "drinkSizeId": 278,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 12.0
+            "capacity_ml": 355,
+            "caffeine_mg": 150.0
           },
           {
             "drinkSizeId": 280,
             "size": "L",
-            "capacity_ml": 355,
-            "caffeine_mg": 150.0
+            "capacity_ml": 473,
+            "caffeine_mg": 200.0
           }
         ]
       },
@@ -2417,13 +2417,13 @@
             "drinkSizeId": 281,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 150.0
+            "caffeine_mg": 90.0
           },
           {
             "drinkSizeId": 283,
             "size": "L",
             "capacity_ml": 473,
-            "caffeine_mg": 200.0
+            "caffeine_mg": 120.0
           }
         ]
       },
@@ -2436,14 +2436,14 @@
           {
             "drinkSizeId": 282,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 200.0
+            "capacity_ml": 355,
+            "caffeine_mg": 90.0
           },
           {
             "drinkSizeId": 284,
             "size": "L",
-            "capacity_ml": 355,
-            "caffeine_mg": 90.0
+            "capacity_ml": 473,
+            "caffeine_mg": 120.0
           }
         ]
       },
@@ -2457,13 +2457,13 @@
             "drinkSizeId": 285,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 90.0
+            "caffeine_mg": 160.0
           },
           {
             "drinkSizeId": 286,
             "size": "L",
             "capacity_ml": 473,
-            "caffeine_mg": 120.0
+            "caffeine_mg": 210.0
           }
         ]
       },
@@ -2476,8 +2476,8 @@
           {
             "drinkSizeId": 287,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 120.0
+            "capacity_ml": 355,
+            "caffeine_mg": 95.0
           }
         ]
       },
@@ -2491,7 +2491,7 @@
             "drinkSizeId": 288,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 160.0
+            "caffeine_mg": 95.0
           }
         ]
       },
@@ -2504,8 +2504,8 @@
           {
             "drinkSizeId": 289,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 210.0
+            "capacity_ml": 355,
+            "caffeine_mg": 95.0
           }
         ]
       },
@@ -2561,7 +2561,7 @@
             "drinkSizeId": 293,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 95.0
+            "caffeine_mg": 90.0
           }
         ]
       },
@@ -2575,7 +2575,7 @@
             "drinkSizeId": 294,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 95.0
+            "caffeine_mg": 90.0
           }
         ]
       },
@@ -2589,7 +2589,7 @@
             "drinkSizeId": 295,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 95.0
+            "caffeine_mg": 60.0
           }
         ]
       },
@@ -2603,7 +2603,7 @@
             "drinkSizeId": 296,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 90.0
+            "caffeine_mg": 65.0
           }
         ]
       },
@@ -2617,7 +2617,7 @@
             "drinkSizeId": 297,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 90.0
+            "caffeine_mg": 40.0
           }
         ]
       },
@@ -2631,7 +2631,7 @@
             "drinkSizeId": 298,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 60.0
+            "caffeine_mg": 40.0
           }
         ]
       },
@@ -2645,7 +2645,7 @@
             "drinkSizeId": 299,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 65.0
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2659,7 +2659,7 @@
             "drinkSizeId": 300,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 40.0
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2673,7 +2673,7 @@
             "drinkSizeId": 301,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 40.0
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2687,7 +2687,7 @@
             "drinkSizeId": 302,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 5.0
+            "caffeine_mg": 30.0
           }
         ]
       },
@@ -2729,7 +2729,7 @@
             "drinkSizeId": 305,
             "size": "R",
             "capacity_ml": 355,
-            "caffeine_mg": 30.0
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -2761,8 +2761,8 @@
           {
             "drinkSizeId": 307,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 59,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2775,8 +2775,8 @@
           {
             "drinkSizeId": 308,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 59,
+            "caffeine_mg": 181.0
           }
         ]
       },
@@ -2789,8 +2789,8 @@
           {
             "drinkSizeId": 309,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2803,8 +2803,8 @@
           {
             "drinkSizeId": 310,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 39.0
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2817,8 +2817,8 @@
           {
             "drinkSizeId": 311,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 946,
+            "caffeine_mg": 474.0
           }
         ]
       },
@@ -2831,8 +2831,8 @@
           {
             "drinkSizeId": 312,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 473,
+            "caffeine_mg": 406.0
           }
         ]
       },
@@ -2845,8 +2845,8 @@
           {
             "drinkSizeId": 313,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 710,
+            "caffeine_mg": 371.0
           }
         ]
       },
@@ -2859,8 +2859,8 @@
           {
             "drinkSizeId": 314,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 6.0
+            "capacity_ml": 946,
+            "caffeine_mg": 564.0
           }
         ]
       },
@@ -2873,8 +2873,8 @@
           {
             "drinkSizeId": 315,
             "size": "R",
-            "capacity_ml": 59,
-            "caffeine_mg": 237.0
+            "capacity_ml": 473,
+            "caffeine_mg": 489.0
           }
         ]
       },
@@ -2887,8 +2887,8 @@
           {
             "drinkSizeId": 316,
             "size": "R",
-            "capacity_ml": 59,
-            "caffeine_mg": 181.0
+            "capacity_ml": 710,
+            "caffeine_mg": 452.0
           }
         ]
       },
@@ -2901,8 +2901,8 @@
           {
             "drinkSizeId": 317,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "capacity_ml": 946,
+            "caffeine_mg": 474.0
           }
         ]
       },
@@ -2915,7 +2915,7 @@
           {
             "drinkSizeId": 318,
             "size": "R",
-            "capacity_ml": 710,
+            "capacity_ml": 473,
             "caffeine_mg": 237.0
           }
         ]
@@ -2929,8 +2929,8 @@
           {
             "drinkSizeId": 319,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 474.0
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2944,7 +2944,7 @@
             "drinkSizeId": 320,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 406.0
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2958,7 +2958,7 @@
             "drinkSizeId": 321,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 371.0
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2971,8 +2971,8 @@
           {
             "drinkSizeId": 322,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 564.0
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2985,8 +2985,8 @@
           {
             "drinkSizeId": 323,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 489.0
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -2999,8 +2999,8 @@
           {
             "drinkSizeId": 324,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 452.0
+            "capacity_ml": 473,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -3013,8 +3013,8 @@
           {
             "drinkSizeId": 325,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 474.0
+            "capacity_ml": 710,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -3028,7 +3028,7 @@
             "drinkSizeId": 326,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 119.0
           }
         ]
       },
@@ -3042,7 +3042,7 @@
             "drinkSizeId": 327,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 119.0
           }
         ]
       },
@@ -3055,8 +3055,8 @@
           {
             "drinkSizeId": 328,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "capacity_ml": 710,
+            "caffeine_mg": 118.0
           }
         ]
       },
@@ -3083,7 +3083,7 @@
           {
             "drinkSizeId": 330,
             "size": "R",
-            "capacity_ml": 473,
+            "capacity_ml": 710,
             "caffeine_mg": 237.0
           }
         ]
@@ -3112,7 +3112,7 @@
             "drinkSizeId": 332,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 209.0
           }
         ]
       },
@@ -3126,7 +3126,7 @@
             "drinkSizeId": 333,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 209.0
           }
         ]
       },
@@ -3140,7 +3140,7 @@
             "drinkSizeId": 334,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 119.0
+            "caffeine_mg": 209.0
           }
         ]
       },
@@ -3154,7 +3154,7 @@
             "drinkSizeId": 335,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 119.0
+            "caffeine_mg": 209.0
           }
         ]
       },
@@ -3167,8 +3167,8 @@
           {
             "drinkSizeId": 336,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 118.0
+            "capacity_ml": 473,
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -3182,7 +3182,7 @@
             "drinkSizeId": 337,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -3195,8 +3195,8 @@
           {
             "drinkSizeId": 338,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "capacity_ml": 473,
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -3210,7 +3210,7 @@
             "drinkSizeId": 339,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 195.0
           }
         ]
       },
@@ -3224,7 +3224,7 @@
             "drinkSizeId": 340,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 209.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3238,7 +3238,7 @@
             "drinkSizeId": 341,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 209.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3252,7 +3252,7 @@
             "drinkSizeId": 342,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 209.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3266,7 +3266,7 @@
             "drinkSizeId": 343,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 209.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3280,7 +3280,7 @@
             "drinkSizeId": 344,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3294,7 +3294,7 @@
             "drinkSizeId": 345,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3308,7 +3308,7 @@
             "drinkSizeId": 346,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3322,7 +3322,7 @@
             "drinkSizeId": 347,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3335,8 +3335,8 @@
           {
             "drinkSizeId": 348,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "capacity_ml": 710,
+            "caffeine_mg": 93.0
           }
         ]
       },
@@ -3349,8 +3349,8 @@
           {
             "drinkSizeId": 349,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 15.0
+            "capacity_ml": 946,
+            "caffeine_mg": 167.0
           }
         ]
       },
@@ -3363,8 +3363,8 @@
           {
             "drinkSizeId": 350,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "capacity_ml": 710,
+            "caffeine_mg": 119.0
           }
         ]
       },
@@ -3378,7 +3378,7 @@
             "drinkSizeId": 351,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 280.0
           }
         ]
       },
@@ -3391,8 +3391,8 @@
           {
             "drinkSizeId": 352,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "capacity_ml": 710,
+            "caffeine_mg": 260.0
           }
         ]
       },
@@ -3406,7 +3406,7 @@
             "drinkSizeId": 353,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 11.0
           }
         ]
       },
@@ -3419,8 +3419,8 @@
           {
             "drinkSizeId": 354,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "capacity_ml": 710,
+            "caffeine_mg": 10.0
           }
         ]
       },
@@ -3434,7 +3434,7 @@
             "drinkSizeId": 355,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 206.0
           }
         ]
       },
@@ -3447,8 +3447,8 @@
           {
             "drinkSizeId": 356,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 93.0
+            "capacity_ml": 473,
+            "caffeine_mg": 15.0
           }
         ]
       },
@@ -3461,8 +3461,8 @@
           {
             "drinkSizeId": 357,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 167.0
+            "capacity_ml": 710,
+            "caffeine_mg": 16.0
           }
         ]
       },
@@ -3475,8 +3475,8 @@
           {
             "drinkSizeId": 358,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 119.0
+            "capacity_ml": 473,
+            "caffeine_mg": 208.0
           }
         ]
       },
@@ -3490,7 +3490,7 @@
             "drinkSizeId": 359,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 280.0
+            "caffeine_mg": 152.0
           }
         ]
       },
@@ -3503,8 +3503,8 @@
           {
             "drinkSizeId": 360,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 260.0
+            "capacity_ml": 473,
+            "caffeine_mg": 30.0
           }
         ]
       },
@@ -3518,7 +3518,7 @@
             "drinkSizeId": 361,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 11.0
+            "caffeine_mg": 38.0
           }
         ]
       },
@@ -3531,8 +3531,8 @@
           {
             "drinkSizeId": 362,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 10.0
+            "capacity_ml": 473,
+            "caffeine_mg": 51.0
           }
         ]
       },
@@ -3546,7 +3546,7 @@
             "drinkSizeId": 363,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 206.0
+            "caffeine_mg": 51.0
           }
         ]
       },
@@ -3560,7 +3560,7 @@
             "drinkSizeId": 364,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 15.0
+            "caffeine_mg": 133.0
           }
         ]
       },
@@ -3574,7 +3574,7 @@
             "drinkSizeId": 365,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 16.0
+            "caffeine_mg": 133.0
           }
         ]
       },
@@ -3587,8 +3587,8 @@
           {
             "drinkSizeId": 366,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 208.0
+            "capacity_ml": 710,
+            "caffeine_mg": 77.0
           }
         ]
       },
@@ -3602,7 +3602,7 @@
             "drinkSizeId": 367,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 152.0
+            "caffeine_mg": 51.0
           }
         ]
       },
@@ -3615,8 +3615,8 @@
           {
             "drinkSizeId": 368,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 30.0
+            "capacity_ml": 946,
+            "caffeine_mg": 32.0
           }
         ]
       },
@@ -3629,8 +3629,8 @@
           {
             "drinkSizeId": 369,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 38.0
+            "capacity_ml": 473,
+            "caffeine_mg": 65.0
           }
         ]
       },
@@ -3643,8 +3643,8 @@
           {
             "drinkSizeId": 370,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 51.0
+            "capacity_ml": 710,
+            "caffeine_mg": 71.0
           }
         ]
       },
@@ -3657,8 +3657,8 @@
           {
             "drinkSizeId": 371,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 51.0
+            "capacity_ml": 473,
+            "caffeine_mg": 92.0
           }
         ]
       },
@@ -3671,8 +3671,8 @@
           {
             "drinkSizeId": 372,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 133.0
+            "capacity_ml": 710,
+            "caffeine_mg": 67.0
           }
         ]
       },
@@ -3686,7 +3686,7 @@
             "drinkSizeId": 373,
             "size": "R",
             "capacity_ml": 710,
-            "caffeine_mg": 133.0
+            "caffeine_mg": 72.0
           }
         ]
       },
@@ -3699,8 +3699,8 @@
           {
             "drinkSizeId": 374,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 77.0
+            "capacity_ml": 473,
+            "caffeine_mg": 72.0
           }
         ]
       },
@@ -3713,8 +3713,8 @@
           {
             "drinkSizeId": 375,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 51.0
+            "capacity_ml": 473,
+            "caffeine_mg": 90.0
           }
         ]
       },
@@ -3727,8 +3727,8 @@
           {
             "drinkSizeId": 376,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 32.0
+            "capacity_ml": 710,
+            "caffeine_mg": 90.0
           }
         ]
       },
@@ -3741,8 +3741,8 @@
           {
             "drinkSizeId": 377,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 65.0
+            "capacity_ml": 710,
+            "caffeine_mg": 23.0
           }
         ]
       }
@@ -3760,8 +3760,8 @@
           {
             "drinkSizeId": 378,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 71.0
+            "capacity_ml": 384,
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3769,13 +3769,13 @@
         "drinkId": 186,
         "name": "다크아메리카노",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 379,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 92.0
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3788,8 +3788,8 @@
           {
             "drinkSizeId": 380,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 67.0
+            "capacity_ml": 384,
+            "caffeine_mg": 161.9
           }
         ]
       },
@@ -3797,13 +3797,13 @@
         "drinkId": 188,
         "name": "미디엄아메리카노",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 381,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 72.0
+            "capacity_ml": 473,
+            "caffeine_mg": 161.9
           }
         ]
       },
@@ -3816,8 +3816,8 @@
           {
             "drinkSizeId": 382,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 72.0
+            "capacity_ml": 384,
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3825,13 +3825,13 @@
         "drinkId": 190,
         "name": "카페라떼",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 383,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 90.0
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3844,8 +3844,8 @@
           {
             "drinkSizeId": 384,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 90.0
+            "capacity_ml": 384,
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3853,13 +3853,13 @@
         "drinkId": 192,
         "name": "아인슈페너",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 385,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 23.0
+            "capacity_ml": 473,
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3881,7 +3881,7 @@
         "drinkId": 194,
         "name": "바닐라라떼",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 387,
@@ -3901,7 +3901,7 @@
             "drinkSizeId": 388,
             "size": "R",
             "capacity_ml": 384,
-            "caffeine_mg": 161.9
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3909,13 +3909,13 @@
         "drinkId": 196,
         "name": "돌체라떼",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 389,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 161.9
+            "caffeine_mg": 191.8
           }
         ]
       },
@@ -3929,7 +3929,7 @@
             "drinkSizeId": 390,
             "size": "R",
             "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 272.32
           }
         ]
       },
@@ -3937,13 +3937,13 @@
         "drinkId": 198,
         "name": "카페모카",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 391,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 272.32
           }
         ]
       },
@@ -3951,13 +3951,13 @@
         "drinkId": 199,
         "name": "돌체콜드브루라떼",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 392,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "capacity_ml": 473,
+            "caffeine_mg": 298.02
           }
         ]
       },
@@ -3965,7 +3965,7 @@
         "drinkId": 200,
         "name": "토닉커피",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 393,
@@ -3979,13 +3979,13 @@
         "drinkId": 201,
         "name": "쇼콜라프레소",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 394,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "capacity_ml": 473,
+            "caffeine_mg": 193.0
           }
         ]
       },
@@ -3993,13 +3993,13 @@
         "drinkId": 202,
         "name": "플랫화이트",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 395,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 161.9
           }
         ]
       },
@@ -4007,13 +4007,13 @@
         "drinkId": 203,
         "name": "솔티드밀크카라멜",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 396,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 191.8
+            "capacity_ml": 473,
+            "caffeine_mg": 139.56
           }
         ]
       },
@@ -4021,7 +4021,7 @@
         "drinkId": 204,
         "name": "텐라떼",
         "type": "COFFEE",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 397,
@@ -4041,7 +4041,7 @@
             "drinkSizeId": 398,
             "size": "R",
             "capacity_ml": 384,
-            "caffeine_mg": 272.32
+            "caffeine_mg": 80.52
           }
         ]
       },
@@ -4049,13 +4049,13 @@
         "drinkId": 206,
         "name": "리얼초코",
         "type": "OTHER",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 399,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 272.32
+            "caffeine_mg": 80.52
           }
         ]
       },
@@ -4068,8 +4068,8 @@
           {
             "drinkSizeId": 400,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 298.02
+            "capacity_ml": 384,
+            "caffeine_mg": 90.57
           }
         ]
       },
@@ -4077,13 +4077,13 @@
         "drinkId": 208,
         "name": "로얄밀크티",
         "type": "TEA",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 401,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 90.57
           }
         ]
       },
@@ -4096,8 +4096,8 @@
           {
             "drinkSizeId": 402,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 193.0
+            "capacity_ml": 384,
+            "caffeine_mg": 44.52
           }
         ]
       },
@@ -4105,13 +4105,13 @@
         "drinkId": 210,
         "name": "블랙자몽티",
         "type": "TEA",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 403,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 161.9
+            "caffeine_mg": 40.53
           }
         ]
       },
@@ -4119,13 +4119,13 @@
         "drinkId": 211,
         "name": "제로 피치 스윗티",
         "type": "TEA",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 404,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 139.56
+            "caffeine_mg": 12.5
           }
         ]
       },
@@ -4133,13 +4133,13 @@
         "drinkId": 212,
         "name": "제로 석류 스윗티",
         "type": "TEA",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 405,
             "size": "R",
             "capacity_ml": 473,
-            "caffeine_mg": 191.8
+            "caffeine_mg": 10.2
           }
         ]
       },
@@ -4147,13 +4147,13 @@
         "drinkId": 213,
         "name": "제로 체리 콕",
         "type": "OTHER",
-        "temperature": "ICE",
+        "temperature": "ICED",
         "sizes": [
           {
             "drinkSizeId": 406,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 80.52
+            "capacity_ml": 473,
+            "caffeine_mg": 4.7
           }
         ]
       }
@@ -4171,14 +4171,14 @@
           {
             "drinkSizeId": 407,
             "size": "Solo",
-            "capacity_ml": 473,
-            "caffeine_mg": 80.52
+            "capacity_ml": 59,
+            "caffeine_mg": 104.8
           },
           {
             "drinkSizeId": 408,
             "size": "Doppio",
-            "capacity_ml": 384,
-            "caffeine_mg": 90.57
+            "capacity_ml": 147,
+            "caffeine_mg": 184.7
           }
         ]
       },
@@ -4191,8 +4191,8 @@
           {
             "drinkSizeId": 409,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 90.57
+            "capacity_ml": 591,
+            "caffeine_mg": 204.2
           }
         ]
       },
@@ -4205,8 +4205,8 @@
           {
             "drinkSizeId": 410,
             "size": "R",
-            "capacity_ml": 384,
-            "caffeine_mg": 44.52
+            "capacity_ml": 710,
+            "caffeine_mg": 199.7
           }
         ]
       },
@@ -4219,8 +4219,8 @@
           {
             "drinkSizeId": 411,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 40.53
+            "capacity_ml": 591,
+            "caffeine_mg": 189.9
           }
         ]
       },
@@ -4233,8 +4233,8 @@
           {
             "drinkSizeId": 412,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 12.5
+            "capacity_ml": 591,
+            "caffeine_mg": 233.2
           }
         ]
       },
@@ -4247,8 +4247,8 @@
           {
             "drinkSizeId": 413,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 10.2
+            "capacity_ml": 591,
+            "caffeine_mg": 201.4
           }
         ]
       },
@@ -4261,8 +4261,8 @@
           {
             "drinkSizeId": 414,
             "size": "R",
-            "capacity_ml": 473,
-            "caffeine_mg": 4.7
+            "capacity_ml": 591,
+            "caffeine_mg": 195.1
           }
         ]
       },
@@ -4275,8 +4275,8 @@
           {
             "drinkSizeId": 415,
             "size": "R",
-            "capacity_ml": 59,
-            "caffeine_mg": 104.8
+            "capacity_ml": 591,
+            "caffeine_mg": 220.7
           }
         ]
       },
@@ -4289,8 +4289,8 @@
           {
             "drinkSizeId": 416,
             "size": "R",
-            "capacity_ml": 147,
-            "caffeine_mg": 184.7
+            "capacity_ml": 710,
+            "caffeine_mg": 211.5
           }
         ]
       },
@@ -4304,7 +4304,7 @@
             "drinkSizeId": 417,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 204.2
+            "caffeine_mg": 204.6
           }
         ]
       },
@@ -4317,8 +4317,8 @@
           {
             "drinkSizeId": 418,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 199.7
+            "capacity_ml": 591,
+            "caffeine_mg": 209.8
           }
         ]
       },
@@ -4331,8 +4331,8 @@
           {
             "drinkSizeId": 419,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 189.9
+            "capacity_ml": 710,
+            "caffeine_mg": 196.7
           }
         ]
       },
@@ -4346,7 +4346,7 @@
             "drinkSizeId": 420,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 199.1
+            "caffeine_mg": 206.7
           }
         ]
       },
@@ -4360,7 +4360,7 @@
             "drinkSizeId": 421,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 233.2
+            "caffeine_mg": 199.4
           }
         ]
       },
@@ -4373,8 +4373,8 @@
           {
             "drinkSizeId": 422,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 232.5
+            "capacity_ml": 710,
+            "caffeine_mg": 198.6
           }
         ]
       },
@@ -4387,8 +4387,8 @@
           {
             "drinkSizeId": 423,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 201.4
+            "capacity_ml": 946,
+            "caffeine_mg": 290.8
           }
         ]
       },
@@ -4402,7 +4402,7 @@
             "drinkSizeId": 424,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 192.3
+            "caffeine_mg": 194.2
           }
         ]
       },
@@ -4416,7 +4416,7 @@
             "drinkSizeId": 425,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 195.1
+            "caffeine_mg": 181.6
           }
         ]
       },
@@ -4429,8 +4429,8 @@
           {
             "drinkSizeId": 426,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 220.7
+            "capacity_ml": 710,
+            "caffeine_mg": 181.2
           }
         ]
       },
@@ -4443,8 +4443,8 @@
           {
             "drinkSizeId": 427,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 211.5
+            "capacity_ml": 946,
+            "caffeine_mg": 234.6
           }
         ]
       },
@@ -4457,8 +4457,8 @@
           {
             "drinkSizeId": 428,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 204.6
+            "capacity_ml": 946,
+            "caffeine_mg": 347.1
           }
         ]
       },
@@ -4472,7 +4472,7 @@
             "drinkSizeId": 429,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 209.8
+            "caffeine_mg": 172.9
           }
         ]
       },
@@ -4485,8 +4485,8 @@
           {
             "drinkSizeId": 430,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 196.7
+            "capacity_ml": 591,
+            "caffeine_mg": 99.6
           }
         ]
       },
@@ -4499,8 +4499,8 @@
           {
             "drinkSizeId": 431,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 206.7
+            "capacity_ml": 946,
+            "caffeine_mg": 196.4
           }
         ]
       },
@@ -4514,7 +4514,7 @@
             "drinkSizeId": 432,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 208.0
+            "caffeine_mg": 313.4
           }
         ]
       },
@@ -4528,7 +4528,7 @@
             "drinkSizeId": 433,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 199.4
+            "caffeine_mg": 216.7
           }
         ]
       },
@@ -4541,8 +4541,8 @@
           {
             "drinkSizeId": 434,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 198.6
+            "capacity_ml": 591,
+            "caffeine_mg": 217.0
           }
         ]
       },
@@ -4555,8 +4555,8 @@
           {
             "drinkSizeId": 435,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 290.8
+            "capacity_ml": 591,
+            "caffeine_mg": 206.2
           }
         ]
       },
@@ -4570,7 +4570,7 @@
             "drinkSizeId": 436,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 194.2
+            "caffeine_mg": 102.6
           }
         ]
       },
@@ -4584,7 +4584,7 @@
             "drinkSizeId": 437,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 181.6
+            "caffeine_mg": 35.6
           }
         ]
       },
@@ -4597,8 +4597,8 @@
           {
             "drinkSizeId": 438,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 181.2
+            "capacity_ml": 591,
+            "caffeine_mg": 65.3
           }
         ]
       },
@@ -4611,8 +4611,8 @@
           {
             "drinkSizeId": 439,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 234.6
+            "capacity_ml": 710,
+            "caffeine_mg": 78.5
           }
         ]
       },
@@ -4625,8 +4625,8 @@
           {
             "drinkSizeId": 440,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 347.1
+            "capacity_ml": 591,
+            "caffeine_mg": 73.4
           }
         ]
       },
@@ -4639,8 +4639,8 @@
           {
             "drinkSizeId": 441,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 172.9
+            "capacity_ml": 710,
+            "caffeine_mg": 87.2
           }
         ]
       },
@@ -4653,8 +4653,8 @@
           {
             "drinkSizeId": 442,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 99.6
+            "capacity_ml": 710,
+            "caffeine_mg": 14.5
           }
         ]
       },
@@ -4667,8 +4667,8 @@
           {
             "drinkSizeId": 443,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 196.4
+            "capacity_ml": 710,
+            "caffeine_mg": 24.0
           }
         ]
       },
@@ -4681,8 +4681,8 @@
           {
             "drinkSizeId": 444,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 313.4
+            "capacity_ml": 946,
+            "caffeine_mg": 41.2
           }
         ]
       },
@@ -4696,7 +4696,7 @@
             "drinkSizeId": 445,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 216.7
+            "caffeine_mg": 61.5
           }
         ]
       },
@@ -4709,8 +4709,8 @@
           {
             "drinkSizeId": 446,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 131.7
+            "capacity_ml": 710,
+            "caffeine_mg": 70.9
           }
         ]
       },
@@ -4724,7 +4724,7 @@
             "drinkSizeId": 447,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 217.0
+            "caffeine_mg": 198.8
           }
         ]
       },
@@ -4737,8 +4737,8 @@
           {
             "drinkSizeId": 448,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 156.4
+            "capacity_ml": 591,
+            "caffeine_mg": 114.5
           }
         ]
       },
@@ -4752,7 +4752,7 @@
             "drinkSizeId": 449,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 206.2
+            "caffeine_mg": 106.2
           }
         ]
       },
@@ -4766,7 +4766,7 @@
             "drinkSizeId": 450,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 102.6
+            "caffeine_mg": 14.3
           }
         ]
       },
@@ -4780,7 +4780,7 @@
             "drinkSizeId": 451,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 35.6
+            "caffeine_mg": 30.6
           }
         ]
       },
@@ -4793,8 +4793,8 @@
           {
             "drinkSizeId": 452,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 65.3
+            "capacity_ml": 946,
+            "caffeine_mg": 35.6
           }
         ]
       },
@@ -4807,8 +4807,8 @@
           {
             "drinkSizeId": 453,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 78.5
+            "capacity_ml": 591,
+            "caffeine_mg": 21.9
           }
         ]
       },
@@ -4822,7 +4822,7 @@
             "drinkSizeId": 454,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 73.4
+            "caffeine_mg": 11.1
           }
         ]
       },
@@ -4835,8 +4835,8 @@
           {
             "drinkSizeId": 455,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 87.2
+            "capacity_ml": 591,
+            "caffeine_mg": 56.2
           }
         ]
       },
@@ -4849,8 +4849,8 @@
           {
             "drinkSizeId": 456,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 14.5
+            "capacity_ml": 591,
+            "caffeine_mg": 21.3
           }
         ]
       },
@@ -4863,8 +4863,8 @@
           {
             "drinkSizeId": 457,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 24.0
+            "capacity_ml": 591,
+            "caffeine_mg": 173.8
           }
         ]
       },
@@ -4877,8 +4877,8 @@
           {
             "drinkSizeId": 458,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 41.2
+            "capacity_ml": 591,
+            "caffeine_mg": 2.6
           }
         ]
       },
@@ -4892,7 +4892,7 @@
             "drinkSizeId": 459,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 61.5
+            "caffeine_mg": 6.8
           }
         ]
       },
@@ -4905,8 +4905,8 @@
           {
             "drinkSizeId": 460,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 70.9
+            "capacity_ml": 591,
+            "caffeine_mg": 32.1
           }
         ]
       },
@@ -4920,7 +4920,7 @@
             "drinkSizeId": 461,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 198.8
+            "caffeine_mg": 5.6
           }
         ]
       },
@@ -4934,7 +4934,7 @@
             "drinkSizeId": 462,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 114.5
+            "caffeine_mg": 10.0
           }
         ]
       },
@@ -4948,7 +4948,7 @@
             "drinkSizeId": 463,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 135.9
+            "caffeine_mg": 14.3
           }
         ]
       },
@@ -4961,8 +4961,8 @@
           {
             "drinkSizeId": 464,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 106.2
+            "capacity_ml": 710,
+            "caffeine_mg": 23.9
           }
         ]
       },
@@ -4976,7 +4976,7 @@
             "drinkSizeId": 465,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 118.1
+            "caffeine_mg": 9.5
           }
         ]
       },
@@ -4989,8 +4989,8 @@
           {
             "drinkSizeId": 466,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 14.3
+            "capacity_ml": 946,
+            "caffeine_mg": 11.2
           }
         ]
       },
@@ -5004,7 +5004,7 @@
             "drinkSizeId": 467,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 30.6
+            "caffeine_mg": 9.1
           }
         ]
       },
@@ -5017,8 +5017,8 @@
           {
             "drinkSizeId": 468,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 35.6
+            "capacity_ml": 710,
+            "caffeine_mg": 5.3
           }
         ]
       },
@@ -5031,8 +5031,8 @@
           {
             "drinkSizeId": 469,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 21.9
+            "capacity_ml": 946,
+            "caffeine_mg": 13.1
           }
         ]
       },
@@ -5045,8 +5045,8 @@
           {
             "drinkSizeId": 470,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 11.1
+            "capacity_ml": 59,
+            "caffeine_mg": 4.9
           }
         ]
       },
@@ -5060,7 +5060,7 @@
             "drinkSizeId": 471,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 56.2
+            "caffeine_mg": 11.4
           }
         ]
       },
@@ -5074,7 +5074,7 @@
             "drinkSizeId": 472,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 54.0
+            "caffeine_mg": 11.3
           }
         ]
       },
@@ -5088,7 +5088,7 @@
             "drinkSizeId": 473,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 21.3
+            "caffeine_mg": 17.0
           }
         ]
       },
@@ -5102,7 +5102,7 @@
             "drinkSizeId": 474,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 173.8
+            "caffeine_mg": 11.3
           }
         ]
       },
@@ -5116,7 +5116,7 @@
             "drinkSizeId": 475,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 2.6
+            "caffeine_mg": 8.9
           }
         ]
       },
@@ -5130,7 +5130,7 @@
             "drinkSizeId": 476,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 6.8
+            "caffeine_mg": 9.4
           }
         ]
       },
@@ -5144,7 +5144,7 @@
             "drinkSizeId": 477,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 32.1
+            "caffeine_mg": 7.8
           }
         ]
       },
@@ -5158,7 +5158,7 @@
             "drinkSizeId": 478,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 5.6
+            "caffeine_mg": 9.8
           }
         ]
       },
@@ -5172,7 +5172,7 @@
             "drinkSizeId": 479,
             "size": "R",
             "capacity_ml": 591,
-            "caffeine_mg": 10.0
+            "caffeine_mg": 22.8
           }
         ]
       },
@@ -5185,8 +5185,8 @@
           {
             "drinkSizeId": 480,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 14.3
+            "capacity_ml": 710,
+            "caffeine_mg": 10.8
           }
         ]
       },
@@ -5199,8 +5199,8 @@
           {
             "drinkSizeId": 481,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 23.9
+            "capacity_ml": 946,
+            "caffeine_mg": 10.9
           }
         ]
       },
@@ -5213,8 +5213,8 @@
           {
             "drinkSizeId": 482,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 9.5
+            "capacity_ml": 710,
+            "caffeine_mg": 8.7
           }
         ]
       },
@@ -5227,7 +5227,7 @@
           {
             "drinkSizeId": 483,
             "size": "R",
-            "capacity_ml": 946,
+            "capacity_ml": 710,
             "caffeine_mg": 11.2
           }
         ]
@@ -5241,8 +5241,8 @@
           {
             "drinkSizeId": 484,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 9.1
+            "capacity_ml": 710,
+            "caffeine_mg": 8.8
           }
         ]
       },
@@ -5255,8 +5255,8 @@
           {
             "drinkSizeId": 485,
             "size": "R",
-            "capacity_ml": 710,
-            "caffeine_mg": 5.3
+            "capacity_ml": 591,
+            "caffeine_mg": 13.1
           }
         ]
       },
@@ -5269,8 +5269,8 @@
           {
             "drinkSizeId": 486,
             "size": "R",
-            "capacity_ml": 946,
-            "caffeine_mg": 13.1
+            "capacity_ml": 591,
+            "caffeine_mg": 9.9
           }
         ]
       }
@@ -5288,14 +5288,14 @@
           {
             "drinkSizeId": 487,
             "size": "L",
-            "capacity_ml": 59,
-            "caffeine_mg": 4.9
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 488,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 11.4
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5308,14 +5308,14 @@
           {
             "drinkSizeId": 489,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 11.3
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 490,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 17.0
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5328,14 +5328,14 @@
           {
             "drinkSizeId": 491,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 14.4
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 492,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 11.3
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5348,14 +5348,14 @@
           {
             "drinkSizeId": 493,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 11.4
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 494,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 8.9
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5368,14 +5368,14 @@
           {
             "drinkSizeId": 495,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 8.4
+            "capacity_ml": 532,
+            "caffeine_mg": 200.0
           },
           {
             "drinkSizeId": 496,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 9.4
+            "capacity_ml": 651,
+            "caffeine_mg": 321.0
           }
         ]
       },
@@ -5388,14 +5388,14 @@
           {
             "drinkSizeId": 497,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 4.8
+            "capacity_ml": 532,
+            "caffeine_mg": 200.0
           },
           {
             "drinkSizeId": 498,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 7.8
+            "capacity_ml": 680,
+            "caffeine_mg": 321.0
           }
         ]
       },
@@ -5408,8 +5408,8 @@
           {
             "drinkSizeId": 499,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 8.2
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           }
         ]
       },
@@ -5422,8 +5422,8 @@
           {
             "drinkSizeId": 500,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 9.8
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           }
         ]
       },
@@ -5436,14 +5436,14 @@
           {
             "drinkSizeId": 501,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 14.9
+            "capacity_ml": 532,
+            "caffeine_mg": 171.0
           },
           {
             "drinkSizeId": 502,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 22.8
+            "capacity_ml": 651,
+            "caffeine_mg": 254.0
           }
         ]
       },
@@ -5456,14 +5456,14 @@
           {
             "drinkSizeId": 503,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 21.9
+            "capacity_ml": 532,
+            "caffeine_mg": 171.0
           },
           {
             "drinkSizeId": 504,
             "size": "EX",
-            "capacity_ml": 710,
-            "caffeine_mg": 10.8
+            "capacity_ml": 680,
+            "caffeine_mg": 254.0
           }
         ]
       },
@@ -5476,8 +5476,8 @@
           {
             "drinkSizeId": 505,
             "size": "L",
-            "capacity_ml": 946,
-            "caffeine_mg": 10.9
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           }
         ]
       },
@@ -5490,8 +5490,8 @@
           {
             "drinkSizeId": 506,
             "size": "EX",
-            "capacity_ml": 710,
-            "caffeine_mg": 8.7
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5504,14 +5504,14 @@
           {
             "drinkSizeId": 507,
             "size": "L",
-            "capacity_ml": 710,
-            "caffeine_mg": 11.2
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 508,
             "size": "EX",
-            "capacity_ml": 710,
-            "caffeine_mg": 8.8
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5524,14 +5524,14 @@
           {
             "drinkSizeId": 509,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 13.1
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 510,
             "size": "EX",
-            "capacity_ml": 591,
-            "caffeine_mg": 9.9
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5544,14 +5544,14 @@
           {
             "drinkSizeId": 511,
             "size": "L",
-            "capacity_ml": 591,
-            "caffeine_mg": 14.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 512,
             "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5564,8 +5564,8 @@
           {
             "drinkSizeId": 513,
             "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 532,
+            "caffeine_mg": 194.0
           }
         ]
       },
@@ -5579,7 +5579,7 @@
             "drinkSizeId": 514,
             "size": "L",
             "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "caffeine_mg": 194.0
           }
         ]
       },
@@ -5592,14 +5592,14 @@
           {
             "drinkSizeId": 515,
             "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 516,
             "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5612,14 +5612,14 @@
           {
             "drinkSizeId": 517,
             "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 518,
             "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5632,8 +5632,8 @@
           {
             "drinkSizeId": 519,
             "size": "Solo",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "capacity_ml": 40,
+            "caffeine_mg": 79.0
           }
         ]
       },
@@ -5646,8 +5646,8 @@
           {
             "drinkSizeId": 520,
             "size": "Solo",
-            "capacity_ml": 532,
-            "caffeine_mg": 200.0
+            "capacity_ml": 40,
+            "caffeine_mg": 79.0
           }
         ]
       },
@@ -5660,8 +5660,8 @@
           {
             "drinkSizeId": 521,
             "size": "Solo",
-            "capacity_ml": 651,
-            "caffeine_mg": 321.0
+            "capacity_ml": 30,
+            "caffeine_mg": 79.0
           }
         ]
       },
@@ -5674,14 +5674,14 @@
           {
             "drinkSizeId": 522,
             "size": "L",
-            "capacity_ml": 532,
-            "caffeine_mg": 200.0
+            "capacity_ml": 414,
+            "caffeine_mg": 104.0
           },
           {
             "drinkSizeId": 523,
             "size": "EX",
             "capacity_ml": 680,
-            "caffeine_mg": 321.0
+            "caffeine_mg": 155.0
           }
         ]
       },
@@ -5694,14 +5694,14 @@
           {
             "drinkSizeId": 524,
             "size": "L",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 52.0
           },
           {
             "drinkSizeId": 525,
             "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 680,
+            "caffeine_mg": 104.0
           }
         ]
       },
@@ -5714,14 +5714,14 @@
           {
             "drinkSizeId": 526,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 171.0
+            "capacity_ml": 414,
+            "caffeine_mg": 104.0
           },
           {
             "drinkSizeId": 527,
             "size": "EX",
-            "capacity_ml": 651,
-            "caffeine_mg": 254.0
+            "capacity_ml": 680,
+            "caffeine_mg": 155.0
           }
         ]
       },
@@ -5734,8 +5734,8 @@
           {
             "drinkSizeId": 528,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 171.0
+            "capacity_ml": 414,
+            "caffeine_mg": 52.0
           }
         ]
       },
@@ -5748,8 +5748,8 @@
           {
             "drinkSizeId": 529,
             "size": "R",
-            "capacity_ml": 680,
-            "caffeine_mg": 254.0
+            "capacity_ml": 414,
+            "caffeine_mg": 2.0
           }
         ]
       },
@@ -5762,8 +5762,8 @@
           {
             "drinkSizeId": 530,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 124.0
           }
         ]
       },
@@ -5776,8 +5776,8 @@
           {
             "drinkSizeId": 531,
             "size": "R",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 414,
+            "caffeine_mg": 4.0
           }
         ]
       },
@@ -5790,14 +5790,14 @@
           {
             "drinkSizeId": 532,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 104.0
           },
           {
             "drinkSizeId": 533,
             "size": "EX",
             "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 155.0
           }
         ]
       },
@@ -5810,14 +5810,14 @@
           {
             "drinkSizeId": 534,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 4.0
           },
           {
             "drinkSizeId": 535,
             "size": "EX",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 680,
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -5830,14 +5830,14 @@
           {
             "drinkSizeId": 536,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 156.0
           },
           {
             "drinkSizeId": 537,
             "size": "EX",
             "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "caffeine_mg": 234.0
           }
         ]
       },
@@ -5850,14 +5850,14 @@
           {
             "drinkSizeId": 538,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 194.0
+            "capacity_ml": 414,
+            "caffeine_mg": 4.0
           },
           {
             "drinkSizeId": 539,
             "size": "EX",
-            "capacity_ml": 532,
-            "caffeine_mg": 194.0
+            "capacity_ml": 680,
+            "caffeine_mg": 5.0
           }
         ]
       },
@@ -5870,8 +5870,8 @@
           {
             "drinkSizeId": 540,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 151,
+            "caffeine_mg": 79.0
           }
         ]
       },
@@ -5884,8 +5884,8 @@
           {
             "drinkSizeId": 541,
             "size": "L",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           }
         ]
       },
@@ -5898,8 +5898,8 @@
           {
             "drinkSizeId": 542,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 414,
+            "caffeine_mg": 78.0
           }
         ]
       },
@@ -5912,8 +5912,8 @@
           {
             "drinkSizeId": 543,
             "size": "R",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "capacity_ml": 414,
+            "caffeine_mg": 2.0
           }
         ]
       },
@@ -5926,14 +5926,14 @@
           {
             "drinkSizeId": 544,
             "size": "L",
-            "capacity_ml": 40,
-            "caffeine_mg": 79.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 545,
             "size": "EX",
-            "capacity_ml": 40,
-            "caffeine_mg": 79.0
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5946,14 +5946,14 @@
           {
             "drinkSizeId": 546,
             "size": "L",
-            "capacity_ml": 30,
-            "caffeine_mg": 79.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 547,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 104.0
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5966,14 +5966,14 @@
           {
             "drinkSizeId": 548,
             "size": "L",
-            "capacity_ml": 680,
-            "caffeine_mg": 155.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 549,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 52.0
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -5986,14 +5986,14 @@
           {
             "drinkSizeId": 550,
             "size": "L",
-            "capacity_ml": 680,
-            "caffeine_mg": 104.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 551,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 104.0
+            "capacity_ml": 680,
+            "caffeine_mg": 237.0
           }
         ]
       },
@@ -6006,14 +6006,14 @@
           {
             "drinkSizeId": 552,
             "size": "L",
-            "capacity_ml": 680,
-            "caffeine_mg": 155.0
+            "capacity_ml": 532,
+            "caffeine_mg": 236.0
           },
           {
             "drinkSizeId": 553,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 52.0
+            "capacity_ml": 680,
+            "caffeine_mg": 276.0
           }
         ]
       },
@@ -6026,14 +6026,14 @@
           {
             "drinkSizeId": 554,
             "size": "L",
-            "capacity_ml": 414,
-            "caffeine_mg": 2.0
+            "capacity_ml": 532,
+            "caffeine_mg": 79.0
           },
           {
             "drinkSizeId": 555,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 124.0
+            "capacity_ml": 680,
+            "caffeine_mg": 110.0
           }
         ]
       },
@@ -6046,14 +6046,14 @@
           {
             "drinkSizeId": 556,
             "size": "L",
-            "capacity_ml": 414,
-            "caffeine_mg": 4.0
+            "capacity_ml": 532,
+            "caffeine_mg": 158.0
           },
           {
             "drinkSizeId": 557,
             "size": "EX",
-            "capacity_ml": 414,
-            "caffeine_mg": 104.0
+            "capacity_ml": 651,
+            "caffeine_mg": 237.0
           }
         ]
       }
@@ -6071,8 +6071,8 @@
           {
             "drinkSizeId": 558,
             "size": "Solo",
-            "capacity_ml": 680,
-            "caffeine_mg": 155.0
+            "capacity_ml": 25,
+            "caffeine_mg": 61.0
           }
         ]
       },
@@ -6085,8 +6085,8 @@
           {
             "drinkSizeId": 559,
             "size": "Doppio",
-            "capacity_ml": 414,
-            "caffeine_mg": 4.0
+            "capacity_ml": 50,
+            "caffeine_mg": 122.0
           }
         ]
       },
@@ -6099,8 +6099,8 @@
           {
             "drinkSizeId": 560,
             "size": "R",
-            "capacity_ml": 680,
-            "caffeine_mg": 5.0
+            "capacity_ml": 150,
+            "caffeine_mg": 93.0
           }
         ]
       },
@@ -6113,20 +6113,20 @@
           {
             "drinkSizeId": 561,
             "size": "R",
-            "capacity_ml": 414,
-            "caffeine_mg": 156.0
+            "capacity_ml": 354,
+            "caffeine_mg": 114.0
           },
           {
             "drinkSizeId": 562,
             "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 234.0
+            "capacity_ml": 472,
+            "caffeine_mg": 171.0
           },
           {
             "drinkSizeId": 563,
             "size": "V",
-            "capacity_ml": 414,
-            "caffeine_mg": 4.0
+            "capacity_ml": 591,
+            "caffeine_mg": 228.0
           }
         ]
       },
@@ -6139,20 +6139,20 @@
           {
             "drinkSizeId": 564,
             "size": "R",
-            "capacity_ml": 680,
-            "caffeine_mg": 5.0
+            "capacity_ml": 354,
+            "caffeine_mg": 114.0
           },
           {
             "drinkSizeId": 565,
             "size": "G",
-            "capacity_ml": 151,
-            "caffeine_mg": 79.0
+            "capacity_ml": 472,
+            "caffeine_mg": 171.0
           },
           {
             "drinkSizeId": 566,
             "size": "V",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 591,
+            "caffeine_mg": 228.0
           }
         ]
       },
@@ -6165,20 +6165,20 @@
           {
             "drinkSizeId": 567,
             "size": "R",
-            "capacity_ml": 414,
-            "caffeine_mg": 78.0
+            "capacity_ml": 354,
+            "caffeine_mg": 127.0
           },
           {
             "drinkSizeId": 568,
             "size": "G",
-            "capacity_ml": 414,
-            "caffeine_mg": 2.0
+            "capacity_ml": 472,
+            "caffeine_mg": 190.0
           },
           {
             "drinkSizeId": 569,
             "size": "V",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 591,
+            "caffeine_mg": 254.0
           }
         ]
       },
@@ -6191,20 +6191,20 @@
           {
             "drinkSizeId": 570,
             "size": "R",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 354,
+            "caffeine_mg": 127.0
           },
           {
             "drinkSizeId": 571,
             "size": "G",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 472,
+            "caffeine_mg": 190.0
           },
           {
             "drinkSizeId": 572,
             "size": "V",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "capacity_ml": 591,
+            "caffeine_mg": 254.0
           }
         ]
       },
@@ -6217,14 +6217,14 @@
           {
             "drinkSizeId": 573,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 354,
+            "caffeine_mg": 127.0
           },
           {
             "drinkSizeId": 574,
             "size": "G",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 472,
+            "caffeine_mg": 190.0
           }
         ]
       },
@@ -6237,14 +6237,14 @@
           {
             "drinkSizeId": 575,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 354,
+            "caffeine_mg": 132.0
           },
           {
             "drinkSizeId": 576,
             "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 237.0
+            "capacity_ml": 472,
+            "caffeine_mg": 198.0
           }
         ]
       },
@@ -6257,14 +6257,14 @@
           {
             "drinkSizeId": 577,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 236.0
+            "capacity_ml": 354,
+            "caffeine_mg": 132.0
           },
           {
             "drinkSizeId": 578,
             "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 276.0
+            "capacity_ml": 472,
+            "caffeine_mg": 198.0
           }
         ]
       },
@@ -6277,14 +6277,14 @@
           {
             "drinkSizeId": 579,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 79.0
+            "capacity_ml": 354,
+            "caffeine_mg": 127.0
           },
           {
             "drinkSizeId": 580,
             "size": "G",
-            "capacity_ml": 680,
-            "caffeine_mg": 110.0
+            "capacity_ml": 472,
+            "caffeine_mg": 190.5
           }
         ]
       },
@@ -6297,14 +6297,14 @@
           {
             "drinkSizeId": 581,
             "size": "R",
-            "capacity_ml": 532,
-            "caffeine_mg": 158.0
+            "capacity_ml": 354,
+            "caffeine_mg": 127.0
           },
           {
             "drinkSizeId": 582,
             "size": "G",
-            "capacity_ml": 651,
-            "caffeine_mg": 237.0
+            "capacity_ml": 472,
+            "caffeine_mg": 190.5
           }
         ]
       },
@@ -6317,20 +6317,20 @@
           {
             "drinkSizeId": 583,
             "size": "R",
-            "capacity_ml": 25,
-            "caffeine_mg": 61.0
+            "capacity_ml": 354,
+            "caffeine_mg": 83.0
           },
           {
             "drinkSizeId": 584,
             "size": "G",
-            "capacity_ml": 50,
-            "caffeine_mg": 122.0
+            "capacity_ml": 472,
+            "caffeine_mg": 124.5
           },
           {
             "drinkSizeId": 585,
             "size": "V",
-            "capacity_ml": 150,
-            "caffeine_mg": 93.0
+            "capacity_ml": 591,
+            "caffeine_mg": 166.0
           }
         ]
       },
@@ -6344,19 +6344,19 @@
             "drinkSizeId": 586,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 114.0
+            "caffeine_mg": 83.0
           },
           {
             "drinkSizeId": 587,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 171.0
+            "caffeine_mg": 124.5
           },
           {
             "drinkSizeId": 588,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 228.0
+            "caffeine_mg": 166.0
           }
         ]
       },
@@ -6370,19 +6370,19 @@
             "drinkSizeId": 589,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 114.0
+            "caffeine_mg": 195.0
           },
           {
             "drinkSizeId": 590,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 171.0
+            "caffeine_mg": 292.5
           },
           {
             "drinkSizeId": 591,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 228.0
+            "caffeine_mg": 390.0
           }
         ]
       },
@@ -6396,19 +6396,19 @@
             "drinkSizeId": 592,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 127.0
+            "caffeine_mg": 195.0
           },
           {
             "drinkSizeId": 593,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 190.0
+            "caffeine_mg": 292.5
           },
           {
             "drinkSizeId": 594,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 254.0
+            "caffeine_mg": 390.0
           }
         ]
       },
@@ -6422,19 +6422,19 @@
             "drinkSizeId": 595,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 127.0
+            "caffeine_mg": 195.0
           },
           {
             "drinkSizeId": 596,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 190.0
+            "caffeine_mg": 292.5
           },
           {
             "drinkSizeId": 597,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 254.0
+            "caffeine_mg": 390.0
           }
         ]
       },
@@ -6448,19 +6448,19 @@
             "drinkSizeId": 598,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 127.0
+            "caffeine_mg": 25.0
           },
           {
             "drinkSizeId": 599,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 190.0
+            "caffeine_mg": 37.5
           },
           {
             "drinkSizeId": 600,
             "size": "V",
-            "capacity_ml": 354,
-            "caffeine_mg": 132.0
+            "capacity_ml": 591,
+            "caffeine_mg": 50.0
           }
         ]
       },
@@ -6473,20 +6473,20 @@
           {
             "drinkSizeId": 601,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 198.0
+            "capacity_ml": 354,
+            "caffeine_mg": 25.0
           },
           {
             "drinkSizeId": 602,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 132.0
+            "capacity_ml": 472,
+            "caffeine_mg": 37.5
           },
           {
             "drinkSizeId": 603,
             "size": "V",
-            "capacity_ml": 472,
-            "caffeine_mg": 198.0
+            "capacity_ml": 591,
+            "caffeine_mg": 50.0
           }
         ]
       },
@@ -6500,19 +6500,19 @@
             "drinkSizeId": 604,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 127.0
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 605,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 190.5
+            "caffeine_mg": 4.5
           },
           {
             "drinkSizeId": 606,
             "size": "V",
-            "capacity_ml": 354,
-            "caffeine_mg": 127.0
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
           }
         ]
       },
@@ -6525,20 +6525,20 @@
           {
             "drinkSizeId": 607,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 190.5
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 608,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 83.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           },
           {
             "drinkSizeId": 609,
             "size": "V",
-            "capacity_ml": 472,
-            "caffeine_mg": 124.5
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
           }
         ]
       },
@@ -6551,20 +6551,20 @@
           {
             "drinkSizeId": 610,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 166.0
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 611,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 83.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           },
           {
             "drinkSizeId": 612,
             "size": "V",
-            "capacity_ml": 472,
-            "caffeine_mg": 124.5
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
           }
         ]
       },
@@ -6577,20 +6577,20 @@
           {
             "drinkSizeId": 613,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 166.0
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 614,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 195.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           },
           {
             "drinkSizeId": 615,
             "size": "V",
-            "capacity_ml": 472,
-            "caffeine_mg": 292.5
+            "capacity_ml": 591,
+            "caffeine_mg": 6.0
           }
         ]
       },
@@ -6603,14 +6603,14 @@
           {
             "drinkSizeId": 616,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 390.0
+            "capacity_ml": 354,
+            "caffeine_mg": 93.0
           },
           {
             "drinkSizeId": 617,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 195.0
+            "capacity_ml": 472,
+            "caffeine_mg": 139.5
           }
         ]
       },
@@ -6623,14 +6623,14 @@
           {
             "drinkSizeId": 618,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 292.5
+            "capacity_ml": 354,
+            "caffeine_mg": 93.0
           },
           {
             "drinkSizeId": 619,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 390.0
+            "capacity_ml": 472,
+            "caffeine_mg": 139.5
           }
         ]
       },
@@ -6644,19 +6644,19 @@
             "drinkSizeId": 620,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 195.0
+            "caffeine_mg": 153.0
           },
           {
             "drinkSizeId": 621,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 292.5
+            "caffeine_mg": 229.5
           },
           {
             "drinkSizeId": 622,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 390.0
+            "caffeine_mg": 306.0
           }
         ]
       },
@@ -6670,19 +6670,19 @@
             "drinkSizeId": 623,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 25.0
+            "caffeine_mg": 153.0
           },
           {
             "drinkSizeId": 624,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 37.5
+            "caffeine_mg": 229.5
           },
           {
             "drinkSizeId": 625,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 50.0
+            "caffeine_mg": 306.0
           }
         ]
       },
@@ -6696,19 +6696,19 @@
             "drinkSizeId": 626,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 25.0
+            "caffeine_mg": 153.0
           },
           {
             "drinkSizeId": 627,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 37.5
+            "caffeine_mg": 229.5
           },
           {
             "drinkSizeId": 628,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 50.0
+            "caffeine_mg": 306.0
           }
         ]
       },
@@ -6722,19 +6722,19 @@
             "drinkSizeId": 629,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "caffeine_mg": 153.0
           },
           {
             "drinkSizeId": 630,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "caffeine_mg": 229.5
           },
           {
             "drinkSizeId": 631,
             "size": "V",
             "capacity_ml": 591,
-            "caffeine_mg": 6.0
+            "caffeine_mg": 306.0
           }
         ]
       },
@@ -6748,7 +6748,7 @@
             "drinkSizeId": 632,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "caffeine_mg": 51.0
           }
         ]
       },
@@ -6761,8 +6761,8 @@
           {
             "drinkSizeId": 633,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "capacity_ml": 354,
+            "caffeine_mg": 51.0
           }
         ]
       },
@@ -6775,14 +6775,14 @@
           {
             "drinkSizeId": 634,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 6.0
+            "capacity_ml": 354,
+            "caffeine_mg": 51.0
           },
           {
             "drinkSizeId": 635,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "capacity_ml": 472,
+            "caffeine_mg": 76.5
           }
         ]
       },
@@ -6795,14 +6795,14 @@
           {
             "drinkSizeId": 636,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "capacity_ml": 354,
+            "caffeine_mg": 129.0
           },
           {
             "drinkSizeId": 637,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 6.0
+            "capacity_ml": 472,
+            "caffeine_mg": 193.5
           }
         ]
       },
@@ -6816,13 +6816,13 @@
             "drinkSizeId": 638,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "caffeine_mg": 129.0
           },
           {
             "drinkSizeId": 639,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "caffeine_mg": 193.5
           }
         ]
       },
@@ -6835,14 +6835,14 @@
           {
             "drinkSizeId": 640,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 6.0
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 641,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 93.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           }
         ]
       },
@@ -6855,14 +6855,14 @@
           {
             "drinkSizeId": 642,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 139.5
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 643,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 93.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           }
         ]
       },
@@ -6875,14 +6875,14 @@
           {
             "drinkSizeId": 644,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 139.5
+            "capacity_ml": 354,
+            "caffeine_mg": 8.0
           },
           {
             "drinkSizeId": 645,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 153.0
+            "capacity_ml": 472,
+            "caffeine_mg": 12.0
           }
         ]
       },
@@ -6895,14 +6895,14 @@
           {
             "drinkSizeId": 646,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 229.5
+            "capacity_ml": 354,
+            "caffeine_mg": 8.0
           },
           {
             "drinkSizeId": 647,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
+            "capacity_ml": 472,
+            "caffeine_mg": 12.0
           }
         ]
       },
@@ -6916,13 +6916,13 @@
             "drinkSizeId": 648,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 153.0
+            "caffeine_mg": 23.0
           },
           {
             "drinkSizeId": 649,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 229.5
+            "caffeine_mg": 34.5
           }
         ]
       },
@@ -6935,14 +6935,14 @@
           {
             "drinkSizeId": 650,
             "size": "R",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
+            "capacity_ml": 354,
+            "caffeine_mg": 23.0
           },
           {
             "drinkSizeId": 651,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 153.0
+            "capacity_ml": 472,
+            "caffeine_mg": 34.5
           }
         ]
       },
@@ -6955,14 +6955,14 @@
           {
             "drinkSizeId": 652,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 229.5
+            "capacity_ml": 354,
+            "caffeine_mg": 33.0
           },
           {
             "drinkSizeId": 653,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
+            "capacity_ml": 472,
+            "caffeine_mg": 49.5
           }
         ]
       },
@@ -6976,13 +6976,13 @@
             "drinkSizeId": 654,
             "size": "R",
             "capacity_ml": 354,
-            "caffeine_mg": 153.0
+            "caffeine_mg": 33.0
           },
           {
             "drinkSizeId": 655,
             "size": "G",
             "capacity_ml": 472,
-            "caffeine_mg": 229.5
+            "caffeine_mg": 49.5
           }
         ]
       },
@@ -6995,8 +6995,8 @@
           {
             "drinkSizeId": 656,
             "size": "G",
-            "capacity_ml": 591,
-            "caffeine_mg": 306.0
+            "capacity_ml": 472,
+            "caffeine_mg": 25.0
           }
         ]
       },
@@ -7009,8 +7009,8 @@
           {
             "drinkSizeId": 657,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
+            "capacity_ml": 472,
+            "caffeine_mg": 25.0
           }
         ]
       },
@@ -7023,8 +7023,8 @@
           {
             "drinkSizeId": 658,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
+            "capacity_ml": 472,
+            "caffeine_mg": 17.0
           }
         ]
       },
@@ -7037,8 +7037,8 @@
           {
             "drinkSizeId": 659,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 51.0
+            "capacity_ml": 472,
+            "caffeine_mg": 17.0
           }
         ]
       },
@@ -7051,14 +7051,14 @@
           {
             "drinkSizeId": 660,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 76.5
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 661,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 129.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           }
         ]
       },
@@ -7071,14 +7071,14 @@
           {
             "drinkSizeId": 662,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 193.5
+            "capacity_ml": 354,
+            "caffeine_mg": 137.0
           },
           {
             "drinkSizeId": 663,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 129.0
+            "capacity_ml": 472,
+            "caffeine_mg": 205.5
           }
         ]
       },
@@ -7091,14 +7091,14 @@
           {
             "drinkSizeId": 664,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 193.5
+            "capacity_ml": 354,
+            "caffeine_mg": 194.0
           },
           {
             "drinkSizeId": 665,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "capacity_ml": 472,
+            "caffeine_mg": 291.0
           }
         ]
       },
@@ -7111,14 +7111,14 @@
           {
             "drinkSizeId": 666,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "capacity_ml": 354,
+            "caffeine_mg": 3.0
           },
           {
             "drinkSizeId": 667,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 3.0
+            "capacity_ml": 472,
+            "caffeine_mg": 4.5
           }
         ]
       },
@@ -7131,14 +7131,14 @@
           {
             "drinkSizeId": 668,
             "size": "R",
-            "capacity_ml": 472,
-            "caffeine_mg": 4.5
+            "capacity_ml": 354,
+            "caffeine_mg": 91.0
           },
           {
             "drinkSizeId": 669,
             "size": "G",
-            "capacity_ml": 354,
-            "caffeine_mg": 8.0
+            "capacity_ml": 472,
+            "caffeine_mg": 136.5
           }
         ]
       }
