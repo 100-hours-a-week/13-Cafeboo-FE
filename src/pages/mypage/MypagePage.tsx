@@ -18,6 +18,8 @@ const MyPage: React.FC = () => {
   const { deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
   const [showLogoutError, setShowLogoutError] = useState(false);
   const [showDeleteError, setShowDeleteError] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const renderAlertModal = (isOpen: boolean, error: any, onClose: () => void) => {
     if (!isOpen || !error) return null;
@@ -41,6 +43,10 @@ const MyPage: React.FC = () => {
   };
 
   const handleLogout = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
     logout();
     if (isLogoutLoading) {
       <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
@@ -51,9 +57,13 @@ const MyPage: React.FC = () => {
       setShowLogoutError(true);
       renderAlertModal(showLogoutError, logoutError, () => setShowLogoutError(false));
     }
-  };
+  }
 
   const handleDeleteAccount = () => {
+    setShowDeleteConfirm(true);
+  };
+
+   const confirmDelete = () => {
     deleteUser();
     if (isDeleting) {
       <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
@@ -64,7 +74,7 @@ const MyPage: React.FC = () => {
       setShowDeleteError(true);
       renderAlertModal(showDeleteError, deleteError, () => setShowDeleteError(false));
     }
-  };
+    };
 
   return (
     <div className="min-h-screen">
@@ -132,6 +142,36 @@ const MyPage: React.FC = () => {
           showCancelButton={false}
         />
       )}
+
+     {showDeleteConfirm && (
+       <AlertModal
+         isOpen={true}
+         icon={<Info size={36} className="text-[#FE9400]" />}
+         title="회원탈퇴"
+         message="정말로 탈퇴하시겠습니까?"
+         confirmText="탈퇴"
+         cancelText="취소"
+         showCancelButton={true}
+         onClose={() => setShowDeleteConfirm(false)}
+         onCancel={() => setShowDeleteConfirm(false)}
+         onConfirm={confirmDelete}
+       />
+     )}
+
+    {showLogoutConfirm && (
+       <AlertModal
+         isOpen={true}
+         icon={<Info size={36} className="text-[#FE9400]" />}
+         title="로그아웃"
+         message="로그아웃 하시겠습니까?"
+         confirmText="로그아웃"
+         cancelText="취소"
+         showCancelButton={true}
+         onClose={() => setShowLogoutConfirm(false)}
+         onCancel={() => setShowLogoutConfirm(false)}
+         onConfirm={confirmLogout}
+       />
+     )}
     </div>
   );
 };
