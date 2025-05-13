@@ -91,8 +91,8 @@ const DiaryPage = () => {
         caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
       });
       console.log("카페인 섭취 등록 성공:", response);
-      //refetchCalendar();
-      //refetchDaily();
+      refetchCalendar();
+      refetchDaily();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
