@@ -85,8 +85,8 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
   const [isTakingBirthPill, setBirthControl] = useState(initHealth?.isTakingBirthPill ?? false);
   const [isSmoking, setSmoking] = useState(initHealth?.isSmoking ?? false);
   const [hasLiverDisease, setHasLiverDisease] = useState(initHealth?.hasLiverDisease ?? false);
-  const [sleepTime, setSleepStartTime] = useState(initHealth?.sleepTime ?? '22:00');
-  const [wakeUpTime, setSleepEndTime] = useState(initHealth?.wakeUpTime ?? '07:00');
+  const [sleepTime, setSleepTime] = useState(initHealth?.sleepTime ?? '22:00');
+  const [wakeUpTime, setWakeTime] = useState(initHealth?.wakeUpTime ?? '07:00');
   const [caffeineSensitivity, setCaffeineSensitivity] = useState(initCaffeine?.caffeineSensitivity ?? 50);
   const [userFavoriteDrinks, setUserFavoriteDrinks] = useState<string[]>(initCaffeine?.userFavoriteDrinks ?? []);
   const [frequentDrinkTime, setUsualIntakeTimes] = useState(initCaffeine?.frequentDrinkTime ?? '12:00');
@@ -115,8 +115,8 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       setBirthControl(initHealth.isTakingBirthPill);
       setSmoking(initHealth.isSmoking);
       setHasLiverDisease(initHealth.hasLiverDisease);
-      setSleepStartTime(initHealth.sleepTime);
-      setSleepEndTime(initHealth.wakeUpTime);
+      setSleepTime(initHealth.sleepTime);
+      setWakeTime(initHealth.wakeUpTime);
       setAgeInput(initHealth.age);
       setHeightInput(initHealth.height);
       setWeightInput(initHealth.weight);
@@ -131,6 +131,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       setCaffeineSensitivity(initCaffeine.caffeineSensitivity);
       setUserFavoriteDrinks(initCaffeine.userFavoriteDrinks);
       setUsualIntakeTimes(initCaffeine.frequentDrinkTime);
+      setCaffeineInput(initCaffeine.averageDailyCaffeineIntake);
       setValue('averageDailyCaffeineIntake', initCaffeine.averageDailyCaffeineIntake);
     }
   }, [initCaffeine, setValue]);
@@ -443,7 +444,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             step={60}
             placeholder="시작 시간 선택"
             value={sleepTime}
-            onChange={(e) => setSleepStartTime(e.target.value)}
+            onChange={(e) => setSleepTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
           <span>~</span>
@@ -452,7 +453,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             step={60}
             placeholder="종료 시간 선택"
             value={wakeUpTime}
-            onChange={(e) => setSleepEndTime(e.target.value)}
+            onChange={(e) => setWakeTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
           />
         </div>
