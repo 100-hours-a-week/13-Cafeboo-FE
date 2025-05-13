@@ -61,7 +61,7 @@ export default function DailyCaffeineRemain({
   useEffect(() => {
     const timeout = setTimeout(() => {
       updateNowX();
-    }, 50);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, [nowIndex, data]);
@@ -96,7 +96,7 @@ export default function DailyCaffeineRemain({
   return (
     <div className="flex">
       {/* 1) 고정된 Y축 영역 */}
-      <div className="h-[180px] w-10">
+      <div className="w-10">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
@@ -188,9 +188,9 @@ export default function DailyCaffeineRemain({
             </div>
           )}
           { 
-          <div className="flex items-center ml-10 text-xs text-[#333333]">
-            <span className="inline-block w-4 border-[#543122] mr-2 border-b-2 border-dashed" />
-            수면 영향 임계선: {sleepSensitiveThreshold} mg
+          <div className="flex items-center text-xs text-[#333333]">
+            <span className="inline-block w-4 border-[#543122] mr-2 border-b-1 border-dashed" />
+            수면 임계치: {sleepSensitiveThreshold} mg
           </div>
         }
         </div>
