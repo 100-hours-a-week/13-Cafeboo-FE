@@ -9,6 +9,7 @@ export interface DailyCaffeineProps {
   nickname: string;
   dailyCaffeineLimit: number;
   dailyCaffeineIntakeMg: number;
+  dailyCaffeineIntakeRate: number;
   intakeGuide: string;
 }
 
@@ -16,6 +17,7 @@ export default function DailyCaffeine({
   nickname,
   dailyCaffeineLimit,
   dailyCaffeineIntakeMg,
+  dailyCaffeineIntakeRate,
   intakeGuide,
 }: DailyCaffeineProps) {
   const consumed = dailyCaffeineIntakeMg;
@@ -30,11 +32,11 @@ export default function DailyCaffeine({
     '#F44336', // 100% → red
   ];
 
-  function getConsumedColor(ratio: number) {
-    // ratio: 0~1 사이
+  function getConsumedColor(ratePercent: number) {
+    // ratePercent: 0~100
     const idx = Math.min(
       SCALE.length - 1,
-      Math.floor(ratio * (SCALE.length - 1))
+      Math.floor((ratePercent / 100) * (SCALE.length - 1))
     );
     return SCALE[idx];
   }
@@ -85,26 +87,12 @@ export default function DailyCaffeine({
         <p className="text-base text-[#333333]">
           <span className="font-semibold">{nickname}</span>님,
           <br/>
-          {ratio > 1 ? (
-          <>
-            현재 권장량의{' '}
-            <span className="font-semibold" style={{ color: consumedColor }}>
-              {Math.round(ratio * 100)}%
-            </span>
-            를 <br />
-            초과하여 섭취했어요.
-          </>
-        ) : (
-          <>
-            현재 권장량의{' '}
-            <span className="font-semibold" style={{ color: consumedColor }}>
-              {Math.round(ratio * 100)}%
-            </span>
-            를 <br />
-            섭취 중이에요.
-          </>
-        )}
-
+          현재 권장량의{' '}
+          <span className="font-semibold" style={{ color: consumedColor }}>
+            {dailyCaffeineIntakeRate}%
+          </span>
+          를 <br />
+          섭취 중이에요.
         </p>
         <Popover>
         <PopoverTrigger asChild>

@@ -60,9 +60,8 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
 
       case 'monthly': {
         const arr = data.weeklyIntakeTotals || [];
-        // 1주 전부터 시작하는 배열 생성 후 역순으로 (오른쪽이 1주 전)
         const mapped = arr.map((pt, i) => ({
-          label: `${i + 1}주 전`,
+          label: `${i + 1}주`,
           value: pt.totalCaffeineMg,
         }));
         return mapped.reverse();

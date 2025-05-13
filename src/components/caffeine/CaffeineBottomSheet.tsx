@@ -6,6 +6,7 @@ import drinkData from '@/data/cafe_drinks.json';
 
 export interface CaffeineBottomSheetProps {
   open: boolean;
+  selectedDate?:string,
   onOpenChange: (open: boolean) => void;
   onSubmitRecord: (record: CaffeineRecordInput) => void;
 }
@@ -23,6 +24,7 @@ export interface DrinkDetail {
 
 export default function CaffeineBottomSheet({
   open,
+  selectedDate,
   onOpenChange,
   onSubmitRecord,
 }: CaffeineBottomSheetProps) {
@@ -45,6 +47,7 @@ export default function CaffeineBottomSheet({
         caffeine_mg: size.caffeine_mg,
         size: size.size,
         capacity_ml: size.capacity_ml,
+      date: selectedDate,
       })),
     };
   }, [selected]);

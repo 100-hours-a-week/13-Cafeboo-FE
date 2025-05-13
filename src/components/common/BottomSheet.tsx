@@ -38,7 +38,9 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   <Drawer open={open} onOpenChange={onOpenChange}>
     <DrawerContent
       className="
-        absolute bottom-0
+        absolute 
+        bottom: env(safe-area-inset-bottom)
+        bottom: constant(safe-area-inset-bottom)
         w-full max-w-md
         rounded-t-xl bg-white shadow-lg
         flex flex-col

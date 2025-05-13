@@ -46,6 +46,7 @@ export default function DiaryEdit() {
   const [time, setTime]           = useState(orig.intakeTime.slice(11, 16));
   const [count, setCount]         = useState(String(orig.drinkCount));
   const [amount, setAmount]       = useState(orig.caffeineAmount);
+  const [size, setSize]           = useState('');
 
   const [selectOpen, setSelectOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -91,11 +92,7 @@ export default function DiaryEdit() {
     const nCount = Number(count);
     if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
     if (amount !== orig.caffeineAmount) payload.caffeineAmount = amount;
-
-    if (detail && detail.sizes.some(s => s.caffeine_mg === amount)) {
-      const size = detail.sizes.find(s => s.caffeine_mg === amount);
-      if (size) payload.drinkSize = size.size;
-    }
+    if (size) payload.drinkSize = size;
 
     if (Object.keys(payload).length === 0) {
       alert('변경된 내용이 없습니다.');
@@ -129,7 +126,8 @@ export default function DiaryEdit() {
     if (rec.intakeTime)  { setDate(rec.intakeTime.slice(0,10)); setTime(rec.intakeTime.slice(11,16)); }
     if (rec.drinkCount !== undefined) setCount(String(rec.drinkCount));
     if (rec.caffeineAmount !== undefined) setAmount(rec.caffeineAmount);
-
+    if (rec.drinkSize !== undefined) setSize(rec.drinkSize);
+    if (detail) setDrinkName(detail.name);
     setDetailOpen(false);
     setSelectOpen(false);
   };
@@ -174,7 +172,7 @@ export default function DiaryEdit() {
 
         {/* 카페인 함유량 */}
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
-          <span className="font-medium">카페인 함유량</span>
+          <span className="font-medium">총 카페인량</span>
           <button
             className="px-4 py-1 bg-gray-200 rounded cursor-pointer"
             onClick={openDetail}
@@ -194,7 +192,7 @@ export default function DiaryEdit() {
         <button
           onClick={handleDelete}
           disabled={isDeleting}
-          className="w-full mt-1 text-red-500 cursor-pointer"
+          className="w-full mt-0 text-red-500 cursor-pointer"
         >
           {'삭제하기'}
         </button>

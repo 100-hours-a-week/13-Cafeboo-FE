@@ -117,6 +117,9 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       setHasLiverDisease(initHealth.hasLiverDisease);
       setSleepStartTime(initHealth.sleepTime);
       setSleepEndTime(initHealth.wakeUpTime);
+      setAgeInput(initHealth.age);
+      setHeightInput(initHealth.height);
+      setWeightInput(initHealth.weight);
       setValue('age', initHealth.age);
       setValue('height', initHealth.height);
       setValue('weight', initHealth.weight);
