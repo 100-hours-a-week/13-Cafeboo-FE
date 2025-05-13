@@ -20,8 +20,8 @@ export default function DailyCaffeine({
   dailyCaffeineIntakeRate,
   intakeGuide,
 }: DailyCaffeineProps) {
+  
   const consumed = dailyCaffeineIntakeMg;
-  const ratio = Math.min(consumed / dailyCaffeineLimit, 1);
 
   // 초록 -> 노랑 -> 빨강으로 섭취량 그라데이션션
   const SCALE = [
@@ -33,7 +33,6 @@ export default function DailyCaffeine({
   ];
 
   function getConsumedColor(ratePercent: number) {
-    // ratePercent: 0~100
     const idx = Math.min(
       SCALE.length - 1,
       Math.floor((ratePercent / 100) * (SCALE.length - 1))
@@ -41,9 +40,10 @@ export default function DailyCaffeine({
     return SCALE[idx];
   }
 
-  const consumedColor = getConsumedColor(ratio);
+  const percent = Math.min(dailyCaffeineIntakeRate, 100);
+  const consumedColor  = getConsumedColor(percent);
   const remainingColor = '#E5E5E5';
-  const consumedAngle = ratio * 360;
+  const consumedAngle = (percent / 100) * 360;
 
   return (
     <div className="flex items-center bg-white rounded-lg p-2 relative">
