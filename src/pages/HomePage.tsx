@@ -79,6 +79,7 @@ export default function HomePage() {
                 nickname={report?.nickname}
                 dailyCaffeineLimit={report?.dailyCaffeineLimit}
                 dailyCaffeineIntakeMg={report?.dailyCaffeineIntakeMg}
+                dailyCaffeineIntakeRate={report?.dailyCaffeineIntakeRate}
                 intakeGuide={report?.intakeGuide}
               />
             )}

@@ -21,7 +21,7 @@ interface ReportApiData {
   // 주간
   dailyIntakeTotals?: { date: string; caffeineMg: number }[];
   dailyCaffeineLimit?: number;
-  dailyCaffeineAvg?: number;
+  caffeineAvg?: number;
   overLimitDays?: number;
   aiMessage?: string;
   // 월간
@@ -79,15 +79,17 @@ export default function ReportPage() {
     ? {
         dailyIntakeTotals: weeklyData?.dailyIntakeTotals,
         dailyCaffeineLimit: weeklyData?.dailyCaffeineLimit,
-        dailyCaffeineAvg: weeklyData?.dailyCaffeineAvg,
+        caffeineAvg: weeklyData?.dailyCaffeineAvg,
         overLimitDays: weeklyData?.overLimitDays,
         aiMessage: weeklyData?.aiMessage,
       }
     : periodType === 'monthly'
     ? {
+        caffeineAvg: monthlyData?.weeklyCaffeineAvg,
         weeklyIntakeTotals: monthlyData?.weeklyIntakeTotals,
       }
     : {
+        caffeineAvg: yearlyData?.monthlyCaffeineAvg,
         monthlyIntakeTotals: yearlyData?.monthlyIntakeTotals,
       };
 
@@ -161,10 +163,11 @@ export default function ReportPage() {
           period={periodType}
           selectedYear={`${selectedYear}년`}
           selectedMonth={`${selectedMonth}월`}
-          selectedWeek={selectedWeek}
+          selectedWeek={`${selectedWeek}주차`}
+          weeksofMonth={monthlyData?.weeklyIntakeTotals.length}
           onYearChange={(y) => setSelectedYear(y.replace('년',''))}
           onMonthChange={(m) => setSelectedMonth(m.replace('월',''))}
-          onWeekChange={(w) => setSelectedWeek(w)}
+          onWeekChange={(w) => setSelectedWeek(w.replace('주차',''))}
         />
 
         {isLoading ? (
@@ -186,7 +189,7 @@ export default function ReportPage() {
             </h2>
             <ReportSummary
               period={periodType}
-              averageCaffeine={reportData.dailyCaffeineAvg ?? 0}
+              averageCaffeine={reportData.caffeineAvg ?? 0}
               dailyLimit={reportData.dailyCaffeineLimit ?? 0}
               overLimitDays={reportData.overLimitDays ?? 0}
             />

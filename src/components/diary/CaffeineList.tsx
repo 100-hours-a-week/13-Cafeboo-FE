@@ -71,7 +71,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
                 {record.drinkName} {record.drinkCount}잔
               </span>
               <span className="text-[#595959] text-xs">
-                {formatTimeWithMeridiem(record.intakeTime)}
+                {formatTimeWithMeridiem(record.intakeTime.slice(11,16))}
               </span>
             </div>
           </div>

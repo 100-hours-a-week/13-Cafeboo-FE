@@ -51,7 +51,7 @@ const DiaryPage = () => {
       drinkName: entry.drinkName,
       drinkCount: entry.drinkCount,
       caffeineAmount: entry.caffeineMg,
-      intakeTime: entry.intakeTime.slice(11,16),
+      intakeTime: entry.intakeTime,
     })) ?? [];
   }, [dataDaily]);
 
@@ -113,7 +113,6 @@ const DiaryPage = () => {
               onDateSelect={date => handleDateSelect(date)}
               onMonthChange={handleMonthChange}
             />
-            )
         </div>
 
         <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
@@ -150,6 +149,7 @@ const DiaryPage = () => {
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}
         onSubmitRecord={handleSubmitRecord}
+        selectedDate={selectedDate}
       />
         <AlertModal
         isOpen={isAlertOpen}

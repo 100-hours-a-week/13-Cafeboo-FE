@@ -187,12 +187,6 @@ export default function DailyCaffeineRemain({
               Now
             </div>
           )}
-          { 
-          <div className="flex items-center text-xs text-[#333333]">
-            <span className="inline-block w-4 border-[#543122] mr-2 border-b-1 border-dashed" />
-            수면 임계치: {sleepSensitiveThreshold} mg
-          </div>
-        }
         </div>
       </div>
     </div>

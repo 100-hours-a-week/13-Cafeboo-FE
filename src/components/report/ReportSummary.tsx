@@ -30,7 +30,7 @@ const ReportSummary: React.FC<ReportSummaryProps> = ({
         <span className="text-[#333333] font-medium">
           {avgLabelMap[period]}
         </span>
-        <span className="text-[#333333] font-medium">{averageCaffeine} mg</span>
+        <span className="text-[#333333] font-medium">{averageCaffeine.toFixed(1)} mg</span>
       </div>
 
       {/* 카페인 초과일 (주간 리포트일 때만) */}

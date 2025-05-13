@@ -17,6 +17,7 @@ export interface DrinkDetail {
   drinkid: number;
   name: string;
   sizes: DrinkSize[];
+  date?: string;
 }
 
 export interface CaffeineRecordInput {
@@ -46,7 +47,11 @@ export default function CaffeineDetailForm({
   const sizes = drink.sizes;
   const [selectedSize, setSelectedSize] = useState<DrinkSize>(sizes[0]);
   const [count, setCount] = useState<number>(1);
-  const [intakeTime, setIntakeTime] = useState<Date>(new Date());
+  const initialDate = drink.date 
+    ? new Date(`${drink.date}T12:00`) 
+    : new Date();
+  
+  const [intakeTime, setIntakeTime] = useState<Date>(initialDate);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const sizeImages = [Medium, Large, ExtraLarge]; 
@@ -139,15 +144,6 @@ export default function CaffeineDetailForm({
         {caffeineTotal} mg
       </div>
 
-      {/* 날짜/시간 네이티브 input (투명하게 겹쳐두기) */}
-      <input
-        type="datetime-local"
-        ref={inputRef}
-        value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
-        onChange={(e) => setIntakeTime(new Date(e.currentTarget.value))}
-        className="absolute opacity-0"
-      />
-
       {/* 등록 버튼 */}
       <div className="relative mb-8 h-14">
         <button
@@ -174,6 +170,15 @@ export default function CaffeineDetailForm({
         >
           <Clock className="w-5 h-5 text-gray-600" />
         </button>
+
+        {/* 날짜/시간 네이티브 input (투명하게 겹쳐두기) */}
+        <input
+          type="datetime-local"
+          ref={inputRef}
+          value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
+          onChange={(e) => setIntakeTime(new Date(e.currentTarget.value))}
+          className="absolute left-1/2 transform -translate-x-[150px] top-1/2 -translate-y-1/2 opacity-0"
+        />
       </div>
     </div>
   );

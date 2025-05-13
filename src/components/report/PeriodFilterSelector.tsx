@@ -6,14 +6,16 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
+import { getISOWeek } from 'date-fns';
 
 export type PeriodType = 'weekly' | 'monthly' | 'yearly';
 
 interface PeriodFilterSelectorProps {
   period: PeriodType;
-  selectedYear?: string;
+  selectedYear: string;
   selectedMonth?: string;
   selectedWeek?: string;
+  weeksofMonth?: number;
   onYearChange: (year: string) => void;
   onMonthChange?: (month: string) => void;
   onWeekChange?: (week: string) => void;
@@ -24,6 +26,7 @@ export default function PeriodFilterSelector({
   selectedYear,
   selectedMonth,
   selectedWeek,
+  weeksofMonth,
   onYearChange,
   onMonthChange,
   onWeekChange,
@@ -32,34 +35,27 @@ export default function PeriodFilterSelector({
   const today = new Date();
   const defaultYear = `${today.getFullYear()}년`;
   const defaultMonth = `${today.getMonth() + 1}월`;
+  const defaultWeek = `${getISOWeek(today)}주차`;
 
-  // 주차 생성: 한 주를 일요일 시작→토요일 끝으로 보고, 해당 월에 몇 주가 있는지 계산
-  function getWeekOptions(yearNum: number, monthNum: number) {
-    const firstDayOfMonth = new Date(yearNum, monthNum - 1, 1).getDay(); 
-    const lastDate = new Date(yearNum, monthNum, 0).getDate();
-    const offset = firstDayOfMonth;        
-    const weeksCount = Math.ceil((lastDate + offset) / 7);
-  
-    return Array.from({ length: weeksCount }, (_, i) => `${i + 1}주차`);
-  }
-
-  // 옵션 배열
   const years = useMemo(
-    () => Array.from({ length: 101 }, (_, i) => `${2000 + i}년`),
+    () => Array.from({ length: 51 }, (_, i) => `${2025 + i}년`),
     []
   );
+
   const months = useMemo(
     () => Array.from({ length: 12 }, (_, i) => `${i + 1}월`),
     []
   );
-  const numYear = parseInt((selectedYear ?? defaultYear).replace('년', ''), 10);
-  const numMonth = parseInt((selectedMonth ?? defaultMonth).replace('월', ''), 10);
 
-  const weeks = useMemo(() => getWeekOptions(numYear, numMonth), [numYear, numMonth]);
+  // 동적으로 생성되는 주차 옵션
+  const weeks = useMemo(
+    () => Array.from({ length: weeksofMonth as number}, (_, i) => `${i + 1}주차`),
+    [weeksofMonth]
+  );
 
   const yearValue = selectedYear ?? defaultYear;
   const monthValue = selectedMonth ?? defaultMonth;
-  const weekValue = selectedWeek ?? weeks[0]; 
+  const weekValue = selectedWeek ?? defaultWeek; 
 
   const firstWeek = weeks[0];
 
@@ -79,7 +75,7 @@ export default function PeriodFilterSelector({
   };
   
   const handleWeek = (w: string) => {
-    onWeekChange?.(w);
+    onWeekChange?.(w.replace('주차', ''));
   };
 
   // 공통 버튼 스타일
