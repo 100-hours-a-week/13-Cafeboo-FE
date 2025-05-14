@@ -10,6 +10,7 @@ import { useLogout } from '@/api/LogoutApi';
 import { useDeleteUser } from '@/api/deletUserApi';
 import { useState } from 'react';
 import EmptyState from '@/components/common/EmptyState';
+import { requestKakaoLogout } from '@/api/authApi';
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
@@ -46,18 +47,14 @@ const MyPage: React.FC = () => {
     setShowLogoutConfirm(true);
   };
 
-  const confirmLogout = () => {
-    logout();
-    if (isLogoutLoading) {
-      <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-        <LoadingSpinner type="clip" size="large" fullScreen={false} />
-      </div>
-    }
-    if (isLogoutError) {
-      setShowLogoutError(true);
-      renderAlertModal(showLogoutError, logoutError, () => setShowLogoutError(false));
+  const confirmLogout = async() => {
+    try {
+      await requestKakaoLogout();
+    } catch (error) {
+      console.error("카카오 로그아웃 요청 실패:", error);
     }
   }
+
 
   const handleDeleteAccount = () => {
     setShowDeleteConfirm(true);

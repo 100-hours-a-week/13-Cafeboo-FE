@@ -11,6 +11,8 @@ const KakaoRedirectPage = () => {
   useEffect(() => {
     const fetchKakaoToken = async () => {
       if (!code) {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('userId');
         navigate("/auth/login");
         return;
       }
