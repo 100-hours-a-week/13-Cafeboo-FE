@@ -14,7 +14,7 @@ interface DrinkSize {
   capacity_ml: number;
 }
 
-interface DrinkDetail {
+export interface DrinkDetail {
   drinkid: number;
   name: string;
   sizes: DrinkSize[];
