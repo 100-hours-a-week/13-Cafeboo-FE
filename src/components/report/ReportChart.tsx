@@ -64,7 +64,7 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
           label: `${i + 1}주`,
           value: pt.totalCaffeineMg,
         }));
-        return mapped.reverse();
+        return mapped;
       }
 
       case 'yearly': {
