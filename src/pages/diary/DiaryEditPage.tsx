@@ -63,6 +63,7 @@ export default function DiaryEdit() {
     return {
       drinkid: d.drinkId,
       name: d.name,
+      cafeName: selectedDrink.cafeName,
       sizes: d.sizes.map(s => ({
         drinkSizeId: s.drinkSizeId,
         size: s.size,
