@@ -74,7 +74,7 @@ export default function DailyCaffeineRemain({
   }, []);
 
   const base = (windowWidth - 80) / data.length;
-  const BAR_WIDTH = Math.max(8, Math.min(16, base * 0.6));
+  const BAR_WIDTH = Math.max(12, Math.min(16, base * 0.6));
   const minWidth = 18 * data.length + 18;
 
   const tickFormatter = (val: string) => {

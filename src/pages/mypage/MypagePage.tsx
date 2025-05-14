@@ -4,18 +4,17 @@ import Header from '@/components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
-import { Info, AlertTriangle } from 'lucide-react';
+import { Info, AlertCircle, AlertTriangle } from 'lucide-react';
 import { useUserProfile } from '@/api/profileApi';
 import { useLogout } from '@/api/LogoutApi';
 import { useDeleteUser } from '@/api/deletUserApi';
 import { useState } from 'react';
 import EmptyState from '@/components/common/EmptyState';
-import { requestKakaoLogout } from '@/api/authApi';
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
   const { data: userProfile, isLoading, isError, error } = useUserProfile();
-  const { logout, isLoading: isLogoutLoading, isError:isLogoutError, error: logoutError } = useLogout();
+  const { logout, isLoading: isLogoutLoading, isSuccess:isLogoutSuccess, isError:isLogoutError, error: logoutError } = useLogout();
   const { deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
   const [showLogoutError, setShowLogoutError] = useState(false);
   const [showDeleteError, setShowDeleteError] = useState(false);
@@ -27,7 +26,7 @@ const MyPage: React.FC = () => {
     return (
       <AlertModal
         isOpen={isOpen}
-        icon={<Info size={36} className="text-[#FE9400]" />}
+        icon={<AlertCircle size={36} className="text-[#FE9400]" />}
         title="알림"
         message={(error as Error)?.message || '오류가 발생했습니다.'}
         onClose={onClose}
@@ -47,14 +46,18 @@ const MyPage: React.FC = () => {
     setShowLogoutConfirm(true);
   };
 
-  const confirmLogout = async() => {
-    try {
-      await requestKakaoLogout();
-    } catch (error) {
-      console.error("카카오 로그아웃 요청 실패:", error);
+  const confirmLogout = () => {
+    logout();
+    if (isLogoutLoading) {
+      <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <LoadingSpinner type="clip" size="large" fullScreen={false} />
+      </div>
     }
+    if (isLogoutError) {
+      setShowLogoutError(true);
+      renderAlertModal(showLogoutError, logoutError, () => setShowLogoutError(false));
+    } 
   }
-
 
   const handleDeleteAccount = () => {
     setShowDeleteConfirm(true);
@@ -71,6 +74,7 @@ const MyPage: React.FC = () => {
       setShowDeleteError(true);
       renderAlertModal(showDeleteError, deleteError, () => setShowDeleteError(false));
     }
+
     };
 
   return (
@@ -116,7 +120,7 @@ const MyPage: React.FC = () => {
       {showLogoutError && (
         <AlertModal
           isOpen
-          icon={<Info size={36} className="text-[#FE9400]" />}
+          icon={<AlertCircle size={36} className="text-[#FE9400]" />}
           title="로그아웃 오류"
           message={logoutError?.message ?? "로그아웃 중 오류가 발생했습니다."}
           onClose={() => setShowLogoutError(false)}
@@ -130,7 +134,7 @@ const MyPage: React.FC = () => {
       {showDeleteError && (
         <AlertModal
           isOpen
-          icon={<Info size={36} className="text-[#FE9400]" />}
+          icon={<AlertCircle size={36} className="text-[#FE9400]" />}
           title="회원탈퇴 오류"
           message={deleteError?.message ?? "회원탈퇴 중 오류가 발생했습니다."}
           onClose={() => setShowDeleteError(false)}
@@ -143,7 +147,7 @@ const MyPage: React.FC = () => {
      {showDeleteConfirm && (
        <AlertModal
          isOpen={true}
-         icon={<Info size={36} className="text-[#FE9400]" />}
+         icon={<AlertCircle size={36} className="text-[#FE9400]" />}
          title="회원탈퇴"
          message="정말로 탈퇴하시겠습니까?"
          confirmText="탈퇴"
@@ -158,7 +162,7 @@ const MyPage: React.FC = () => {
     {showLogoutConfirm && (
        <AlertModal
          isOpen={true}
-         icon={<Info size={36} className="text-[#FE9400]" />}
+         icon={<AlertCircle size={36} className="text-[#FE9400]" />}
          title="로그아웃"
          message="로그아웃 하시겠습니까?"
          confirmText="로그아웃"

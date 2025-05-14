@@ -3,7 +3,9 @@ import { useOnboardingStore } from '@/stores/onboardingStore';
 import { Label } from '@/components/ui/label';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Tag } from '@/components/common/Tag';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Info } from 'lucide-react';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -58,9 +60,49 @@ const Step2 = () => {
     <div className="space-y-6 py-4">
       {/* 카페인 민감도 */}
       <div className="mb-10">
-        <Label className="text-base text-[#000000] mb-2 block font-semibold">
-          카페인 민감도
-        </Label>
+      <div className="flex items-center mb-2">
+          <Label className="text-base text-[#000000] font-semibold">
+            카페인 민감도
+          </Label>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="p-1 rounded-full ml-1 cursor-pointer">
+                <Info className="w-4 h-4 stroke-2 text-gray-500" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent side="top" align="end" className="w-64 p-4 bg-white rounded-lg shadow-lg border border-gray-200">
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-sm font-medium">
+                  카페인 민감도란?
+                </h3>
+                <PopoverPrimitive.Close asChild>
+                  <button className="text-gray-400 hover:text-gray-500">
+                    <span className="sr-only">닫기</span>
+                    ×
+                  </button>
+                </PopoverPrimitive.Close>
+              </div>
+              <div className="text-xs text-gray-600 space-y-2">
+                <p>
+                  <span className="font-medium">~30% 미만:</span>
+                  <span className="ml-1">영향이 거의 없음</span>
+                </p>
+                <p>
+                  <span className="font-medium">31 ~ 40%:</span>
+                  <span className="ml-1">영향을 약간 받음</span>
+                </p>
+                <p>
+                  <span className="font-medium">41~80%:</span>
+                  <span className="ml-1">영향을 받음</span>
+                </p>
+                <p>
+                  <span className="font-medium">81~100%:</span>
+                  <span className="ml-1">영향을 많이 받음</span>
+                </p>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
         <SliderPrimitive.Root
           className="relative flex items-center mt-10 mb-10 ml-4 mr-8"
           value={[caffeineInfo.caffeineSensitivity]}

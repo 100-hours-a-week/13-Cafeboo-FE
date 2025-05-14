@@ -63,11 +63,10 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               key={idx}
               onClick={() => !item.disabled && handleNavigate(item.href)}
               disabled={item.disabled}
-              className={`w-full text-left px-4 py-3 border-b`}
+              className={`w-full text-left px-4 py-3 border-b bg-white hover:bg-gray-100`}
               style={{
                 color: item.disabled ? '#9CA3AF' : '#000000',
                 borderColor: '#E5E7EB',
-                backgroundColor: '#FFFFFF',
                 opacity: item.disabled ? 0.5 : 1,
                 cursor: item.disabled ? 'not-allowed' : 'pointer',
               }}
