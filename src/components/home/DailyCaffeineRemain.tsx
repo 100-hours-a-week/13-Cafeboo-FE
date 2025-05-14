@@ -100,7 +100,7 @@ export default function DailyCaffeineRemain({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 20, right: 0, bottom: 40, left: 0 }}
+            margin={{ top: 20, right: 0, bottom: 50, left: 0 }}
           >
             <YAxis
               type="number"
@@ -131,7 +131,7 @@ export default function DailyCaffeineRemain({
               barCategoryGap="20%"
             >
               <CartesianGrid
-                strokeDasharray="4 4"
+                strokeDasharray="3 3"
                 stroke="#C7C7CC"
                 vertical={false}
               />
@@ -162,7 +162,7 @@ export default function DailyCaffeineRemain({
               <ReferenceLine
                 y={sleepSensitiveThreshold}
                 stroke="#543122"
-                strokeDasharray="4 4"
+                strokeDasharray="3 3"
               ></ReferenceLine>
             </BarChart>
           </ResponsiveContainer>

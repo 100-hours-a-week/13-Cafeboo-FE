@@ -21,7 +21,6 @@ export default function HomePage() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // 임의 데이터
   const slides = [
     { imageUrl: BannerImage1, text: '' },
     { imageUrl: BannerImage2, text: '' },

@@ -7,7 +7,6 @@ const KakaoRedirectPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
-  console.log(code);
 
   useEffect(() => {
     const fetchKakaoToken = async () => {
