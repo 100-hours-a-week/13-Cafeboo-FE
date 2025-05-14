@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import { getISOWeek } from 'date-fns';
+import { getWeekOfMonth } from 'date-fns';
 
 export type PeriodType = 'weekly' | 'monthly' | 'yearly';
 
@@ -35,7 +35,7 @@ export default function PeriodFilterSelector({
   const today = new Date();
   const defaultYear = `${today.getFullYear()}년`;
   const defaultMonth = `${today.getMonth() + 1}월`;
-  const defaultWeek = `${getISOWeek(today)}주차`;
+  const defaultWeek = `${getWeekOfMonth(today)}주차`;
 
   const years = useMemo(
     () => Array.from({ length: 51 }, (_, i) => `${2025 + i}년`),

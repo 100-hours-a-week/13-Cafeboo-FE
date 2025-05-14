@@ -1,5 +1,6 @@
 import apiClient from './apiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { requestKakaoLogout } from './authApi';
 
 export const logout = async () => {
   await apiClient.post('/api/v1/auth/logout');
@@ -14,7 +15,7 @@ export const useLogout = () => {
         localStorage.removeItem('access_token');
         localStorage.removeItem('userId');
         queryClient.clear(); 
-        window.location.href = '/auth/login'; 
+        requestKakaoLogout();
       },
       onError: (error: any) => {
         console.error("로그아웃 중 오류:", error);
@@ -22,10 +23,10 @@ export const useLogout = () => {
     });
   
     return {
-      logout: mutation.mutate, 
-      isLoading: mutation.status === 'pending', 
-      isError: mutation.status === 'error',
-      isSuccess: mutation.status === 'success',
-      error: mutation.error,           
+      logout: mutation.mutate,
+      isLoading: mutation.isPending,  
+      isError:   mutation.isError,
+      isSuccess: mutation.isSuccess,
+      error:     mutation.error,
     };
   };
