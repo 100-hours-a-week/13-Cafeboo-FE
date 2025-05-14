@@ -21,12 +21,22 @@ export default function HomePage() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
-  // 임의 데이터
   const slides = [
     { imageUrl: BannerImage1, text: '' },
     { imageUrl: BannerImage2, text: '' },
     { imageUrl: BannerImage3, text: '' },
   ];
+
+  const dummyCaffeineByHour: { time: string; caffeineMg: number }[] =
+  Array.from({ length: 24 }, (_, hour) => {
+    const remaining = 400 - hour * 20; // 예: 150mg에서 매시간 5mg씩 감소
+    return {
+      time: `${hour.toString().padStart(2, '0')}:00`,
+      caffeineMg: remaining > 0 ? remaining : 0,
+    };
+  });
+  // 취침 민감 임계치는 예를 들어 60mg
+  const dummySleepSensitiveThreshold = 60
 
   const { data: report, isLoading, isError, error, refetch } = useDailyCaffeineReport();
 
@@ -91,22 +101,10 @@ export default function HomePage() {
 
         {/* 시간대별 잔여량 카드 */}
         <div className="bg-white pl-2 pr-2 pt-2 rounded-lg shadow-sm border border-gray-200">
-          {isLoading ? (
-            <div className="flex justify-center items-center h-32">
-              <LoadingSpinner type="clip" size="small" fullScreen={false} />
-            </div>
-          ) : isError ? (
-            <EmptyState
-              title="데이터 로딩 실패"
-              description={(error as Error).message}
-              icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
-            />
-          ) : (
             <DailyCaffeineRemain
-              caffeineByHour={report?.caffeineByHour ?? []}
-              sleepSensitiveThreshold={report?.sleepSensitiveThreshold ?? 0}
+              caffeineByHour={dummyCaffeineByHour ?? []}
+              sleepSensitiveThreshold={dummySleepSensitiveThreshold ?? 0}
             />
-          )}
         </div>
 
         {/* 카페인 추가 버튼 */}
