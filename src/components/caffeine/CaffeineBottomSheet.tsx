@@ -28,6 +28,7 @@ export default function CaffeineBottomSheet({
   onOpenChange,
   onSubmitRecord,
 }: CaffeineBottomSheetProps) {
+  
   const [selected, setSelected] = useState<{ cafeName: string; drinkId: number} | null>(null);
 
   const detail: DrinkDetail | null = useMemo(() => {
@@ -66,7 +67,7 @@ export default function CaffeineBottomSheet({
         }}
         title="추가할 음료 선택하세요."
         hideConfirm
-        contentStyle={{ height: 'calc(var(--vh) * 0.9)', zIndex: 50 }}
+        contentStyle={{ height: "calc(var(--vh, 1vh) * 90)", zIndex: 50 }}
       >
         <CaffeineSelectForm
           drinkData={drinkData}

@@ -82,7 +82,7 @@ export default function CaffeineDetailForm({
     if (inputRef.current?.showPicker) {
       inputRef.current.showPicker();
     } else {
-      inputRef.current?.click();
+      inputRef.current?.focus();
     }
   };
 
@@ -163,22 +163,18 @@ export default function CaffeineDetailForm({
         </button>
 
         {/* 시계 아이콘 */}
-        <button
-          type="button"
-          onClick={openNativePicker}
-          className="absolute left-1/2 transform -translate-x-[150px] top-1/2 -translate-y-1/2 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition z-10"
-        >
-          <Clock className="w-5 h-5 text-gray-600" />
-        </button>
-
-        {/* 날짜/시간 네이티브 input (투명하게 겹쳐두기) */}
-        <input
-          type="datetime-local"
-          ref={inputRef}
-          value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
-          onChange={(e) => setIntakeTime(new Date(e.currentTarget.value))}
-          className="absolute left-1/2 transform -translate-x-[150px] top-1/2 -translate-y-1/2 opacity-0"
-        />
+        <label className="relative w-11 h-11 block cursor-pointer left-1/2 transform -translate-x-[150px] top-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer">
+          <Clock className="absolute p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 w-9 h-9 z-10 flex items-center justify-center" />
+          <input
+            id="intakeTime"
+            type="datetime-local"
+            ref={inputRef}
+            value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
+            onChange={e => setIntakeTime(new Date(e.currentTarget.value))}
+            onClick={openNativePicker}
+            className="absolute inset-0 opacity-0"
+          />
+        </label>
       </div>
     </div>
   );
