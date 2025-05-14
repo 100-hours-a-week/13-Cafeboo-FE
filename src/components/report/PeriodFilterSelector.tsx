@@ -32,10 +32,6 @@ export default function PeriodFilterSelector({
   onWeekChange,
 }: PeriodFilterSelectorProps) {
   // 오늘 날짜 기준 기본값
-  const today = new Date();
-  const defaultYear = `${today.getFullYear()}년`;
-  const defaultMonth = `${today.getMonth() + 1}월`;
-  const defaultWeek = `${getWeekOfMonth(today)}주차`;
 
   const years = useMemo(
     () => Array.from({ length: 51 }, (_, i) => `${2025 + i}년`),
@@ -53,9 +49,9 @@ export default function PeriodFilterSelector({
     [weeksofMonth]
   );
 
-  const yearValue = selectedYear ?? defaultYear;
-  const monthValue = selectedMonth ?? defaultMonth;
-  const weekValue = selectedWeek ?? defaultWeek; 
+  const yearValue = selectedYear;
+  const monthValue = selectedMonth;
+  const weekValue = selectedWeek; 
 
   const firstWeek = weeks[0];
 

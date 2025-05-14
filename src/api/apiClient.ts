@@ -13,7 +13,7 @@ let refreshSubscribers: ((token: string) => void)[] = [];
 
 // Axios 요청 인터셉터 (Access Token 자동 추가)
 apiClient.interceptors.request.use((config) => {
-  if (config.url?.includes("/api/v1/auth/kakao")) {
+  if (config.url?.includes("/api/v1/auth/kakao") || config.url?.includes('/api/v1/auth/refresh')) {
     delete config.headers.Authorization;
   } else {
     const token = localStorage.getItem("access_token");

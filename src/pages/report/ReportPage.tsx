@@ -16,6 +16,7 @@ import { recordCaffeineIntake } from '@/api/caffeineApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import EmptyState from '@/components/common/EmptyState';
 import AlertModal from '@/components/common/AlertModal';
+import { getWeekOfMonth } from 'date-fns';
 
 interface ReportApiData {
   // 주간
@@ -37,7 +38,7 @@ export default function ReportPage() {
   const today = new Date();
   const defaultYear = String(today.getFullYear());
   const defaultMonth = String(today.getMonth() + 1);
-  const defaultWeek = `${Math.ceil(today.getDate() / 7)}`;
+  const defaultWeek = `${getWeekOfMonth(today)}`;
 
   const [periodType, setPeriodType] = useState<PeriodType>('weekly');
   const [selectedYear, setSelectedYear] = useState(defaultYear);
