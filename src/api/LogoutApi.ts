@@ -1,6 +1,6 @@
 import apiClient from './apiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { requestKakaoLogout } from './authApi';
+import { requestKakaoLogout } from '@/api/authApi';
 
 export const logout = async () => {
   await apiClient.post('/api/v1/auth/logout');
@@ -29,4 +29,4 @@ export const useLogout = () => {
       isSuccess: mutation.isSuccess,
       error:     mutation.error,
     };
-  };
+};

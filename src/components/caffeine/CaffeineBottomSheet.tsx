@@ -43,12 +43,12 @@ export default function CaffeineBottomSheet({
     return {
       drinkid: drink.drinkId,
       name: drink.name,
+      date: selectedDate,
       sizes: drink.sizes.map((size) => ({
         drinkSizeId: size.drinkSizeId,
         caffeine_mg: size.caffeine_mg,
         size: size.size,
         capacity_ml: size.capacity_ml,
-      date: selectedDate,
       })),
     };
   }, [selected]);

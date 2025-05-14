@@ -12,7 +12,6 @@ const KakaoRedirectPage = () => {
   useEffect(() => {
     const fetchKakaoToken = async () => {
       if (!code) {
-        console.log("카카오 로그인 코드가 존재하지 않습니다.");
         navigate("/auth/login");
         return;
       }
