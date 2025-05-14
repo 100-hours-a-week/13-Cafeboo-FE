@@ -21,16 +21,6 @@ const OnboardingPage = () => {
   const userId = localStorage.getItem("userId");
   const submitHealthInfo = useSubmitHealthInfo(userId || "");
   const submitCaffeineInfo = useSubmitCaffeineInfo(userId || "");
-
-  
-  useEffect(() => {
-    if (!userId) {
-      setErrorMessage("오류가 발생했습니다. 다시 시도해주세요.");
-      setShowModal2(true);
-    } else {
-      reset();
-    }
-  }, [userId, reset]);
   
   const handleModalConfirm = () => {
     setShowModal2(false);

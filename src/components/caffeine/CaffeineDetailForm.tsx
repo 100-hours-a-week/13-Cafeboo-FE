@@ -5,19 +5,21 @@ import Small from '@/assets/small.png';
 import Medium from '@/assets/medium.png';
 import Large from '@/assets/large.png';
 import ExtraLarge from '@/assets/extralarge.png';
+import Stick from '@/assets/stick.png';  
 
-export interface DrinkSize {
+interface DrinkSize {
   drinkSizeId: number;
   caffeine_mg: number;
   size: string;
   capacity_ml: number;
 }
 
-export interface DrinkDetail {
+interface DrinkDetail {
   drinkid: number;
   name: string;
   sizes: DrinkSize[];
   date?: string;
+  cafeName: string;
 }
 
 export interface CaffeineRecordInput {
@@ -47,17 +49,25 @@ export default function CaffeineDetailForm({
   const sizes = drink.sizes;
   const [selectedSize, setSelectedSize] = useState<DrinkSize>(sizes[0]);
   const [count, setCount] = useState<number>(1);
-  const initialDate = drink.date 
-    ? new Date(`${drink.date}T12:00`) 
+  const todayString = new Date().toISOString().slice(0, 10);
+  const initialDate =
+  drink.date && drink.date !== todayString
+    ? new Date(`${drink.date}T12:00`)
     : new Date();
   
   const [intakeTime, setIntakeTime] = useState<Date>(initialDate);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const sizeImages = [Medium, Large, ExtraLarge]; 
-  if (sizes.length === 4) {
-    sizeImages.unshift(Small); 
-  }
+  const isMixCoffee = drink.cafeName === '믹스커피';
+
+  // 이미지 배열 생성
+  const sizeImages: string[] = isMixCoffee
+    ? [Stick]                          
+    : (() => {
+        const imgs = [Medium, Large, ExtraLarge];
+        if (sizes.length === 4) imgs.unshift(Small);
+        return imgs;
+      })();
 
   // 카페인 총량 계산 (소수점 첫째 자리까지)
   const caffeineTotal = (selectedSize.caffeine_mg * count).toFixed(1);
@@ -86,6 +96,8 @@ export default function CaffeineDetailForm({
     }
   };
 
+  console.log('selectedSize:', selectedSize);
+
   return (
     <div className="flex flex-col h-full px-6 pt-6 justify-center">
       {/* 음료명 */}
@@ -111,7 +123,7 @@ export default function CaffeineDetailForm({
               <img
                 src={imgSrc}
                 alt={`${size.size} cup`}
-                className="w-12 h-auto mb-2"
+                className="w-12 mb-2 h-auto"
               />
               <span className="text-sm font-medium text-gray-700">
                 {size.size}

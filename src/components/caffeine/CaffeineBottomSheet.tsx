@@ -6,14 +6,15 @@ import drinkData from '@/data/cafe_drinks.json';
 
 export interface CaffeineBottomSheetProps {
   open: boolean;
-  selectedDate?:string,
+  selectedDate?:string;
   onOpenChange: (open: boolean) => void;
   onSubmitRecord: (record: CaffeineRecordInput) => void;
 }
 
-export interface DrinkDetail {
-  drinkid: number,
+interface DrinkDetail {
+  drinkid: number;
   name: string;
+  cafeName: string;
   sizes: {
     drinkSizeId: number;
     caffeine_mg: number;
@@ -44,6 +45,7 @@ export default function CaffeineBottomSheet({
       drinkid: drink.drinkId,
       name: drink.name,
       date: selectedDate,
+      cafeName: selected.cafeName,
       sizes: drink.sizes.map((size) => ({
         drinkSizeId: size.drinkSizeId,
         caffeine_mg: size.caffeine_mg,
