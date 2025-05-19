@@ -14,9 +14,8 @@ export const useDailyCaffeineReport = () => {
     const query = useQuery({
         queryKey: ['dailyCaffeineReport'],
         queryFn: getDailyCaffeineReport,
-        staleTime: 30000,                
-        gcTime: 60000,        
-        refetchInterval: 30000,      
+        staleTime: 60000,                
+        gcTime: 300000,      
         refetchOnMount: 'always',
         refetchOnWindowFocus: true,
         refetchOnReconnect: true,

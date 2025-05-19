@@ -49,9 +49,8 @@ export const useMonthlyReport = (
   const query = useQuery<MonthlyReportData, Error>({
     queryKey: ['monthlyReport', yearStr, monthStr],
     queryFn: () => fetchMonthlyReport(yearStr, monthStr),
-    staleTime: 30000,                
-    gcTime: 60000,        
-    refetchInterval: 30000,      
+    staleTime: 60000,                
+    gcTime: 300000,    
     refetchOnMount: 'always',
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
