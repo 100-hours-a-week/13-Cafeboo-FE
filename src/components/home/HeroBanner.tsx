@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export interface HeroBannerProps {
-  slides: Array<{ imageUrl: string; text: string }>;
+  slides: Array<{ imageUrl: string; text?: string }>;
   autoSlideInterval?: number;
 }
 
