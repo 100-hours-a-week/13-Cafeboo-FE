@@ -46,9 +46,8 @@ export const useCalendar = (
   const query = useQuery<MonthlyCalendarResponse, Error>({
     queryKey: ['calendar', yearStr, monthStr],
     queryFn: () => fetchCalendar(yearStr, monthStr),
-    staleTime: 30000,                
-    gcTime: 60000,        
-    refetchInterval: 30000,      
+    staleTime: 60000,                
+    gcTime: 300000,      
     refetchOnMount: 'always',
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
