@@ -30,8 +30,8 @@ apiClient.interceptors.response.use(
     async (error) => {
       const originalRequest = error.config;
   
-      // Access Token 만료 (401) 처리
-      if (error.response?.status === 401 && !originalRequest._retry) {
+      // Access Token 만료 (401, 403) 처리
+      if ((error.response?.status === 401 || error.response?.status === 403) && !originalRequest._retry) {
         originalRequest._retry = true;
   
         // 이미 리프레시 중이면 구독으로 처리

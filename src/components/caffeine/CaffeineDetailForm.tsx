@@ -96,8 +96,6 @@ export default function CaffeineDetailForm({
     }
   };
 
-  console.log('selectedSize:', selectedSize);
-
   return (
     <div className="flex flex-col h-full px-6 pt-6 justify-center">
       {/* 음료명 */}

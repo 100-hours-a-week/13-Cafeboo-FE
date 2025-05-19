@@ -18,6 +18,10 @@ export const useLogout = () => {
       },
       onError: (error: any) => {
         console.error("로그아웃 중 오류:", error);
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('userId');
+        queryClient.clear(); 
+        window.location.href = '/auth/login';
       },
     });
   
