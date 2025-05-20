@@ -52,7 +52,9 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
               <ChevronLeft className="w-6 h-6" style={{ color: textColor }} />
             </button>
           ) : (
-            <img src={Logo} alt="Cafeboo" className="h-9 w-auto cursor-pointer" onClick={goHome} />
+            <div className="w-full h-full flex items-center" onClick={goHome}>
+              <img src={Logo} alt="Cafeboo" className="h-8 w-auto cursor-pointer"/>
+            </div>
           )}
 
           {/* 가운데: 타이틀 */}

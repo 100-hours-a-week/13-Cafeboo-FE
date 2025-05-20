@@ -115,7 +115,7 @@ const DiaryPage = () => {
             />
         </div>
 
-        <h2 className="mt-6 mb-3 text-base text-[#000000] font-semibold">
+        <h2 className="mt-6 mb-2 text-base text-[#000000] font-semibold">
           {new Date(selectedDate).getMonth() + 1}월{' '}
           {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
