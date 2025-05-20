@@ -50,6 +50,8 @@ export default function ReportPage() {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
+  
+
   // 주간/월간/연간 API 훅
   const {
     data: weeklyData,
@@ -185,7 +187,7 @@ export default function ReportPage() {
           <>
             <ReportChart period={periodType} data={reportData} />
 
-            <h2 className="mt-6 mb-3 text-md font-semibold text-[#000000]">
+            <h2 className="mt-6 mb-2 text-md font-semibold text-[#000000]">
               리포트 요약
             </h2>
             <ReportSummary
@@ -197,11 +199,7 @@ export default function ReportPage() {
 
             {periodType === 'weekly' && (
               <>
-                <h2 className="mt-6 mb-3 text-md font-semibold text-[#000000]">
-                  리포트 결과
-                </h2>
                 <ReportMessage
-                  period={periodType}
                   statusMessage={reportData.aiMessage ?? ''}
                 />
               </>

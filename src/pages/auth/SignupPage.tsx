@@ -1,5 +1,4 @@
 import SignupForm, { SignupFormData } from '@/components/auth/SignupForm';
-import DarkModeToggle from '@/components/common/DarkModeToggle';
 import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
@@ -17,9 +16,6 @@ const SignupPage = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center">
-      <div className="absolute top-4 right-4">
-        <DarkModeToggle />
-      </div>
       <div className="w-full max-w-md">
         <SignupForm
           onSubmit={handleSignup}

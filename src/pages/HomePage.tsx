@@ -38,7 +38,6 @@ export default function HomePage() {
         drinkCount: record.drinkCount,
         caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
       });
-      console.log("카페인 섭취 등록 성공:", response);
       refetch();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
@@ -57,7 +56,7 @@ export default function HomePage() {
           <HeroBanner slides={slides} />
         </div>
 
-        <h2 className="mt-6 mb-3 text-base text-[#333333] font-semibold">
+        <h2 className="mt-6 mb-2 text-base text-[#333333] font-semibold">
           오늘의 카페인 섭취량
         </h2>
 
@@ -84,7 +83,7 @@ export default function HomePage() {
             )}
         </div>
 
-        <h2 className="mt-6 mb-3 text-base text-[#333333] font-semibold">
+        <h2 className="mt-6 mb-2 text-base text-[#333333] font-semibold">
           카페인 잔존량
         </h2>
 
