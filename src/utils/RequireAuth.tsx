@@ -20,6 +20,8 @@ export default function RequireAuth() {
 
   const handleClose = () => {
     setShowModal(false);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('userId');
     navigate('/auth/login', { replace: true });
   };
 
