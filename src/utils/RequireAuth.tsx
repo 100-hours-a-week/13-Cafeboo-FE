@@ -9,6 +9,7 @@ export default function RequireAuth() {
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
+    console.log(token || token === 'undefined');
     if (!token || token === 'undefined') {
       setShowModal(true);
       setChecked(true);
@@ -19,8 +20,6 @@ export default function RequireAuth() {
 
   const handleClose = () => {
     setShowModal(false);
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('userId');
     navigate('/auth/login', { replace: true });
   };
 

@@ -15,21 +15,6 @@ const ReportMessage: React.FC<ReportMessageProps> = ({
     /\[맞춤형 조언\]\s*([\s\S]*)/
   );
 
-  if (!summaryMatch) {
-      return (
-        <>
-          <h2 className="mt-6 mb-2 text-md font-semibold text-[#000000]">
-            섭취 기록 요약
-          </h2>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {statusMessage}
-            </p>
-          </div>
-        </>
-      );
-  }
-
   let summaryText = summaryMatch?.[1].trim() ?? '';
   const adviceText = adviceMatch?.[1].trim() ?? '';
 
