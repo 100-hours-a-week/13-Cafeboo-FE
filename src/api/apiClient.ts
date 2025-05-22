@@ -47,6 +47,7 @@ apiClient.interceptors.response.use(
     // /auth/refresh 요청 자체는 재발급 로직 대상에서 제외
     if (originalRequest.url?.includes("/api/v1/auth/refresh")) {
       localStorage.removeItem("access_token");
+      localStorage.removeItem("userId");
       window.location.href = "/auth/login";
       return Promise.reject(error);
     }
@@ -83,6 +84,7 @@ apiClient.interceptors.response.use(
         isRefreshing = false;
         notifySubscribersError(refreshError);
         localStorage.removeItem("access_token");
+        localStorage.removeItem("userId");
         window.location.href = "/auth/login";
         return Promise.reject(refreshError);
       }

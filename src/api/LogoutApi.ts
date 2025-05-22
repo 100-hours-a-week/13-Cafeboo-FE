@@ -11,6 +11,7 @@ export const useLogout = () => {
     const mutation = useMutation({
       mutationFn: logout, 
       onSuccess: () => {
+        localStorage.setItem('afterLogout', 'true');
         localStorage.removeItem('access_token');
         localStorage.removeItem('userId');
         queryClient.clear(); 
@@ -18,6 +19,7 @@ export const useLogout = () => {
       },
       onError: (error: any) => {
         console.error("로그아웃 중 오류:", error);
+        localStorage.setItem('afterLogout', 'true');
         localStorage.removeItem('access_token');
         localStorage.removeItem('userId');
         queryClient.clear(); 
