@@ -9,7 +9,6 @@ export default function RequireAuth() {
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
-    console.log(token || token === 'undefined');
     if (!token || token === 'undefined') {
       setShowModal(true);
       setChecked(true);
