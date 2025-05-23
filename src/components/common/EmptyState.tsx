@@ -10,7 +10,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   icon,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center text-center px-4 py-12 bg-white">
+    <div className="flex flex-col items-center justify-center text-center px-4 py-12">
       {icon && <div className="mb-4 text-[#D1D1D1]">{icon}</div>}
       <h2 className="text-[#595959] text-lg">{title}</h2>
       {description && (

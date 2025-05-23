@@ -182,7 +182,7 @@ export default function CaffeineDetailForm({
             value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
             onChange={e => setIntakeTime(new Date(e.currentTarget.value))}
             onClick={openNativePicker}
-            className="absolute inset-0 w-4 h-4opacity-0"
+            className="absolute inset-0 w-4 h-4 opacity-0"
           />
         </label>
       </div>

@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 export interface HeroBannerProps {
-  slides: Array<{ imageUrl: string; text?: string }>;
+  slides: Array<{ imageUrl: string; }>;
   autoSlideInterval?: number;
 }
 
@@ -35,15 +35,9 @@ export default function HeroBanner({
           <div key={idx} className="w-full h-full">
             <img
               src={slide.imageUrl}
-              alt={slide.text}
+              alt={'이미지'}
               className="w-full h-full object-contain object-center"
             />
-            {/* 텍스트 오버레이 */}
-            <div className="absolute inset-0 bg-opacity-30 flex items-center justify-center">
-              <p className="text-white text-lg md:text-2xl font-semibold text-center px-4">
-                {slide.text}
-              </p>
-            </div>
           </div>
         ))}
       </Slider>

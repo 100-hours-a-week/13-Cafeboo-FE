@@ -46,7 +46,7 @@ export default function DailyCaffeine({
   const consumedAngle = (percent / 100) * 360;
 
   return (
-    <div className="flex items-center bg-white rounded-lg p-2 relative">
+    <div className="flex items-center relative">
       <div className="w-2/5 h-40 relative">
         <ResponsiveContainer>
           <PieChart>
@@ -83,7 +83,7 @@ export default function DailyCaffeine({
         </div>
       </div>
 
-      <div className="w-3/5 p-4">
+      <div className="w-3/5 pl-4 pr-2">
         <p className="text-base text-[#333333]">
           <span className="font-semibold">{nickname}</span>님,
           <br/>

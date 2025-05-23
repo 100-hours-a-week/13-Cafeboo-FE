@@ -123,9 +123,9 @@ const CaffeineCalendar = ({
             onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1);
           }}
         >
-          <ChevronLeft size={20} className="text-[#595959]" />
+          <ChevronLeft size={20} className="text-[#595959] cursor-pointer" />
         </button>
-        <h3 className="text-lg font-medium text-[#333333]">
+        <h3 className="text-lg font-medium text-[#000000]">
           {currentMonth.toLocaleString('en-US', {
             month: 'long',
             year: 'numeric',
@@ -142,7 +142,7 @@ const CaffeineCalendar = ({
             onMonthChange(newDate.getFullYear(), newDate.getMonth() + 1);
           }}
         >
-          <ChevronRight size={20} className="text-[#595959]" />
+          <ChevronRight size={20} className="text-[#595959] cursor-pointer" />
         </button>
       </div>
 
@@ -173,7 +173,7 @@ const CaffeineCalendar = ({
               {day.currentMonth && amount > 0 && CoffeeBeanIcon(amount)}
 
               <span
-                className={`z-10 ${isSelected} ${
+                className={`z-10 cursor-pointer ${isSelected} ${
                   day.currentMonth && amount > 0
                     ? 'text-[#333333]'
                     : day.currentMonth

@@ -3,6 +3,7 @@ import './index.css';
 import { useEffect, useRef } from 'react';
 import Logo from '@/assets/logo.svg';
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
+import BG from '@/assets/background.png'
 
 function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -17,9 +18,13 @@ function App() {
   return (
     <div
       ref={layoutRef}
-      className="min-h-screen flex items-center justify-start bg-gradient-to-br 
-            from-white
-            to-gray-100"
+      className="min-h-screen flex items-center justify-start"
+      style={{
+        backgroundImage: `url(${BG})`,
+        backgroundRepeat: 'repeat',
+        backgroundPosition: 'top left',
+        backgroundSize: 'auto',
+      }}
     >
       <div className="fixed my-auto xl:ml-30 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center">
         <div className="flex items-center justify-center">

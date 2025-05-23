@@ -33,14 +33,12 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
     navigate('/main/home')
   }
 
-  const headerBgColor = '#FFFFFF';
   const textColor = '#000000';
 
   return (
     <>
       <header
-        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 w-full mx-auto lg:left-184 xl:left-248 2xl:left-312"
-        style={{ backgroundColor: headerBgColor }}
+        className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 bg-white w-full mx-auto lg:left-184 xl:left-248 2xl:left-312"
       >
         <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
           {/* 왼쪽: 로고 또는 뒤로가기 */}
