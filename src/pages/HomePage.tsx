@@ -4,7 +4,7 @@ import Header from '@/components/common/Header';
 import HeroBanner from '@/components/home/HeroBanner';
 import DailyCaffeineIntakeGraph from '@/components/home/DailyCaffeine';
 import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
-import BannerImage1 from '@/assets/Banner01.png';
+import BannerImage1 from '@/assets/Banner04.png';
 import BannerImage2 from '@/assets/Banner02.png';
 import BannerImage3 from '@/assets/Banner03.png';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
@@ -15,6 +15,7 @@ import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
 import { Info, AlertTriangle } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
+import SectionCard from '@/components/common/SectionCard';
 
 export default function HomePage() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -52,16 +53,16 @@ export default function HomePage() {
 
       <main className="pt-16 space-y-4">
         {/* Hero Banner */}
-        <div className="w-full overflow-hidden rounded-lg shadow-sm border border-gray-200">
+        <SectionCard className="!p-0 overflow-hidden">
           <HeroBanner slides={slides} />
-        </div>
+        </SectionCard>
 
-        <h2 className="mt-6 mb-2 text-base text-[#333333] font-semibold">
+        <h2 className="mt-4 mb-2 text-base text-[#333333] font-semibold">
           오늘의 카페인 섭취량
         </h2>
 
         {/* 일일 섭취량 카드 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        <SectionCard className="!p-2">
             {isLoading ? (
               <div className="flex justify-center items-center h-32">
                 <LoadingSpinner type="clip" size="small" fullScreen={false} />
@@ -81,14 +82,14 @@ export default function HomePage() {
                 intakeGuide={report?.intakeGuide}
               />
             )}
-        </div>
+        </SectionCard>
 
-        <h2 className="mt-6 mb-2 text-base text-[#333333] font-semibold">
+        <h2 className="mt-4 mb-2 text-base text-[#333333] font-semibold">
           카페인 잔존량
         </h2>
 
         {/* 시간대별 잔여량 카드 */}
-        <div className="bg-white pl-2 pr-2 pt-2 rounded-lg shadow-sm border border-gray-200">
+        <SectionCard className="!pl-1 pb-0 pt-1">
           {isLoading ? (
             <div className="flex justify-center items-center h-32">
               <LoadingSpinner type="clip" size="small" fullScreen={false} />
@@ -105,7 +106,7 @@ export default function HomePage() {
               sleepSensitiveThreshold={report?.sleepSensitiveThreshold ?? 0}
             />
           )}
-        </div>
+        </SectionCard>
 
         {/* 카페인 추가 버튼 */}
         <button

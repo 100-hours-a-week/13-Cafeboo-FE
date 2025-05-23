@@ -9,6 +9,7 @@ import {
   ReferenceLine,
   Cell,
 } from 'recharts';
+import HorizontalScroller from '../common/HorizontalScroller';
 
 export interface DailyCaffeineRemainProps {
   caffeineByHour: Array<{ time: string; caffeineMg: number }>;
@@ -61,7 +62,7 @@ export default function DailyCaffeineRemain({
   useEffect(() => {
     const timeout = setTimeout(() => {
       updateNowX();
-    }, 100);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [nowIndex, data]);
@@ -74,7 +75,7 @@ export default function DailyCaffeineRemain({
   }, []);
 
   const base = (windowWidth - 80) / data.length;
-  const BAR_WIDTH = Math.max(12, Math.min(16, base * 0.6));
+  const BAR_WIDTH = Math.max(16, Math.min(16, base * 0.6));
   const minWidth = 18 * data.length + 18;
 
   const tickFormatter = (val: string) => {
@@ -100,7 +101,7 @@ export default function DailyCaffeineRemain({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 20, right: 0, bottom: 50, left: 0 }}
+            margin={{ top: 20, right: 0, bottom: 40, left: 0 }}
           >
             <YAxis
               type="number"
@@ -117,7 +118,8 @@ export default function DailyCaffeineRemain({
       </div>
 
       {/* 2) 스크롤 가능한 바 차트 + X축 영역 */}
-      <div   className={`flex-1 overflow-x-auto ${isMobile ? 'scrollbar-hide' : ''}`}>
+      <div className="flex-1 overflow-x-auto scrollbar-hide">
+        <HorizontalScroller>
         <div
           className="h-[180px] w-full relative"
           style={{ minWidth: `${minWidth}px` }}
@@ -129,6 +131,7 @@ export default function DailyCaffeineRemain({
               data={data}
               margin={{ top: 20, right: 20, bottom: 10, left: 0 }}
               barCategoryGap="20%"
+              syncId="caffeineSync"
             >
               <CartesianGrid
                 strokeDasharray="3 3"
@@ -141,8 +144,8 @@ export default function DailyCaffeineRemain({
                 domain={[0, maxRemaining]}
                 ticks={ticks}
                 tickFormatter={(val) => (val === 0 ? '' : String(val))}
+                tickCount={5}
                 minTickGap={0}
-                interval={0}
               />
               <XAxis
                 dataKey="time"
@@ -155,9 +158,13 @@ export default function DailyCaffeineRemain({
               />
 
               <Bar dataKey="caffeineMg" barSize={BAR_WIDTH} activeBar={false}>
-                {data.map((_, idx) => (
-                  <Cell key={idx} fill={'#FE9400'} fillOpacity={0.8} />
-                ))}
+                {data.map((entry, idx) => {
+                  const ratio = entry.caffeineMg / maxRemaining;
+                  const lightness = 80 - ratio * 30;
+                  const fillColor = `hsl(38, 100%, ${lightness}%)`;
+
+                  return <Cell key={idx} fill={fillColor} />;
+                })}
               </Bar>
               <ReferenceLine
                 y={sleepSensitiveThreshold}
@@ -188,6 +195,7 @@ export default function DailyCaffeineRemain({
             </div>
           )}
         </div>
+        </HorizontalScroller>
       </div>
     </div>
   );

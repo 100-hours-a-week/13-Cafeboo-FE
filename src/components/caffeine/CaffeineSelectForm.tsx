@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Tag } from '@/components/common/Tag';
 import { Coffee, Search } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
+import HorizontalScroller from '../common/HorizontalScroller';
 
 interface DrinkSize {
   drinkSizeId: number;
@@ -111,14 +112,16 @@ export default function CaffeineSelectForm({
           </div>
 
           {/* 브랜드 필터 */}
-          <Tag
-            items={brandOptions}
-            value={[brandFilter]}
-            onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0])}
-            multiple={false}
-            scrollable
-            className="whitespace-nowrap pb-1"
-          />
+          <HorizontalScroller>
+            <Tag
+              items={brandOptions}
+              value={[brandFilter]}
+              onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0])}
+              multiple={false}
+              scrollable
+              className="whitespace-nowrap"
+            />
+          </HorizontalScroller>
 
           {/* 타입 필터 */}
           <div className="flex">

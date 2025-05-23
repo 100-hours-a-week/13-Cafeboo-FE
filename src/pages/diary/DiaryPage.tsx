@@ -13,6 +13,7 @@ import { AlertTriangle } from "lucide-react";
 import { useDailyIntake } from '@/api/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeineApi';
 import AlertModal from '@/components/common/AlertModal';
+import SectionCard from '@/components/common/SectionCard';
 
 // 날짜 포맷 유틸
 const formatDate = (date: Date) => {
@@ -30,7 +31,7 @@ const DiaryPage = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
+  const [isLarge, setIsLarge] = useState(window.innerWidth >= 390 && window.innerWidth < 1024);
   const navigate = useNavigate();
 
   const { data: dataCanlendar, isLoading: loadingCalendar, isError: errorCalendar, error, refetch: refetchCalendar } = useCalendar(year, month);
@@ -90,7 +91,6 @@ const DiaryPage = () => {
         drinkCount: record.drinkCount,
         caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
       });
-      console.log("카페인 섭취 등록 성공:", response);
       refetchCalendar();
       refetchDaily();
     } catch (err: any) {
@@ -104,8 +104,8 @@ const DiaryPage = () => {
     <div className="min-h-screen">
       <Header mode="logo" />
       <main className="pt-16 space-y-4">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
-              <CaffeineCalendar
+        <SectionCard>
+            <CaffeineCalendar
               year={year}
               month={month}
               selectedDate={selectedDate}
@@ -113,7 +113,7 @@ const DiaryPage = () => {
               onDateSelect={date => handleDateSelect(date)}
               onMonthChange={handleMonthChange}
             />
-        </div>
+        </SectionCard>
 
         <h2 className="mt-6 mb-2 text-base text-[#000000] font-semibold">
           {new Date(selectedDate).getMonth() + 1}월{' '}
@@ -121,12 +121,14 @@ const DiaryPage = () => {
         </h2>
 
         {loadingDaily ? (
-           <LoadingSpinner type="clip" size="small" fullScreen={false} />
+          <div className='item-center justify-center p-8'>
+            <LoadingSpinner type="clip" size="small" fullScreen={false} />
+          </div>
         ) : errorDaily ? (
           <EmptyState
             title="데이터 로딩 실패"
             description={(error as Error).message}
-            icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
+            icon={<AlertTriangle className="w-10 h-10" />}
           />
         ) : (
           <CaffeineList records={records} onEdit={handleEdit} />
@@ -145,6 +147,7 @@ const DiaryPage = () => {
           <Plus size={24} />
         </button>
       </main>
+
       <CaffeineBottomSheet
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}

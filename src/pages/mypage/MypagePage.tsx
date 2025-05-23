@@ -4,12 +4,13 @@ import Header from '@/components/common/Header';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
-import { Info, AlertCircle, AlertTriangle } from 'lucide-react';
+import { AlertCircle, AlertTriangle } from 'lucide-react';
 import { useUserProfile } from '@/api/profileApi';
 import { useLogout } from '@/api/LogoutApi';
 import { useDeleteUser } from '@/api/deletUserApi';
 import { useState } from 'react';
 import EmptyState from '@/components/common/EmptyState';
+import SectionCard from '@/components/common/SectionCard';
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
