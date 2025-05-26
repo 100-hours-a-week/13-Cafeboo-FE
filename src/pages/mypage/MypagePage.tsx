@@ -87,7 +87,7 @@ const MyPage: React.FC = () => {
         </h2>
 
         {/* 프로필 카드 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
+        <SectionCard>
           {isLoading ? (
               <div className="flex justify-center items-center h-32">
                 <LoadingSpinner type="clip" size="small" fullScreen={false} />
@@ -109,7 +109,7 @@ const MyPage: React.FC = () => {
               />
             )
           }
-        </div>
+        </SectionCard>
 
         {/* 설정 메뉴 */}
         <SettingsMenu

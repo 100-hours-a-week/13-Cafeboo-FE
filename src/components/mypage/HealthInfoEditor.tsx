@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import TwoOptionToggle from '@/components/common/TwoOptionToggle';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Input } from '@/components/ui/input';
 import { Tag } from '../common/Tag';
@@ -169,50 +169,18 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       {/* 성별 */}
       <div>
         <Label className="font-semibold mb-2 block text-base">성별</Label>
-        <ToggleGroup
-          type="single"
+        <TwoOptionToggle
+          options={[
+            { label: '남자', value: 'M' },
+            { label: '여자', value: 'F' },
+          ]}
           value={gender}
-          onValueChange={(v) =>{
-            if  (v && v !== gender) setGender(v as "M" | "F");
-          }}
-          className="flex w-full"
-        >
-          <ToggleGroupItem
-            value="M"
-            className="
-              flex-1 py-2 text-sm font-medium text-center cursor-pointer
-              rounded-l-lg border border-[#D9D9D9]
-              data-[state=on]:bg-white
-              data-[state=on]:border-[#FE9400]
-              data-[state=on]:text-[#333333]
-              data-[state=off]:bg-[#F1F3F3]
-              data-[state=off]:text-[#595959]
-              data-[state=off]:border-r-0
-            "
-          >
-            남자
-          </ToggleGroupItem>
-
-          <ToggleGroupItem
-            value="F"
-            className="
-              flex-1 py-2 text-sm font-medium text-center cursor-pointer
-              rounded-r-lg border border-[#D9D9D9]
-              data-[state=on]:bg-white
-              data-[state=on]:border-[#FE9400]
-              data-[state=on]:text-[#333333]
-              data-[state=off]:bg-[#F1F3F3]
-              data-[state=off]:text-[#595959]
-              data-[state=off]:border-l-0
-            "
-          >
-            여자
-          </ToggleGroupItem>
-        </ToggleGroup>
+          onChange={(v) => setGender(v)}
+        />
       </div>
 
       <div className="flex items-center justify-between mt-8">
-          <Label className="text-base text-[#000000] font-semibold">나이</Label>
+          <Label className="text-base font-semibold">나이</Label>
           <div className="flex items-center">
             <span className="text-base">만</span>
             <input type="text" inputMode="numeric"
@@ -232,7 +200,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
         {/* 신장 */}
         <div className="flex items-center justify-between mt-8">
-          <Label className="text-base text-[#000000] font-semibold">신장</Label>
+          <Label className="text-base font-semibold">신장</Label>
           <div className="flex items-center">
             <input type="text" inputMode="numeric"
               value={heightInput}
@@ -251,7 +219,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
         {/* 체중 */}
         <div className="flex items-center justify-between mt-8">
-          <Label className="text-base text-[#000000] font-semibold">체중</Label>
+          <Label className="text-base font-semibold">체중</Label>
           <div className="flex items-center">
             <input type="text" inputMode="decimal"
               value={weightInput}
@@ -278,59 +246,24 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           { val: hasLiverDisease, setter: setHasLiverDisease, label: '간 질환 여부' },
         ].map(({ val, setter, label }) => (
           <div key={label}>
-            <Label className="text-[#000000] mb-2 block text-base font-semibold">
+            <Label className="mb-2 block text-base font-semibold">
               {label}
             </Label>
-
-            <ToggleGroup
-              type="single"
-              value={val ? 'yes' : 'no'}
-              onValueChange={v => {
-                if ((v === 'yes') !== val) {
-                  setter(v === 'yes');
-                }
-              }}
-              className="flex w-full"
-            >
-              <ToggleGroupItem
-                value="yes"
-                className="
-                    flex-1 py-2 text-sm font-medium text-center cursor-pointer
-                    rounded-l-lg border border-[#D9D9D9]
-                    data-[state=on]:bg-white
-                    data-[state=on]:border-[#FE9400]
-                    data-[state=on]:text-[#333333]
-                    data-[state=off]:bg-[#F1F3F3]
-                    data-[state=off]:text-[#595959]
-                    data-[state=off]:border-r-0
-                  "
-              >
-                예
-              </ToggleGroupItem>
-
-              <ToggleGroupItem
-                value="no"
-                className="
-                    flex-1 py-2 text-sm font-medium text-center cursor-pointer
-                    rounded-r-lg border border-[#D9D9D9]
-                    data-[state=on]:bg-white
-                    data-[state=on]:border-[#FE9400]
-                    data-[state=on]:text-[#333333]
-                    data-[state=off]:bg-[#F1F3F3]
-                    data-[state=off]:text-[#595959]
-                    data-[state=off]:border-l-0
-                  "
-              >
-                아니오
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
+            <TwoOptionToggle
+              options={[
+                { label: '예', value: 'true' },
+                { label: '아니오', value: 'false' },
+              ]}
+              value={String(val)}
+              onChange={(v) => setter(v === 'true')}
+            />
+        </div>
         ))}
       </div>
 
       {/* 카페인 민감도 슬라이더 */}
       <div className="mb-10">
-        <Label className="text-base text-[#000000] mb-2 block font-semibold">
+        <Label className="text-base mb-2 block font-semibold">
           카페인 민감도
         </Label>
         <SliderPrimitive.Root
@@ -363,7 +296,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       {/* 하루 평균 섭취량 */}
 
       <div className="flex items-center justify-between mt-10 mb-8">
-        <Label className="text-base text-[#000000] font-semibold">
+        <Label className="text-base font-semibold">
           하루 평균 카페인 음료 섭취량
         </Label>
         <div className="flex items-center">
@@ -402,7 +335,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 선호 음료 */}
       <div className="mt-10">
-        <Label className="text-base text-[#000000] mt-4 mb-4 block font-semibold">
+        <Label className="text-base mt-4 mb-4 block font-semibold">
           선호하는 종류(중복 선택 가능)
         </Label>
         <div className="w-full ">
@@ -417,7 +350,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 자주 마시는 시간대 */}
       <div>
-        <Label className="text-base text-[#000000] mb-2 block font-semibold">
+        <Label className="text-base mb-2 block font-semibold">
           가장 자주 마시는 시간대
         </Label>
         <Input
@@ -435,7 +368,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 수면 시간 */}
       <div>
-        <Label className="text-base text-[#000000] mb-2 block font-semibold">
+        <Label className="text-base mb-2 block font-semibold">
           수면 시간
         </Label>
         <div className="flex items-center space-x-2">
