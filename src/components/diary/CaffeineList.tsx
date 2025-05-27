@@ -34,19 +34,6 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
     );
   }
 
-  const CoffeeBeanIcon = () => (
-    <svg width="28" height="28" viewBox="0 0 28 28">
-      <circle cx="14" cy="14" r="14" fill="#FE9400" fillOpacity={0.2} />
-      <g transform="rotate(40, 14, 14)">
-        <ellipse cx="14" cy="14" rx="5" ry="6.5" fill="#8C593D" />
-        <path
-          d="M14 8 C13 11, 13 17, 14 20 C15 17, 15 11, 14 7"
-          fill="#5B3924"
-        />
-      </g>
-    </svg>
-  );
-
   const formatTimeWithMeridiem = (time: string) => {
     const [hourStr, minute] = time.split(':');
     let hour = parseInt(hourStr, 10);

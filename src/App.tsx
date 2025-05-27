@@ -26,7 +26,7 @@ function App() {
         backgroundSize: 'auto',
       }}
     >
-      <div className="fixed my-auto xl:ml-30 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center">
+      <div className="fixed top-1/2 -translate-y-1/2 xl:ml-30 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center">
         <div className="flex items-center justify-center">
           <img src={Icon} alt="CafeBoo Logo" className="h-28 w-auto mb-6"/>
           <img src={Logo} alt="Cafeboo" className="h-28 w-auto"/>
