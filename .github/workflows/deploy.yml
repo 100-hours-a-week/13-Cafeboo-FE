@@ -1,0 +1,49 @@
+name: Deploy Frontend to GCP Cloud Storage
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      # Step 2: Set up GCP credentials using the service account
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: elevated-valve-459107-h8
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # Step 3: pnpm 설치
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+
+      # Step 4: 종속성 설치
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      # Step 5: 프론트엔드 빌드 (Vite 사용)
+      - name: Build frontend
+        run: |
+          pnpm run build
+
+      # Step 6: GCP Cloud Storage에 빌드된 파일 업로드
+      - name: Upload to GCP Cloud Storage
+        run: |
+          gsutil -m rsync -r ./dist gs://frontend-cafeboo
+
+      # Step 7: Cloud CDN 캐시 무효화 -> 최신 파일을 즉시 반영
+      - name: Invalidate CDN cache
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache \
+            --url-map=cafeboo-map \
+            --path "/*"
