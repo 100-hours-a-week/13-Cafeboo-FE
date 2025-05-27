@@ -6,7 +6,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import { getWeekOfMonth } from 'date-fns';
 
 export type PeriodType = 'weekly' | 'monthly' | 'yearly';
 
@@ -77,7 +76,7 @@ export default function PeriodFilterSelector({
   // 공통 버튼 스타일
   const triggerClass =
     'flex items-center justify-between w-28 px-3 py-2 shadow-sm' +
-    'bg-white border border-gray-200 rounded-lg ' +
+    'bg-white border border-[#dadcdf] rounded-lg ' +
     'text-[#333333] font-medium hover:bg-gray-50 focus:outline-none';
 
   return (

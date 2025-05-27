@@ -5,7 +5,7 @@ import { BottomSheet } from '@/components/common/BottomSheet';
 import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
 import CaffeineDetailForm, { CaffeineRecordInput, DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
 import drinkData from '@/data/cafe_drinks.json';
-import { useUpdateCaffeineIntake, useDeleteCaffeineIntake, UpdateIntakePayload } from '@/api/caffeineIntakeApi';
+import { useUpdateCaffeineIntake, useDeleteCaffeineIntake, UpdateIntakePayload } from '@/api/caffeine/caffeineIntakeApi';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
 

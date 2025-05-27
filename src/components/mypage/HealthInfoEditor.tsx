@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useHealthInfo } from '@/api/healthInfoApi';
-import { useCaffeineInfo } from '@/api/caffeineInfoApi';
+import { useHealthInfo } from '@/api/health/healthInfoApi';
+import { useCaffeineInfo } from '@/api/caffeine/caffeineInfoApi';
 
 // 온보딩에서 쓰던 옵션 배열들
 const DRINK_OPTIONS = [

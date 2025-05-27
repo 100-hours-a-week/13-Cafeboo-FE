@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import apiClient from '../apiClient';
 import { useQuery } from '@tanstack/react-query';
 import { useQueryHooks } from '@/hooks/useQueryHooks';
 

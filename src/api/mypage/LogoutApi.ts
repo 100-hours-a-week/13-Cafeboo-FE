@@ -1,4 +1,4 @@
-import apiClient from './apiClient';
+import apiClient from '../apiClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const logout = async () => {
