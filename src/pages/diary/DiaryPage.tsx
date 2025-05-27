@@ -14,14 +14,7 @@ import { useDailyIntake } from '@/api/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeineApi';
 import AlertModal from '@/components/common/AlertModal';
 import SectionCard from '@/components/common/SectionCard';
-
-// 날짜 포맷 유틸
-const formatDate = (date: Date) => {
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd}`;
-};
+import { formatDate } from '@/utils/date';
 
 const DiaryPage = () => {
   const today = new Date();

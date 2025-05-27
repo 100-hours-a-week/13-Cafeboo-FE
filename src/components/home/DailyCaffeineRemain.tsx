@@ -9,7 +9,7 @@ import {
   ReferenceLine,
   Cell,
 } from 'recharts';
-import HorizontalScroller from '../common/HorizontalScroller';
+import HorizontalScroller from '@/components/common/HorizontalScroller';
 
 export interface DailyCaffeineRemainProps {
   caffeineByHour: Array<{ time: string; caffeineMg: number }>;
@@ -66,6 +66,12 @@ export default function DailyCaffeineRemain({
 
     return () => clearTimeout(timeout);
   }, [nowIndex, data]);
+
+  useEffect(() => {
+    if (Number.isFinite(nowX) && containerRef.current) {
+      containerRef.current.scrollLeft = nowX - 50; // 가운데 근처로 보이게
+    }
+  }, [nowX]);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
