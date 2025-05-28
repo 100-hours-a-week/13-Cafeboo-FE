@@ -141,7 +141,7 @@ const CaffeineCalendar = ({
       </div>
 
       <div className="mb-2">
-        <div className="bg-[#FBF4E7] rounded-full grid grid-cols-7 gap-5 text-center text-base text-[#939393] py-1 px-3">
+        <div className="bg-[#FEF0D7] rounded-full grid grid-cols-7 gap-5 text-center text-base text-[#939393] py-1 px-3">
           {daysOfWeek.map((day, idx) => (
             <div key={idx}>{day}</div>
           ))}

@@ -15,8 +15,8 @@ import SectionCard from '@/components/common/SectionCard';
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
   const { data: userProfile, isLoading, isError, error } = useUserProfile();
-  const { logout, isLoading: isLogoutLoading, isSuccess:isLogoutSuccess, isError:isLogoutError, error: logoutError } = useLogout();
-  const { deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
+  const { mutateFn: logout, isLoading: isLogoutLoading, isSuccess:isLogoutSuccess, isError:isLogoutError, error: logoutError } = useLogout();
+  const { mutateFn: deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
   const [showLogoutError, setShowLogoutError] = useState(false);
   const [showDeleteError, setShowDeleteError] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
