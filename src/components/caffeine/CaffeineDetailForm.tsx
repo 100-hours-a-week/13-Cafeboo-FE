@@ -6,6 +6,7 @@ import Medium from '@/assets/medium.png';
 import Large from '@/assets/large.png';
 import ExtraLarge from '@/assets/extralarge.png';
 import Stick from '@/assets/stick.png';  
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
 
 interface DrinkSize {
   drinkSizeId: number;
@@ -22,24 +23,10 @@ export interface DrinkDetail {
   cafeName: string;
 }
 
-export interface CaffeineRecordInput {
-  drinkId: number;
-  drinkSize: string;
-  drinkCount: number;
-  caffeineAmount: number;
-  intakeTime: string;
-}
-
 export interface CaffeineDetailFormProps {
   drink: DrinkDetail;
-  onSubmit: (data: CaffeineRecordInput) => void;
-  initial?: {
-    drinkId: string;
-    drinkSize: string;
-    intakeTime: string;
-    drinkCount: number;
-    caffeineAmount: number;
-  };
+  onSubmit: (data: CaffeineIntakeRequestDTO) => void;
+  initial?: CaffeineIntakeRequestDTO;
 }
 
 export default function CaffeineDetailForm({
@@ -79,7 +66,7 @@ export default function CaffeineDetailForm({
   // 등록 핸들러
   const handleSubmit = () => {
     onSubmit({
-      drinkId: drink.drinkid,
+      drinkId: drink.drinkid.toString(),
       drinkSize: selectedSize.size,
       drinkCount: count,
       caffeineAmount: parseFloat(caffeineTotal),

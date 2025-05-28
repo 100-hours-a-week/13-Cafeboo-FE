@@ -100,12 +100,11 @@ const MyPage: React.FC = () => {
               />
             ) : (
               <ProfileCard
-                  nickname={userProfile?.nickname}
-                  profileImageUrl={userProfile?.profileImageUrl}
-                  caffeineLimit={userProfile?.dailyCaffeineLimitMg}
-                  beanCount={userProfile?.coffeeBean}
-                  challengeCount={userProfile?.challengeCount}
-                  onEditClick={handleEditProfile}
+                nickname={userProfile?.nickname || '닉네임 없음'}
+                dailyCaffeineLimitMg={userProfile?.dailyCaffeineLimitMg ?? 0}
+                coffeeBean={userProfile?.coffeeBean ?? 0}
+                challengeCount={userProfile?.challengeCount ?? 0}
+                onEditClick={handleEditProfile}
               />
             )
           }

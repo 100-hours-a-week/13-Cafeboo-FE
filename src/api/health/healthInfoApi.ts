@@ -93,7 +93,6 @@ export const useUpdateHealthInfo = () => {
 
           const prev = queryClient.getQueryData<Record<string, any>>(['healthInfo']);
           if (!prev) {
-            // 혹은 throw new Error('Health info not found in cache');
             return updateHealthInfo(newData);
           }
     
