@@ -1,14 +1,15 @@
 import { useState, useEffect, useMemo} from 'react';
 import { BottomSheet } from '@/components/common/BottomSheet';
 import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
-import CaffeineDetailForm, { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
+import CaffeineDetailForm from '@/components/caffeine/CaffeineDetailForm';
+import { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import drinkData from '@/data/cafe_drinks.json';
 
 export interface CaffeineBottomSheetProps {
   open: boolean;
   selectedDate?:string;
   onOpenChange: (open: boolean) => void;
-  onSubmitRecord: (record: CaffeineRecordInput) => void;
+  onSubmitRecord: (record: CaffeineIntakeRequestDTO) => void;
 }
 
 interface DrinkDetail {
