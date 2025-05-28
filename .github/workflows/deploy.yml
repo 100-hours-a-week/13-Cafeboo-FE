@@ -47,6 +47,6 @@ jobs:
       # Step 7: Cloud CDN 캐시 무효화 -> 최신 파일을 즉시 반영
       - name: Invalidate CDN cache
         run: |
-          gcloud compute url-maps invalidate-cdn-cache \
-            --url-map=cafeboo-map \
-            --path "/*"
+          gcloud compute url-maps invalidate-cdn-cache doraa-url-map \
+            --path "/*" \
+            --global
