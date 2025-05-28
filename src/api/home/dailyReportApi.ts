@@ -1,8 +1,9 @@
 import apiClient from "@/api/apiClient";
 import { useQuery } from "@tanstack/react-query";
 import { useQueryHooks } from "@/hooks/useQueryHooks";
+import { DailyCaffeineReportResponse } from "@/api/home/dailyReport.dto";
 
-export const getDailyCaffeineReport = async () => {
+export const getDailyCaffeineReport = async (): Promise<DailyCaffeineReportResponse> => {
   const response = await apiClient.get("/api/v1/reports/daily");
   if (response.data?.data) {
     return response.data.data;
@@ -11,7 +12,7 @@ export const getDailyCaffeineReport = async () => {
 };
 
 export const useDailyCaffeineReport = () => {
-    const query = useQuery({
+  const query = useQuery<DailyCaffeineReportResponse>({
         queryKey: ['dailyCaffeineReport'],
         queryFn: getDailyCaffeineReport,
         staleTime: 60000,                

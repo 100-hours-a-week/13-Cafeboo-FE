@@ -2,18 +2,16 @@ import { ChevronRight } from 'lucide-react';
 
 interface ProfileCardProps {
   nickname: string;
-  profileImageUrl: string;
-  caffeineLimit: number;
-  beanCount: number;
+  dailyCaffeineLimitMg: number;
+  coffeeBean: number;
   challengeCount: number;
   onEditClick: () => void;
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
   nickname,
-  profileImageUrl,
-  caffeineLimit,
-  beanCount,
+  dailyCaffeineLimitMg,
+  coffeeBean,
   challengeCount,
   onEditClick,
 }) => {
@@ -25,13 +23,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       >
         <div className="flex items-center">
           <div className="relative w-10 h-10 mr-3">
-            {profileImageUrl ? (
-              <img
-                src={profileImageUrl}
-                alt={`${nickname}의 프로필`}
-                className="w-full h-full rounded-full object-cover"
-              />
-            ) : (
               <div className="w-full h-full rounded-full bg-[#FE9400] flex items-center justify-center">
                 <svg
                   viewBox="0 0 24 24"
@@ -53,7 +44,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                   />
                 </svg>
               </div>
-            )}
           </div>
           <div>
             <p className="text-lg font-medium">{nickname}</p>
@@ -70,14 +60,14 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       <div className="grid grid-cols-3 gap-2 text-center">
         <div className="p-2">
           <p className="text-base font-semibold mb-1">
-            {caffeineLimit} mg
+            {dailyCaffeineLimitMg} mg
           </p>
           <p className="text-xs text-[#595959]">일일 권장 섭취량</p>
         </div>
 
         <div className="p-2 border-x border-gray-200">
           <p className="text-base font-semibold mb-1">
-            {beanCount}개
+            {coffeeBean}개
           </p>
           <p className="text-xs text-[#595959]">커피콩 갯수</p>
         </div>

@@ -5,13 +5,13 @@ import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
 import { useNavigate } from 'react-router-dom';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
-import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
-import { useCalendar } from '@/api/calendarApi';
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
+import { useCalendar } from '@/api/diary/calendarApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import EmptyState from '@/components/common/EmptyState';
 import { AlertTriangle } from "lucide-react";
-import { useDailyIntake } from '@/api/calendarListApi';
-import { recordCaffeineIntake } from '@/api/caffeineApi';
+import { useDailyIntake } from '@/api/diary/calendarListApi';
+import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import AlertModal from '@/components/common/AlertModal';
 import SectionCard from '@/components/common/SectionCard';
 import { formatDate } from '@/utils/date';
@@ -38,17 +38,6 @@ const DiaryPage = () => {
     return map;
   }, [dataCanlendar]);
 
-  const records = useMemo(() => {
-    return dataDaily?.intakeList.map(entry => ({
-      intakeId: entry.intakeId,
-      drinkId: entry.drinkId,
-      drinkName: entry.drinkName,
-      drinkCount: entry.drinkCount,
-      caffeineAmount: entry.caffeineMg,
-      intakeTime: entry.intakeTime,
-    })) ?? [];
-  }, [dataDaily]);
-
   useEffect(() => {
     const handleResize = () => {
       setIsLarge(window.innerWidth >= 450);
@@ -69,27 +58,21 @@ const DiaryPage = () => {
   };
 
   const handleEdit = (intakeId: string) => {
-    const record = records.find(r => r.intakeId === intakeId);
+    const record = dataDaily?.intakeList.find(r => r.intakeId === intakeId);
     if (record) {
-      navigate(`/main/diary/edit/${intakeId}`, { state: {record} });
+      navigate(`/main/diary/edit/${intakeId}`, { state: { record } });
     }
   };
 
-  const handleSubmitRecord = async (record: CaffeineRecordInput) => {
+  const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
-      const response = await recordCaffeineIntake({
-        drinkId: record.drinkId.toString(),
-        drinkSize: record.drinkSize,
-        intakeTime: record.intakeTime,
-        drinkCount: record.drinkCount,
-        caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
-      });
+      await recordCaffeineIntake(record);
       refetchCalendar();
       refetchDaily();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
-      setIsAlertOpen(true);   
+      setIsAlertOpen(true);       
     }
   };
 
@@ -124,7 +107,10 @@ const DiaryPage = () => {
             icon={<AlertTriangle className="w-10 h-10" />}
           />
         ) : (
-          <CaffeineList records={records} onEdit={handleEdit} />
+          <CaffeineList
+            records={dataDaily?.intakeList ?? []}
+            onEdit={handleEdit}
+          />
         )}
 
         <button

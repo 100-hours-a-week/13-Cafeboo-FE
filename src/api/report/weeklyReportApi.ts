@@ -1,43 +1,16 @@
 import apiClient from '@/api/apiClient';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { useQueryHooks } from '@/hooks/useQueryHooks';
-
-export interface WeeklyReportData {
-  filter: {
-    year: string;
-    month: string;
-    week: string;
-  };
-  isoWeek: string;
-  startDate: string;
-  endDate: string;
-  weeklyCaffeineTotal: number;
-  dailyCaffeineLimit: number;
-  overLimitDays: number;
-  dailyCaffeineAvg: number;
-  dailyIntakeTotals: {
-    date: string;
-    caffeineMg: number;
-  }[];
-  aiMessage: string;
-}
-
-export interface WeeklyReportResponse {
-  status: number;
-  code: string;
-  message: string;
-  data: WeeklyReportData;
-}
+import type { WeeklyReportDTO } from '@/api/report/report.dto';
 
 export const fetchWeeklyReport = async (
   year: string,
   month: string,
   week: string
-): Promise<WeeklyReportData> => {
-  const response = await apiClient.get<WeeklyReportResponse>(
-    `/api/v1/reports/weekly`,
-    { params: { year, month, week } }
-  );
+): Promise<WeeklyReportDTO> => {
+  const response = await apiClient.get(`/api/v1/reports/weekly`, {
+    params: { year, month, week },
+  });
   return response.data.data;
 };
 
@@ -45,14 +18,14 @@ export const useWeeklyReport = (
   year: string,
   month: string,
   week: string
-): UseQueryResult<WeeklyReportData, Error> & {
+): UseQueryResult<WeeklyReportDTO, Error> & {
   showModal: boolean;
   setShowModal: (open: boolean) => void;
 } => {
   const yearStr = year;
   const monthStr = month;
 
-  const query = useQuery<WeeklyReportData, Error>({
+  const query = useQuery<WeeklyReportDTO, Error>({
     queryKey: ['weeklyReport', yearStr, monthStr, week],
     queryFn: () => fetchWeeklyReport(yearStr, monthStr, week),
     staleTime: 60000,                

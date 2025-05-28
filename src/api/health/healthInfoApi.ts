@@ -1,11 +1,44 @@
-import apiClient from './apiClient';
+import apiClient from "@/api/apiClient";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useQueryHooks } from '@/hooks/useQueryHooks';
+import { HealthInfo, SleepInfo } from "@/stores/onboardingStore";
+
+const getUserId = () => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) throw new Error('사용자 정보가 없습니다.');
+  return userId;
+};
+
+// ✅ 1. 건강 정보 등록 (온보딩 시 사용)
+export const useSubmitHealthInfo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ healthInfo, sleepInfo }: { healthInfo: HealthInfo; sleepInfo: SleepInfo }) => {
+      const userId = getUserId();
+      const parsedData = {
+        gender: healthInfo.gender,
+        age: healthInfo.age,
+        height: healthInfo.height,
+        weight: healthInfo.weight,
+        isPregnant: healthInfo.isPregnant || false,
+        isTakingBirthPill: healthInfo.isTakingBirthPill || false,
+        isSmoking: healthInfo.isSmoking || false,
+        hasLiverDisease: healthInfo.hasLiverDisease || false,
+        sleepTime: sleepInfo.sleepTime,
+        wakeUpTime: sleepInfo.wakeUpTime,
+      };
+      return apiClient.post(`/api/v1/users/${userId}/health`, parsedData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['healthInfo'] });
+    },
+  });
+};
 
 // ✅ 사용자 건강 정보 조회 API
 export const fetchHealthInfo = async () => {
-  const userId = localStorage.getItem("userId");
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
+  const userId = getUserId();
   const response = await apiClient.get(`/api/v1/users/${userId}/health`);
   return response.data.data;
 };
@@ -60,7 +93,6 @@ export const useUpdateHealthInfo = () => {
 
           const prev = queryClient.getQueryData<Record<string, any>>(['healthInfo']);
           if (!prev) {
-            // 혹은 throw new Error('Health info not found in cache');
             return updateHealthInfo(newData);
           }
     

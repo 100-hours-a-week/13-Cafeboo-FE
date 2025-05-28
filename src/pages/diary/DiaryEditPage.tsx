@@ -3,9 +3,11 @@ import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Header from '@/components/common/Header';
 import { BottomSheet } from '@/components/common/BottomSheet';
 import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
-import CaffeineDetailForm, { CaffeineRecordInput, DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
+import CaffeineDetailForm, { DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
 import drinkData from '@/data/cafe_drinks.json';
-import { useUpdateCaffeineIntake, useDeleteCaffeineIntake, UpdateIntakePayload } from '@/api/caffeineIntakeApi';
+import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine/caffeineApi';
+import type { UpdateCaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
 
@@ -86,7 +88,7 @@ export default function DiaryEdit() {
   };
 
   const handleUpdate = async () => {
-    const payload: Partial<UpdateIntakePayload> = {};
+    const payload: UpdateCaffeineIntakeRequestDTO = {};
     if (drinkId !== orig.drinkId) payload.drinkId = drinkId;
     const iso = `${date}T${time}`;
     if (iso !== orig.intakeTime) payload.intakeTime = iso;
@@ -122,11 +124,11 @@ export default function DiaryEdit() {
   };
 
   // 2차 시트에서 값 받아서 state 업데이트
-  const handleSubmitRecord = (rec: CaffeineRecordInput) => {
+  const handleSubmitRecord = (rec: CaffeineIntakeRequestDTO) => {
     if (rec.drinkId)     setDrinkId(rec.drinkId.toString());
     if (rec.intakeTime)  { setDate(rec.intakeTime.slice(0,10)); setTime(rec.intakeTime.slice(11,16)); }
     if (rec.drinkCount !== undefined) setCount(String(rec.drinkCount));
-    if (rec.caffeineAmount !== undefined) setAmount(rec.caffeineAmount);
+    if (rec.caffeineAmount !== undefined) setAmount(Number(rec.caffeineAmount.toFixed(1)));
     if (rec.drinkSize !== undefined) setSize(rec.drinkSize);
     if (detail) setDrinkName(detail.name);
     setDetailOpen(false);

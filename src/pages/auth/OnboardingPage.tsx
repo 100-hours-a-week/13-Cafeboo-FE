@@ -8,7 +8,8 @@ import Step4 from '@/components/onboarding/Step4';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
-import { useSubmitHealthInfo, useSubmitCaffeineInfo } from '@/api/onboardingApi';
+import { useSubmitCaffeineInfo } from '@/api/caffeine/caffeineInfoApi';
+import { useSubmitHealthInfo } from '@/api/health/healthInfoApi';
 
 
 const OnboardingPage = () => {
@@ -19,8 +20,8 @@ const OnboardingPage = () => {
   const [showModal2, setShowModal2] = useState(false);
 
   const userId = localStorage.getItem("userId");
-  const submitHealthInfo = useSubmitHealthInfo(userId || "");
-  const submitCaffeineInfo = useSubmitCaffeineInfo(userId || "");
+  const submitHealthInfo = useSubmitHealthInfo();
+  const submitCaffeineInfo = useSubmitCaffeineInfo();
   
   const handleModalConfirm = () => {
     setShowModal2(false);

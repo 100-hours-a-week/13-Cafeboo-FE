@@ -8,11 +8,11 @@ import ReportSummary from '@/components/report/ReportSummary';
 import ReportMessage from '@/components/report/ReportMessage';
 import { useNavigate } from 'react-router-dom';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
-import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
-import { useWeeklyReport } from '@/api/weeklyReportApi';
-import { useMonthlyReport } from '@/api/monthlyReportApi';
-import { useYearlyReport } from '@/api/yearlyReportApi';
-import { recordCaffeineIntake } from '@/api/caffeineApi';
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
+import { useWeeklyReport } from '@/api/report/weeklyReportApi';
+import { useMonthlyReport } from '@/api/report/monthlyReportApi';
+import { useYearlyReport } from '@/api/report/yearlyReportApi';
+import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import EmptyState from '@/components/common/EmptyState';
 import AlertModal from '@/components/common/AlertModal';
@@ -132,23 +132,16 @@ export default function ReportPage() {
     setPeriodType(period);
   };
 
-  const handleSubmitRecord = async (record: CaffeineRecordInput) => {
+  const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
-      const response = await recordCaffeineIntake({
-        drinkId: record.drinkId.toString(),
-        drinkSize: record.drinkSize,
-        intakeTime: record.intakeTime,
-        drinkCount: record.drinkCount,
-        caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
-      });
-      console.log("카페인 섭취 등록 성공:", response);
+      await recordCaffeineIntake(record);
       refetchWeekly();
       refetchMonthly();
       refetchYearly();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
       setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
-      setIsAlertOpen(true);   
+      setIsAlertOpen(true);       
     }
   };
 

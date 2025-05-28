@@ -2,19 +2,11 @@ import { ChevronRight, FileText } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
 import SectionCard from '@/components/common/SectionCard';
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
+import { DailyIntakeDetail } from '@/api/diary/calendar.dto';
 
 interface CaffeineListProps {
-  records: Array<CaffeineRecord>;
+  records: DailyIntakeDetail[];
   onEdit: (intakeId: string) => void;
-}
-
-interface CaffeineRecord {
-  intakeId: string;
-  drinkId: string;
-  drinkName: string;
-  drinkCount: number;
-  caffeineAmount: number;
-  intakeTime: string;
 }
 
 const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
@@ -67,7 +59,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-[#000000] text-sm font-medium">
-              {record.caffeineAmount} mg
+              {record.caffeineMg} mg
             </span>
             <ChevronRight size={18} className="text-[#000000] cursor-pointer" />
           </div>

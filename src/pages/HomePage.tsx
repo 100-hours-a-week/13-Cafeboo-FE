@@ -8,9 +8,9 @@ import BannerImage1 from '@/assets/Banner04.png';
 import BannerImage2 from '@/assets/Banner02.png';
 import BannerImage3 from '@/assets/Banner03.png';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
-import type { CaffeineRecordInput } from '@/components/caffeine/CaffeineDetailForm';
-import { recordCaffeineIntake } from '@/api/caffeineApi';
-import { useDailyCaffeineReport } from '@/api/dailyReportApi';
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
+import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
+import { useDailyCaffeineReport } from '@/api/home/dailyReportApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
 import { Info, AlertTriangle } from 'lucide-react';
@@ -30,15 +30,9 @@ export default function HomePage() {
 
   const { data: report, isLoading, isError, error, refetch } = useDailyCaffeineReport();
 
-  const handleSubmitRecord = async (record: CaffeineRecordInput) => {
+  const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
-      const response = await recordCaffeineIntake({
-        drinkId: record.drinkId.toString(),
-        drinkSize: record.drinkSize,
-        intakeTime: record.intakeTime,
-        drinkCount: record.drinkCount,
-        caffeineAmount: Number(record.caffeineAmount.toFixed(1)), 
-      });
+      await recordCaffeineIntake(record);
       refetch();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
@@ -75,11 +69,11 @@ export default function HomePage() {
               />
             ) : (
               <DailyCaffeineIntakeGraph
-                nickname={report?.nickname}
-                dailyCaffeineLimit={report?.dailyCaffeineLimit}
-                dailyCaffeineIntakeMg={report?.dailyCaffeineIntakeMg}
-                dailyCaffeineIntakeRate={report?.dailyCaffeineIntakeRate}
-                intakeGuide={report?.intakeGuide}
+                nickname={report?.nickname ?? ""}
+                dailyCaffeineLimit={report?.dailyCaffeineLimit ?? 0}
+                dailyCaffeineIntakeMg={report?.dailyCaffeineIntakeMg ?? 0}
+                dailyCaffeineIntakeRate={report?.dailyCaffeineIntakeRate ?? 0}
+                intakeGuide={report?.intakeGuide ?? ""}
               />
             )}
         </SectionCard>
