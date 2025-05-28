@@ -4,7 +4,7 @@ import AuthRoutes from './auth/AuthRoutes';
 import MainRoutes from './main/MainRoutes';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 import KakaoRedirectPage from '@/pages/auth/KaKaoRedirectPage';
-import RequireAuth from '@/utils/RequireAuth';
+import RequireAuth from '@/routes/RequireAuth';
 
 const AppRoutes = () => (
   <Routes>
