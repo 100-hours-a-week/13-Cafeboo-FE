@@ -10,13 +10,14 @@ import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine
 import type { UpdateCaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
+import { record } from 'zod';
 
 interface ApiRecord {
   intakeId: string;
   drinkId: string;
   drinkName: string;
   drinkCount: number;
-  caffeineAmount: number;
+  caffeineMg: number;
   intakeTime: string; 
 }
 
@@ -24,6 +25,8 @@ export default function DiaryEdit() {
   const navigate = useNavigate();
   const location = useLocation();
   const orig = (location.state as { record?: ApiRecord })?.record;
+  console.log(location.state );
+  console.log(orig);
   if (!orig) {
     return <Navigate to="/main/diary" replace />;
   }
@@ -47,7 +50,7 @@ export default function DiaryEdit() {
   const [date, setDate]           = useState(orig.intakeTime.slice(0, 10));
   const [time, setTime]           = useState(orig.intakeTime.slice(11, 16));
   const [count, setCount]         = useState(String(orig.drinkCount));
-  const [amount, setAmount]       = useState(orig.caffeineAmount);
+  const [amount, setAmount]       = useState(orig.caffeineMg);
   const [size, setSize]           = useState('');
 
   const [selectOpen, setSelectOpen] = useState(false);
@@ -94,7 +97,7 @@ export default function DiaryEdit() {
     if (iso !== orig.intakeTime) payload.intakeTime = iso;
     const nCount = Number(count);
     if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
-    if (amount !== orig.caffeineAmount) payload.caffeineAmount = amount;
+    if (amount !== orig.caffeineMg) payload.caffeineAmount = amount;
     if (size) payload.drinkSize = size;
 
     if (Object.keys(payload).length === 0) {
