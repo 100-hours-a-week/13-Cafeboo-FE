@@ -3,7 +3,7 @@ import LoginPage from '@/pages/auth/LoginPage';
 import SignupPage from '@/pages/auth/SignupPage';
 import OnboardingPage from '@/pages/auth/OnboardingPage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
-import RequireAuth from '@/utils/RequireAuth';
+import RequireAuth from '@/routes/RequireAuth';
 
 const AuthRoutes = () => (
   <Routes>
