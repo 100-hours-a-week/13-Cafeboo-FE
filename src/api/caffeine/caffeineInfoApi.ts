@@ -1,7 +1,8 @@
 import apiClient from "@/api/apiClient";
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useQueryHooks } from '@/hooks/useQueryHooks';
-import { CaffeineInfo, SleepInfo } from '@/stores/onboardingStore';
+import { useQueryClient } from '@tanstack/react-query';
+import type { CaffeineInfoRequestDTO, CaffeineInfoResponseDTO, UpdateCaffeineInfoRequestDTO } from '@/api/caffeine/caffeine.dto';
+import { createMutationHandler } from '@/utils/createMutationHandler';
+import { createQueryHandler } from '@/utils/createQueryHandler';
 
 const getUserId = () => {
   const userId = localStorage.getItem('userId');
@@ -9,106 +10,78 @@ const getUserId = () => {
   return userId;
 };
 
-// ✅ 카페인 설정 등록 (온보딩용)
-export const useSubmitCaffeineInfo = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async ({ caffeineInfo, sleepInfo }: { caffeineInfo: CaffeineInfo; sleepInfo: SleepInfo }) => {
-      const userId = getUserId();
-      const parsedData = {
-        caffeineSensitivity: caffeineInfo.caffeineSensitivity,
-        averageDailyCaffeineIntake: caffeineInfo.averageDailyCaffeineIntake,
-        frequentDrinkTime: sleepInfo.frequentDrinkTime || "00:00",
-        userFavoriteDrinks: caffeineInfo.userFavoriteDrinks || [],
-      };
-      return apiClient.post(`/api/v1/users/${userId}/caffeine`, parsedData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['caffeineInfo'] });
-    },
-  });
-};
-
-// ✅ 사용자 카페인 설정 조회 API
-export const fetchCaffeineInfo = async () => {
+// ✅ GET 요청
+export const fetchCaffeineInfo = async (): Promise<CaffeineInfoResponseDTO> => {
   const userId = getUserId();
   const response = await apiClient.get(`/api/v1/users/${userId}/caffeine`);
   return response.data.data;
 };
 
-// ✅ React Query로 사용자 카페인 설정 조회 Hook
-export const useCaffeineInfo = () => {
-  const query = useQuery({
-    queryKey: ['caffeineSettings'],
-    queryFn: fetchCaffeineInfo,
-    staleTime: 60000,                
-    gcTime: 300000,        
-    refetchOnMount: 'always',
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
-    retry: 3,    
-  });
+export const useCaffeineInfo = () =>
+  createQueryHandler<['caffeineSettings'], CaffeineInfoResponseDTO>(
+    ['caffeineSettings'],
+    fetchCaffeineInfo,
+    {
+      staleTime: 60000,
+      gcTime: 300000,
+      refetchOnMount: 'always',
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      retry: 3,
+    }
+);
 
-  const { showModal, setShowModal } = useQueryHooks(query);
-
-  return {
-    ...query,
-    showModal,
-    setShowModal,
-  };
+// ✅ POST 요청
+export const submitCaffeineInfo = async (data: CaffeineInfoRequestDTO): Promise<void> => {
+  const userId = getUserId();
+  await apiClient.post(`/api/v1/users/${userId}/caffeine`, data);
 };
 
-// ✅ 사용자 카페인 설정 수정 API
-export const updateCaffeineInfo = async (updatedData: any) => {
-  const userId = localStorage.getItem("userId");
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
+export const useSubmitCaffeineInfo = () => {
+  return createMutationHandler(submitCaffeineInfo, {
+    onSuccess: () => {
+    },
+  });
+};
+
+// ✅ PATCH 요청
+export const updateCaffeineInfo = async (updatedData: UpdateCaffeineInfoRequestDTO) => {
+  const userId = getUserId();
   const response = await apiClient.patch(`/api/v1/users/${userId}/caffeine`, updatedData);
   return response.data;
 };
 
 const getDiff = <T extends Record<string, any>>(prev: T, next: Partial<T>) => {
-    const diff: Partial<T> = {};
-    Object.keys(next).forEach((key) => {
-      // 간단한 얕은 비교
-      if (prev[key as keyof T] !== next[key as keyof T]) {
-        diff[key as keyof T] = next[key as keyof T];
-      }
-    });
-    return diff;
+  const diff: Partial<T> = {};
+  Object.keys(next).forEach((key) => {
+    const p = prev[key as keyof T];
+    const n = next[key as keyof T];
+
+    if (JSON.stringify(p) !== JSON.stringify(n)) {
+      diff[key as keyof T] = n;
+    }
+  });
+  return diff;
 };
 
-
-// ✅ React Query로 사용자 카페인 설정 수정 Mutation Hook
 export const useUpdateCaffeineInfo = () => {
-    const queryClient = useQueryClient();
-  
-    const mutation = useMutation({
-      mutationFn: async (newData: Record<string, any>) => {
-        const prev = queryClient.getQueryData<Record<string, any>>(['caffeineInfo']);
-        if (!prev) {
-          return updateCaffeineInfo(newData);
-        }
-        const diffData = getDiff(prev, newData);
-        if (Object.keys(diffData).length === 0) {
-          return null;
-        }
-        return updateCaffeineInfo(diffData);
-      },
+  const queryClient = useQueryClient();
+
+  return createMutationHandler(
+    async (newData: UpdateCaffeineInfoRequestDTO) => {
+      const prev = queryClient.getQueryData<CaffeineInfoRequestDTO>(['caffeineInfo']);
+      if (!prev) return updateCaffeineInfo(newData);
+
+      const diff = getDiff(prev, newData);
+      if (Object.keys(diff).length === 0) return null;
+
+      return updateCaffeineInfo(diff);
+    },
+    {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey:['caffeineInfo']});
+        queryClient.invalidateQueries({ queryKey: ['caffeineInfo'] });
       },
-      onError: (error: any) => {
-        console.error('카페인 설정 수정 중 오류:', error);
-      },
-    });
-  
-    return {
-      updateCaffeineInfo: mutation.mutate ,
-      updateCaffeineInfoAsync: mutation.mutateAsync,
-      isLoading: mutation.status === 'pending',
-      isError: mutation.status === 'error',
-      isSuccess: mutation.status === 'success',
-      error: mutation.error,
-    };
-  };
+    }
+  );
+};
+
