@@ -1,11 +1,11 @@
 import apiClient from "@/api/apiClient";
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
+import { getUserId } from "@/utils/auth";
 
 // ✅ DELETE 요청
 const deleteUser = async () => {
-  const userId = localStorage.getItem("userId");
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
+  const userId = getUserId();
   await apiClient.delete(`/api/v1/users/${userId}`);
 };
 

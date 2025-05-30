@@ -39,8 +39,8 @@ export interface OnboardingState {
 const defaultHealthInfo: HealthInfo = {
   gender: 'M',
   age: 20,
-  height: 170,
-  weight: 63.0,
+  height: 170.5,
+  weight: 67.5,
   isPregnant: false,
   isTakingBirthPill: false,
   isSmoking: false,

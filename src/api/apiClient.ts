@@ -71,9 +71,11 @@ apiClient.interceptors.response.use(
       try {
         const response = await apiClient.post("/api/v1/auth/refresh");
         const newAccessToken = response.data.data.accessToken;
+        const newUserId = response.data.data.userId;
 
         // Access Token 저장
         localStorage.setItem("access_token", newAccessToken);
+        localStorage.setItem("userId", newUserId);
         isRefreshing = false;
         notifySubscribers(newAccessToken);
 
