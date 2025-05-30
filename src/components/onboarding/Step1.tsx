@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TwoOptionToggle from '@/components/common/TwoOptionToggle';
+import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/number';
 
 const formSchema = z.object({
   age: z
@@ -27,6 +28,9 @@ type FormData = z.infer<typeof formSchema>;
 
 const Step1 = () => {
   const { healthInfo, updateHealth } = useOnboardingStore();
+  const [heightInput, setHeightInput] = useState(
+    healthInfo.height != null ? String(healthInfo.height) : ''
+  );
   const [weightInput, setWeightInput] = useState(
     healthInfo.weight != null ? String(healthInfo.weight) : ''
   );
@@ -41,7 +45,7 @@ const Step1 = () => {
 
   useEffect(() => {
     setValue("age", healthInfo.age ?? '');
-    setValue("height", healthInfo.height ?? '');
+    setHeightInput(healthInfo.height != null ? String(healthInfo.height) : '');
     setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '');
   }, [healthInfo, setValue]);
 
@@ -67,13 +71,12 @@ const Step1 = () => {
           <input
             type="text"
             inputMode="numeric"
-            pattern="[0-9]*"
             value={healthInfo.age ?? ''}
             onChange={(e) => {
-              const v = e.target.value.replace(/\D/g, '');
-              updateHealth({ age: v === '' ? undefined : Number(v) });
-              setValue("age", Number(v));
-              trigger("age"); 
+              const sanitized = sanitizeIntegerInput(e.target.value);
+              updateHealth({ age: sanitized === '' ? undefined : Number(sanitized) });
+              setValue("age", Number(sanitized));
+              trigger("age");
             }}
             className="
               w-16             
@@ -102,14 +105,18 @@ const Step1 = () => {
         <div className="flex items-center">
           <input
             type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            value={healthInfo.height ?? ''}
+            inputMode="decimal"
+            value={heightInput}
             onChange={(e) => {
-              const v = e.target.value.replace(/\D/g, '');
-              updateHealth({ height: v === '' ? undefined : Number(v) });
-              setValue("height", Number(v));
-              trigger("height"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setHeightInput(sanitized);
+              setValue("height", Number(sanitized));
+              trigger("height");
+            }}
+            onBlur={() => {
+              const num = parseFloat(heightInput);
+              if (!isNaN(num)) updateHealth({ height: num });
+              else updateHealth({ height: undefined });
             }}
             className="
               w-16             
@@ -139,18 +146,12 @@ const Step1 = () => {
           <input
             type="text"
             inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
             value={weightInput}
             onChange={(e) => {
-              let v = e.target.value.replace(/[^0-9.]/g, '');
-              const parts = v.split('.');
-              if (parts.length > 1) {
-                parts[1] = parts[1].slice(0, 1);
-                v = parts[0] + '.' + parts[1];
-              }
-              setWeightInput(v);
-              setValue("weight", Number(v));
-              trigger("weight"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setWeightInput(sanitized);
+              setValue("weight", Number(sanitized));
+              trigger("weight");
             }}
             onBlur={() => {
               const num = parseFloat(weightInput);

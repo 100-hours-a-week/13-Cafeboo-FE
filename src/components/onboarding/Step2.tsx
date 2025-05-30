@@ -9,6 +9,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { sanitizeDecimalInput } from '@/utils/number';
 
 const formSchema = z.object({
   averageDailyCaffeineIntake: z
@@ -139,18 +140,12 @@ const Step2 = () => {
           <input
             type="text"
             inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
             value={averageDailyCaffeineIntake}
             onChange={(e) => {
-              let v = e.target.value.replace(/[^0-9.]/g, '');
-              const parts = v.split('.');
-              if (parts.length > 1) {
-                parts[1] = parts[1].slice(0, 1);
-                v = parts[0] + '.' + parts[1];
-              }
-              setAverageDailyCaffeineIntakeInput(v);
-              setValue("averageDailyCaffeineIntake", Number(v));
-              trigger("averageDailyCaffeineIntake"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setAverageDailyCaffeineIntakeInput(sanitized);
+              setValue("averageDailyCaffeineIntake", Number(sanitized));
+              trigger("averageDailyCaffeineIntake");
             }}
             onBlur={() => {
               const num = parseFloat(averageDailyCaffeineIntake);
