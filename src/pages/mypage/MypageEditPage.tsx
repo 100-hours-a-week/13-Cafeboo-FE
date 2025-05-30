@@ -13,12 +13,12 @@ export default function MypageEditPage() {
   const [error, setError] = useState<string | null>(null);
 
   const {
-     updateHealthInfoAsync,
+    mutateAsyncFn: updateHealthInfoAsync,
     isLoading: isSavingHealth,
   } = useUpdateHealthInfo();
 
   const {
-    updateCaffeineInfoAsync,
+    mutateAsyncFn: updateCaffeineInfoAsync,
     isLoading: isSavingCaffeine,
   } = useUpdateCaffeineInfo();
 

@@ -1,7 +1,9 @@
-import apiClient from '../apiClient';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import apiClient from "@/api/apiClient";
+import { useQueryClient } from '@tanstack/react-query';
+import { createMutationHandler } from '@/utils/createMutationHandler';
 
-export const deleteUser = async () => {
+// ✅ DELETE 요청
+const deleteUser = async () => {
   const userId = localStorage.getItem("userId");
   if (!userId) throw new Error('사용자 정보가 없습니다.');
   await apiClient.delete(`/api/v1/users/${userId}`);
@@ -10,26 +12,19 @@ export const deleteUser = async () => {
 export const useDeleteUser = () => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
-
-    mutationFn: deleteUser,
-    onSuccess: () => {
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('userId');
-      queryClient.clear();
-      window.location.href = '/auth/login';
-    },
-
-    onError: (error: any) => {
-      console.error('회원탈퇴 중 오류:', error);
-    },
-  });
-
-  return {
-    deleteUser: mutation.mutate,          
-    isLoading: mutation.status === 'pending', 
-    isError: mutation.status === 'error',
-    isSuccess: mutation.status === 'success',
-    error: mutation.error,    
-  };
+  return createMutationHandler<void, Error, void>(
+    deleteUser,
+    {
+      onSuccess: () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('userId');
+        queryClient.clear();
+        window.location.href = '/auth/login';
+      },
+      onError: (error) => {
+        console.error('회원탈퇴 중 오류:', error);
+      },
+    }
+  );
 };
+

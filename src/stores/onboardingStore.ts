@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface HealthInfo {
-  gender?:string;
+  gender:string;
   age: number;
   height: number;
   weight: number;

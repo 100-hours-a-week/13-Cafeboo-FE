@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Tag } from '../common/Tag';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
+import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/number';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -75,27 +76,25 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
   const { data: initCaffeine }     = useCaffeineInfo();
   const [showAlertModal, setShowAlertModal] = useState(false);
 
-  const [ageInput, setAgeInput] = useState(initHealth?.age ?? undefined);
-  const [heightInput, setHeightInput] = useState(initHealth?.height ?? undefined);
-  const [weightInput, setWeightInput] = useState(initHealth?.weight ?? undefined);
-  const [caffeineInput, setCaffeineInput] = useState(initCaffeine?.averageDailyCaffeineIntake ?? undefined);
-
-  const [gender, setGender] = useState<'M' | 'F'>(initHealth?.gender ?? 'M');
-  const [isPregnant, setPregnancy] = useState(initHealth?.isPregnant ?? false);
-  const [isTakingBirthPill, setBirthControl] = useState(initHealth?.isTakingBirthPill ?? false);
-  const [isSmoking, setSmoking] = useState(initHealth?.isSmoking ?? false);
-  const [hasLiverDisease, setHasLiverDisease] = useState(initHealth?.hasLiverDisease ?? false);
-  const [sleepTime, setSleepTime] = useState(initHealth?.sleepTime ?? '22:00');
-  const [wakeUpTime, setWakeTime] = useState(initHealth?.wakeUpTime ?? '07:00');
-  const [caffeineSensitivity, setCaffeineSensitivity] = useState(initCaffeine?.caffeineSensitivity ?? 50);
-  const [userFavoriteDrinks, setUserFavoriteDrinks] = useState<string[]>(initCaffeine?.userFavoriteDrinks ?? []);
-  const [frequentDrinkTime, setUsualIntakeTimes] = useState(initCaffeine?.frequentDrinkTime ?? '12:00');
-
+  const [ageInput, setAgeInput] = useState('');
+  const [heightInput, setHeightInput] = useState('');
+  const [weightInput, setWeightInput] = useState('');
+  const [caffeineInput, setCaffeineInput] = useState('');
+  
+  const [gender, setGender] = useState<'M' | 'F'>('M');
+  const [isPregnant, setPregnancy] = useState(false);
+  const [isTakingBirthPill, setBirthControl] = useState(false);
+  const [isSmoking, setSmoking] = useState(false);
+  const [hasLiverDisease, setHasLiverDisease] = useState(false);
+  const [sleepTime, setSleepTime] = useState('22:00');
+  const [wakeUpTime, setWakeTime] = useState('07:00');
+  const [caffeineSensitivity, setCaffeineSensitivity] = useState(50);
+  const [userFavoriteDrinks, setUserFavoriteDrinks] = useState<string[]>([]);
+  const [frequentDrinkTime, setUsualIntakeTimes] = useState('12:00');
 
   const {
     trigger,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -110,52 +109,47 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
   useEffect(() => {
     if (initHealth) {
-      setGender(initHealth.gender);
+      setAgeInput(initHealth.age.toString());
+      setHeightInput(initHealth.height.toString());
+      setWeightInput(initHealth.weight.toString());
+      setGender(initHealth.gender === 'F' ? 'F' : 'M');
       setPregnancy(initHealth.isPregnant);
       setBirthControl(initHealth.isTakingBirthPill);
       setSmoking(initHealth.isSmoking);
       setHasLiverDisease(initHealth.hasLiverDisease);
       setSleepTime(initHealth.sleepTime);
       setWakeTime(initHealth.wakeUpTime);
-      setAgeInput(initHealth.age);
-      setHeightInput(initHealth.height);
-      setWeightInput(initHealth.weight);
       setValue('age', initHealth.age);
       setValue('height', initHealth.height);
       setValue('weight', initHealth.weight);
     }
   }, [initHealth, setValue]);
-
+  
   useEffect(() => {
     if (initCaffeine) {
-      setCaffeineSensitivity(initCaffeine.caffeineSensitivity);
-      setUserFavoriteDrinks(initCaffeine.userFavoriteDrinks);
-      setUsualIntakeTimes(initCaffeine.frequentDrinkTime);
-      setCaffeineInput(initCaffeine.averageDailyCaffeineIntake);
+      setCaffeineSensitivity(initCaffeine.caffeineSensitivity ?? 50);
+      setUserFavoriteDrinks(initCaffeine.userFavoriteDrinks ?? []);
+      setUsualIntakeTimes(initCaffeine.frequentDrinkTime ?? '12:00');
+      setCaffeineInput(initCaffeine.averageDailyCaffeineIntake.toString());
       setValue('averageDailyCaffeineIntake', initCaffeine.averageDailyCaffeineIntake);
     }
   }, [initCaffeine, setValue]);
 
   const handleSave = async () => {
-    const valid = await trigger([
-      'age', 'height', 'weight', 'averageDailyCaffeineIntake'
-    ]);
-    if (!valid) {
-      setShowAlertModal(true);
-      return;
-    }
+    const valid = await trigger(['age', 'height', 'weight', 'averageDailyCaffeineIntake']);
+    if (!valid) return setShowAlertModal(true);
 
     onSave({
       gender,
-      age: watch('age'),
-      height: watch('height'),
-      weight: watch('weight'),
+      age: Number(ageInput),
+      height: Number(heightInput),
+      weight: Number(weightInput),
       isPregnant,
       isTakingBirthPill,
       isSmoking,
       hasLiverDisease,
       caffeineSensitivity,
-      averageDailyCaffeineIntake: watch('averageDailyCaffeineIntake'),
+      averageDailyCaffeineIntake: Number(caffeineInput),
       userFavoriteDrinks,
       frequentDrinkTime,
       sleepTime,
@@ -163,6 +157,25 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
     });
   };
 
+  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitized = sanitizeIntegerInput(e.target.value);
+    setAgeInput(sanitized);
+    const num = Number(sanitized);
+    if (!isNaN(num)) {
+      setValue('age', num);
+      trigger('age');
+    }
+  };
+
+  const handleDecimalChange = (setter: (v: string) => void, field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitized = sanitizeDecimalInput(e.target.value);
+    setter(sanitized);
+    const num = Number(sanitized);
+    if (!isNaN(num)) {
+      setValue(field, num);
+      trigger(field);
+    }
+  };
 
   return (
     <div className="space-y-6 p-4">
@@ -185,13 +198,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             <span className="text-base">만</span>
             <input type="text" inputMode="numeric"
               value={ageInput}
-              onChange={e=>{
-                const v=e.target.value.replace(/[^0-9]/g,'');
-                setAgeInput(v);
-                const num=parseInt(v,10);
-                if(!isNaN(num)) setValue('age',num);
-                trigger('age');
-              }}
+              onChange={handleAgeChange}
               className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
             <span className="text-base mr-2">세</span>
           </div>
@@ -202,15 +209,9 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         <div className="flex items-center justify-between mt-8">
           <Label className="text-base font-semibold">신장</Label>
           <div className="flex items-center">
-            <input type="text" inputMode="numeric"
+            <input type="text" inputMode="decimal"
               value={heightInput}
-              onChange={e=>{
-                const v=e.target.value.replace(/[^0-9]/g,'');
-                setHeightInput(v);
-                const num=parseInt(v,10);
-                if(!isNaN(num)) setValue('height',num);
-                trigger('height');
-              }}
+              onChange={handleDecimalChange(setHeightInput, 'height')}
               className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
             <span className="text-base">cm</span>
           </div>
@@ -223,15 +224,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           <div className="flex items-center">
             <input type="text" inputMode="decimal"
               value={weightInput}
-              onChange={e=>{
-                let v=e.target.value.replace(/[^0-9.]/g,'');
-                const parts=v.split('.');
-                if(parts.length>1){ parts[1]=parts[1].slice(0,1); v=parts[0]+'.'+parts[1]; }
-                setWeightInput(v);
-                const num=parseFloat(v);
-                if(!isNaN(num)) setValue('weight',num);
-                trigger('weight');
-              }}
+              onChange={handleDecimalChange(setWeightInput, 'weight')}
               className="w-16 mx-2 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
             <span className="text-base">kg</span>
           </div>
@@ -304,18 +297,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             type="text"
             inputMode="decimal"
             value={caffeineInput}
-            onChange={e => {
-              let v = e.target.value.replace(/[^0-9.]/g, '');
-              const parts = v.split('.');
-              if (parts.length > 1) {
-                parts[1] = parts[1].slice(0, 1);
-                v = parts[0] + '.' + parts[1];
-              }
-              setCaffeineInput(v);
-              const num = parseFloat(v);
-              if (!isNaN(num)) setValue('averageDailyCaffeineIntake', num);
-              trigger('averageDailyCaffeineIntake');
-            }}
+            onChange={handleDecimalChange(setCaffeineInput, 'averageDailyCaffeineIntake')}
             className="
             w-16 mx-1 py-1 text-center 
             border border-[#C7C7CC]
@@ -357,7 +339,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           type="time"
           step={60}
           value={frequentDrinkTime ?? '12:00'}
-          onChange={(e) => setUsualIntakeTimes}
+          onChange={(e) => setUsualIntakeTimes(e.target.value)}
           className="
             w-full rounded-lg border border-[#C7C7CC] cursor-pointer
             px-4 py-2 

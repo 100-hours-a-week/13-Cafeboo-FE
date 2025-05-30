@@ -1,9 +1,9 @@
 import apiClient from "@/api/apiClient";
-import { useQuery } from "@tanstack/react-query";
-import { useQueryHooks } from "@/hooks/useQueryHooks";
+import { createQueryHandler } from "@/utils/createQueryHandler";
 import { DailyCaffeineReportResponse } from "@/api/home/dailyReport.dto";
 
-export const getDailyCaffeineReport = async (): Promise<DailyCaffeineReportResponse> => {
+// ✅ GET 요청
+const getDailyCaffeineReport = async (): Promise<DailyCaffeineReportResponse> => {
   const response = await apiClient.get("/api/v1/reports/daily");
   if (response.data?.data) {
     return response.data.data;
@@ -12,22 +12,18 @@ export const getDailyCaffeineReport = async (): Promise<DailyCaffeineReportRespo
 };
 
 export const useDailyCaffeineReport = () => {
-  const query = useQuery<DailyCaffeineReportResponse>({
-        queryKey: ['dailyCaffeineReport'],
-        queryFn: getDailyCaffeineReport,
-        staleTime: 60000,                
-        gcTime: 300000,      
-        refetchOnMount: 'always',
-        refetchOnWindowFocus: true,
-        refetchOnReconnect: true,
-        retry: 3,              
-      });
-      const { showModal, setShowModal } = useQueryHooks(query);
-
-      return {
-        ...query,
-        showModal,
-        setShowModal,
-      };
+  return createQueryHandler(
+    ['dailyCaffeineReport'],
+    getDailyCaffeineReport,
+    {
+      staleTime: 60000,
+      gcTime: 300000,
+      refetchOnMount: 'always',
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      retry: 3,
+    }
+  );
 };
+
 

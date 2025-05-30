@@ -10,7 +10,6 @@ import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine
 import type { UpdateCaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
-import { record } from 'zod';
 
 interface ApiRecord {
   intakeId: string;
@@ -25,24 +24,18 @@ export default function DiaryEdit() {
   const navigate = useNavigate();
   const location = useLocation();
   const orig = (location.state as { record?: ApiRecord })?.record;
-  console.log(location.state );
-  console.log(orig);
   if (!orig) {
     return <Navigate to="/main/diary" replace />;
   }
 
   const {
-    updateIntakeAsync,
-    isUpdating,
-    isUpdateError,
-    updateError
+    mutateAsyncFn: updateCaffeine,
+    isLoading: isUpdating,
   } = useUpdateCaffeineIntake(orig.intakeId);
   
   const {
-    deleteIntakeAsync,
-    isDeleting,
-    isDeleteError,
-    deleteError
+    mutateAsyncFn: deleteIntakeAsync,
+    isLoading: isDeleting,
   } = useDeleteCaffeineIntake(orig.intakeId);
 
   const [drinkId, setDrinkId] = useState<string>(orig.drinkId);
@@ -99,15 +92,13 @@ export default function DiaryEdit() {
     if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
     if (amount !== orig.caffeineMg) payload.caffeineAmount = amount;
     if (size) payload.drinkSize = size;
-
     if (Object.keys(payload).length === 0) {
       alert('변경된 내용이 없습니다.');
       return;
     }
 
     try {
-      console.log(payload);
-      await updateIntakeAsync(payload);
+      await updateCaffeine(payload);
       navigate('/main/diary');
     } catch(err:any) {
       setAlertMessage(err.message ?? '수정에 실패했습니다.');
