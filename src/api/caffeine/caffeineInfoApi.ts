@@ -3,12 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import type { CaffeineInfoRequestDTO, CaffeineInfoResponseDTO, UpdateCaffeineInfoRequestDTO } from '@/api/caffeine/caffeine.dto';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { createQueryHandler } from '@/utils/createQueryHandler';
-
-const getUserId = () => {
-  const userId = localStorage.getItem('userId');
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
-  return userId;
-};
+import { getUserId } from "@/utils/auth";
 
 // ✅ GET 요청
 export const fetchCaffeineInfo = async (): Promise<CaffeineInfoResponseDTO> => {

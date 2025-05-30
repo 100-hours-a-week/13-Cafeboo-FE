@@ -230,6 +230,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           </div>
         </div>
         {errors.weight && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.weight.message}</p>}
+      
       {/* Boolean 토글 4개 */}
       <div className="grid grid-cols-2 gap-6">
         {[

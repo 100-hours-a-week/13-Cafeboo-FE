@@ -7,8 +7,9 @@ const RootPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem('access_token');
     const userId = localStorage.getItem('userId');
-    if (userId) {
+    if (token && userId) {
       setIsLogin(true);
     } else {
       setIsLogin(false);

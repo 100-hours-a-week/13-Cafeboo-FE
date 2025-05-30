@@ -1,12 +1,11 @@
 import apiClient from "@/api/apiClient";
 import { createQueryHandler } from '@/utils/createQueryHandler';
 import type { UserProfileResponseDTO } from '@/api/mypage/profile.dto';
+import { getUserId } from "@/utils/auth";
 
 // ✅ GET 요청
 const fetchUserProfile = async (): Promise<UserProfileResponseDTO> => {
-  const userId = localStorage.getItem("userId");
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
-
+  const userId = getUserId();
   const response = await apiClient.get(`/api/v1/users/${userId}/profile`);
 
   if (response.data?.data) {
