@@ -23,7 +23,7 @@ export default function HeroBanner({
     rtl: false,
     appendDots: (dots: React.ReactNode) => (
       <div className="absolute bottom-2 w-full pointer-events-none">
-        <ul className="flex justify-center pointer-events-auto">{dots}</ul>
+        <ul className="flex justify-center">{dots}</ul>
       </div>
     ),
   };

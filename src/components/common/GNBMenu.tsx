@@ -1,5 +1,6 @@
 import { X, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { VscAccount } from "react-icons/vsc";
 
 interface GNBMenuItem {
   label: string;
@@ -65,7 +66,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               key={idx}
               onClick={() => !item.disabled && handleNavigate(item.href)}
               disabled={item.disabled}
-              className={`w-full text-left px-4 py-3 border-b bg-white hover:bg-gray-100`}
+              className={`w-full flex text-left px-4 py-3 border-b bg-white hover:bg-gray-100`}
               style={{
                 color: item.disabled ? '#9CA3AF' : '#000000',
                 borderColor: '#E5E7EB',

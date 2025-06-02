@@ -26,7 +26,7 @@ export const useDailyIntake = (date: string) => {
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      retry: 3,
+      retry: 1,
     }
   );
 };

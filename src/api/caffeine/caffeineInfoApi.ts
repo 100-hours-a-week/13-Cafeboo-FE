@@ -22,7 +22,7 @@ export const useCaffeineInfo = () =>
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      retry: 3,
+      retry: 1,
     }
 );
 

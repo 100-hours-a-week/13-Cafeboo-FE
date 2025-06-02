@@ -11,7 +11,7 @@ export default function SectionCard({
 }: SectionCardProps) {
   return (
     <div
-      className={`w-full mx-auto bg-white rounded-md shadow-xs border border-[#dadcdf] p-4 ${className}`}
+      className={`w-full mx-auto bg-white rounded-md border border-[#d0ced3] p-4 ${className}`}
     >
       {children}
     </div>
