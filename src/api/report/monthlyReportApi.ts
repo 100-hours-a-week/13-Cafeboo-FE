@@ -24,7 +24,7 @@ export const useMonthlyReport = (year: string, month: string) => {
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      retry: 3,
+      retry: 1,
     }
   );
 };
