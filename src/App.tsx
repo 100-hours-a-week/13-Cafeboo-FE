@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Logo from '@/assets/logo.svg';
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import BG from '@/assets/background.png'
+import { Toaster } from '@/components/ui/sonner'; 
 
 function App() {
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -38,6 +39,17 @@ function App() {
       <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-256">
         <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-4 scrollbar-hide">
           <Routes />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 2000,
+              style: {
+                background: 'linear-gradient(90deg, #4A5B71 0%, #5E6F89 100%)',
+                padding: '15px 18px',
+                color: 'white',
+              },
+            }}
+          />
         </div>
       </div>
     </div>

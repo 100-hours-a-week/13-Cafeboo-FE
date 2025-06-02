@@ -25,7 +25,7 @@ export const useUserProfile = () => {
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      retry: 3,
+      retry: 1,
     }
   );
 };
