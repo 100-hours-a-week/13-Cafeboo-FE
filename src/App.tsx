@@ -37,7 +37,7 @@ function App() {
         </div>
       </div>
       <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-256">
-        <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-4 scrollbar-hide">
+        <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-6 scrollbar-hide">
           <Routes />
           <Toaster
             position="top-center"

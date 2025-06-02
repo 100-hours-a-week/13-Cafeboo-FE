@@ -140,7 +140,6 @@ export default function ReportPage() {
       refetchYearly();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
-      setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);       
     }
   };

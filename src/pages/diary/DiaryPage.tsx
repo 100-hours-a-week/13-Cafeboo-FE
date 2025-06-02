@@ -24,7 +24,7 @@ const DiaryPage = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [isLarge, setIsLarge] = useState(window.innerWidth >= 390 && window.innerWidth < 1024);
+  const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
   const navigate = useNavigate();
 
   const { data: dataCanlendar, isLoading: loadingCalendar, isError: errorCalendar, error, refetch: refetchCalendar } = useCalendar(year, month);

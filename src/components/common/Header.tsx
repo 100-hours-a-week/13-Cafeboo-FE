@@ -16,7 +16,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
 
   const menuItems = [
     { label: '카페인 히스토리', href: '/main/diary' },
-    { label: '커피챗', href: '/main/coffeechat', disabled: true },
+    { label: '커피챗', href: '/main/coffeechat'},
     { label: '챌린지', href: '/main/challenge', disabled: true },
     { label: '마이 페이지', href: '/main/mypage' },
   ];
@@ -40,7 +40,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
       <header
         className="fixed max-w-md top-0 left-1/2 transform -translate-x-1/2 h-14 z-30 bg-white w-full mx-auto lg:left-184 xl:left-248 2xl:left-312"
       >
-        <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
+        <div className="w-full mx-auto px-6 h-full flex items-center justify-between">
           {/* 왼쪽: 로고 또는 뒤로가기 */}
           {mode === 'title' ? (
             <button
