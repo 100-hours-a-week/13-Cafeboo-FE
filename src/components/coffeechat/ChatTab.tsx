@@ -11,12 +11,12 @@ interface ChatTabProps {
   
   export default function ChatTab({ filter, onChange }: ChatTabProps) {
     return (
-      <div className="sticky top-0 bg-white z-10 px-2 pb-4 flex space-x-4">
+      <div className="sticky top-0 bg-white z-10 px-2 pb-2 flex space-x-4">
         {TABS.map((tab) => (
           <button
             key={tab.value}
             onClick={() => onChange(tab.value)}
-            className={`pb-1 font-semibold cursor-pointer ${
+            className={`pb-0.5 font-semibold cursor-pointer ${
               filter === tab.value
                 ? "text-black border-b-2 border-[#FE9400]"
                 : "text-gray-400"

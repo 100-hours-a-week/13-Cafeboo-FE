@@ -32,7 +32,7 @@ export default function CoffeeChatDetailPage() {
         {joined ? (
           <button
             className="w-full mt-4 p-3 bg-blue-600 text-white rounded-md"
-            onClick={() => navigate(`/coffeechats/${id}/chat`)}
+            onClick={() => navigate(`/main/coffeechat/${id}/chat`)}
           >
             채팅하기
           </button>
