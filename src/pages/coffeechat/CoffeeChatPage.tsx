@@ -124,7 +124,7 @@ export default function CoffeeChatPage() {
     <PageLayout headerMode="logo" mainRef={mainRef}>
         <ChatTab filter={filter} onChange={setFilter} />
         <ScrollToTop key={filter} selector="main" top={0}/>
-        <div className="space-y-4">
+        <div className="space-y-4 px-1">
           {filteredChats.map((room) => (
             <ChatCard
               key={room.coffeechatId}
@@ -134,12 +134,6 @@ export default function CoffeeChatPage() {
             />
           ))}
         </div>
-        <button
-          className={"absolute bottom-6 right-5 w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
-          onClick={() => {}}
-          >
-          <Plus size={24} />
-        </button>
     </PageLayout>
   );
 }

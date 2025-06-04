@@ -138,7 +138,13 @@ export default function ReportPage() {
   };
 
   return (
-    <PageLayout headerMode="logo">
+      <PageLayout
+        headerMode="logo"
+        fabType="diary"        
+        showAdd={true}        
+        onMainClick={() => navigate('/main/diary')} 
+        onAddClick={() => setIsSheetOpen(true)}  
+      >
         <DropdownSelector
           selectedPeriod={periodType}
           onPeriodChange={handlePeriodChange}

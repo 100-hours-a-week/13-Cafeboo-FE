@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import PageLayout from '@/layout/PageLayout';
+import FABContainer from '@/components/common/FABContainer';
 import { BarChart2, Plus, Info } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
@@ -67,7 +68,13 @@ const DiaryPage = () => {
   };
 
   return (
-    <PageLayout headerMode="logo">
+      <PageLayout
+        headerMode="logo"
+        fabType="report"        
+        showAdd={true}        
+        onMainClick={() => navigate('/main/report')} 
+        onAddClick={() => setIsSheetOpen(true)}  
+      >
         <SectionCard>
             <CaffeineCalendar
               year={year}
@@ -100,19 +107,6 @@ const DiaryPage = () => {
             onEdit={handleEdit}
           />
         )}
-
-        <button      
-          className={"absolute bottom-18 right-5 w-12 h-12 cursor-pointer rounded-full bg-gray-500 text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
-          onClick={() => navigate('/main/report')}
-        >
-          <BarChart2 size={24} />
-        </button>
-        <button
-          className={"absolute bottom-6 right-5 w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
-          onClick={() => setIsSheetOpen(true)}
-        >
-          <Plus size={24} />
-        </button>
 
       <CaffeineBottomSheet
         open={isSheetOpen}
