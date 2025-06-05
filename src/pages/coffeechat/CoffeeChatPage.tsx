@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { Plus } from "lucide-react";
 import PageLayout from "@/layout/PageLayout";
 import ChatTab from "@/components/coffeechat/ChatTab";
 import ChatCard, { ChatRoom } from "@/components/coffeechat/ChatCard";
 import { useNavigate } from "react-router-dom";
 import ScrollToTop from '@/components/common/ScrolltoTop';
+import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
 
 const sampleChats: ChatRoom[] = [
     {
@@ -14,7 +14,7 @@ const sampleChats: ChatRoom[] = [
         address: "분당구 판교동",
         maxMemberCount: 3,
         currentMemberCount: 1,
-        status: "joined",
+        status: "all",
         tags: ["디카페인", "스터디"],
         writer: {
           name: "윤주",
@@ -44,7 +44,7 @@ const sampleChats: ChatRoom[] = [
     address: "분당구 판교동",
     maxMemberCount: 3,
     currentMemberCount: 1,
-    status: "joined",
+    status: "all",
     tags: ["디카페인", "스터디"],
     writer: {
       name: "윤주",
@@ -58,7 +58,7 @@ const sampleChats: ChatRoom[] = [
     address: "분당구 판교동",
     maxMemberCount: 3,
     currentMemberCount: 1,
-    status: "joined",
+    status: "all",
     tags: ["디카페인", "스터디"],
     writer: {
       name: "윤주",
@@ -86,7 +86,7 @@ const sampleChats: ChatRoom[] = [
     address: "분당구 판교동",
     maxMemberCount: 3,
     currentMemberCount: 1,
-    status: "joined",
+    status: "all",
     tags: ["디카페인", "스터디"],
     writer: {
       name: "윤주",
@@ -100,7 +100,7 @@ const sampleChats: ChatRoom[] = [
     address: "분당구 판교동",
     maxMemberCount: 3,
     currentMemberCount: 1,
-    status: "joined",
+    status: "all",
     tags: ["디카페인", "스터디"],
     writer: {
       name: "윤주",
@@ -114,6 +114,7 @@ const sampleChats: ChatRoom[] = [
 export default function CoffeeChatPage() {
   const [filter, setFilter] = useState("all");
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const navigate = useNavigate();
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -121,7 +122,12 @@ export default function CoffeeChatPage() {
     filter === "all" ? sampleChats : sampleChats.filter((c) => c.status === filter);
 
   return (
-    <PageLayout headerMode="logo" mainRef={mainRef}>
+    <PageLayout
+      headerMode="logo"
+      mainRef={mainRef}
+      showAdd={true}        
+      onAddClick={() => setIsSheetOpen(true)}  
+    >
         <ChatTab filter={filter} onChange={setFilter} />
         <ScrollToTop key={filter} selector="main" top={0}/>
         <div className="space-y-4 px-1">
@@ -134,6 +140,11 @@ export default function CoffeeChatPage() {
             />
           ))}
         </div>
+        <CoffeeChatBottomSheet
+        open={isSheetOpen}
+        onClose={() => setIsSheetOpen(false)}
+      />
     </PageLayout>
+    
   );
 }
