@@ -37,8 +37,8 @@ jobs:
       # Step 5: 프론트엔드 빌드 (Vite 사용)
       - name: Build frontend
         run: |
-          VITE_API_BASE_URL="http://jeff-cloud.com/" \
-          VITE_REST_API_KEY="9333a34b6c9de8d1db66955c4b396b21" \
+          VITE_API_BASE_URL="${{ secrets.VITE_API_BASE_URL }}" \
+          VITE_REST_API_KEY="${{ secrets.VITE_REST_API_KEY }}" \
           pnpm run build
 
       # Step 6: GCP Cloud Storage에 빌드된 파일 업로드
