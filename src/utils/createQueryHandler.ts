@@ -1,9 +1,10 @@
+import { AxiosError } from 'axios';
 import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
 
 export function createQueryHandler<
   TQueryKey extends unknown[],
   TData,
-  TError = unknown,
+  TError = AxiosError,
 >(
   key: TQueryKey,
   queryFn: () => Promise<TData>,
