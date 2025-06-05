@@ -1,6 +1,6 @@
 import ProfileCard from '@/components/mypage/ProfileCard';
 import SettingsMenu from '@/components/mypage/SettingMenu';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
@@ -79,9 +79,7 @@ const MyPage: React.FC = () => {
     };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="logo" />
-      <main className="pt-16 space-y-4">
+    <PageLayout headerMode="logo">
         <h2 className="mb-3 text-lg text-[#000000] font-semibold">
           마이 페이지
         </h2>
@@ -115,7 +113,6 @@ const MyPage: React.FC = () => {
           onLogout={handleLogout}
           onDeleteAccount={handleDeleteAccount}
         />
-      </main>
       {/* 로그아웃 오류 모달 */}
       {showLogoutError && (
         <AlertModal
@@ -173,7 +170,7 @@ const MyPage: React.FC = () => {
          onConfirm={confirmLogout}
        />
      )}
-    </div>
+    </PageLayout>
   );
 };
 

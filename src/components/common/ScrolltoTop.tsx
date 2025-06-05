@@ -1,13 +1,27 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export default function ScrollToTop() {
+interface ScrollToTopProps {
+  selector?: string; 
+  top?: number;
+  behavior?: ScrollBehavior;
+}
+
+export default function ScrollToTop({
+  selector = 'main',
+  top = 0,
+  behavior = 'auto',
+}: ScrollToTopProps) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // 페이지 전환 시 최상단으로 스크롤
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [pathname]);
+    const target = document.querySelector(selector);
+    if (target) {
+      target.scrollTo({ top, behavior });
+    } else {
+      window.scrollTo({ top, behavior });
+    }
+  }, [pathname, selector, top, behavior]);
 
   return null;
 }

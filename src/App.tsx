@@ -1,24 +1,14 @@
 import Routes from '@/routes';
 import './index.css';
-import { useEffect, useRef } from 'react';
 import Logo from '@/assets/logo.svg';
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import BG from '@/assets/background.png'
 import { Toaster } from '@/components/ui/sonner'; 
 
 function App() {
-  const layoutRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--vh',
-      `${window.screen.height}px`
-    );
-  }, []);
 
   return (
     <div
-      ref={layoutRef}
       className="min-h-screen flex items-center justify-start"
       style={{
         backgroundImage: `url(${BG})`,
@@ -37,7 +27,7 @@ function App() {
         </div>
       </div>
       <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-256">
-        <div className="relative w-screen w-full h-full max-w-md bg-white overflow-y-auto overflow-x-hidden px-4 scrollbar-hide">
+        <div className="relative w-screen w-full h-screen max-w-md bg-white px-6 scrollbar-hide overflow-hidden">
           <Routes />
           <Toaster
             position="top-center"

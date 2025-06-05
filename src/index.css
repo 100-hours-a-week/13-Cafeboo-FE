@@ -14,6 +14,9 @@
   html {
     font-family: 'Pretendard', system-ui, sans-serif;
   }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 body {
@@ -192,8 +195,3 @@ body {
   background: rgba(0,0,0,0.4); /* 호버 시 색상 */
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}

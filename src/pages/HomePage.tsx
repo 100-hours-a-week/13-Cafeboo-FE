@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import HeroBanner from '@/components/home/HeroBanner';
 import DailyCaffeineIntakeGraph from '@/components/home/DailyCaffeine';
 import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
@@ -42,10 +42,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="logo" />
-
-      <main className="pt-16 space-y-4">
+    <PageLayout headerMode="logo">
         {/* Hero Banner */}
         <SectionCard className="!p-0 overflow-hidden">
           <HeroBanner slides={slides} />
@@ -105,7 +102,7 @@ export default function HomePage() {
         {/* 카페인 추가 버튼 */}
         <button
           className="
-          fixed bottom-6
+          absolute bottom-6
           left-1/2 transform -translate-x-1/2
           w-40 h-12
           rounded-full
@@ -116,9 +113,6 @@ export default function HomePage() {
           shadow-[0_6px_10px_rgba(0,0,0,0.2)]
           z-20
           mx-auto
-          lg:left-184      
-          xl:left-248   
-          2xl:left-312
           cursor-pointer
         "
           onClick={() => setIsSheetOpen(true)}
@@ -126,7 +120,7 @@ export default function HomePage() {
           <Plus size={24} className="mr-2" />
           ADD DRINK
         </button>
-      </main>
+  
       <CaffeineBottomSheet
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}
@@ -143,6 +137,6 @@ export default function HomePage() {
         confirmText="확인"
         showCancelButton={false}
       />
-    </div>
+    </PageLayout>
   );
 }

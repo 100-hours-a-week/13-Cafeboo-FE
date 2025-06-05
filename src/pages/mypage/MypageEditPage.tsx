@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import HealthInfoEditor from '@/components/mypage/HealthInfoEditor';
 import { useNavigate } from 'react-router-dom';
 import { useUpdateHealthInfo } from '@/api//health/healthInfoApi';
@@ -61,17 +61,8 @@ export default function MypageEditPage() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Header
-        mode="title"
-        title="내 정보 수정"
-        onBackClick={() => navigate('/main/mypage')}
-      />
-
-      <main className="pt-16 space-y-6">
-        <HealthInfoEditor onSave={handleSave} />
-      </main>
-
+    <PageLayout headerMode="title" headerTitle="내 정보 수정" onBackClick={() => navigate('/main/mypage')}>
+      <HealthInfoEditor onSave={handleSave} />
       <AlertModal
         isOpen={!!error}
         icon={<Info size={36} className="text-[#FE9400]" />}
@@ -82,6 +73,6 @@ export default function MypageEditPage() {
         confirmText="확인"
         showCancelButton={false}
       />
-    </div>
+    </PageLayout>
   );
 }

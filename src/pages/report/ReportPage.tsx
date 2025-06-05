@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import { Calendar, Plus, AlertTriangle, Info } from 'lucide-react';
 import DropdownSelector, { PeriodType } from '@/components/report/DropdownSelector';
 import PeriodFilterSelector from '@/components/report/PeriodFilterSelector';
@@ -46,7 +46,6 @@ export default function ReportPage() {
   const [selectedWeek, setSelectedWeek] = useState(defaultWeek);
 
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isLarge, setIsLarge] = useState(window.innerWidth >= 450 && window.innerWidth < 1024);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -122,12 +121,6 @@ export default function ReportPage() {
       }
     }, [periodType, selectedYear, selectedMonth, selectedWeek]);
 
-  useEffect(() => {
-    const onResize = () => setIsLarge(window.innerWidth >= 450 && window.innerWidth < 1024);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
   const handlePeriodChange = (period: PeriodType) => {
     setPeriodType(period);
   };
@@ -140,16 +133,18 @@ export default function ReportPage() {
       refetchYearly();
     } catch (err: any) {
       console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
-      setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);       
     }
   };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="logo" />
-
-      <main className="pt-16 space-y-4">
+      <PageLayout
+        headerMode="logo"
+        fabType="diary"        
+        showAdd={true}        
+        onMainClick={() => navigate('/main/diary')} 
+        onAddClick={() => setIsSheetOpen(true)}  
+      >
         <DropdownSelector
           selectedPeriod={periodType}
           onPeriodChange={handlePeriodChange}
@@ -202,18 +197,17 @@ export default function ReportPage() {
 
         {/* 플로팅 버튼 */}
         <button
-           className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
+          className={"absolute bottom-18 right-5 w-12 h-12 cursor-pointer rounded-full bg-gray-500 text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
           onClick={() => navigate('/main/diary')}
         >
           <Calendar size={24} />
         </button>
         <button
-          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
+          className={"absolute bottom-6 right-5 w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
           onClick={() => setIsSheetOpen(true)}
         >
           <Plus size={24} />
         </button>
-      </main>
 
       <CaffeineBottomSheet
         open={isSheetOpen}
@@ -231,7 +225,7 @@ export default function ReportPage() {
         confirmText="확인"
         showCancelButton={false}
       />
-    </div>
+    </PageLayout>
   );
 }
 

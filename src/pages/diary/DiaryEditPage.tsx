@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import { BottomSheet } from '@/components/common/BottomSheet';
 import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
 import CaffeineDetailForm, { DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
@@ -130,10 +130,7 @@ export default function DiaryEdit() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="title" title="카페인 기록 수정" onBackClick={() => navigate('/main/diary')} />
-
-      <main className="pt-16 space-y-6 p-4">
+    <PageLayout headerMode="title" headerTitle="카페인 기록 수정" onBackClick={() => navigate('/main/diary')}  mainClassName="!space-y-6">
         {/* 음료 */}
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">음료</span>
@@ -193,7 +190,6 @@ export default function DiaryEdit() {
         >
           {'삭제하기'}
         </button>
-      </main>
 
       {/* 1) 음료 선택 바텀시트 */}
       <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} hideConfirm>
@@ -233,7 +229,7 @@ export default function DiaryEdit() {
           confirmText="확인"
           showCancelButton={false}
           />
-    </div>
+    </PageLayout>
   );
 }
 

@@ -1,5 +1,6 @@
-import { useEffect, useState, useMemo } from 'react';
-import Header from '@/components/common/Header';
+import { useState, useMemo } from 'react';
+import PageLayout from '@/layout/PageLayout';
+import FABContainer from '@/components/common/FABContainer';
 import { BarChart2, Plus, Info } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
@@ -24,7 +25,6 @@ const DiaryPage = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [isLarge, setIsLarge] = useState(window.innerWidth >= 390 && window.innerWidth < 1024);
   const navigate = useNavigate();
 
   const { data: dataCanlendar, isLoading: loadingCalendar, isError: errorCalendar, error, refetch: refetchCalendar } = useCalendar(year, month);
@@ -37,15 +37,6 @@ const DiaryPage = () => {
     });
     return map;
   }, [dataCanlendar]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLarge(window.innerWidth >= 450);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
@@ -77,9 +68,13 @@ const DiaryPage = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="logo" />
-      <main className="pt-16 space-y-4">
+      <PageLayout
+        headerMode="logo"
+        fabType="report"        
+        showAdd={true}        
+        onMainClick={() => navigate('/main/report')} 
+        onAddClick={() => setIsSheetOpen(true)}  
+      >
         <SectionCard>
             <CaffeineCalendar
               year={year}
@@ -113,20 +108,6 @@ const DiaryPage = () => {
           />
         )}
 
-        <button
-          className={`fixed bottom-18 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#545F71] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
-          onClick={() => navigate('/main/report')}
-        >
-          <BarChart2 size={24} />
-        </button>
-        <button
-          className={`fixed bottom-6 ${isLarge? 'right-[calc(50%_-_225px_+_20px)]' : 'right-5'} w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] lg:left-224 xl:left-288 2xl:left-352`}
-          onClick={() => setIsSheetOpen(true)}
-          >
-          <Plus size={24} />
-        </button>
-      </main>
-
       <CaffeineBottomSheet
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}
@@ -143,7 +124,7 @@ const DiaryPage = () => {
         confirmText="확인"
         showCancelButton={false}
       />
-    </div>
+    </PageLayout>
   );
 };
 
