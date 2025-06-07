@@ -1,4 +1,5 @@
 import { ChevronRight } from 'lucide-react';
+import profile7 from '@/assets/profile7.png'
 
 interface ProfileCardProps {
   nickname: string;
@@ -23,27 +24,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       >
         <div className="flex items-center">
           <div className="relative w-10 h-10 mr-3">
-              <div className="w-full h-full rounded-full bg-[#FE9400] flex items-center justify-center">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="w-5 h-5 text-white"
-                >
-                  <path
-                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <circle
-                    cx="12"
-                    cy="7"
-                    r="4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </div>
+            <div className="absolute inset-0 rounded-full" />
+            <img
+                src={profile7}
+                alt="프로필"
+                className="w-full h-full rounded-full object-cover"
+              />
           </div>
           <div>
             <p className="text-lg font-medium">{nickname}</p>
