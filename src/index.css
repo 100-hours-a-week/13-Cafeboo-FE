@@ -36,6 +36,11 @@ body {
   flex-direction: column;
 }
 
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 .slick-dots {
   position: absolute;
   bottom: 10px !important;

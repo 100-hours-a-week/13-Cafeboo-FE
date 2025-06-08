@@ -1,27 +1,24 @@
 import { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
-import { MapPin, Clock, Users } from "lucide-react";
+import { MapPin, Users } from "lucide-react";
 import AlertModal from "@/components/common/AlertModal";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
+import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
 
 export default function CoffeeChatDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [joined, setJoined] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const handleJoin = () => setModalOpen(true);
 
   const confirmJoin = () => {
     setJoined(true);
     setModalOpen(false);
-  };
-
-  const handleLocationView = () => {
-    // 카카오 지도 연결 로직 예정
-    console.log("위치 보기 클릭");
   };
 
   return (
@@ -109,14 +106,23 @@ export default function CoffeeChatDetailPage() {
           </div>
 
             <button 
-              onClick={handleLocationView}
+              onClick={() => setIsSheetOpen(true)}
               className="w-full p-6 flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors rounded-xl"
             >
-              <MapPin className="w-5 h-5 text-gray-600" />
-              <span className="text-gray-700 font-medium">위치 보기</span>
-              <span className="text-gray-400">→</span>
+              <div className="w-full h-[180px] overflow-hidden rounded-lg mb-2">
+              <img
+                  src={`https://map.kakao.com/staticmap/v5/map?center=127.110987,37.401234&level=3&width=700&height=300&apikey=${import.meta.env.VITE_KAKAO_REST_API_KEY}`}
+                  alt="지도 미리보기"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </button>
         </div>
+
+        <MapBottomSheet
+          open={isSheetOpen}
+          onClose={() => setIsSheetOpen(false)}
+        />
 
 
 

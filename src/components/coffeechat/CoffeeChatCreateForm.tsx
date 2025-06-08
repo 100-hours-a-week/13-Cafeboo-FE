@@ -6,16 +6,23 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@/components/ui/popover';
+import LocationSelector, { LocationData } from '@/components/coffeechat/LocationSelector';
 
 export default function CoffeeChatForm() {
   const [chatName, setChatName] = useState('');
   const [description, setDescription] = useState('');
+  const [nickname, setNickname] = useState('');
   const [time, setTime] = useState('10:00');
   const [participants, setParticipants] = useState(2);
   const [tags, setTags] = useState<string[]>([]);
   const [newTag, setNewTag] = useState('');
-  const [location, setLocation] = useState('');
   const timeInputRef = useRef<HTMLInputElement | null>(null);
+  const [location, setLocation] = useState<LocationData | null>(null);
 
   const incrementParticipants = () => setParticipants(prev => Math.min(30, prev + 1));
   const decrementParticipants = () => setParticipants(prev => Math.max(2, prev - 1));
@@ -38,6 +45,8 @@ export default function CoffeeChatForm() {
       addTag();
     }
   };
+
+  console.log(location);
 
   return (
     <div className="min-h-screen">
@@ -65,11 +74,24 @@ export default function CoffeeChatForm() {
                 className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-[#FE9400] resize-none"
               />
             </div>
+
+            <div>
+              <label className="block font-semibold mb-2">
+                채팅방 닉네임 <span className="text-sm font-normal text-gray-500">(해당 채팅방에서 사용될 닉네임입니다)</span>
+              </label>
+              <input
+                type="text"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                placeholder="예: 커피 좋아하는 개발자"
+                className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent"
+              />
+            </div>
           </div>
         </div>
 
         {/* Accordion Section */}
-        <div className="bg-white rounded-2xl overflow-hidden mb-6 px-6">
+        <div className="bg-white rounded-2xl overflow-hidden my-6 px-6">
           <Accordion type="multiple" className="w-full">
             {/* Time */}
             <AccordionItem value="time" className="border-b border-gray-200">
@@ -172,7 +194,7 @@ export default function CoffeeChatForm() {
                     />
                     <button
                       onClick={addTag}
-                      className="px-4 py-2 bg-[#FE9400] text-white rounded-lg cursor-pointer"
+                      className="px-4 py-2 bg-[#FE9400] text-white rounded cursor-pointer"
                     >
                       추가
                     </button>
@@ -208,23 +230,35 @@ export default function CoffeeChatForm() {
                     <MapPin className="w-5 h-5 text-[#FE9400] mr-3" />
                     <span className="text-base font-medium">만나는 장소</span>
                   </div>
-                  {location && (
+                  {location?.address && (
                     <span className="text-sm text-gray-500 mr-2 truncate max-w-32">
-                      {location}
+                      {location.address}
                     </span>
                   )}
                 </div>
               </AccordionTrigger>
               <AccordionContent className="px-2 pb-4">
-                <div className="pt-2">
-                  <input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="만날 장소를 입력해주세요"
-                    className="w-full px-3 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                  />
+              {location?.detailAddress && (
+                <div className="flex justify-between mb-2 items-center">
+                  <span className="text-base text-gray-600 mr-2 w-30">
+                    도로명 주소
+                  </span>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button className="text-sm text-gray-600 pr-2 truncate max-w-50 cursor-pointer">
+                        {location.detailAddress}
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      sideOffset={8}
+                      className="bg-white p-3 z-999 max-w-xs text-sm text-gray-800 rounded-lg shadow-lg border border-gray-200"
+                    >
+                      {location.detailAddress}
+                    </PopoverContent>
+                  </Popover>
                 </div>
+              )}
+                <LocationSelector value={location} onChange={setLocation} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>

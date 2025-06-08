@@ -8,6 +8,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": [
+      "kakao.maps.d.ts"
+    ],
+    "include": ["src", "node_modules/kakao.maps.d.ts/types"]
   }
 }
