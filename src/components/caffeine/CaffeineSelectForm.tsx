@@ -142,7 +142,7 @@ export default function CaffeineSelectForm({
                   ${
                     typeFilter === type
                       ? 'border-[#FE9400] text-[#FE9400]'
-                      : 'border-gray-200 text-gray-400 hover:text-gray-800'
+                      : 'border-gray-200 text-gray-400 hover:text-gray-800 cursor-pointer'
                   }
                 `}
               >

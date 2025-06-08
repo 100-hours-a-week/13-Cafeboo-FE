@@ -323,7 +323,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         </Label>
         <div className="w-full ">
           <Tag
-            items={DRINK_OPTIONS}
+            items={DRINK_OPTIONS.map((label) => ({ label }))}
             value={userFavoriteDrinks}
             onChange={setUserFavoriteDrinks}
             multiple
