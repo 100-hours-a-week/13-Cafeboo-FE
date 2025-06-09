@@ -11,6 +11,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.0.1
         version: 5.0.1(react-hook-form@7.51.3(react@18.3.1))
+      '@radix-ui/react-accordion':
+        specifier: ^1.2.11
+        version: 1.2.11(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@radix-ui/react-dialog':
         specifier: ^1.1.11
         version: 1.1.14(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -38,6 +41,9 @@ importers:
       '@radix-ui/react-toggle-group':
         specifier: ^1.1.7
         version: 1.1.10(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@stomp/stompjs':
+        specifier: ^7.1.1
+        version: 7.1.1
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.1.8)
@@ -59,6 +65,9 @@ importers:
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       lucide-react:
         specifier: ^0.503.0
         version: 0.503.0(react@18.3.1)
@@ -89,6 +98,9 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@18.3.1)
+      react-kakao-maps-sdk:
+        specifier: ^1.1.27
+        version: 1.1.27(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom:
         specifier: ^7.5.3
         version: 7.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -107,6 +119,9 @@ importers:
       slick-carousel:
         specifier: ^1.8.1
         version: 1.8.1(jquery@3.7.1)
+      sockjs-client:
+        specifier: ^1.6.1
+        version: 1.6.1
       sonner:
         specifier: ^2.0.3
         version: 2.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -115,7 +130,7 @@ importers:
         version: 3.3.0
       ui:
         specifier: git+https://github.com/shadcn/ui.git
-        version: git+https://github.com/shadcn/ui.git#1aa35048a5651206cfc7677a79dc2d1fafae0978(@types/node@20.5.1)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: git+https://github.com/shadcn/ui.git#82d94eee385317eb2eb2fd24019a5312cf3c0a60(@types/node@20.5.1)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -162,6 +177,9 @@ importers:
       '@types/connect-history-api-fallback':
         specifier: ^1.5.4
         version: 1.5.4
+      '@types/lodash.debounce':
+        specifier: ^4.0.9
+        version: 4.0.9
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.23
@@ -174,6 +192,9 @@ importers:
       '@types/react-slick':
         specifier: ^0.23.13
         version: 0.23.13
+      '@types/sockjs-client':
+        specifier: ^1.5.4
+        version: 1.5.4
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.5.0(vite@5.4.19(@types/node@20.5.1)(lightningcss@1.30.1))
@@ -207,6 +228,9 @@ importers:
       globals:
         specifier: ^16.0.0
         version: 16.2.0
+      kakao.maps.d.ts:
+        specifier: ^0.1.40
+        version: 0.1.40
       playwright:
         specifier: ^1.52.0
         version: 1.52.0
@@ -997,8 +1021,34 @@ packages:
   '@radix-ui/primitive@1.1.2':
     resolution: {integrity: sha512-XnbHrrprsNqZKQhStrSwgRUQzoCI1glLzdw79xiZPoofhGICeZRSQ3dIxAKH1gb3OHfNf4d6f+vAv3kil2eggA==}
 
+  '@radix-ui/react-accordion@1.2.11':
+    resolution: {integrity: sha512-l3W5D54emV2ues7jjeG1xcyN7S3jnK3zE2zHqgn0CmMsy9lNJwmgcrmaxS+7ipw15FAivzKNzH3d5EcGoFKw0A==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-arrow@1.1.7':
     resolution: {integrity: sha512-F+M1tLhO+mlQaOWspE8Wstg+z6PwxwRd8oQ8IXceWz92kfAmalTRf0EjrouQeo7QssEPfCn05B4Ihs1K9WQ/7w==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
+  '@radix-ui/react-collapsible@1.1.11':
+    resolution: {integrity: sha512-2qrRsVGSCYasSz1RFOorXwl0H7g7J1frQtgpQgYrt+MOidtPAINHn9CPovQXb83r8ahapdx3Tu0fa/pdFFSdPg==}
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
@@ -1498,6 +1548,9 @@ packages:
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
+  '@stomp/stompjs@7.1.1':
+    resolution: {integrity: sha512-chcDs6YkAnKp1FqzwhGvh3i7v0+/ytzqWdKYw6XzINEKAzke/iD00dNgFPWSZEqktHOK+C1gSzXhLkLbARIaZw==}
+
   '@storybook/addon-actions@8.6.12':
     resolution: {integrity: sha512-B5kfiRvi35oJ0NIo53CGH66H471A3XTzrfaa6SxXEJsgxxSeKScG5YeXcCvLiZfvANRQ7QDsmzPUgg0o3hdMXw==}
     peerDependencies:
@@ -1893,6 +1946,12 @@ packages:
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
 
+  '@types/lodash.debounce@4.0.9':
+    resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
+
+  '@types/lodash@4.17.17':
+    resolution: {integrity: sha512-RRVJ+J3J+WmyOTqnz3PiBLA501eKwXl2noseKOrNo/6+XEHjTAxO4xHvxQB6QuNm+s4WRbn6rSiap8+EA+ykFQ==}
+
   '@types/mdx@2.0.13':
     resolution: {integrity: sha512-+OWZQfAYyio6YkJb3HLxDrvnx6SWWDbC0zVPfBRzUk0/nqoDyf6dNxQi3eArPe8rJ473nobTMQ/8Zk+LxJ+Yuw==}
 
@@ -1951,6 +2010,9 @@ packages:
 
   '@types/send@0.17.4':
     resolution: {integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==}
+
+  '@types/sockjs-client@1.5.4':
+    resolution: {integrity: sha512-zk+uFZeWyvJ5ZFkLIwoGA/DfJ+pYzcZ8eH4H/EILCm2OBZyHH6Hkdna1/UWL/CFruh5wj6ES7g75SvUB0VsH5w==}
 
   '@types/uuid@9.0.8':
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
@@ -3226,6 +3288,10 @@ packages:
   eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
 
+  eventsource@2.0.2:
+    resolution: {integrity: sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==}
+    engines: {node: '>=12.0.0'}
+
   execa@4.1.0:
     resolution: {integrity: sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==}
     engines: {node: '>=10'}
@@ -3278,6 +3344,10 @@ packages:
 
   fastq@1.19.1:
     resolution: {integrity: sha512-GwLTyxkCXjXbxqIhTsMI2Nui8huMPtnxg7krajPJAjnEG/iiOS7i+zCtWGZR9G0NBKbXKh6X9m9UIsYX/N6vvQ==}
+
+  faye-websocket@0.11.4:
+    resolution: {integrity: sha512-CzbClwlXAuiRQAlUyfqPgvPoNKTckTPGfwZV4ZdAhVcP2lh9KUxJg2b5GkE7XbjKQ3YJnQ9z6D9ntLAlB+tP8g==}
+    engines: {node: '>=0.8.0'}
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
@@ -3561,6 +3631,9 @@ packages:
 
   http-cache-semantics@4.2.0:
     resolution: {integrity: sha512-dTxcvPXqPvXBQpq5dUr6mEMJX4oIEFv6bwom3FDwKRDsuIjjJGANqhBuoAn9c1RQJIdAKav33ED65E2ys+87QQ==}
+
+  http-parser-js@0.5.10:
+    resolution: {integrity: sha512-Pysuw9XpUq5dVc/2SMHpuTY01RFl8fttgcyunjL7eEMhGM3cI4eOmiCycJDVCo/7O7ClfQD3SaI6ftDzqOXYMA==}
 
   http-proxy-agent@7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
@@ -3898,6 +3971,9 @@ packages:
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
+
+  kakao.maps.d.ts@0.1.40:
+    resolution: {integrity: sha512-nX69MB1ok04epe3OqS+/tEeWBbU31GSQbvDPJmQRRltzzqn6t4jBsO5v1nzalUjCKzwcH2CptOc767NZ7Hbu3g==}
 
   keyv@3.1.0:
     resolution: {integrity: sha512-9ykJ/46SN/9KPM/sichzQ7OvXyGDYKGTaDlKMGCAlg2UK8KRy4jb0d8sFc+0Tt0YYnThq8X2RZgCg74RPxgcVA==}
@@ -4636,6 +4712,9 @@ packages:
   quansync@0.2.10:
     resolution: {integrity: sha512-t41VRkMYbkHyCYmOvx/6URnN80H7k4X0lLdBMGsz+maAwrJQYB1djpV6vHrQIBE0WBSGqhtEHrK9U3DWWH8v7A==}
 
+  querystringify@2.2.0:
+    resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
+
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -4725,6 +4804,12 @@ packages:
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
+
+  react-kakao-maps-sdk@1.1.27:
+    resolution: {integrity: sha512-1EwYkYsjTDRFqysKStDasFMrFTXcLx2AyRlqMoWD7ONWhRqpjx9M874hkhEEHrnypP2eSIhhDLe0EiSKp3bd2Q==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
 
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
@@ -4879,6 +4964,9 @@ packages:
   require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
+
+  requires-port@1.0.0:
+    resolution: {integrity: sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==}
 
   resize-observer-polyfill@1.5.1:
     resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==}
@@ -5052,6 +5140,10 @@ packages:
   smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+
+  sockjs-client@1.6.1:
+    resolution: {integrity: sha512-2g0tjOR+fRs0amxENLi/q5TiJTqY+WXFOzb5UwXndlK6TO3U/mirZznpx6w34HVMoc3g7cY24yC/ZMIYnDlfkw==}
+    engines: {node: '>=12'}
 
   socks-proxy-agent@8.0.5:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
@@ -5497,8 +5589,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ui@git+https://github.com/shadcn/ui.git#1aa35048a5651206cfc7677a79dc2d1fafae0978:
-    resolution: {commit: 1aa35048a5651206cfc7677a79dc2d1fafae0978, repo: https://github.com/shadcn/ui.git, type: git}
+  ui@git+https://github.com/shadcn/ui.git#82d94eee385317eb2eb2fd24019a5312cf3c0a60:
+    resolution: {commit: 82d94eee385317eb2eb2fd24019a5312cf3c0a60, repo: https://github.com/shadcn/ui.git, type: git}
     version: 0.0.1
 
   unbox-primitive@1.1.0:
@@ -5541,6 +5633,9 @@ packages:
   url-parse-lax@3.0.0:
     resolution: {integrity: sha512-NjFKA0DidqPa5ciFcSrXnAltTtzz84ogy+NebPvfEgAck0+TNg4UJ4IN+fB7zRZfbgUf0syOo9MDxFkDSMuFaQ==}
     engines: {node: '>=4'}
+
+  url-parse@1.5.10:
+    resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
 
   use-callback-ref@1.3.3:
     resolution: {integrity: sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==}
@@ -5708,6 +5803,14 @@ packages:
 
   webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
+
+  websocket-driver@0.7.4:
+    resolution: {integrity: sha512-b17KeDIQVjvb0ssuSDF2cYXSg2iztliJ4B9WdsuB6J952qCPKmnVq4DyW5motImXHDC1cBT/1UezrJVsKw5zjg==}
+    engines: {node: '>=0.8.0'}
+
+  websocket-extensions@0.1.4:
+    resolution: {integrity: sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==}
+    engines: {node: '>=0.8.0'}
 
   whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
@@ -6688,9 +6791,42 @@ snapshots:
 
   '@radix-ui/primitive@1.1.2': {}
 
+  '@radix-ui/react-accordion@1.2.11(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.2
+      '@radix-ui/react-collapsible': 1.1.11(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-collection': 1.1.7(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-context': 1.1.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-direction': 1.1.1(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-id': 1.1.1(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-primitive': 2.1.3(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@18.3.23)(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.23
+      '@types/react-dom': 18.3.7(@types/react@18.3.23)
+
   '@radix-ui/react-arrow@1.1.7(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@radix-ui/react-primitive': 2.1.3(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.23
+      '@types/react-dom': 18.3.7(@types/react@18.3.23)
+
+  '@radix-ui/react-collapsible@1.1.11(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.2
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-context': 1.1.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-id': 1.1.1(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-presence': 1.1.4(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-primitive': 2.1.3(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@18.3.23)(react@18.3.1)
+      '@radix-ui/react-use-layout-effect': 1.1.1(@types/react@18.3.23)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     optionalDependencies:
@@ -7147,6 +7283,8 @@ snapshots:
 
   '@standard-schema/utils@0.3.0': {}
 
+  '@stomp/stompjs@7.1.1': {}
+
   '@storybook/addon-actions@8.6.12(storybook@8.6.12(prettier@3.5.3))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -7585,6 +7723,12 @@ snapshots:
     dependencies:
       '@types/node': 22.15.27
 
+  '@types/lodash.debounce@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.17
+
+  '@types/lodash@4.17.17': {}
+
   '@types/mdx@2.0.13': {}
 
   '@types/mime@1.3.5': {}
@@ -7643,6 +7787,8 @@ snapshots:
     dependencies:
       '@types/mime': 1.3.5
       '@types/node': 22.15.27
+
+  '@types/sockjs-client@1.5.4': {}
 
   '@types/uuid@9.0.8': {}
 
@@ -9168,6 +9314,8 @@ snapshots:
 
   eventemitter3@4.0.7: {}
 
+  eventsource@2.0.2: {}
+
   execa@4.1.0:
     dependencies:
       cross-spawn: 7.0.6
@@ -9237,6 +9385,10 @@ snapshots:
   fastq@1.19.1:
     dependencies:
       reusify: 1.1.0
+
+  faye-websocket@0.11.4:
+    dependencies:
+      websocket-driver: 0.7.4
 
   fd-slicer@1.1.0:
     dependencies:
@@ -9537,6 +9689,8 @@ snapshots:
   html-escaper@2.0.2: {}
 
   http-cache-semantics@4.2.0: {}
+
+  http-parser-js@0.5.10: {}
 
   http-proxy-agent@7.0.2:
     dependencies:
@@ -9854,6 +10008,8 @@ snapshots:
       array.prototype.flat: 1.3.3
       object.assign: 4.1.7
       object.values: 1.2.1
+
+  kakao.maps.d.ts@0.1.40: {}
 
   keyv@3.1.0:
     dependencies:
@@ -10514,6 +10670,8 @@ snapshots:
 
   quansync@0.2.10: {}
 
+  querystringify@2.2.0: {}
+
   queue-microtask@1.2.3: {}
 
   quick-lru@4.0.1: {}
@@ -10604,6 +10762,13 @@ snapshots:
   react-is@17.0.2: {}
 
   react-is@18.3.1: {}
+
+  react-kakao-maps-sdk@1.1.27(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.27.3
+      kakao.maps.d.ts: 0.1.40
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-refresh@0.17.0: {}
 
@@ -10795,6 +10960,8 @@ snapshots:
   require-directory@2.1.1: {}
 
   require-from-string@2.0.2: {}
+
+  requires-port@1.0.0: {}
 
   resize-observer-polyfill@1.5.1: {}
 
@@ -10993,6 +11160,16 @@ snapshots:
       jquery: 3.7.1
 
   smart-buffer@4.2.0: {}
+
+  sockjs-client@1.6.1:
+    dependencies:
+      debug: 3.2.7
+      eventsource: 2.0.2
+      faye-websocket: 0.11.4
+      inherits: 2.0.4
+      url-parse: 1.5.10
+    transitivePeerDependencies:
+      - supports-color
 
   socks-proxy-agent@8.0.5:
     dependencies:
@@ -11478,7 +11655,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  ui@git+https://github.com/shadcn/ui.git#1aa35048a5651206cfc7677a79dc2d1fafae0978(@types/node@20.5.1)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
+  ui@git+https://github.com/shadcn/ui.git#82d94eee385317eb2eb2fd24019a5312cf3c0a60(@types/node@20.5.1)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       '@babel/core': 7.27.3
       '@changesets/changelog-github': 0.4.8
@@ -11600,6 +11777,11 @@ snapshots:
   url-parse-lax@3.0.0:
     dependencies:
       prepend-http: 2.0.0
+
+  url-parse@1.5.10:
+    dependencies:
+      querystringify: 2.2.0
+      requires-port: 1.0.0
 
   use-callback-ref@1.3.3(@types/react@18.3.23)(react@18.3.1):
     dependencies:
@@ -11813,6 +11995,14 @@ snapshots:
   webidl-conversions@3.0.1: {}
 
   webpack-virtual-modules@0.6.2: {}
+
+  websocket-driver@0.7.4:
+    dependencies:
+      http-parser-js: 0.5.10
+      safe-buffer: 5.2.1
+      websocket-extensions: 0.1.4
+
+  websocket-extensions@0.1.4: {}
 
   whatwg-url@5.0.0:
     dependencies:

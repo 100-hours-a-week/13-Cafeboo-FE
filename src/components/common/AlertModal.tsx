@@ -67,7 +67,7 @@ export default function AlertModal({
 
       {/* 모달 박스 */}
       <div
-        className="relative bg-white rounded-lg shadow-lg w-9/12 max-w-sm mx-auto overflow-hidden"
+        className="relative bg-white rounded-lg shadow-lg w-9/12 max-w-xs mx-auto overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center p-6 space-y-3 text-center">

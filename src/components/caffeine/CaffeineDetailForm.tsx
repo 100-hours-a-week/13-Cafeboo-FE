@@ -6,6 +6,9 @@ import Medium from '@/assets/medium.png';
 import Large from '@/assets/large.png';
 import ExtraLarge from '@/assets/extralarge.png';
 import Stick from '@/assets/stick.png';  
+import Monster from '@/assets/monster.png'
+import Hot6 from '@/assets/hot6.png'
+import Redbull from '@/assets/redbull.png'
 import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
 
 interface DrinkSize {
@@ -46,15 +49,22 @@ export default function CaffeineDetailForm({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isMixCoffee = drink.cafeName === '믹스커피';
-
-  // 이미지 배열 생성
+  const isEnergyDrink = drink.cafeName === '에너지 드링크';
+  
   const sizeImages: string[] = isMixCoffee
-    ? [Stick]                          
-    : (() => {
-        const imgs = [Medium, Large, ExtraLarge];
-        if (sizes.length === 4) imgs.unshift(Small);
-        return imgs;
-      })();
+    ? [Stick]
+    : isEnergyDrink
+      ? [(() => {
+          if (drink.name.includes('핫식스')) return Hot6;
+          if (drink.name.includes('레드불')) return Redbull;
+          if (drink.name.includes('몬스터')) return Monster;
+          return Medium; 
+        })()]
+      : (() => {
+          const imgs = [Medium, Large, ExtraLarge];
+          if (sizes.length === 4) imgs.unshift(Small);
+          return imgs;
+        })();
 
   // 카페인 총량 계산 (소수점 첫째 자리까지)
   const caffeineTotal = (selectedSize.caffeine_mg * count).toFixed(1);
@@ -108,7 +118,7 @@ export default function CaffeineDetailForm({
               <img
                 src={imgSrc}
                 alt={`${size.size} cup`}
-                className="w-12 mb-2 h-auto"
+                className="w-12 mb-2 max-h-20 h-auto object-contain"
               />
               <span className="text-sm font-medium text-gray-700">
                 {size.size}

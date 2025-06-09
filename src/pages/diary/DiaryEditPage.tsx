@@ -192,7 +192,7 @@ export default function DiaryEdit() {
         </button>
 
       {/* 1) 음료 선택 바텀시트 */}
-      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} hideConfirm>
+      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} title="추가할 음료 선택하세요." hideConfirm>
         <CaffeineSelectForm
           drinkData={drinkData}
           onSelectDrink={(cafeName, dId) => {

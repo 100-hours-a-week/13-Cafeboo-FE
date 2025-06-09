@@ -44,8 +44,6 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         rounded-t-xl bg-white shadow-lg
         flex flex-col
         mx-auto 
-        sm:mx-auto 
-        md:mx-auto 
         lg:ml-128      
         xl:ml-192   
         2xl:ml-256  

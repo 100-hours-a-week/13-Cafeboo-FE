@@ -178,7 +178,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
   };
 
   return (
-    <div className="space-y-6 p-4">
+    <div className="space-y-6">
       {/* 성별 */}
       <div>
         <Label className="font-semibold mb-2 block text-base">성별</Label>
@@ -323,7 +323,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         </Label>
         <div className="w-full ">
           <Tag
-            items={DRINK_OPTIONS}
+            items={DRINK_OPTIONS.map((label) => ({ label }))}
             value={userFavoriteDrinks}
             onChange={setUserFavoriteDrinks}
             multiple

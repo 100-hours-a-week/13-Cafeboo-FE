@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Tag } from '@/components/common/Tag';
+import { Tag, TagItem } from '@/components/common/Tag';
 import { Coffee, Search } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
 import HorizontalScroller from '../common/HorizontalScroller';
@@ -14,7 +14,7 @@ interface DrinkSize {
 interface Drink {
   drinkId: number;
   name: string;
-  type: 'COFFEE' | 'TEA' | 'OTHER';
+  type: 'COFFEE' | 'TEA' | 'OTHER' | '몬스터' | '핫식스' | '레드불'; 
   temperature: 'HOT' | 'ICED' | 'BASIC';
   sizes: DrinkSize[];
 }
@@ -37,20 +37,29 @@ export interface CaffeineSelectFormProps {
   onSelectDrink: (cafeName: string, drinkId: number) => void;
 }
 
-const TYPES = ['ALL', 'COFFEE', 'TEA', 'OTHER'] as const;
+const baseTypes = ['ALL', 'COFFEE', 'TEA', 'OTHER'] as const;
+const energyDrinkTypes = ['ALL', '몬스터', '핫식스', '레드불'] as const;
 
 export default function CaffeineSelectForm({
   drinkData,
   onSelectDrink,
 }: CaffeineSelectFormProps) {
   const [search, setSearch] = useState<string>('');
-  const [typeFilter, setTypeFilter] = useState<(typeof TYPES)[number]>('ALL');
+  const [typeFilter, setTypeFilter] = useState<string>('ALL');
   const [brandFilter, setBrandFilter] = useState<string>(drinkData[0]?.cafeName || '');
 
   // ✅ 브랜드 옵션 동적 생성 
-  const brandOptions = useMemo(() => {
-    return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName)));
+  const brandOptions: TagItem[] = useMemo(() => {
+    return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName))).map((label) => ({
+      label,
+      isNew: label === '에너지 드링크', 
+    }));
   }, [drinkData]);
+
+  const currentTypes = useMemo(() => {
+    return brandFilter === '에너지 드링크' ? energyDrinkTypes : baseTypes;
+  }, [brandFilter]);
+
 
   // ✅ 필터링 로직 최적화
   const filteredDrinks = useMemo<FilteredDrink[]>(() => {
@@ -112,20 +121,18 @@ export default function CaffeineSelectForm({
           </div>
 
           {/* 브랜드 필터 */}
-          <HorizontalScroller>
-            <Tag
-              items={brandOptions}
-              value={[brandFilter]}
-              onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0])}
-              multiple={false}
-              scrollable
-              className="whitespace-nowrap"
-            />
-          </HorizontalScroller>
+          <Tag
+            items={brandOptions}
+            value={[brandFilter]}
+            onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0].label)}
+            multiple={false}
+            scrollable
+            className="whitespace-nowrap"
+          />
 
           {/* 타입 필터 */}
           <div className="flex">
-            {TYPES.map((type) => (
+            {currentTypes .map((type) => (
               <button
                 key={type}
                 onClick={() => setTypeFilter(type)}
@@ -135,7 +142,7 @@ export default function CaffeineSelectForm({
                   ${
                     typeFilter === type
                       ? 'border-[#FE9400] text-[#FE9400]'
-                      : 'border-gray-200 text-gray-400 hover:text-gray-800'
+                      : 'border-gray-200 text-gray-400 hover:text-gray-800 cursor-pointer'
                   }
                 `}
               >

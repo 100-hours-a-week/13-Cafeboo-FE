@@ -176,7 +176,7 @@ const Step2 = () => {
         </Label>
         <div className="w-full ">
           <Tag
-            items={DRINK_OPTIONS}
+            items={DRINK_OPTIONS.map((label) => ({ label }))}
             value={caffeineInfo.userFavoriteDrinks || []}
             onChange={(values) =>
               updateCaffeine({ userFavoriteDrinks: values })

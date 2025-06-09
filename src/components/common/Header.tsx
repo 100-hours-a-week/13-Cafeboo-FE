@@ -43,7 +43,7 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
           {mode === 'title' ? (
             <button
               onClick={handleBack}
-              className="p-1 rounded-full hover:opacity-80"
+              className="rounded-full hover:opacity-80"
             >
               <ChevronLeft className="w-6 h-6 cursor-pointer" style={{ color: textColor }} />
             </button>
