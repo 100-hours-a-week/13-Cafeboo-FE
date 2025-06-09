@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
 import { MapPin, Users } from "lucide-react";
@@ -6,6 +6,7 @@ import AlertModal from "@/components/common/AlertModal";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
+import { useWebSocketStore } from '@/stores/webSocketStore';
 
 export default function CoffeeChatDetailPage() {
   const { id } = useParams();
@@ -13,12 +14,17 @@ export default function CoffeeChatDetailPage() {
   const [joined, setJoined] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const { connect: connectWebSocket } = useWebSocketStore();
 
   const handleJoin = () => setModalOpen(true);
 
   const confirmJoin = () => {
     setJoined(true);
     setModalOpen(false);
+
+    if (id) {
+      connectWebSocket(id); // 현재 커피챗 ID로 연결 시도
+    }
   };
 
   return (
