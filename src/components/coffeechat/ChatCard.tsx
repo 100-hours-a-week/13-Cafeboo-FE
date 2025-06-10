@@ -2,7 +2,7 @@ import { Clock, MapPin, Users, Hash } from "lucide-react";
 import SectionCard from "@/components/common/SectionCard";
 
 interface Writer {
-  name: string;
+  chatNickname: string;
   profileImageUrl: string;
 }
 
@@ -16,7 +16,8 @@ export interface ChatRoom {
   status: string;
   tags: string[];
   writer: Writer;
-  reviewType?: "write" | "view";
+  isJoined?: boolean; 
+  isReviewed?: boolean;
 }
 
 interface ChatCardProps {
@@ -26,6 +27,10 @@ interface ChatCardProps {
 }
 
 export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
+  const isJoined =
+    room.status === "joined" || (room.status === "all" && room.isJoined);
+  const isCompleted = room.status === "completed";
+
   return (
     <SectionCard
       className={`transition-all duration-200 hover:shadow-md hover:scale-[1.01] !py-3 ${
@@ -33,9 +38,10 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
       }`}
     >
       <div onClick={onClick} className="cursor-pointer">
+        {/* 참여 상태 뱃지 */}
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1">
-            {room.status === "joined" ? (
+            {isJoined ? (
               <div className="inline-flex items-center bg-[#CCF1E1] text-green-700 px-2 py-1 rounded-xs text-xs font-semibold mb-2">
                 참여 중
               </div>
@@ -64,6 +70,7 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
           </div>
         </div>
 
+        {/* 태그 */}
         <div className="flex flex-wrap gap-2 mb-4">
           {room.tags.map((tag: string, index: number) => (
             <span
@@ -78,34 +85,40 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
 
         <hr className="my-2 border-gray-200" />
 
+        {/* 방장 및 후기 버튼 */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
               {room.writer.profileImageUrl ? (
                 <img
                   src={room.writer.profileImageUrl}
-                  alt={room.writer.name}
+                  alt={room.writer.chatNickname}
                   className="w-8 h-8 rounded-full object-cover"
                 />
               ) : (
-                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-300">
-
-                </div>
+                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-300" />
               )}
             </div>
             <div>
-              <p className="font-medium text-sm">{room.writer.name}</p>
+              <p className="font-medium text-sm">{room.writer.chatNickname}</p>
               <p className="text-xs text-gray-500">방장</p>
             </div>
           </div>
-          {room.reviewType === "write" && (
-            <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md">후기 쓰기</button>
-            )}
-          {room.reviewType === "view" && (
-            <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md">내 후기 보기</button>
+
+          {/* 후기 버튼 조건 */}
+          {isCompleted && room.isReviewed === false && (
+            <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
+              후기 쓰기
+            </button>
+          )}
+          {isCompleted && room.isReviewed === true && (
+            <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
+              후기 보기
+            </button>
           )}
         </div>
       </div>
     </SectionCard>
   );
 }
+

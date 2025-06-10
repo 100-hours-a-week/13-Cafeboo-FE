@@ -41,6 +41,21 @@ body {
   50% { transform: scale(1.05); }
 }
 
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -24px) scale(1.1);
+  }
+}
+
+.animate-float-up {
+  animation: float-up 0.8s ease-out forwards;
+}
+
 .slick-dots {
   position: absolute;
   bottom: 10px !important;
