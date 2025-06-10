@@ -1,5 +1,3 @@
-// src/stores/webSocketStore.ts
-
 import { create } from 'zustand';
 import SockJS from 'sockjs-client';
 import { Client, IMessage } from '@stomp/stompjs';
@@ -47,13 +45,12 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     if (stompClient?.connected) {
       console.log('Zustand: Disconnecting previous connection to connect to new coffeechat.');
       stompClient.deactivate();
-      set({ isConnected: false, stompClient: null }); // 상태 초기화
     }
 
-    set({ currentCoffeechatId: coffeechatId });
+    set({ currentCoffeechatId: coffeechatId, messages: [] });
     console.log(`Zustand: Attempting to connect to WebSocket for coffeechat ${coffeechatId}...`);
 
-    const socket = new SockJS(`http://${import.meta.env.VITE_API_BASE_URL}/ws`); // 또는 '/ws'
+    const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}/ws`); // 또는 '/ws'
 
     const client = new Client({
       webSocketFactory: () => socket,

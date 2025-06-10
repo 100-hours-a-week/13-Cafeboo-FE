@@ -21,16 +21,12 @@ export default function CoffeeChatDetailPage() {
   const confirmJoin = () => {
     setJoined(true);
     setModalOpen(false);
-
-    if (id) {
-      connectWebSocket(id); // 현재 커피챗 ID로 연결 시도
-    }
   };
 
   return (
     <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={() => navigate('/main/coffeechat')}>
         {/* Main Content Card */}
-        <div className="bg-white space-y-4 px-4">
+        <div className="bg-white space-y-4">
           {/* Title and Status */}
           {joined ? (
               <div className="inline-flex items-center bg-[#CCF1E1] text-green-700 px-2 py-1 rounded-xs text-xs font-semibold mb-2">

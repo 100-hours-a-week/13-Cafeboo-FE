@@ -1,9 +1,10 @@
 import PageLayout from "@/layout/PageLayout";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa6";
-import SockJS from "sockjs-client";
 import { Client, IMessage } from "@stomp/stompjs";
+import { useWebSocketStore } from "@/stores/webSocketStore";
+import { useUserStore } from "@/stores/useUserStore";
 
 interface Sender {
   userId: string;
@@ -22,51 +23,79 @@ interface ChatMessage {
 export default function GroupChatPage() {
   const { id: coffeechatId } = useParams(); // 커피챗 ID
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const messages = useWebSocketStore(state => state.messages);
   const [input, setInput] = useState("");
   const chatBoxRef = useRef<HTMLDivElement>(null);
-  const stompRef = useRef<Client | null>(null);
+  const { connect, disconnect, sendMessage, addMessage, stompClient } = useWebSocketStore();
+  const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
 
-  const currentUserId = "u123"; // 실제 로그인 유저 ID
-  const currentUserName = "나"; // UI에 표시할 내 이름
+  const userId = useUserStore(state => state.userId);
+
+  // 테스트용 하드코딩 id
+  const [devSenderId, setDevSenderId] = useState(userId || "test-user-id");
+  const [devCoffeechatId, setDevCoffeechatId] = useState(coffeechatId || "test-coffeechat-id");
 
   // 📡 WebSocket 연결
+  // 1) 첫 번째 useEffect: 연결 관리만
   useEffect(() => {
-    const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}/ws`);
-    const client = new Client({
-      webSocketFactory: () => socket,
-      reconnectDelay: 5000,
-      onConnect: () => {
-        client.subscribe(`/topic/chat.${coffeechatId}`, (message: IMessage) => {
-          const msg: ChatMessage = JSON.parse(message.body);
-          setMessages((prev) => [...prev, msg]);
-        });
-      },
-    });
+    if (!coffeechatId) return;
 
-    client.activate();
-    stompRef.current = client;
+    setConnectionStatus("connecting");  // 연결 시도 시작
+    connect(coffeechatId);
 
     return () => {
-      client.deactivate();
+      disconnect();
+      setConnectionStatus("disconnected");
     };
-  }, [coffeechatId]);
+  }, [coffeechatId, connect, disconnect]);
+
+
+  // 2) stompClient 준비되면 구독
+  useEffect(() => {
+    if (!stompClient || !coffeechatId || !stompClient.connected) return;
+    const subscription = stompClient.subscribe(`/topic/chat.${coffeechatId}`, (msg: IMessage) => {
+      const chatMsg: ChatMessage = JSON.parse(msg.body);
+      addMessage(chatMsg);
+    });
+    return () => subscription.unsubscribe();
+  }, [stompClient, coffeechatId, addMessage]);
+
+  // 연결 상태 체크(테스트용)
+  useEffect(() => {
+    if (!stompClient) return;
+
+    const onConnect = () => setConnectionStatus("connected");
+    const onDisconnect = () => setConnectionStatus("disconnected");
+    const onStompError = () => setConnectionStatus("disconnected");
+
+    stompClient.onConnect = onConnect;
+    stompClient.onDisconnect = onDisconnect;
+    stompClient.onStompError = onStompError;
+
+    // 만약 stompClient가 이미 연결된 상태면 바로 상태 갱신
+    if (stompClient.connected) {
+      setConnectionStatus("connected");
+    }
+
+    return () => {
+      // 해제
+      stompClient.onConnect = () => {};
+      stompClient.onDisconnect = () => {};
+      stompClient.onStompError = () => {};
+    };
+  }, [stompClient]);
 
   // ✉️ 메시지 전송
-  const sendMessage = () => {
-    if (!input.trim() || !stompRef.current?.connected) return;
-
+  const handleSendMessage = () => {
+    if (!input.trim() || !devCoffeechatId || !devSenderId) return;
+  
     const payload = {
-      senderId: currentUserId,
-      coffeechatId,
+      senderId: devSenderId,
+      coffeechatId: devCoffeechatId,
       message: input,
     };
-
-    stompRef.current.publish({
-      destination: "/app/chat.sendMessage",
-      body: JSON.stringify(payload),
-    });
-
+  
+    sendMessage("/app/chat.sendMessage", payload);
     setInput("");
   };
 
@@ -76,8 +105,9 @@ export default function GroupChatPage() {
   }, [messages]);
 
   // 📅 날짜 포맷
-  const formatTime = (iso: string) =>
-    new Date(iso).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", hour12: true });
+  const formatTime = useCallback((iso: string) =>
+    new Date(iso).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit", hour12: true }),
+  []);
 
   return (
     <PageLayout
@@ -86,24 +116,37 @@ export default function GroupChatPage() {
       onBackClick={() => navigate(`/main/coffeechat/${coffeechatId}`)}
     >
       <div className="flex flex-col h-[calc(100dvh-64px)] bg-gray-50">
+        {/* 연결 상태 표시 */}
+        <div className="text-center py-1 text-xs font-semibold">
+          {connectionStatus === "connecting" && (
+            <span className="text-yellow-600">연결 중...</span>
+          )}
+          {connectionStatus === "connected" && (
+            <span className="text-green-600">연결됨</span>
+          )}
+          {connectionStatus === "disconnected" && (
+            <span className="text-red-600">연결 끊김</span>
+          )}
+        </div>
+
         <div className="text-center py-2 text-sm text-gray-500">
           {new Date().toLocaleDateString("ko-KR")}
         </div>
 
         <div ref={chatBoxRef} className="flex-1 overflow-y-auto px-4 space-y-3 pb-4">
-          {messages.map((msg, idx) => {
+          {messages.map((msg) => {
             if (msg.messageType === "JOIN" || msg.messageType === "LEAVE") {
               return (
-                <div key={idx} className="text-center text-sm text-gray-400">
-                  {msg.sender.name}님이 {msg.messageType === "JOIN" ? "입장했어요." : "퇴장했어요."}
+                <div key={msg.messageId} className="text-center text-sm text-gray-400">
+                  {msg.sender.name}님이 {msg.messageType === "JOIN" ? "들어왔습니다." : "나갔습니다."}
                 </div>
               );
             }
 
-            const isMine = msg.sender.userId === currentUserId;
+            const isMine = msg.sender.userId === userId;
             return (
               <div
-                key={idx}
+                key={msg.messageId}
                 className={`w-full ${isMine ? "flex justify-end" : "flex justify-start"}`}
               >
                 <div className={`flex flex-col ${isMine ? "items-end" : "items-start"} max-w-[80%]`}>
@@ -138,10 +181,12 @@ export default function GroupChatPage() {
               placeholder="메시지를 입력하세요"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && input.trim()) handleSendMessage();
+              }}
             />
             <div
-              onClick={sendMessage}
+              onClick={handleSendMessage}
               className="w-9 h-9 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
             >
               <FaArrowUp className="w-4 h-4" />
