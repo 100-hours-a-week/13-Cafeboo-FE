@@ -1,13 +1,13 @@
 import apiClient from "@/api/apiClient";
+import { getUserIdFromStore } from "@/utils/auth";
 import { useQueryClient } from '@tanstack/react-query';
 import type { CaffeineInfoRequestDTO, CaffeineInfoResponseDTO, UpdateCaffeineInfoRequestDTO } from '@/api/caffeine/caffeine.dto';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { createQueryHandler } from '@/utils/createQueryHandler';
-import { getUserId } from "@/utils/auth";
 
 // ✅ GET 요청
 export const fetchCaffeineInfo = async (): Promise<CaffeineInfoResponseDTO> => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/caffeine`);
   return response.data.data;
 };
@@ -28,7 +28,7 @@ export const useCaffeineInfo = () =>
 
 // ✅ POST 요청
 export const submitCaffeineInfo = async (data: CaffeineInfoRequestDTO): Promise<void> => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   await apiClient.post(`/api/v1/users/${userId}/caffeine`, data);
 };
 
@@ -41,7 +41,7 @@ export const useSubmitCaffeineInfo = () => {
 
 // ✅ PATCH 요청
 export const updateCaffeineInfo = async (updatedData: UpdateCaffeineInfoRequestDTO) => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const response = await apiClient.patch(`/api/v1/users/${userId}/caffeine`, updatedData);
   return response.data;
 };

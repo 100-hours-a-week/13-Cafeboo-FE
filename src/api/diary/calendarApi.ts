@@ -2,7 +2,6 @@ import apiClient from '@/api/apiClient';
 import { createQueryHandler } from '@/utils/createQueryHandler'; 
 import { MonthlyCalendarResponse } from '@/api/diary/calendar.dto';
 
-
 // ✅ GET 요청
 const fetchCalendar = async (
   year: string,

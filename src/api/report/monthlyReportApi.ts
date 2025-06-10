@@ -2,7 +2,6 @@ import apiClient from '@/api/apiClient';
 import { createQueryHandler } from '@/utils/createQueryHandler';
 import { MonthlyReportDTO } from '@/api/report/report.dto';
 
-
 // ✅ GET 요청
 const fetchMonthlyReport = async (
   year: string,
