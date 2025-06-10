@@ -17,7 +17,7 @@ function App() {
         backgroundSize: 'auto',
       }}
     >
-      <div className="fixed top-1/2 -translate-y-1/2 xl:ml-30 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center">
+      <div className="fixed top-1/2 -translate-y-1/2 xl:ml-36 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center">
         <div className="flex items-center justify-center">
           <img src={Icon} alt="CafeBoo Logo" className="h-28 w-auto mb-6"/>
           <img src={Logo} alt="Cafeboo" className="h-28 w-auto"/>
@@ -26,8 +26,8 @@ function App() {
           일상의 카페인을 기록해보세요!
         </div>
       </div>
-      <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-256">
-        <div className="relative w-screen w-full h-screen max-w-md bg-white px-6 scrollbar-hide overflow-hidden">
+      <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-272">
+        <div className="relative w-screen w-full h-screen max-w-sm bg-white px-6 scrollbar-hide overflow-hidden">
           <Routes />
           <Toaster
             position="top-center"
