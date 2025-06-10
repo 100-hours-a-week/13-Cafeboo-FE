@@ -7,108 +7,94 @@ import ScrollToTop from '@/components/common/ScrolltoTop';
 import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
 
 const sampleChats: ChatRoom[] = [
-    {
-        coffeechatId: "123",
-        title: "백다방 같이 가실 분~",
-        time: "12:15",
-        address: "분당구 판교동",
-        maxMemberCount: 3,
-        currentMemberCount: 1,
-        status: "all",
-        tags: ["디카페인", "스터디"],
-        writer: {
-          name: "윤주",
-          profileImageUrl: "",
-        },
-        reviewType: "write",
-    },
-    {
-      coffeechatId: "124",
-      title: "백다방 같이 가실 분~",
-      time: "12:15",
-      address: "분당구 판교동",
-      maxMemberCount: 3,
-      currentMemberCount: 1,
-      status: "joined",
-      tags: ["디카페인", "스터디"],
-      writer: {
-        name: "윤주",
-        profileImageUrl: "",
-      },
-      reviewType: "view",
-  },
   {
-    coffeechatId: "125",
+    coffeechatId: '123',
     title: "백다방 같이 가실 분~",
     time: "12:15",
-    address: "분당구 판교동",
     maxMemberCount: 3,
     currentMemberCount: 1,
-    status: "all",
     tags: ["디카페인", "스터디"],
+    address: "분당구 판교동",
     writer: {
-      name: "윤주",
+      chatNickname: "윤주",
       profileImageUrl: "",
     },
+    isJoined: true,
+    status: "all",
   },
   {
-    coffeechatId: "126",
-    title: "백다방 같이 가실 분~",
-    time: "12:15",
-    address: "분당구 판교동",
-    maxMemberCount: 3,
-    currentMemberCount: 1,
-    status: "all",
-    tags: ["디카페인", "스터디"],
+    coffeechatId: '124',
+    title: "점심 같이 하실 분",
+    time: "13:00",
+    maxMemberCount: 4,
+    currentMemberCount: 2,
+    tags: ["네트워킹", "커리어"],
+    address: "서울시 강남구",
     writer: {
-      name: "윤주",
+      chatNickname: "지후",
       profileImageUrl: "",
     },
+    isJoined: false,
+    status: "all",
   },
   {
-    coffeechatId: "127",
-    title: "백다방 같이 가실 분~",
-    time: "12:15",
-    address: "분당구 판교동",
-    maxMemberCount: 3,
-    currentMemberCount: 1,
+    coffeechatId: '125',
+    title: "커피 한잔 어때요?",
+    time: "15:30",
+    maxMemberCount: 2,
+    currentMemberCount: 2,
+    tags: ["라떼", "잡담"],
+    address: "부산 해운대구",
+    writer: {
+      chatNickname: "세린",
+      profileImageUrl: "",
+    },
     status: "joined",
-    tags: ["디카페인", "스터디"],
-    writer: {
-      name: "윤주",
-      profileImageUrl: "",
-    },
   },
   {
-    coffeechatId: "128",
-    title: "백다방 같이 가실 분~",
-    time: "12:15",
-    address: "분당구 판교동",
-    maxMemberCount: 3,
-    currentMemberCount: 1,
-    status: "all",
-    tags: ["디카페인", "스터디"],
+    coffeechatId: '126',
+    title: "스터디 끝나고 한 잔?",
+    time: "18:00",
+    maxMemberCount: 5,
+    currentMemberCount: 4,
+    tags: ["공부", "디카페인"],
+    address: "대구 수성구",
     writer: {
-      name: "윤주",
+      chatNickname: "현수",
       profileImageUrl: "",
     },
+    status: "joined",
   },
   {
-    coffeechatId: "129",
-    title: "백다방 같이 가실 분~",
-    time: "12:15",
-    address: "분당구 판교동",
+    coffeechatId: '127',
+    title: "지난번 모임 어땠나요?",
+    time: "10:00",
     maxMemberCount: 3,
-    currentMemberCount: 1,
-    status: "all",
-    tags: ["디카페인", "스터디"],
+    currentMemberCount: 3,
+    tags: ["후기", "리뷰"],
+    address: "인천 연수구",
     writer: {
-      name: "윤주",
+      chatNickname: "지연",
       profileImageUrl: "",
     },
+    isReviewed: false,
+    status: "completed",
   },
-
-
+  {
+    coffeechatId: '128',
+    title: "조용한 카페에서 독서해요",
+    time: "17:00",
+    maxMemberCount: 2,
+    currentMemberCount: 1,
+    tags: ["독서", "혼카페"],
+    address: "제주 제주시",
+    writer: {
+      chatNickname: "준호",
+      profileImageUrl: "",
+    },
+    isReviewed: true,
+    status: "completed",
+  },
 ];
 
 export default function CoffeeChatPage() {
@@ -136,7 +122,15 @@ export default function CoffeeChatPage() {
               key={room.coffeechatId}
               room={room}
               selected={selectedRoom === room.coffeechatId}
-              onClick={() => navigate(`/main/coffeechat/${room.coffeechatId}`)}
+              onClick={() => {
+                if (room.status === "completed") {
+                  navigate(`/main/coffeechat/${room.coffeechatId}/review`, {
+                    state: { isReviewed: room.isReviewed },
+                  });
+                } else {
+                  navigate(`/main/coffeechat/${room.coffeechatId}`);
+                }
+              }}
             />
           ))}
         </div>

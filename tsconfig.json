@@ -2,16 +2,16 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
   ],
   "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": [
-      "kakao.maps.d.ts"
-    ],
-    "include": ["src", "node_modules/kakao.maps.d.ts/types"]
-  }
+    "types": ["kakao.maps.d.ts"]
+  },
+  "include": ["src", "node_modules/kakao.maps.d.ts/types"]
 }

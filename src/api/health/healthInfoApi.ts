@@ -3,11 +3,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import type { HealthInfoRequestDTO, HealthInfoResponseDTO, UpdateHealthInfoRequestDTO } from "@/api/health/health.dto";
 import { createMutationHandler } from "@/utils/createMutationHandler";
 import { createQueryHandler } from "@/utils/createQueryHandler";
-import { getUserId } from "@/utils/auth";
+import { getUserIdFromStore } from "@/utils/auth";
 
 // ✅ GET 요청
 export const fetchHealthInfo = async (): Promise<HealthInfoRequestDTO> => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/health`);
   return response.data.data;
 };
@@ -28,7 +28,7 @@ export const useHealthInfo = () =>
 
 // ✅ POST 요청
 export const submitHealthInfo = async (data: HealthInfoRequestDTO): Promise<void> => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const payload = {
     gender: data.gender,
     age: data.age,
@@ -51,7 +51,7 @@ export const useSubmitHealthInfo = () =>
 
 // ✅ PATCH 요청
 export const updateHealthInfo = async (updatedData: UpdateHealthInfoRequestDTO) => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const res = await apiClient.patch(`/api/v1/users/${userId}/health`, updatedData);
   return res.data;
 };

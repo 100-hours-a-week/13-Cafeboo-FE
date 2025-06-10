@@ -46,8 +46,6 @@ export default function CoffeeChatForm() {
     }
   };
 
-  console.log(location);
-
   return (
     <div className="min-h-screen">
         {/* Basic Info Section */}

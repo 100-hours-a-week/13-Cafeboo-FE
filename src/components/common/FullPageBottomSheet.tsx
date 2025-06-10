@@ -46,9 +46,9 @@ export default function FullPageSheet({
       <div
         className={clsx(
           'fixed bottom-0 left-0 right-0',
-          'max-w-md mx-auto w-full h-full',
+          'max-w-sm mx-auto w-full h-full',
           'bg-white shadow-lg flex flex-col',
-          'lg:ml-128 xl:ml-192 2xl:ml-256',
+          'lg:ml-128 xl:ml-192 2xl:ml-272',
           'transition-transform duration-300',
           isAnimating ? 'translate-y-0' : 'translate-y-full'
         )}

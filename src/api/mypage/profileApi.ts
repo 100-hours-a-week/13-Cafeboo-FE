@@ -1,11 +1,11 @@
 import apiClient from "@/api/apiClient";
 import { createQueryHandler } from '@/utils/createQueryHandler';
 import type { UserProfileResponseDTO } from '@/api/mypage/profile.dto';
-import { getUserId } from "@/utils/auth";
+import { getUserIdFromStore } from "@/utils/auth";
 
 // ✅ GET 요청
 const fetchUserProfile = async (): Promise<UserProfileResponseDTO> => {
-  const userId = getUserId();
+  const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/profile`);
 
   if (response.data?.data) {

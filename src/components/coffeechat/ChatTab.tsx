@@ -7,6 +7,7 @@ interface ChatTabProps {
     { label: "전체", value: "all" },
     { label: "참여 중", value: "joined" },
     { label: "내 후기", value: "completed" },
+    { label: "전체 후기", value: "reviewd" },
   ];
   
   export default function ChatTab({ filter, onChange }: ChatTabProps) {
