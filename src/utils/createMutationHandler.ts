@@ -1,4 +1,5 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import type { ApiResponse } from '@/types/api';
 
 type MutationHandlerReturn<TData, TError, TVariables> = {
   mutateFn: (variables: TVariables) => void;
@@ -9,7 +10,11 @@ type MutationHandlerReturn<TData, TError, TVariables> = {
   error: TError | null;
 };
 
-export function createMutationHandler<TData, TError = unknown, TVariables = void>(
+export function createMutationHandler<
+  TData,
+  TError extends ApiResponse<unknown> = ApiResponse<null>,
+  TVariables = void,
+>(
   mutationFn: (variables: TVariables) => Promise<TData>,
   options?: UseMutationOptions<TData, TError, TVariables>
 ): MutationHandlerReturn<TData, TError, TVariables> {
@@ -24,6 +29,6 @@ export function createMutationHandler<TData, TError = unknown, TVariables = void
     isLoading: mutation.isPending,
     isError: mutation.isError,
     isSuccess: mutation.isSuccess,
-    error: mutation.error,
+    error: mutation.error ?? null,
   };
 }

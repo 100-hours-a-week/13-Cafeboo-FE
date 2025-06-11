@@ -9,7 +9,7 @@ import { createQueryHandler } from '@/utils/createQueryHandler';
 export const fetchCaffeineInfo = async (): Promise<CaffeineInfoResponseDTO> => {
   const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/caffeine`);
-  return response.data.data;
+  return response.data;
 };
 
 export const useCaffeineInfo = () =>

@@ -93,7 +93,7 @@ const MyPage: React.FC = () => {
             ) : isError ? (
               <EmptyState
                 title="데이터 로딩 실패"
-                description={(error as Error).message}
+                description={error.message}
                 icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
               />
             ) : (

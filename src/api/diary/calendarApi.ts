@@ -1,4 +1,5 @@
 import apiClient from '@/api/apiClient';
+import { getUserIdFromStore } from '@/utils/auth';
 import { createQueryHandler } from '@/utils/createQueryHandler'; 
 import { MonthlyCalendarResponse } from '@/api/diary/calendar.dto';
 
@@ -7,14 +8,11 @@ const fetchCalendar = async (
   year: string,
   month: string
 ): Promise<MonthlyCalendarResponse> => {
-  const userId = localStorage.getItem('userId');
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
-
   const response = await apiClient.get('/api/v1/caffeine-intakes/monthly', {
     params: { year, month },
   });
 
-  return response.data.data;
+  return response.data;
 };
 
 export const useCalendar = (

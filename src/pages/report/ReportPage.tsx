@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PageLayout from '@/layout/PageLayout';
-import { Calendar, Plus, AlertTriangle, Info } from 'lucide-react';
+import { AlertTriangle, Info } from 'lucide-react';
 import DropdownSelector, { PeriodType } from '@/components/report/DropdownSelector';
 import PeriodFilterSelector from '@/components/report/PeriodFilterSelector';
 import ReportChart from '@/components/report/ReportChart';
@@ -131,8 +131,9 @@ export default function ReportPage() {
       refetchWeekly();
       refetchMonthly();
       refetchYearly();
-    } catch (err: any) {
-      console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
+    } catch (error: any) {
+      console.error("카페인 섭취 등록 오류:"+`${error.status}(${error.code}) - ${error.message}`);
+      setAlertMessage(error.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);       
     }
   };
@@ -194,20 +195,6 @@ export default function ReportPage() {
             )}
           </>
         )}
-
-        {/* 플로팅 버튼 */}
-        <button
-          className={"absolute bottom-18 right-5 w-12 h-12 cursor-pointer rounded-full bg-gray-500 text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
-          onClick={() => navigate('/main/diary')}
-        >
-          <Calendar size={24} />
-        </button>
-        <button
-          className={"absolute bottom-6 right-5 w-12 h-12 cursor-pointer rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)]"}
-          onClick={() => setIsSheetOpen(true)}
-        >
-          <Plus size={24} />
-        </button>
 
       <CaffeineBottomSheet
         open={isSheetOpen}

@@ -2,6 +2,7 @@ import apiClient from "@/api/apiClient";
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { useUserStore } from '@/stores/useUserStore';
+import type { ApiResponse } from '@/types/api';
 
 // ✅ POST 요청
 const logout = async () => {
@@ -20,7 +21,7 @@ export const useLogout = () => {
     window.location.href = '/auth/login';
   };
 
-  return createMutationHandler<void, Error, void>(
+  return createMutationHandler<void, ApiResponse<null>, void>(
     logout,
     {
       onSuccess: handleAfterLogout,

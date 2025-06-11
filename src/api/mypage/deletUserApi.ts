@@ -3,6 +3,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { getUserIdFromStore } from "@/utils/auth";
 import { useUserStore } from "@/stores/useUserStore";
+import type { ApiResponse } from '@/types/api';
 
 // ✅ DELETE 요청
 const deleteUser = async () => {
@@ -14,7 +15,7 @@ export const useDeleteUser = () => {
   const queryClient = useQueryClient();
   const clearUserId = useUserStore((state) => state.clearUserId);
 
-  return createMutationHandler<void, Error, void>(
+  return createMutationHandler<void, ApiResponse<null>, void>(
     deleteUser,
     {
       onSuccess: () => {

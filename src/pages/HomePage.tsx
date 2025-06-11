@@ -9,7 +9,7 @@ import BannerImage2 from '@/assets/Banner02.png';
 import BannerImage3 from '@/assets/Banner03.png';
 import CaffeineBottomSheet from '@/components/caffeine/CaffeineBottomSheet';
 import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
-import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
+import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import { useDailyCaffeineReport } from '@/api/home/dailyReportApi';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
@@ -28,15 +28,16 @@ export default function HomePage() {
     { imageUrl: BannerImage3, text: '' },
   ];
 
-  const { data: report, isLoading, isError, error, refetch } = useDailyCaffeineReport();
+  const { data: report, isLoading: isReportLoading, isError: isReportError, error: reportError, refetch } = useDailyCaffeineReport();
+  const { mutateAsyncFn: recordCaffeineIntake, isError: isRecordError, error: recordError } = useRecordCaffeineIntake();
 
   const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
       await recordCaffeineIntake(record);
       refetch();
-    } catch (err: any) {
-      console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
-      setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
+    } catch (error:any) {
+      console.error("카페인 섭취 등록 오류:"+`${error.status}(${error.code}) - ${error.message}`);
+      setAlertMessage(error.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);       
     }
   };
@@ -54,14 +55,14 @@ export default function HomePage() {
 
         {/* 일일 섭취량 카드 */}
         <SectionCard className="!p-2">
-            {isLoading ? (
+            {isReportLoading ? (
               <div className="flex justify-center items-center h-32">
                 <LoadingSpinner type="clip" size="small" fullScreen={false} />
               </div>
-            ) : isError ? (
+            ) : isReportError ? (
               <EmptyState
                 title="데이터 로딩 실패"
-                description={(error as Error).message}
+                description={reportError.message}
                 icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
               />
             ) : (
@@ -81,14 +82,14 @@ export default function HomePage() {
 
         {/* 시간대별 잔여량 카드 */}
         <SectionCard className="!pl-1 pb-0 pt-1">
-          {isLoading ? (
+          {isReportLoading ? (
             <div className="flex justify-center items-center h-32">
               <LoadingSpinner type="clip" size="small" fullScreen={false} />
             </div>
-          ) : isError ? (
+          ) : isReportError ? (
             <EmptyState
               title="데이터 로딩 실패"
-              description={(error as Error).message}
+              description={reportError.message}
               icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
             />
           ) : (

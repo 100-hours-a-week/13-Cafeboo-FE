@@ -9,7 +9,7 @@ const fetchYearlyReport = async (
   const response = await apiClient.get('/api/v1/reports/yearly', {
     params: { year },
   });
-  return response.data.data;
+  return response.data;
 };
 
 export const useYearlyReport = (year: string) => {

@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
 import PageLayout from '@/layout/PageLayout';
-import FABContainer from '@/components/common/FABContainer';
-import { BarChart2, Plus, Info } from 'lucide-react';
+import { Info } from 'lucide-react';
 import CaffeineCalendar from '@/components/diary/CaffeineCalendar';
 import CaffeineList from '@/components/diary/CaffeineList';
 import { useNavigate } from 'react-router-dom';
@@ -27,8 +26,8 @@ const DiaryPage = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
 
-  const { data: dataCanlendar, isLoading: loadingCalendar, isError: errorCalendar, error, refetch: refetchCalendar } = useCalendar(year, month);
-  const { data: dataDaily, isLoading: loadingDaily, isError: errorDaily, error: dailyError, refetch: refetchDaily } = useDailyIntake(selectedDate);
+  const { data: dataCanlendar, isLoading: isCalendarLoading, isError: isCalendarError, error: calendarError, refetch: refetchCalendar } = useCalendar(year, month);
+  const { data: dataDaily, isLoading: isDaliyLoading, isError: isDailyError, error: dailyError, refetch: refetchDaily } = useDailyIntake(selectedDate);
 
   const caffeineData = useMemo(() => {
     const map: Record<string, number> = {};
@@ -60,9 +59,9 @@ const DiaryPage = () => {
       await recordCaffeineIntake(record);
       refetchCalendar();
       refetchDaily();
-    } catch (err: any) {
-      console.error("카페인 섭취 등록 오류:", err.response?.data?.message || err.message);
-      setAlertMessage(err.response?.data?.message || "카페인 등록에 실패했습니다.");
+    } catch (error: any) {
+      console.error("카페인 섭취 등록 오류:"+`${error.status}(${error.code}) - ${error.message}`);
+      setAlertMessage(error.message || "카페인 등록에 실패했습니다.");
       setIsAlertOpen(true);       
     }
   };
@@ -91,14 +90,14 @@ const DiaryPage = () => {
           {new Date(selectedDate).getDate()}일 카페인 기록
         </h2>
 
-        {loadingDaily ? (
+        {isDaliyLoading ? (
           <div className='item-center justify-center p-8'>
             <LoadingSpinner type="clip" size="small" fullScreen={false} />
           </div>
-        ) : errorDaily ? (
+        ) : isDailyError ? (
           <EmptyState
             title="데이터 로딩 실패"
-            description={(error as Error).message}
+            description={dailyError.message}
             icon={<AlertTriangle className="w-10 h-10" />}
           />
         ) : (
