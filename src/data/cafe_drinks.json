@@ -3884,6 +3884,34 @@
         ]
       },
       {
+        "drinkId": 444,
+        "name": "카페라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 744,
+            "size": "R",
+            "capacity_ml": 630,
+            "caffeine_mg": 237
+          }
+        ]
+      },
+      {
+        "drinkId": 445,
+        "name": "카페라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 745,
+            "size": "R",
+            "capacity_ml": 630,
+            "caffeine_mg": 237
+          }
+        ]
+      },
+      {
         "drinkId": 124,
         "name": "빽사이즈 카페라떼",
         "type": "COFFEE",
