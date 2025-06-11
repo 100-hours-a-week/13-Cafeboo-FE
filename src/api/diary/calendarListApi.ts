@@ -6,14 +6,11 @@ import { DailyCalendarResponse } from '@/api/diary/calendar.dto';
 const fetchDailyIntake = async (
   date: string
 ): Promise<DailyCalendarResponse> => {
-  const userId = localStorage.getItem('userId');
-  if (!userId) throw new Error('사용자 정보가 없습니다.');
-
   const response = await apiClient.get('/api/v1/caffeine-intakes/daily', {
     params: { date },
   });
 
-  return response.data.data;
+  return response.data;
 };
 
 export const useDailyIntake = (date: string) => {

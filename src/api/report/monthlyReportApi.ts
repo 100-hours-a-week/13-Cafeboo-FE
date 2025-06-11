@@ -10,7 +10,7 @@ const fetchMonthlyReport = async (
   const response = await apiClient.get('/api/v1/reports/monthly', {
     params: { year, month },
   });
-  return response.data.data;
+  return response.data;
 };
 
 export const useMonthlyReport = (year: string, month: string) => {

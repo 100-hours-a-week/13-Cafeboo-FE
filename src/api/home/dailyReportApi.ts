@@ -5,8 +5,8 @@ import { DailyCaffeineReportResponse } from "@/api/home/dailyReport.dto";
 // ✅ GET 요청
 const getDailyCaffeineReport = async (): Promise<DailyCaffeineReportResponse> => {
   const response = await apiClient.get("/api/v1/reports/daily");
-  if (response.data?.data) {
-    return response.data.data;
+  if (response?.data) {
+    return response.data;
   }
   throw new Error("Invalid response format");
 };

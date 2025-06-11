@@ -7,11 +7,9 @@ import { getUserIdFromStore } from "@/utils/auth";
 const fetchUserProfile = async (): Promise<UserProfileResponseDTO> => {
   const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/profile`);
-
-  if (response.data?.data) {
-    return response.data.data;
+  if (response.data) {
+    return response.data;
   }
-
   throw new Error('Invalid response format');
 };
 

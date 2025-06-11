@@ -11,7 +11,7 @@ const fetchWeeklyReport = async (
   const response = await apiClient.get('/api/v1/reports/weekly', {
     params: { year, month, week },
   });
-  return response.data.data;
+  return response.data;
 };
 
 export const useWeeklyReport = (

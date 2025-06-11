@@ -9,7 +9,7 @@ import { getUserIdFromStore } from "@/utils/auth";
 export const fetchHealthInfo = async (): Promise<HealthInfoRequestDTO> => {
   const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/health`);
-  return response.data.data;
+  return response.data;
 };
 
 export const useHealthInfo = () =>
