@@ -15,4 +15,28 @@ export interface CreateCoffeeChatRequestDTO {
     profileImageType: string;
 };
 
+export interface CoffeeChatWriter {
+    memberId: string;
+    chatNickname: string;
+    profileImageUrl: string;
+    isHost: boolean;
+}
+
+export interface CoffeeChatListItem {
+    coffeechatId: string;
+    title: string;
+    time: string;
+    maxMemberCount: number;
+    currentMemberCount: number;
+    tags: string[];
+    address: string;
+    writer: CoffeeChatWriter;
+    isJoined?: boolean;     // status=all일 때만
+    isReviewed?: boolean;   // status=completed일 때만
+}
+
+export interface CoffeeChatListResponse {
+    filter: string;
+    coffeechats: CoffeeChatListItem[];
+}
   

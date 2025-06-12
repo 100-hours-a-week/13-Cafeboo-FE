@@ -1,35 +1,17 @@
 import { Clock, MapPin, Users, Hash } from "lucide-react";
 import SectionCard from "@/components/common/SectionCard";
-
-interface Writer {
-  chatNickname: string;
-  profileImageUrl: string;
-}
-
-export interface ChatRoom {
-  coffeechatId: string;
-  title: string;
-  time: string;
-  address: string;
-  maxMemberCount: number;
-  currentMemberCount: number;
-  status: string;
-  tags: string[];
-  writer: Writer;
-  isJoined?: boolean; 
-  isReviewed?: boolean;
-}
+import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
 
 interface ChatCardProps {
-  room: ChatRoom;
+  room: CoffeeChatListItem;
+  filter: string;         
   selected: boolean;
   onClick: () => void;
 }
 
-export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
-  const isJoined =
-    room.status === "joined" || (room.status === "all" && room.isJoined);
-  const isCompleted = room.status === "completed";
+export default function ChatCard({ room, filter, selected, onClick }: ChatCardProps) {
+  const isJoined = filter === "JOINED" || (filter === "ALL" && room.isJoined);
+  const isCompleted = filter === "REVIEWABLE";
 
   return (
     <SectionCard
@@ -68,6 +50,7 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
             <Users className="w-4 h-4 mr-1" />
             {room.currentMemberCount} / {room.maxMemberCount}
           </div>
+
         </div>
 
         {/* 태그 */}
@@ -87,7 +70,7 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
 
         {/* 방장 및 후기 버튼 */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             <div className="relative">
               {room.writer.profileImageUrl ? (
                 <img
@@ -106,10 +89,15 @@ export default function ChatCard({ room, selected, onClick }: ChatCardProps) {
           </div>
 
           {/* 후기 버튼 조건 */}
-          {isCompleted && room.isReviewed === false && (
-            <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
-              후기 쓰기
-            </button>
+          {!isCompleted && room.isReviewed === false && (
+            <div className="flex gap-2">
+              <button className="text-[#FE9400] bg-[#FE9400]/10 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
+                리뷰하기
+              </button>
+              <button className="text-gray-700 bg-gray-100 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
+                보기
+              </button>
+            </div>
           )}
           {isCompleted && room.isReviewed === true && (
             <button className="border-1 border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer">
