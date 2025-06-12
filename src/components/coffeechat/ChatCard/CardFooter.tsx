@@ -39,18 +39,6 @@ export default function CardFooter({
         </div>
       </div>
 
-      {/* 후기/리뷰 버튼 */}
-      {!isReviewable && (
-        // ALL/JOINED: 카드 전체 클릭(onRoomClick)
-        <button
-          className="w-full h-full absolute left-0 top-0"
-          onClick={onRoomClick}
-          style={{ opacity: 0, pointerEvents: 'auto', position: 'absolute' }}
-          tabIndex={-1}
-          aria-hidden
-        />
-      )}
-
       {isReviewable && (
         <div className="flex gap-2">
           {room.isReviewed ? (

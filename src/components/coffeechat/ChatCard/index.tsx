@@ -24,10 +24,11 @@ export default function ChatCard({
     <SectionCard
       className={
         "transition-all duration-200 hover:shadow-md hover:scale-[1.01] !py-3" +
-        (isClickable ? "cursor-pointer" : "")
+        (isClickable ? " cursor-pointer" : "")
       }
+      onClick={isClickable ? onRoomClick : undefined}
     >
-      <div onClick={isClickable ? onRoomClick : undefined}>
+      <div>
         <CardHeader room={room} filter={filter} />
         <CardBody room={room} />
         <CardFooter
@@ -41,4 +42,5 @@ export default function ChatCard({
     </SectionCard>
   );
 }
+
 
