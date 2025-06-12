@@ -14,7 +14,7 @@ import { useDailyIntake } from '@/api/diary/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import AlertModal from '@/components/common/AlertModal';
 import SectionCard from '@/components/common/SectionCard';
-import { formatDate } from '@/utils/date';
+import { formatDate } from '@/utils/formatUtils';
 
 const DiaryPage = () => {
   const today = new Date();

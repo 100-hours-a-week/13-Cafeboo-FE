@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Tag } from '../common/Tag';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
-import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/number';
+import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";

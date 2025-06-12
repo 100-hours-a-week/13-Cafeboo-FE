@@ -1,3 +1,4 @@
+// 날짜 포맷 함수
 export const formatDate = (date: Date) => {
     const yyyy = date.getFullYear();
     const mm = String(date.getMonth() + 1).padStart(2, '0');
