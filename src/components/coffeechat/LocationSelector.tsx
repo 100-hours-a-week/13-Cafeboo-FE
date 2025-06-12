@@ -8,7 +8,6 @@ import {
 import debounce from 'lodash.debounce'
 
 export interface LocationData {
-  address: string
   detailAddress: string
   latitude: number
   longitude: number
@@ -36,7 +35,12 @@ export default function LocationSelector({ value, onChange }: Props) {
   const isLoaded = useKakaoLoader({
     appkey: import.meta.env.VITE_KAKAO_MAP_KEY!,
     libraries: ['services'],
-  })
+  });
+
+  const getDynamicRadius = (map: kakao.maps.Map) => {
+    const level = map.getLevel();
+    return Math.min(Math.max(5 * level, 5), 200);
+  };
 
   const searchPlaces = (query: string) => {
     if (!query.trim()) return
@@ -52,36 +56,40 @@ export default function LocationSelector({ value, onChange }: Props) {
     })
   }
 
-  const debounceSearch = useCallback(debounce(searchPlaces, 300), [])
+  const debounceSearch = useCallback(debounce(searchPlaces, 300), []);
 
-  const getPlaceByCoords = (lat: number, lng: number, callback: (matched: any) => void) => {
-    const ps = new kakao.maps.services.Places()
-    ps.categorySearch('', (data: any[], status: any) => {
-      if (status === kakao.maps.services.Status.OK && data.length > 0) {
-        callback(data[0])
-      } else {
-        const geocoder = new kakao.maps.services.Geocoder()
-        geocoder.coord2Address(lng, lat, (result: any[], status: any) => {
-          if (status === kakao.maps.services.Status.OK && result[0]) {
-            const addr = result[0].address
-            callback({
-              place_name: addr.address_name,
-              address_name: addr.address_name,
-              road_address_name: result[0].road_address?.address_name || '',
-              y: lat.toString(),
-              x: lng.toString(),
-              place_url: `https://map.kakao.com/link/map/${lat},${lng}`
-            })
-          } else {
-            callback(null)
+  const CATEGORIES = [
+    "MT1", "CS2", "PS3", "SC4", "AC5", "PK6", "OL7",
+    "SW8", "BK9", "CT1", "AG2", "PO3", "AT4", "AD5", "FD6", "CE7", "HP8", "PM9"
+  ] as const;
+  
+  type CategoryCode = typeof CATEGORIES[number];
+  
+  function getPlaceByCoords(lat: number, lng: number, callback: (place: any | null) => void, radius: number) {
+    const ps = new kakao.maps.services.Places();
+    let foundPlace: any = null;
+    let checked = 0;
+  
+    for (const code of CATEGORIES) {
+      ps.categorySearch(
+        code as CategoryCode, 
+        (data: any[], status: any) => {
+          checked++;
+          if (!foundPlace && status === kakao.maps.services.Status.OK && data.length > 0) {
+            foundPlace = data[0];
+            callback(foundPlace); 
           }
-        })
-      }
-    }, {
-      location: new kakao.maps.LatLng(lat, lng),
-      radius: 50,
-      sort: kakao.maps.services.SortBy.DISTANCE,
-    })
+          if (checked === CATEGORIES.length && !foundPlace) {
+            callback(null);
+          }
+        },
+        {
+          location: new kakao.maps.LatLng(lat, lng),
+          radius,
+          sort: kakao.maps.services.SortBy.DISTANCE,
+        }
+      );
+    }
   }
 
   const updateSelectedPlace = (lat: number, lng: number, place: any) => {
@@ -103,7 +111,7 @@ export default function LocationSelector({ value, onChange }: Props) {
         x: value.longitude.toString(),
         place_name: value.placeName,
         address_name: value.detailAddress,
-        road_address_name: value.detailAddress,
+
       }
       setSelectedPlace(place)
       setFinalSelectedPlace(place)
@@ -117,26 +125,33 @@ export default function LocationSelector({ value, onChange }: Props) {
       (pos) => {
         const lat = pos.coords.latitude
         const lng = pos.coords.longitude
+        const radius = map ? getDynamicRadius(map) : 30
+
         getPlaceByCoords(lat, lng, (place) => {
           if (place) {
             updateSelectedPlace(lat, lng, place)
           }
-        })
+        }, radius)
       },
-      () => console.warn('위치 정보를 가져올 수 없습니다.')
+      () => console.error('위치 정보를 가져올 수 없습니다.')
     )
-  }, [isLoaded])
+  }, [isLoaded, map])
 
   const handleMapClick = (_t: any, mouseEvent: kakao.maps.event.MouseEvent) => {
-    const latLng = mouseEvent.latLng
-    const lat = latLng.getLat()
-    const lng = latLng.getLng()
+    if (!map) return;
+    const latLng = mouseEvent.latLng;
+    const lat = latLng.getLat();
+    const lng = latLng.getLng();
+    const radius = getDynamicRadius(map);
 
     getPlaceByCoords(lat, lng, (place) => {
       if (place) {
-        updateSelectedPlace(lat, lng, place)
+        updateSelectedPlace(lat, lng, place);
+      } else {
+        setSelectedPlace(null);
+        setFinalSelectedPlace(null);
       }
-    })
+    }, radius);
   }
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -215,7 +230,6 @@ export default function LocationSelector({ value, onChange }: Props) {
       </div>
 
       <Map
-        key={`${mapCenter.lat}-${mapCenter.lng}`}
         center={mapCenter}
         level={3}
         style={{ width: '100%', height: '100%' }}
@@ -256,8 +270,7 @@ export default function LocationSelector({ value, onChange }: Props) {
               const address = selectedPlace.address_name?.split(' ').slice(2, 4).join(' ') || ''
 
               onChange({
-                address,
-                detailAddress: selectedPlace.road_address_name || selectedPlace.address_name || '',
+                detailAddress: selectedPlace.address_name || '',
                 latitude: lat,
                 longitude: lng,
                 kakaoPlaceUrl: selectedPlace.place_url || '',

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { formatDate } from '@/utils/date';
+import { formatDate } from '@/utils/formatUtils';
 
 interface CalendarProps {
   year: number;

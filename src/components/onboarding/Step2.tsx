@@ -9,7 +9,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { sanitizeDecimalInput } from '@/utils/number';
+import { sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   averageDailyCaffeineIntake: z

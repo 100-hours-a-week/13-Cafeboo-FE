@@ -1,4 +1,4 @@
-import FullPageSheet from '../common/FullPageBottomSheet';
+import FullPageSheet from '@/components/common/FullPageBottomSheet';
 import CoffeeChatForm from '@/components/coffeechat/CoffeeChatCreateForm';
 
 interface Props {

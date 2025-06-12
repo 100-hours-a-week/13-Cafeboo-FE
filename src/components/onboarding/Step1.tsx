@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TwoOptionToggle from '@/components/common/TwoOptionToggle';
-import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/number';
+import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   age: z
