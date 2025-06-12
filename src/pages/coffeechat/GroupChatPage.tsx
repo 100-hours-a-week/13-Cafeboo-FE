@@ -94,6 +94,7 @@ export default function GroupChatPage() {
       coffeechatId: devCoffeechatId,
       message: input,
     };
+    console.log(payload);
   
     sendMessage("/app/chat.sendMessage", payload);
     setInput("");
@@ -186,7 +187,7 @@ export default function GroupChatPage() {
               }}
             />
             <div
-              onClick={handleSendMessage}
+              onClick={() => handleSendMessage()}
               className="w-9 h-9 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
             >
               <FaArrowUp className="w-4 h-4" />

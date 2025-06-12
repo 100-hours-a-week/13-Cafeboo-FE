@@ -9,7 +9,7 @@ import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet
 const sampleChats: ChatRoom[] = [
   {
     coffeechatId: '123',
-    title: "백다방 같이 가실 분~",
+    title: "커피챗 하실 분!",
     time: "12:15",
     maxMemberCount: 3,
     currentMemberCount: 1,
