@@ -23,7 +23,7 @@ export interface CoffeeChatWriter {
 }
 
 export interface CoffeeChatListItem {
-    coffeechatId: string;
+    coffeChatId: string;
     title: string;
     time: string;
     maxMemberCount: number;
@@ -31,8 +31,8 @@ export interface CoffeeChatListItem {
     tags: string[];
     address: string;
     writer: CoffeeChatWriter;
-    isJoined?: boolean;     // status=all일 때만
-    isReviewed?: boolean;   // status=completed일 때만
+    isJoined: boolean;  
+    isReviewed: boolean;   
 }
 
 export interface CoffeeChatListResponse {
