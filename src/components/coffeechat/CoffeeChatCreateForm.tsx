@@ -15,6 +15,7 @@ import LocationSelector, { LocationData } from '@/components/coffeechat/Location
 import { extractAreaUnit } from '@/utils/parseUtils';
 import { format } from 'date-fns';
 import { z } from 'zod';
+import type { CreateCoffeeChatRequestDTO } from '@/api/coffeechat/coffeechat.dto';
 
 const isFutureTime = (inputTime: string) => {
   if (!/^\d{2}:\d{2}$/.test(inputTime)) return false;
@@ -47,7 +48,11 @@ const CoffeeChatSchema = z.object({
 });
 
 
-export default function CoffeeChatForm() {
+export default function CoffeeChatForm({
+  onSubmit,
+}: {
+  onSubmit: (data: CreateCoffeeChatRequestDTO) => void;
+}) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [chatNickname, setChatNickname] = useState('');
@@ -109,24 +114,24 @@ export default function CoffeeChatForm() {
       return;
     }
 
-    const payload = {
+    const payload: CreateCoffeeChatRequestDTO = {
       title,
       content,
       date: format(new Date(), 'yyyy-MM-dd'),               
       time,
       memberCount,
       tags: tags ?? [],    
-      location: location ? {
+      location:  {
         address: extractAreaUnit(location.detailAddress),
         latitude: location.latitude,
         longitude: location.longitude,
         kakaoPlaceUrl: location.kakaoPlaceUrl
-      } : undefined,
+      },
       chatNickname,
       profileImageType,
     };
   
-    console.log('최종 API 전송 payload:', payload);
+    onSubmit(payload);
   };
 
   return (
