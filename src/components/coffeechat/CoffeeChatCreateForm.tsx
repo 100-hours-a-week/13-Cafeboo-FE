@@ -33,7 +33,7 @@ const isFutureTime = (inputTime: string) => {
 const CoffeeChatSchema = z.object({
   title: z.string().min(1, '커피챗 이름을 입력하세요').max(20, '최대 20자까지 입력 가능'),
   content: z.string().min(1, '상세 내용을 입력하세요').max(200, '최대 200자까지 입력 가능'),
-  chatNickname: z.string().min(1, '채팅방 닉네임을 입력하세요').max(15, '최대 15자까지 입력 가능'),
+  chatNickname: z.string().min(1, '채팅방 닉네임을 입력하세요').max(10, '최대 10자까지 입력 가능'),
   memberCount: z.number().min(2).max(30),
   tags: z.array(z.string().max(15)).max(5, '태그는 최대 5개까지 등록 가능합니다').optional(),
   time: z.string()
@@ -146,7 +146,7 @@ export default function CoffeeChatForm({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 maxLength={20}
-                placeholder="커피챗 이름을 입력해주세요(최대 20자)"
+                placeholder="커피챗 이름을 입력해 주세요(최대 20자)"
                 className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent"
               />
             </div>
@@ -171,8 +171,8 @@ export default function CoffeeChatForm({
                 type="text"
                 value={chatNickname}
                 onChange={(e) => setChatNickname(e.target.value)}
-                maxLength={15}
-                placeholder="예: 커피 좋아하는 개발자"
+                maxLength={10}
+                placeholder="닉네임을 입력해 주세요(최대 10자)"
                 className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent"
               />
             </div>
@@ -248,7 +248,7 @@ export default function CoffeeChatForm({
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 text-[#FE9400] mr-3" />
-                  <span className="font-medium text-base">만나는 시간</span>
+                  <span className="font-medium text-base">만나는 시각</span>
                 </div>
                 {time && (
                   <span className="text-gray-500 mr-1">{time}</span>

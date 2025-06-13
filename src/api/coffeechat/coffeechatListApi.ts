@@ -12,7 +12,6 @@ export const fetchCoffeeChatList = async (status: string): Promise<CoffeeChatLis
     return response.data;
 };
 
-
 export const useCoffeeChatList = (status: string) =>
     createQueryHandler<['coffeeChats', string], CoffeeChatListResponse>(
       ['coffeeChats', status],

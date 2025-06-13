@@ -19,3 +19,9 @@ export const sanitizeDecimalInput = (raw: string): string => {
 
   return v;
 };
+
+
+// 최대 문자열 입력창
+export function limitLength(value: string, max: number) {
+  return value.slice(0, max);
+}

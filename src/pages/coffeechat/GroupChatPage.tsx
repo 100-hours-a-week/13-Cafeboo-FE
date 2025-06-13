@@ -1,6 +1,6 @@
 import PageLayout from "@/layout/PageLayout";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa6";
 import { Client, IMessage } from "@stomp/stompjs";
 import { useWebSocketStore } from "@/stores/webSocketStore";
@@ -22,6 +22,8 @@ interface ChatMessage {
 
 export default function GroupChatPage() {
   const { id: coffeechatId } = useParams(); // 커피챗 ID
+  const location = useLocation();
+  const { memberId, chatNickname } = location.state ?? {};
   const navigate = useNavigate();
   const messages = useWebSocketStore(state => state.messages);
   const [input, setInput] = useState("");
@@ -30,10 +32,6 @@ export default function GroupChatPage() {
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
 
   const userId = useUserStore(state => state.userId);
-
-  // 테스트용 하드코딩 id
-  const [devSenderId, setDevSenderId] = useState(userId || "test-user-id");
-  const [devCoffeechatId, setDevCoffeechatId] = useState(coffeechatId || "test-coffeechat-id");
 
   // 📡 WebSocket 연결
   // 1) 첫 번째 useEffect: 연결 관리만
@@ -87,12 +85,13 @@ export default function GroupChatPage() {
 
   // ✉️ 메시지 전송
   const handleSendMessage = () => {
-    if (!input.trim() || !devCoffeechatId || !devSenderId) return;
+    if (!input.trim() || !coffeechatId || !memberId) return;
   
     const payload = {
-      senderId: devSenderId,
-      coffeechatId: devCoffeechatId,
+      senderId: memberId,
+      coffeechatId: coffeechatId,
       message: input,
+      messageType: "TALK"
     };
     console.log(payload);
   
@@ -183,7 +182,9 @@ export default function GroupChatPage() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && input.trim()) handleSendMessage();
+                if (e.key === "Enter" && !e.nativeEvent.isComposing && input.trim()) {
+                  handleSendMessage();
+                }
               }}
             />
             <div
