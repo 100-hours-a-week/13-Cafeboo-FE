@@ -50,7 +50,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     set({ currentCoffeechatId: coffeechatId, messages: [] });
     console.log(`Zustand: Attempting to connect to WebSocket for coffeechat ${coffeechatId}...`);
 
-    const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}/ws`); // 또는 '/ws'
+    const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`); // 또는 '/ws'
 
     const client = new Client({
       webSocketFactory: () => socket,
