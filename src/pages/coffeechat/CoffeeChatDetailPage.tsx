@@ -38,7 +38,7 @@ export default function CoffeeChatDetailPage() {
       connect(id ?? "");
 
       // 3. 입장 메시지 전송
-      sendMessage("/app/chat.sendMessage", {
+      sendMessage(`/app/chatrooms/${id}`, {
         senderId: result.memberId,
         coffeechatId: id,
         message: `${chatNickname}님이 입장했습니다`,

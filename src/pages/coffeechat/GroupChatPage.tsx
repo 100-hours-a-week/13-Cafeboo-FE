@@ -51,7 +51,7 @@ export default function GroupChatPage() {
   // 2) stompClient 준비되면 구독
   useEffect(() => {
     if (!stompClient || !coffeechatId || !stompClient.connected) return;
-    const subscription = stompClient.subscribe(`/topic/chat.${coffeechatId}`, (msg: IMessage) => {
+    const subscription = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
       const chatMsg: ChatMessage = JSON.parse(msg.body);
       addMessage(chatMsg);
     });
@@ -95,7 +95,7 @@ export default function GroupChatPage() {
     };
     console.log(payload);
   
-    sendMessage("/app/chat.sendMessage", payload);
+    sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
     setInput("");
   };
 
