@@ -85,8 +85,11 @@ export default function GroupChatPage() {
 
   // ✉️ 메시지 전송
   const handleSendMessage = () => {
+    console.log("coffeechatId: ", coffeechatId);
+    console.log("memberId: ", memberId);
+    console.log("message: ", input);
     if (!input.trim() || !coffeechatId || !memberId) return;
-  
+    console.log("sendmessage");
     const payload = {
       senderId: memberId,
       coffeechatId: coffeechatId,
