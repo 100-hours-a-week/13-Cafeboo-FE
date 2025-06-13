@@ -40,15 +40,15 @@ export default function CoffeeChatPage() {
             isLoading={isLoading}
             isError={isError}
             onRoomClick={room =>
-              navigate(`/main/coffeechat/${room.coffeChatId}`)
+              navigate(`/main/coffeechat/${room.coffeeChatId}`)
             }
             onReviewClick={room =>
-              navigate(`/main/coffeechat/${room.coffeChatId}/review`, {
+              navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
                 state: { isReviewed: room.isReviewed },
               })
             }
             onViewClick={room =>
-              navigate(`/main/coffeechat/${room.coffeChatId}/review`, {
+              navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
                 state: { isReviewed: room.isReviewed, viewOnly: true },
               })
             }

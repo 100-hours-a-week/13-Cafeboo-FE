@@ -34,7 +34,7 @@ export default function ChatCardList({
     <>
       {rooms.map(room => (
         <ChatCard
-          key={room.coffeChatId}
+          key={room.coffeeChatId}
           room={room}
           filter={filter}
           onRoomClick={() => onRoomClick(room)}
