@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
 import { MapPin, Users } from "lucide-react";
@@ -17,21 +17,56 @@ export default function CoffeeChatDetailPage() {
   const navigate = useNavigate();
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const { connect: connectWebSocket } = useWebSocketStore();
+  const { connect, disconnect, sendMessage } = useWebSocketStore();
 
   const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
 
+  // 참여 성공 후 memberId/chatNickname 임시 저장용
+  const memberIdRef = useRef<string | null>(null);
+  const chatNicknameRef = useRef<string | null>(null);
+
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
+
+      // 1. 참여한 memberId, 닉네임 저장
+      memberIdRef.current = result.memberId;
+      chatNicknameRef.current = chatNickname;
+
+      // 2. 웹소켓 연결
+      connect(id ?? "");
+
+      // 3. 입장 메시지 전송
+      sendMessage("/app/chat.sendMessage", {
+        senderId: result.memberId,
+        coffeechatId: id,
+        message: `${chatNickname}님이 입장했습니다`,
+        messageType: "JOIN",
+        chatNickname,
+      });
+
+      // 4. 바로 해제
+      disconnect();
+
+      // 5. refetch로 데이터 갱신
       refetch();
-      // 성공 시 result.memberId 등 사용 가능
-      navigate(`/main/coffeechat/${id}/chat`, { state: { memberId: result.memberId } });
+
+      setJoinModalOpen(false);
     } catch (error: any) {
       console.error("커피챗 참여 오류:" + `${error.status}(${error.code}) - ${error.message}`);
       setJoinModalOpen(false);
     }
+  };
+
+  // 채팅하기 버튼
+  const handleEnterChatRoom = () => {
+    navigate(`/main/coffeechat/${id}/chat`, {
+      state: {
+        memberId: memberIdRef.current,
+        chatNickname: chatNicknameRef.current,
+      },
+    });
   };
 
   const handleJoin = () => setJoinModalOpen(true);
@@ -157,9 +192,9 @@ export default function CoffeeChatDetailPage() {
       {/* 하단 액션 */}
       <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-50">
         <img src={Icon} alt="Cafeboo" className="h-12 w-auto mr-4 rounded-lg bg-[#FEF0D7]" />
-        {!data.isJoined ? (
+        {data.isJoined ? (
           <button
-            onClick={() => navigate(`/main/coffeechat/${id}/chat`)}
+            onClick={handleEnterChatRoom}
             className="flex justify-center items-center w-full py-3 bg-[#FE9400] text-white rounded-lg font-semibold cursor-pointer"
           >
             <IoChatbubblesOutline className="w-5 h-5 mr-2" />
