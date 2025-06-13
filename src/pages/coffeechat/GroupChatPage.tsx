@@ -91,7 +91,7 @@ export default function GroupChatPage() {
       senderId: memberId,
       coffeechatId: coffeechatId,
       message: input,
-      messageType: "TALK"
+      type: "TALK"
     };
     console.log(payload);
   

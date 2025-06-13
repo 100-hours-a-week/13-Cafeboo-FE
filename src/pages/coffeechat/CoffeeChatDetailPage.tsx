@@ -42,8 +42,7 @@ export default function CoffeeChatDetailPage() {
         senderId: result.memberId,
         coffeechatId: id,
         message: `${chatNickname}님이 입장했습니다`,
-        messageType: "JOIN",
-        chatNickname,
+        type: "JOIN",
       });
 
       // 4. 바로 해제
