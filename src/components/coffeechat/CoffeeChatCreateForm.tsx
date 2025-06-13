@@ -248,7 +248,7 @@ export default function CoffeeChatForm({
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 text-[#FE9400] mr-3" />
-                  <span className="font-medium text-base">만나는 시간</span>
+                  <span className="font-medium text-base">만나는 시각</span>
                 </div>
                 {time && (
                   <span className="text-gray-500 mr-1">{time}</span>
