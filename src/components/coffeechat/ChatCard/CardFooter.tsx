@@ -45,7 +45,7 @@ export default function CardFooter({
             // 이미 후기 작성됨: "리뷰완료" (비활성), "보기" (활성)
             <>
               <button
-                className="bg-[#CCF1E1] text-green-600 text-sm font-medium px-3 py-1.5 rounded-md cursor-default pointer-events-none"
+                className="text-[#FE9400]/60 bg-[#FE9400]/5 text-sm font-medium px-3 py-1.5 rounded-md cursor-default pointer-events-none"
                 disabled
                 tabIndex={-1}
               >

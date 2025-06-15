@@ -93,6 +93,7 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
       alert('내용을 입력하거나 사진을 추가해주세요.');
       return;
     }
+    console.log(images);
     try {
       await mutateAsyncFn({
         memberId: membership.memberId!,
