@@ -36,8 +36,14 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     const { stompClient, isConnected, currentCoffeechatId } = get();
 
     // 이미 연결 중이고 같은 커피챗 ID면 다시 연결하지 않음
-    if (isConnected && currentCoffeechatId === coffeechatId) {
+    if (
+      isConnected &&
+      currentCoffeechatId === coffeechatId &&
+      stompClient &&
+      stompClient.connected
+    ) {
       console.log('Zustand: Already connected to this coffeechat.');
+      set({ isConnected: true });
       return;
     }
 
@@ -45,6 +51,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     if (stompClient?.connected) {
       console.log('Zustand: Disconnecting previous connection to connect to new coffeechat.');
       stompClient.deactivate();
+      set({ isConnected: false, stompClient: null, currentCoffeechatId: null });
     }
 
     set({ currentCoffeechatId: coffeechatId, messages: [] });
@@ -98,14 +105,15 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   },
 
   sendMessage: (destination: string, payload: any) => {
-    const { stompClient, isConnected } = get();
-    if (stompClient && isConnected) {
+    const { stompClient } = get();
+    if (stompClient && stompClient.connected) {
       stompClient.publish({
-        destination: destination,
+        destination,
         body: JSON.stringify(payload),
       });
     } else {
       console.warn('Zustand: Cannot send message, not connected.');
+      set({ isConnected: false });
     }
   },
 
