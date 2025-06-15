@@ -4,8 +4,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa6";
 import { Client, IMessage } from "@stomp/stompjs";
 import { useWebSocketStore } from "@/stores/webSocketStore";
-import { useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
-import { CodeSquare } from "lucide-react";
+import { useCoffeeChatMembers, useCoffeeChatMembership, useLeaveCoffeeChat } from "@/api/coffeechat/coffeechatMemberApi";
 
 interface Sender {
   userId: string;
@@ -34,6 +33,8 @@ export default function GroupChatPage() {
   const { connect, disconnect, sendMessage, addMessage, stompClient } = useWebSocketStore();
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(coffeechatId ?? "");
+  const { data: members, isLoading: isMembersLoading } = useCoffeeChatMembers(coffeechatId ?? "");
+  const { mutateAsyncFn: leaveChat, isLoading: isLeaving } = useLeaveCoffeeChat();
 
   useEffect(() => {
     if (memberId) return;
@@ -118,6 +119,24 @@ export default function GroupChatPage() {
     setInput("");
   };
 
+  // 채팅방 나가기
+  const handleLeaveChat = async () => {
+    if (!memberId) {
+      alert("멤버 정보를 찾을 수 없습니다.");
+      return;
+    }
+    try {
+      await leaveChat(memberId);
+      navigate("/main/coffeechat");
+    } catch (err: any) {
+      alert(
+        err?.message ||
+        err?.data?.message ||
+        "나가기 중 오류가 발생했습니다."
+      );
+    }
+  };
+
   // 🧽 자동 스크롤
   useEffect(() => {
     chatBoxRef.current?.scrollTo({ top: chatBoxRef.current.scrollHeight, behavior: "smooth" });
@@ -133,6 +152,10 @@ export default function GroupChatPage() {
       headerMode="title"
       headerTitle="그룹 채팅방"
       onBackClick={() => navigate(`/main/coffeechat/${coffeechatId}`)}
+      isGroupChat={true}
+      chatMembers={members?.members ?? []}  
+      onLeaveChat={handleLeaveChat}
+      myMemberId={memberId ?? ""}
     >
       <div className="flex flex-col h-[calc(100dvh-64px)] bg-gray-50">
         {/* 연결 상태 표시 */}
