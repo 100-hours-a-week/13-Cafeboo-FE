@@ -1,8 +1,54 @@
 import apiClient from "@/api/apiClient";
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
-import { JoinCoffeeChatRequestDTO, JoinCoffeeChatResponseDTO } from "@/api/coffeechat/coffeechat.dto";
+import { createQueryHandler } from "@/utils/createQueryHandler";
+import { JoinCoffeeChatRequestDTO, JoinCoffeeChatResponseDTO, CoffeeChatMembershipResponseDTO, CoffeeChatMembersResponseDTO } from "@/api/coffeechat/coffeechat.dto";
 
+// ✅ GET 요청
+export const fetchCoffeeChatMembership = async (
+    coffeeChatId: string
+  ): Promise<CoffeeChatMembershipResponseDTO> => {
+    const response = await apiClient.get(`/api/v1/coffee-chats/${coffeeChatId}/membership`);
+    return response.data;
+};
+  
+export const useCoffeeChatMembership = (coffeeChatId: string) =>
+    createQueryHandler(
+        ["coffeeChatMembership", coffeeChatId],
+        () => fetchCoffeeChatMembership(coffeeChatId),
+        {
+        staleTime: 60000,
+        gcTime: 300000,
+        refetchOnMount: "always",
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        retry: 1,
+        }
+);
+
+// ✅ GET 요청
+export const fetchCoffeeChatMembers = async (
+    coffeeChatId: string
+    ): Promise<CoffeeChatMembersResponseDTO> => {
+    const response = await apiClient.get(`/api/v1/coffee-chats/${coffeeChatId}/members`);
+    return response.data;
+};
+
+export const useCoffeeChatMembers = (coffeeChatId: string) =>
+    createQueryHandler(
+        ["coffeeChatMembers", coffeeChatId],
+        () => fetchCoffeeChatMembers(coffeeChatId),
+        {
+        staleTime: 60000,
+        gcTime: 300000,
+        refetchOnMount: "always",
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        retry: 1,
+        }
+);
+
+// ✅ POST 요청
 export const fetchJoinCoffeeChat = async (
     coffeeChatId: string,
     data: JoinCoffeeChatRequestDTO
@@ -18,10 +64,26 @@ export const useJoinCoffeeChat = (coffeeChatId: string) => {
       (data: JoinCoffeeChatRequestDTO) => fetchJoinCoffeeChat(coffeeChatId, data),
       {
         onSuccess: () => {
-          // 성공 시 참여 리스트(또는 해당 커피챗 상세) refetch
           queryClient.invalidateQueries({ queryKey: ['coffeeChats'] });
           queryClient.invalidateQueries({ queryKey: ['coffeeChatDetail', coffeeChatId] });
         },
       }
+    );
+};
+
+// ✅ DELETE 요청
+export const fetchExitCoffeeChat = async (memberId: string): Promise<void> => {
+    await apiClient.delete(`/api/v1/coffee-chats/members/${memberId}`);
+  };
+  
+export const useExitCoffeeChat = () => {
+    const queryClient = useQueryClient();
+    return createMutationHandler(
+        (memberId: string) => fetchExitCoffeeChat(memberId),
+        {
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["coffeeChats"] });
+        },
+        }
     );
 };

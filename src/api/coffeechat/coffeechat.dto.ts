@@ -18,7 +18,7 @@ export interface CoffeeChatLocation {
     kakaoPlaceUrl: string;
 }
 
-export interface CoffeeChatWriter {
+export interface CoffeeChatMember {
     memberId: string;
     chatNickname: string;
     profileImageUrl: string;
@@ -33,7 +33,7 @@ export interface CoffeeChatListItem {
     currentMemberCount: number;
     tags: string[];
     address: string;
-    writer: CoffeeChatWriter;
+    writer: CoffeeChatMember;
     isJoined: boolean;  
     isReviewed: boolean;   
 }
@@ -52,7 +52,7 @@ export interface CoffeeChatDetailResponseDTO {
     currentMemberCount: number;
     tags: string[];
     location: CoffeeChatLocation;
-    writer: CoffeeChatWriter;
+    writer: CoffeeChatMember;
     isJoined: boolean;
 }
 
@@ -63,5 +63,62 @@ export interface JoinCoffeeChatRequestDTO {
 
 export interface JoinCoffeeChatResponseDTO {
     memberId: string;
+}
+
+export interface CoffeeChatMembershipResponseDTO {
+    isMember: boolean;
+    memberId: string | null;
+  }
+  
+export interface CoffeeChatMembersResponseDTO {
+    coffeeChatId: string;
+    totalMemberCounts: number;
+    members: CoffeeChatMember[];
+}
+
+export interface CoffeeChatReviewSummary {
+    coffeeChatId: string;
+    title: string;
+    tags: string[];
+    address: string;
+    likesCount: number;
+    imagesCount: number;
+    previewImageUrl: string;
+}
+
+export interface CoffeeChatReviewListData {
+    filter: "ALL" | "MY";
+    totalReviewCount: number;
+    coffeeChatReviews: CoffeeChatReviewSummary[];
+}
+
+export interface WriteCoffeeChatReviewPayload {
+    memberId: string;
+    text: string;
+    images?: File[];
+}
+
+
+export interface CoffeeChatReviewDetail {
+    reviewId: string;
+    text: string;
+    imageUrls: string[];
+    writer: CoffeeChatMember;
+}
+
+export interface CoffeeChatReviewDetailData {
+    coffeeChatId: string;
+    title: string;
+    time: string;
+    tags: string[];
+    address: string;
+    likeCount: number;
+    reviews: CoffeeChatReviewDetail[];
+}
+
+
+export interface CoffeeChatReviewLikeData {
+    liked: boolean;
+    likeCount: number;
 }
   
