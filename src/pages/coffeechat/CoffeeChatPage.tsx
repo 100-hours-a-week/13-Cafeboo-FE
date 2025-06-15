@@ -44,12 +44,12 @@ export default function CoffeeChatPage() {
             }
             onReviewClick={room =>
               navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
-                state: { isReviewed: room.isReviewed },
+                state: { viewOnly: false, coffeeChatId: room.coffeeChatId },
               })
             }
             onViewClick={room =>
               navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
-                state: { isReviewed: room.isReviewed, viewOnly: true },
+                state: { viewOnly: true, coffeeChatId: room.coffeeChatId },
               })
             }
           />

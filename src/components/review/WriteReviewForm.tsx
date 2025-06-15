@@ -7,7 +7,11 @@ interface UploadedImage {
   preview: string;
 }
 
-export default function WriteReviewForm() {
+interface Props {
+  coffeeChatId: string;
+}
+
+export default function WriteReviewForm({ coffeeChatId }: Props) {
   const [content, setContent] = useState<string>('');
   const [images, setImages] = useState<UploadedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);

@@ -42,23 +42,32 @@ export default function CardFooter({
       {isReviewable && (
         <div className="flex gap-2">
           {room.isReviewed ? (
-            // 이미 후기 작성됨: "리뷰완료" [보기] 버튼만
-            <button
-              className="border border-[#FE9400] text-[#FE9400] text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer"
-              onClick={onViewClick}
-            >
-              리뷰 완료
-            </button>
+            // 이미 후기 작성됨: "리뷰완료" (비활성), "보기" (활성)
+            <>
+              <button
+                className="bg-[#CCF1E1] text-green-600 text-sm font-medium px-3 py-1.5 rounded-md cursor-default pointer-events-none"
+                disabled
+                tabIndex={-1}
+              >
+                리뷰완료
+              </button>
+              <button
+                className="text-gray-700 bg-gray-100 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer hover:bg-gray-200"
+                onClick={onViewClick}
+              >
+                보기
+              </button>
+            </>
           ) : (
             <>
               <button
-                className="text-[#FE9400] bg-[#FE9400]/10 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer"
+                className="text-[#FE9400] bg-[#FE9400]/10 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer hover:bg-[#FE9400]/20"
                 onClick={onReviewClick}
               >
                 리뷰하기
               </button>
               <button
-                className="text-gray-700 bg-gray-100 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer"
+                className="text-gray-700 bg-gray-100 text-sm font-medium px-3 py-1.5 rounded-md cursor-pointer hover:bg-gray-200"
                 onClick={onViewClick}
               >
                 보기

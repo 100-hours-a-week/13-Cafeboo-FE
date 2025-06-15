@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { Heart, Clock, MapPin, User, Hash, Users } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 
+interface Props {
+  coffeeChatId: string;
+}
+
+
 interface Writer {
   name: string;
   profileImageUrl: string;
@@ -24,7 +29,7 @@ interface CoffeeChatData {
   reviews: Review[];
 }
 
-export default function ViewReviewForm() {
+export default function ViewReviewForm({ coffeeChatId }: Props) {
   const [isLiked, setIsLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   
