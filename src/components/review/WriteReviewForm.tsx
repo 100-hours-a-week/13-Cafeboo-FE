@@ -1,5 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Camera, X, Clock, MapPin, Users, Edit, Hash } from 'lucide-react';
+import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
+import { useCoffeeChatMembership } from '@/api/coffeechat/coffeechatMemberApi';
+import { useWriteCoffeeChatReview } from '@/api/coffeechat/coffeechatReviewApi';
 
 interface UploadedImage {
   id: string;
@@ -11,12 +15,44 @@ interface Props {
   coffeeChatId: string;
 }
 
-export default function WriteReviewForm({ coffeeChatId }: Props) {
+export default function WriteReviewForm({ coffeeChatId }: Props) {  
+  const navigate = useNavigate();
   const [content, setContent] = useState<string>('');
   const [images, setImages] = useState<UploadedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const maxLength = 150;
-  const tags = ["디카페인", "아메리카노"];
+  const {
+    data: chatDetail,
+    isLoading: isChatLoading,
+    isError: isChatError,
+  } = useCoffeeChatDetail(coffeeChatId);
+
+  const {
+    mutateAsyncFn,
+    isLoading,
+    isError: isSubmitError,
+    error: submitError,
+  } = useWriteCoffeeChatReview(coffeeChatId);
+
+  const {
+    data: membership,
+    isLoading: isMembershipLoading,
+    isError: isMembershipError,
+  } = useCoffeeChatMembership(coffeeChatId);
+
+  // 로딩 처리
+  if (isChatLoading || isMembershipLoading) {
+    return <div className="text-center text-sm text-gray-500">로딩 중...</div>;
+  }
+
+  // 에러 처리
+  if (isChatError || isMembershipError || !chatDetail || !membership?.isMember || !membership.memberId) {
+    return (
+      <div className="text-center text-red-500 text-sm">
+        후기를 작성하려면 커피챗에 참여해야 합니다.
+      </div>
+    );
+  }
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -52,18 +88,22 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
     fileInputRef.current?.click();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!content.trim() && images.length === 0) {
       alert('내용을 입력하거나 사진을 추가해주세요.');
       return;
     }
-    
-    console.log('게시글 작성:', {
-      content: content.trim(),
-      images: images.map(img => img.file.name)
-    });
-    
-    alert('작성하기 완료!');
+    try {
+      await mutateAsyncFn({
+        memberId: membership.memberId!,
+        text: content.trim(),
+        images: images.map((img) => img.file),
+      });
+      alert('후기 작성이 완료되었습니다.');
+      navigate('/main/coffeechat');
+    } catch (error) {
+      console.error("후기 작성 실패:", submitError?.message);
+    }
   };
 
   return (
@@ -93,25 +133,25 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
 
       {/* 커피챗 정보 섹션 */}
       <section>
-        <h1 className="text-lg font-semibold mb-2">아메리카노 마실 사람?</h1>
+      <h1 className="text-lg font-semibold mb-2">{chatDetail.title}</h1>
         <div className="flex items-center text-gray-500 text-sm space-x-3 mb-3">
           <div className="flex items-center space-x-1">
             <Clock className="w-4 h-4" />
-            <span>오후 12:00</span>
+            <span>{chatDetail.time}</span>
           </div>
           <div className="text-gray-500">|</div>
           <div className="flex items-center space-x-1">
             <MapPin className="w-4 h-4" />
-            <span>분당구 판교동</span>
+            <span>{chatDetail.location.address}</span>
           </div>
           <div className="text-gray-500">|</div>
           <div className="flex items-center space-x-1">
             <Users className="w-4 h-4" />
-            <span>3명</span>
+            <span>{chatDetail.currentMemberCount}명</span>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map((tag: string, index: number) => (
+            {chatDetail.tags.map((tag: string, index: number) => (
               <span
                 key={index}
                 className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
@@ -189,7 +229,7 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
       <section>
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#FE9400] text-white py-3 rounded-lg transition-colors"
+          className="w-full bg-[#FE9400] text-white py-3 rounded-lg transition-colors cursor-pointer"
         >
           작성완료
         </button>
