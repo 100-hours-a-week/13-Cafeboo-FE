@@ -8,7 +8,7 @@ import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
 import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
-import { useJoinCoffeeChat } from "@/api/coffeechat/coffeechatMemberApi";
+import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
 
 type JoinParams = { chatNickname: string; profileType: "DEFAULT" | "USER" };
 
@@ -21,23 +21,16 @@ export default function CoffeeChatDetailPage() {
 
   const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
-
-  // 참여 성공 후 memberId/chatNickname 임시 저장용
-  const memberIdRef = useRef<string | null>(null);
-  const chatNicknameRef = useRef<string | null>(null);
+  const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
 
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
 
-      // 1. 참여한 memberId, 닉네임 저장
-      memberIdRef.current = result.memberId;
-      chatNicknameRef.current = chatNickname;
-
-      // 2. 웹소켓 연결
+      // 웹소켓 연결
       connect(id ?? "");
 
-      // 3. 입장 메시지 전송
+      // 입장 메시지 전송
       sendMessage(`/app/chatrooms/${id}`, {
         senderId: result.memberId,
         coffeechatId: id,
@@ -45,10 +38,10 @@ export default function CoffeeChatDetailPage() {
         type: "JOIN",
       });
 
-      // 4. 바로 해제
+      // 바로 해제
       disconnect();
 
-      // 5. refetch로 데이터 갱신
+      // refetch로 데이터 갱신
       refetch();
 
       setJoinModalOpen(false);
@@ -59,13 +52,23 @@ export default function CoffeeChatDetailPage() {
   };
 
   // 채팅하기 버튼
-  const handleEnterChatRoom = () => {
-    navigate(`/main/coffeechat/${id}/chat`, {
-      state: {
-        memberId: memberIdRef.current,
-        chatNickname: chatNicknameRef.current,
-      },
-    });
+
+  const handleEnterChatRoom = async () => {
+    try {
+      const { data: freshMembership } = await refetchMembership();
+      const membershipData = freshMembership ?? membership;
+      if (!membershipData?.isMember || !membershipData?.memberId) {
+        console.log("참여자만 채팅방에 입장할 수 있습니다!");
+        return;
+      }
+      navigate(`/main/coffeechat/${id}/chat`, {
+        state: {
+          memberId: membershipData.memberId,
+        },
+      });
+    } catch (error: any) {
+      alert(error?.message || membershipError?.message || "입장 권한 확인 중 오류가 발생했습니다.");
+    }
   };
 
   const handleJoin = () => setJoinModalOpen(true);

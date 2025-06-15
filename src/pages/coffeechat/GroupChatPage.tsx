@@ -4,7 +4,8 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa6";
 import { Client, IMessage } from "@stomp/stompjs";
 import { useWebSocketStore } from "@/stores/webSocketStore";
-import { useUserStore } from "@/stores/useUserStore";
+import { useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
+import { CodeSquare } from "lucide-react";
 
 interface Sender {
   userId: string;
@@ -21,38 +22,57 @@ interface ChatMessage {
 }
 
 export default function GroupChatPage() {
-  const { id: coffeechatId } = useParams(); // 커피챗 ID
+  const { id: coffeechatId } = useParams(); 
   const location = useLocation();
-  const { memberId, chatNickname } = location.state ?? {};
+  const state = location.state as { memberId?: string; } | undefined;
+  const [memberId, setMemberId] = useState<string | undefined>(state?.memberId);
   const navigate = useNavigate();
   const messages = useWebSocketStore(state => state.messages);
+  const isConnected = useWebSocketStore(state => state.isConnected);
   const [input, setInput] = useState("");
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const { connect, disconnect, sendMessage, addMessage, stompClient } = useWebSocketStore();
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
+  const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(coffeechatId ?? "");
 
-  const userId = useUserStore(state => state.userId);
+  useEffect(() => {
+    if (memberId) return;
+    if (!coffeechatId) return;
+    refetchMembership().then((res) => {
+      const m = res.data ?? membership;
+      if (!m?.isMember || !m?.memberId) {
+        console.log("참여자만 채팅에 입장할 수 있습니다.");
+        navigate(`/main/coffeechat/${coffeechatId}`);
+        return;
+      }
+      setMemberId(m.memberId);
+    }).catch((e) => {
+      console.log(e?.message || membershipError?.message || "참여 정보를 확인할 수 없습니다.");
+      navigate(`/main/coffeechat/${coffeechatId}`);
+    });
+  }, [coffeechatId]);
 
   // 📡 WebSocket 연결
   // 1) 첫 번째 useEffect: 연결 관리만
   useEffect(() => {
     if (!coffeechatId) return;
-
-    setConnectionStatus("connecting");  // 연결 시도 시작
+    setConnectionStatus(isConnected ? "connected" : "connecting");
     connect(coffeechatId);
 
     return () => {
       disconnect();
       setConnectionStatus("disconnected");
     };
-  }, [coffeechatId, connect, disconnect]);
+  }, [coffeechatId, memberId, connect, disconnect]);
 
 
   // 2) stompClient 준비되면 구독
   useEffect(() => {
     if (!stompClient || !coffeechatId || !stompClient.connected) return;
     const subscription = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
+      console.log("msg: ", msg.body); 
       const chatMsg: ChatMessage = JSON.parse(msg.body);
+      console.log("💬 [서버로부터 받은 메시지]", chatMsg); 
       addMessage(chatMsg);
     });
     return () => subscription.unsubscribe();
@@ -85,18 +105,14 @@ export default function GroupChatPage() {
 
   // ✉️ 메시지 전송
   const handleSendMessage = () => {
-    console.log("coffeechatId: ", coffeechatId);
-    console.log("memberId: ", memberId);
-    console.log("message: ", input);
     if (!input.trim() || !coffeechatId || !memberId) return;
-    console.log("sendmessage");
     const payload = {
       senderId: memberId,
       coffeechatId: coffeechatId,
       message: input,
       type: "TALK"
     };
-    console.log(payload);
+    console.log("💬 [서버로 보낸 메시지]", payload);
   
     sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
     setInput("");
@@ -146,7 +162,7 @@ export default function GroupChatPage() {
               );
             }
 
-            const isMine = msg.sender.userId === userId;
+            const isMine = msg.sender.userId === memberId;
             return (
               <div
                 key={msg.messageId}
