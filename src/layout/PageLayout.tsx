@@ -1,11 +1,16 @@
 import Header from '@/components/common/Header';
 import FABContainer from "@/components/common/FABContainer";
+import { Member } from '@/components/coffeechat/GroupMemberMenu';
 
 interface PageLayoutProps {
   children: React.ReactNode;
   headerMode?: 'logo' | 'title';
   headerTitle?: string;
   onBackClick?: () => void;
+  isGroupChat?: boolean;
+  chatMembers?: Member[];
+  onLeaveChat?: () => void;
+  myMemberId?: string;
   mainClassName?: string;
   mainRef?: React.RefObject<HTMLDivElement>;
 
@@ -28,10 +33,23 @@ export default function PageLayout({
   showAdd,
   onMainClick,
   onAddClick,
+
+  isGroupChat,
+  chatMembers,
+  onLeaveChat,
+  myMemberId,
 }: PageLayoutProps) {
   return (
     <div className="flex flex-col h-full">
-      <Header mode={headerMode} title={headerTitle} onBackClick={onBackClick} />
+    <Header
+      mode={headerMode}
+      title={headerTitle}
+      onBackClick={onBackClick}
+      isGroupChat={isGroupChat}         
+      chatMembers={chatMembers}      
+      onLeaveChat={onLeaveChat} 
+      myMemberId={myMemberId}         
+    />
 
       <main
         id="scroll-container"

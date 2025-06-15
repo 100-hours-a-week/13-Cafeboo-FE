@@ -3,14 +3,28 @@ import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GNBMenu from '@/components/common/GNBMenu';
 import Logo from '@/assets/logo.svg';
+import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
 
 interface HeaderProps {
   mode: 'logo' | 'title';
   title?: string;
   onBackClick?: () => void;
+  isGroupChat?: boolean;    
+  chatMembers?: Member[];     
+  onLeaveChat?: () => void; 
+  myMemberId?: string 
 }
 
-const Header = ({ mode, title, onBackClick }: HeaderProps) => {
+
+const Header = ({
+  mode,
+  title,
+  onBackClick,
+  isGroupChat = false,   
+  chatMembers,
+  onLeaveChat,
+  myMemberId,
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -76,11 +90,21 @@ const Header = ({ mode, title, onBackClick }: HeaderProps) => {
       </header>
 
       {/* GNB 메뉴 컴포넌트 */}
-      <GNBMenu
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        items={menuItems}
-      />
+      {isGroupChat ? (
+        <GroupMemberMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          members={chatMembers || []}
+          onLeave={onLeaveChat || (() => {})}
+          myMemberId={myMemberId || ""}
+        />
+      ) : (
+        <GNBMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          items={menuItems}
+        />
+      )}
     </>
   );
 };
