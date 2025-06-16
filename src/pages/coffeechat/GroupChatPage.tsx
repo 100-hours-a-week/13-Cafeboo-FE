@@ -121,12 +121,13 @@ export default function GroupChatPage() {
 
   // 채팅방 나가기
   const handleLeaveChat = async () => {
-    if (!memberId) {
-      alert("멤버 정보를 찾을 수 없습니다.");
+    console.log(memberId);
+    if (!coffeechatId || !memberId) {
+      alert("채팅방 또는 멤버 정보를 찾을 수 없습니다.");
       return;
     }
     try {
-      await leaveChat(memberId);
+      await leaveChat({ coffeechatId, memberId });
       navigate("/main/coffeechat");
     } catch (err: any) {
       alert(

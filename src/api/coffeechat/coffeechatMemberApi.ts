@@ -72,18 +72,23 @@ export const useJoinCoffeeChat = (coffeeChatId: string) => {
 };
 
 // ✅ DELETE 요청
-export const fetchLeaveCoffeeChat = async (memberId: string): Promise<void> => {
-    await apiClient.delete(`/api/v1/coffee-chats/members/${memberId}`);
+export const fetchLeaveCoffeeChat = async (
+    coffeechatId: string,
+    memberId: string
+  ): Promise<void> => {
+    await apiClient.delete(`/api/v1/coffee-chats/${coffeechatId}/members/${memberId}`);
   };
   
-export const useLeaveCoffeeChat = () => {
+  export const useLeaveCoffeeChat = () => {
     const queryClient = useQueryClient();
+  
     return createMutationHandler(
-        (memberId: string) => fetchLeaveCoffeeChat(memberId),
-        {
+      ({ coffeechatId, memberId }: { coffeechatId: string; memberId: string }) =>
+        fetchLeaveCoffeeChat(coffeechatId, memberId),
+      {
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["coffeeChats"] });
+          queryClient.invalidateQueries({ queryKey: ["coffeeChats"] });
         },
-        }
+      }
     );
-};
+  };

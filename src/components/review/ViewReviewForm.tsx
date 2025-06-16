@@ -3,6 +3,7 @@ import { Heart, Clock, MapPin, User, Hash, Users, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 import { useCoffeeChatReviewDetail, useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
 import EmptyState from '@/components/common/EmptyState';
+import HeartButton from '../common/HeartButton';
 
 interface Props {
   coffeeChatId: string;
@@ -110,25 +111,11 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
           </div>
 
           {/* 오른쪽: 하트 버튼 */}
-          <button
-            onClick={handleLike}
-            className={`relative flex items-center space-x-1 transition-colors ${
-              isLiked ? 'text-red-500' : 'text-gray-400 hover:text-red-400'
-            }`}
-          >
-            <div className="relative w-5 h-5 flex items-center justify-center">
-              <Heart size={18} fill={isLiked ? 'currentColor' : 'none'} />
-
-              {isAnimating && (
-                <Heart
-                  size={18}
-                  fill="red"
-                  className="absolute left-1/2 top-0] -translate-y-4 text-red-500 animate-float-up"
-                />
-              )}
-            </div>
-            <span className="text-sm">{coffeeChatData.likeCount + (isLiked ? 1 : 0)}</span>
-          </button>
+          <HeartButton
+                  initiallyLiked={false}
+                  likeCount={coffeeChatData.likeCount}
+                  onToggle={() => {}}
+          />
         </div>
 
         {/* 태그 */}
