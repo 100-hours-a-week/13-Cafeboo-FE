@@ -13,7 +13,7 @@ import type {
 export const fetchCoffeeChatReviews = async (
   status: "ALL" | "MY"
 ): Promise<CoffeeChatReviewListData> => {
-  const response = await apiClient.get("/api/v1/coffee-chats/reivews", {
+  const response = await apiClient.get("/api/v1/coffee-chats/reviews", {
     params: { status },
   });
   return response.data;
