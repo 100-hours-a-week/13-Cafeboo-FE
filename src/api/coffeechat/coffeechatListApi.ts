@@ -34,7 +34,7 @@ export const useCoffeeChatList = (
       gcTime: 300000,
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
-      refetchInterval: status === 'ALL' ? 100000 : false,
+      refetchInterval: status === 'ALL' ? 5000 : false,
       refetchOnReconnect: true,
       retry: 1,
       ...options, 
