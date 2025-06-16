@@ -109,7 +109,7 @@ export default function GroupChatPage() {
   const handleSendMessage = () => {
     if (!input.trim() || !coffeechatId || !userId) return;
     const payload = {
-      senderId: userId,
+      senderId: memberId,
       coffeechatId: coffeechatId,
       message: input,
       type: "TALK"
@@ -186,7 +186,7 @@ export default function GroupChatPage() {
               );
             }
 
-            const isMine = msg.sender.userId === userId;
+            const isMine = msg.sender.userId === memberId;
             return (
               <div
                 key={msg.messageId}
