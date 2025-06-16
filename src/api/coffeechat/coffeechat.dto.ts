@@ -67,6 +67,7 @@ export interface JoinCoffeeChatResponseDTO {
 
 export interface CoffeeChatMembershipResponseDTO {
     isMember: boolean;
+    userId: string | null;
     memberId: string | null;
   }
   
