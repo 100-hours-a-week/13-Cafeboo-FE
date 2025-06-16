@@ -23,7 +23,8 @@ interface ChatMessage {
 export default function GroupChatPage() {
   const { id: coffeechatId } = useParams(); 
   const location = useLocation();
-  const state = location.state as { memberId?: string; } | undefined;
+  const state = location.state as { memberId?: string; userId?: string } | undefined;
+  const userId = state?.userId;
   const [memberId, setMemberId] = useState<string | undefined>(state?.memberId);
   const navigate = useNavigate();
   const messages = useWebSocketStore(state => state.messages);
@@ -106,9 +107,9 @@ export default function GroupChatPage() {
 
   // ✉️ 메시지 전송
   const handleSendMessage = () => {
-    if (!input.trim() || !coffeechatId || !memberId) return;
+    if (!input.trim() || !coffeechatId || !userId) return;
     const payload = {
-      senderId: memberId,
+      senderId: userId,
       coffeechatId: coffeechatId,
       message: input,
       type: "TALK"
@@ -121,7 +122,6 @@ export default function GroupChatPage() {
 
   // 채팅방 나가기
   const handleLeaveChat = async () => {
-    console.log(memberId);
     if (!coffeechatId || !memberId) {
       alert("채팅방 또는 멤버 정보를 찾을 수 없습니다.");
       return;

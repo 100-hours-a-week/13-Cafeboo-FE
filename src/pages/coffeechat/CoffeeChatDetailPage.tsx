@@ -63,6 +63,7 @@ export default function CoffeeChatDetailPage() {
       }
       navigate(`/main/coffeechat/${id}/chat`, {
         state: {
+          userId: membershipData.userId,
           memberId: membershipData.memberId,
         },
       });
