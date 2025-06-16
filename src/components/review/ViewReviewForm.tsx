@@ -1,6 +1,13 @@
 import { useState } from 'react';
-import { Heart, Clock, MapPin, User, Hash, Users } from 'lucide-react';
+import { Heart, Clock, MapPin, User, Hash, Users, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
+import { useCoffeeChatReviewDetail, useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
+import EmptyState from '@/components/common/EmptyState';
+
+interface Props {
+  coffeeChatId: string;
+}
+
 
 interface Writer {
   name: string;
@@ -24,56 +31,33 @@ interface CoffeeChatData {
   reviews: Review[];
 }
 
-export default function ViewReviewForm() {
+export default function ViewReviewForm({ coffeeChatId }: Props) {
   const [isLiked, setIsLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  
-  // 샘플 데이터 (실제로는 API에서 받아올 데이터)
-  const coffeeChatData: CoffeeChatData = {
-    coffeechatId: "123",
-    title: "백다방 같이 가실 분~",
-    time: "12:15",
-    tags: ["디카페인", "스터디"],
-    address: "분당구 판교동",
-    likeCount: 8,
-    reviews: [
-      {
-        reviewId: "r123",
-        text: "처음 뵌 분들과도 금방 친해졌어요. 분위기 최고!",
-        imageUrls: [
-          "https://your-cdn.com/reviews/review1.png",
-          "https://your-cdn.com/reviews/review2.png"
-        ],
-        writer: {
-          name: "윤주",
-          profileImageUrl: "https://your-cdn.com/profiles/yunju.png"
-        }
-      },
-      {
-        reviewId: "r124",
-        text: "다음에도 또 참여하고 싶어요!",
-        imageUrls: [],
-        writer: {
-          name: "나은",
-          profileImageUrl: "https://your-cdn.com/profiles/naehun.png"
-        }
-      }
-    ]
-  };
-  const tags = coffeeChatData.tags;
-  const likeCount = coffeeChatData.likeCount;
+
+  const {
+    data: coffeeChatData,
+    isLoading,
+    isError,
+    error,
+  } = useCoffeeChatReviewDetail(coffeeChatId);
+
+  const likeMutation = useLikeCoffeeChatReview(coffeeChatId);
+
+  if (isLoading) {
+    return <div className="text-sm text-center text-gray-500">로딩 중...</div>;
+  }
+
+  if (isError || !coffeeChatData) {
+    return <div className="text-sm text-center text-red-500">후기를 불러오는 데 실패했습니다.</div>;
+  }
 
   const handleLike = () => {
-    setIsLiked(prev => {
-      const next = !prev;
-      
-      if (next) {
-        setIsAnimating(true);
-        setTimeout(() => setIsAnimating(false), 1000);
-      }
+    if (likeMutation.isLoading) return;
+    setIsAnimating(true);
+    setTimeout(() => setIsAnimating(false), 1000);
   
-      return next;
-    });
+    likeMutation.mutateFn();
   };
 
   const renderImages = (imageUrls: string[]) => {
@@ -143,13 +127,13 @@ export default function ViewReviewForm() {
                 />
               )}
             </div>
-            <span className="text-sm">{likeCount + (isLiked ? 1 : 0)}</span>
+            <span className="text-sm">{coffeeChatData.likeCount + (isLiked ? 1 : 0)}</span>
           </button>
         </div>
 
         {/* 태그 */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag: string, index: number) => (
+          {coffeeChatData.tags.map((tag: string, index: number) => (
             <span
               key={index}
               className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
@@ -164,7 +148,13 @@ export default function ViewReviewForm() {
 
       {/* 참여자 후기 섹션 */}
         <h2 className="font-semibold mb-4">참여자 후기</h2>
-        
+        {coffeeChatData.reviews.length === 0 ? (
+          <EmptyState
+            title="아직 작성된 후기가 없어요"
+            description="참여자가 후기를 남기면 이곳에 표시됩니다."
+            icon={<FilePen className="w-8 h-8" />}
+          />
+        ) : (
         <div className="space-y-4">
           {coffeeChatData.reviews.map((review) => (
             <SectionCard>
@@ -180,7 +170,7 @@ export default function ViewReviewForm() {
                 <div className="w-5 h-5 bg-gray-300 rounded-full overflow-hidden">
                   <img 
                     src={review.writer.profileImageUrl} 
-                    alt={review.writer.name}
+                    alt={review.writer.chatNickname}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
@@ -189,12 +179,13 @@ export default function ViewReviewForm() {
                     }}
                   />
                 </div>
-                <span className="text-sm text-gray-500">{review.writer.name}</span>
+                <span className="text-sm text-gray-500">{review.writer.chatNickname}</span>
               </div>
             </div>
             </SectionCard>
           ))}
         </div>
+        )}
       </div>
   );
 };

@@ -84,14 +84,14 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, my
                         className="w-10 h-10 rounded-full object-cover bg-gray-200"
                       />
                     ) : (
-                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full font-bold text-xl">
+                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
                         {getInitial(host.chatNickname)}
                       </div>
                     )}
-                    <span className="font-medium flex items-center gap-1">
+                    <span className="flex items-center gap-1">
                       {host.chatNickname}
                       {host.memberId === myMemberId && (
-                        <span className="ml-2 w-5 h-5 bg-amber-100 text-amber-600 text-xs font-semibold rounded-full flex items-center justify-center">
+                        <span className="ml-2 w-5 h-5 bg-amber-100 text-amber-600 text-xs rounded-full flex items-center justify-center">
                           나
                         </span>
                       )}
@@ -116,11 +116,11 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, my
                         className="w-10 h-10 rounded-full object-cover bg-gray-200"
                       />
                     ) : (
-                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full font-bold text-xl">
+                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
                         {getInitial(m.chatNickname)}
                       </div>
                     )}
-                    <span className="font-medium flex items-center gap-1">
+                    <span className="flex items-center gap-1">
                       {m.chatNickname}
                       {m.memberId === myMemberId && (
                         <span className="ml-2 w-5 h-5 bg-amber-100 text-amber-600 text-xs font-semibold rounded-full flex items-center justify-center">

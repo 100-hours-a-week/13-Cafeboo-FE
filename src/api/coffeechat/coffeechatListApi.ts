@@ -1,6 +1,8 @@
 import apiClient from "@/api/apiClient";
 import { createQueryHandler } from '@/utils/createQueryHandler';
 import type { CoffeeChatListResponse } from "@/api/coffeechat/coffeechat.dto";
+import { UseQueryOptions } from '@tanstack/react-query';
+import type { ApiResponse } from "@/types/api";
 
 export type CoffeeChatStatus = 'ALL' | 'JOINED' | 'REVIEWABLE' | 'ENDED';
 
@@ -12,17 +14,29 @@ export const fetchCoffeeChatList = async (status: string): Promise<CoffeeChatLis
     return response.data;
 };
 
-export const useCoffeeChatList = (status: string) =>
-    createQueryHandler<['coffeeChats', string], CoffeeChatListResponse>(
-      ['coffeeChats', status],
-      () => fetchCoffeeChatList(status),
-      {
-        staleTime: 60000,
-        gcTime: 300000,
-        refetchOnMount: 'always',
-        refetchOnWindowFocus: true,  
-        refetchInterval: status === 'ALL' ? 100000 : false, // 20초 polling (ALL만) 
-        refetchOnReconnect: true,
-        retry: 1,
-      }
-);
+export const useCoffeeChatList = (
+  status: string,
+  options?: Omit<
+    UseQueryOptions<
+      CoffeeChatListResponse,
+      ApiResponse<null>,
+      CoffeeChatListResponse,
+      ['coffeeChats', string]
+    >,
+    'queryKey' | 'queryFn'
+  >
+) =>
+  createQueryHandler<['coffeeChats', string], CoffeeChatListResponse>(
+    ['coffeeChats', status],
+    () => fetchCoffeeChatList(status),
+    {
+      staleTime: 60000,
+      gcTime: 300000,
+      refetchOnMount: 'always',
+      refetchOnWindowFocus: true,
+      refetchInterval: status === 'ALL' ? 100000 : false,
+      refetchOnReconnect: true,
+      retry: 1,
+      ...options, 
+    }
+  );

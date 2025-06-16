@@ -16,8 +16,16 @@ export default function CoffeeChatPage() {
   const mainRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // 커피챗 리스트(ALL/JOINED/REVIEWABLE)용 API
-  const { data, isLoading, isError } = useCoffeeChatList(filter);
+  const isReviewTab = filter === "REVIEWS";
+
+  // 일반 커피챗 목록
+  const {
+    data,
+    isLoading,
+    isError,
+  } = useCoffeeChatList(filter, {
+    enabled: !isReviewTab, // 👈 여기가 핵심
+  });
   const coffeechats = data?.coffeechats ?? [];
 
   // (REVIEWS는 나중에 별도 API로!)
@@ -31,8 +39,9 @@ export default function CoffeeChatPage() {
       <ChatTab filter={filter} onChange={setFilter} />
       <ScrollToTop key={filter} selector="main" top={0} />
       <div className="space-y-4 px-1">
-        {filter === "REVIEWS" ? (
-          <ReviewCardList /* data, isLoading, isError 등은 추후 구현 */ />
+      {isReviewTab ? (
+          <ReviewCardList
+          />
         ) : (
           <ChatCardList
             rooms={coffeechats}
@@ -44,12 +53,12 @@ export default function CoffeeChatPage() {
             }
             onReviewClick={room =>
               navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
-                state: { isReviewed: room.isReviewed },
+                state: { viewOnly: false, coffeeChatId: room.coffeeChatId },
               })
             }
             onViewClick={room =>
               navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
-                state: { isReviewed: room.isReviewed, viewOnly: true },
+                state: { viewOnly: true, coffeeChatId: room.coffeeChatId },
               })
             }
           />

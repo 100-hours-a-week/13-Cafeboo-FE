@@ -13,7 +13,7 @@ import type {
 export const fetchCoffeeChatReviews = async (
   status: "ALL" | "MY"
 ): Promise<CoffeeChatReviewListData> => {
-  const response = await apiClient.get("/api/v1/coffee-chats/reivews", {
+  const response = await apiClient.get("/api/v1/coffee-chats/reviews", {
     params: { status },
   });
   return response.data;
@@ -66,9 +66,7 @@ export const fetchWriteCoffeeChatReview = async (
   if (payload.images) {
     payload.images.forEach((img) => formData.append("images", img));
   }
-  await apiClient.post(`/api/v1/coffee-chats/review/${coffeeChatId}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+  await apiClient.post(`/api/v1/coffee-chats/reviews/${coffeeChatId}`, formData);
 };
 
 export const useWriteCoffeeChatReview = (coffeeChatId: string) => {
