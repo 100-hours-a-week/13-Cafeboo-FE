@@ -186,7 +186,7 @@ export default function GroupChatPage() {
               );
             }
 
-            const isMine = msg.sender.userId === memberId;
+            const isMine = msg.sender.userId === userId;
             return (
               <div
                 key={msg.messageId}
