@@ -9,6 +9,7 @@ import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
+import Map from '@/assets/map.png'
 
 type JoinParams = { chatNickname: string; profileType: "DEFAULT" | "USER" };
 
@@ -109,6 +110,10 @@ export default function CoffeeChatDetailPage() {
     writer,
   } = data;
 
+  const [mapError, setMapError] = useState(false);
+
+  const mapUrl = `https://map.kakao.com/staticmap/v5/map?center=${location.longitude},${location.latitude}&level=3&width=700&height=300&apikey=${import.meta.env.VITE_KAKAO_REST_API_KEY}`;
+
   return (
     <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={() => navigate('/main/coffeechat')}>
       <div className="bg-white space-y-4">
@@ -173,18 +178,6 @@ export default function CoffeeChatDetailPage() {
           <MapPin className="w-4 h-4" />
           <span>{location?.address ?? "-"}</span>
         </div>
-        <button 
-          onClick={() => setIsSheetOpen(true)}
-          className="w-full p-6 flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors rounded-xl"
-        >
-          <div className="w-full h-[80px] overflow-hidden rounded-lg mb-2">
-            <img
-              src={`https://map.kakao.com/staticmap/v5/map?center=${location.longitude},${location.latitude}&level=3&width=700&height=300&apikey=${import.meta.env.VITE_KAKAO_REST_API_KEY}`}
-              alt="지도 미리보기"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </button>
       </div>
 
       <MapBottomSheet
