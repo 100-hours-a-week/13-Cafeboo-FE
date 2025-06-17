@@ -20,7 +20,7 @@ export default function JoinCoffeeChatModal({
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const appRoot = document.getElementById("root");
+    const appRoot = document.getElementById("alert-modal-container");
     if (!appRoot) return;
     let el = appRoot.querySelector<HTMLDivElement>("#modal-container");
     if (!el) {

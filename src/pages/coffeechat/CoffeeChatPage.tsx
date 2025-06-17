@@ -19,12 +19,13 @@ export default function CoffeeChatPage() {
   const isReviewTab = filter === "REVIEWS";
 
   // 일반 커피챗 목록
+  
   const {
     data,
     isLoading,
     isError,
   } = useCoffeeChatList(filter, {
-    enabled: !isReviewTab, // 👈 여기가 핵심
+    enabled: !isReviewTab,
   });
   const coffeechats = data?.coffeechats ?? [];
 
