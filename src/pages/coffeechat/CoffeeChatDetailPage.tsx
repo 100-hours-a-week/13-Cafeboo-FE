@@ -110,10 +110,6 @@ export default function CoffeeChatDetailPage() {
     writer,
   } = data;
 
-  const [mapError, setMapError] = useState(false);
-
-  const mapUrl = `https://map.kakao.com/staticmap/v5/map?center=${location.longitude},${location.latitude}&level=3&width=700&height=300&apikey=${import.meta.env.VITE_KAKAO_REST_API_KEY}`;
-
   return (
     <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={() => navigate('/main/coffeechat')}>
       <div className="bg-white space-y-4">
