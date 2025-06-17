@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import PageLayout from "@/layout/PageLayout";
 import ChatTab from "@/components/coffeechat/ChatTab";
 import ChatCardList from "@/components/coffeechat/ChatCardList";
-import ReviewCardList from "@/components/coffeechat/ReviewCardList";
+import ReviewCardList from "@/components/review/ReviewCardList";
 import { useNavigate } from "react-router-dom";
 import ScrollToTop from '@/components/common/ScrolltoTop';
 import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";

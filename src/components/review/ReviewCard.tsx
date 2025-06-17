@@ -1,0 +1,95 @@
+import { useNavigate } from "react-router-dom";
+import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
+import SectionCard from "@/components/common/SectionCard";
+import HeartButton from "@/components/common/HeartButton";
+import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
+import Icon from "@/assets/cafeboo.png";
+
+interface ReviewCardProps {
+  item: CoffeeChatReviewSummary;
+}
+
+export default function ReviewCard({ item }: ReviewCardProps) {
+  const navigate = useNavigate();
+  const {
+    data: membersData,
+    isLoading: isMembersLoading,
+    isError: isMembersError,
+  } = useCoffeeChatMembers(item.coffeeChatId);
+
+  const handleClick = () => {
+    navigate(`/main/coffeechat/${item.coffeeChatId}/review`, {
+      state: {
+        viewOnly: true,
+        coffeeChatId: item.coffeeChatId,
+      },
+    });
+ };
+
+  return (
+    <SectionCard className="!px-2" onClick={handleClick}>
+      {/* 이미지 영역 */}
+      <div className="mb-3">
+        <div className="w-32 h-32 mx-auto rounded-2xl relative overflow-hidden">
+          {item.previewImageUrl ? (
+            <img
+              src={item.previewImageUrl}
+              alt="preview"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#FE9400]/20 to-gray-200 flex items-center justify-center">
+              <img src={Icon} alt="icon" className="w-16 h-16 object-contain" />
+            </div>
+          )}
+
+          {item.imagesCount > 0 && (
+            <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded">
+              {item.imagesCount}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 제목 */}
+      <h3 className="font-semibold text-sm text-gray-800 truncate mb-2 z-10 relative px-2">
+        {item.title}
+      </h3>
+
+      {/* 멤버 & 하트 */}
+      <div className="relative text-xs text-gray-500 z-10 px-2">
+        <div className="flex justify-between items-center mt-1 min-h-[24px]">
+          {isMembersLoading ? (
+            <span className="text-gray-400 text-xs">불러오는 중...</span>
+          ) : isMembersError ? (
+            <span className="text-red-400 text-xs">에러</span>
+          ) : (
+            <>
+              <div className="flex items-center -space-x-2">
+                {membersData?.members.slice(0, 2).map((member: any) => (
+                  <img
+                    key={member.memberId}
+                    src={member.profileImageUrl}
+                    alt={member.chatNickname}
+                    className="w-6 h-6 rounded-full border border-white bg-gray-200"
+                  />
+                ))}
+                {membersData?.totalMemberCounts && membersData?.totalMemberCounts > 2 && (
+                <div className="w-6 h-6 rounded-full border border-white bg-gray-200 text-[10px] text-gray-600 flex items-center justify-center">
+                    +{membersData.totalMemberCounts - 2}
+                </div>
+                )}
+              </div>
+
+              <HeartButton
+                initiallyLiked={false}
+                likeCount={item.likesCount}
+                onToggle={() => {}}
+              />
+            </>
+          )}
+        </div>
+      </div>
+    </SectionCard>
+  );
+}
