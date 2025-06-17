@@ -117,9 +117,27 @@ export interface CoffeeChatReviewDetailData {
     reviews: CoffeeChatReviewDetail[];
 }
 
-
 export interface CoffeeChatReviewLikeData {
     liked: boolean;
     likeCount: number;
+}
+
+export interface ChatMessage {
+    messageId: string;
+    content: string;
+    sentAt: string;
+    sender: {
+        memberId: string;
+        chatNickname: string;
+        profileImageUrl: string;
+    };
+}
+
+
+export interface CoffeeChatMessagesResponse {
+    coffeeChatId: string;
+    messages: ChatMessage[];
+    nextCursor: string | null;
+    hasNext: boolean;
 }
   

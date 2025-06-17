@@ -5,10 +5,10 @@ import { Client, IMessage } from '@stomp/stompjs';
 // 채팅 메시지 타입 (필요한 경우 사용)
 interface ChatMessage {
   messageId: string;
-  messageType: "TALK" | "JOIN" | "LEAVE";
+  messageType?: "TALK" | "JOIN" | "LEAVE";
   content: string | null;
   sentAt: string;
-  sender: { userId: string; name: string; profileImageUrl: string; };
+  sender: { memberId: string; chatNickname: string; profileImageUrl: string; };
 }
 
 // WebSocket 스토어의 상태 타입 정의
