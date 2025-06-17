@@ -27,7 +27,10 @@ function App() {
         </div>
       </div>
       <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-272">
-        <div className="relative w-screen w-full h-screen max-w-sm bg-white px-6 scrollbar-hide overflow-hidden">
+        <div
+            id="alert-modal-container" 
+            className="relative w-screen w-full h-screen max-w-sm bg-white px-6 scrollbar-hide overflow-hidden"
+          >
           <Routes />
           <Toaster
             position="top-center"

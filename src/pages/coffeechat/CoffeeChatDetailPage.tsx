@@ -9,6 +9,7 @@ import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
+import AlertModal from "@/components/common/AlertModal";
 import Map from '@/assets/map.png'
 
 type JoinParams = { chatNickname: string; profileType: "DEFAULT" | "USER" };
@@ -19,6 +20,8 @@ export default function CoffeeChatDetailPage() {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const { connect, disconnect, sendMessage } = useWebSocketStore();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
@@ -48,7 +51,9 @@ export default function CoffeeChatDetailPage() {
       setJoinModalOpen(false);
     } catch (error: any) {
       console.error("커피챗 참여 오류:" + `${error.status}(${error.code}) - ${error.message}`);
+      setAlertMessage(error.message || "카페인 등록에 실패했습니다.");
       setJoinModalOpen(false);
+      setIsAlertOpen(true);  
     }
   };
 
@@ -207,6 +212,15 @@ export default function CoffeeChatDetailPage() {
         isOpen={joinModalOpen}
         onClose={() => setJoinModalOpen(false)}
         onSubmit={handleJoinSubmit}
+      />
+      <AlertModal
+        isOpen={isAlertOpen}
+        title="알림"
+        message={alertMessage}
+        onClose={() => setIsAlertOpen(false)}
+        onConfirm={() => setIsAlertOpen(false)}
+        confirmText="확인"
+        showCancelButton={false}
       />
     </PageLayout>
   );

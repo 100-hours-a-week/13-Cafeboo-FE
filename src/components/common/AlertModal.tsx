@@ -30,19 +30,18 @@ export default function AlertModal({
   const [awaitingConfirm, setAwaitingConfirm] = useState<(() => void) | null>(null);
 
   useEffect(() => {
-    const appRoot = document.getElementById('root');
-    if (!appRoot) return;
-
-    let el = appRoot.querySelector<HTMLDivElement>('#modal-container');
+    const container = document.getElementById('alert-modal-container'); 
+    if (!container) return;
+  
+    let el = container.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
       el = document.createElement('div');
       el.id = 'modal-container';
-      appRoot.appendChild(el);
+      container.appendChild(el);
     }
     setContainer(el);
-
+  
     return () => {
-      // 모달이 닫힐 때 컨테이너 정리
       if (el) {
         el.remove();
       }
