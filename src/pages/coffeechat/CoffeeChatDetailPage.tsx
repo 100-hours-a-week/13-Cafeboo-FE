@@ -146,7 +146,7 @@ export default function CoffeeChatDetailPage() {
         )}
 
         {/* 설명 */}
-        <div className="bg-gray-50 rounded-sm p-4 mb-4">
+        <div className="rounded-sm mb-4">
           <p className="text-[#333333] text-sm leading-relaxed" style={{ whiteSpace: "pre-line" }}>
             {content}
           </p>
@@ -187,7 +187,7 @@ export default function CoffeeChatDetailPage() {
       />
 
       {/* 하단 액션 */}
-      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-50">
+      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
         <img src={Icon} alt="Cafeboo" className="h-12 w-auto mr-4 rounded-lg bg-[#FEF0D7]" />
         {data.isJoined ? (
           <button
