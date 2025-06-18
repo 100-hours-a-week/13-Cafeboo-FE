@@ -38,6 +38,9 @@ export const fetchCoffeeChatMessages = async (
       // ✅ 다음 커서 설정
       getNextPageParam: (lastPage) =>
         lastPage.hasNext ? lastPage.nextCursor : undefined,
+
+      refetchOnMount: "always",
+      refetchOnWindowFocus: true,
   
       enabled: !!coffeeChatId,
     });
