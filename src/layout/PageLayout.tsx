@@ -10,8 +10,10 @@ interface PageLayoutProps {
   isGroupChat?: boolean;
   chatMembers?: Member[];
   onLeaveChat?: () => void;
+  onDeleteChat?: () => void;
   myMemberId?: string;
   mainClassName?: string;
+  nonScrollClassName?: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
 
   fabType?: 'diary' | 'report';
@@ -27,6 +29,7 @@ export default function PageLayout({
   headerTitle,
   onBackClick,
   mainClassName,
+  nonScrollClassName = false,
   mainRef,
 
   fabType,
@@ -37,6 +40,7 @@ export default function PageLayout({
   isGroupChat,
   chatMembers,
   onLeaveChat,
+  onDeleteChat,
   myMemberId,
 }: PageLayoutProps) {
   return (
@@ -47,16 +51,15 @@ export default function PageLayout({
       onBackClick={onBackClick}
       isGroupChat={isGroupChat}         
       chatMembers={chatMembers}      
-      onLeaveChat={onLeaveChat} 
+      onLeaveChat={onLeaveChat}
+      onDeleteChat={onDeleteChat}
       myMemberId={myMemberId}         
     />
 
       <main
         id="scroll-container"
         ref={mainRef}
-        className={`mt-16 scrollbar-hide overflow-y-auto pb-8 ${
-          headerMode === 'title' ? 'px-2' : ''
-        }`}
+        className={`mt-16 scrollbar-hide pb-8 ${headerMode === 'title' ? 'px-2' : ''} ${nonScrollClassName ? '' : 'overflow-y-auto'}`}
       
       >
         <div id="observer-target" className="h-[1px] w-full opacity-0 pointer-events-none" />
