@@ -1,5 +1,5 @@
 import apiClient from "@/api/apiClient";
-import { ChatMessage, CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
+import { CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 export const fetchCoffeeChatMessages = async (
@@ -34,14 +34,15 @@ export const fetchCoffeeChatMessages = async (
       // ✅ 요청 함수
       queryFn: ({ pageParam }) =>
         fetchCoffeeChatMessages(coffeeChatId, pageParam as string, limit, order),
+
+      getNextPageParam: () => undefined,
   
       // ✅ 다음 커서 설정
-      getNextPageParam: (lastPage) =>
-        lastPage.hasNext ? lastPage.nextCursor : undefined,
+      getPreviousPageParam: (firstPage) =>
+        firstPage.hasNext ? firstPage.nextCursor : undefined,
 
       refetchOnMount: "always",
       refetchOnWindowFocus: true,
-  
       enabled: !!coffeeChatId,
     });
   };

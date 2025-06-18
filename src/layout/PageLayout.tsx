@@ -59,7 +59,7 @@ export default function PageLayout({
       <main
         id="scroll-container"
         ref={mainRef}
-        className={`mt-16 scrollbar-hide pb-8 ${headerMode === 'title' ? 'px-2' : ''} ${nonScrollClassName ? '' : 'overflow-y-auto'}`}
+        className={`mt-16 scrollbar-hide pb-8 ${headerMode === 'title' ? 'px-2' : ''} ${nonScrollClassName ? '!pb-0' : 'overflow-y-auto'}`}
       
       >
         <div id="observer-target" className="h-[1px] w-full opacity-0 pointer-events-none" />

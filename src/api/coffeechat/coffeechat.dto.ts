@@ -133,7 +133,7 @@ export interface ChatMessage {
         chatNickname: string;
         profileImageUrl: string;
     };
-    messageType?: "TALK" | "JOIN" | "LEAVE";
+    messageType?: "TALK" | "ENTER" | "LEAVE";
 }
 
 
