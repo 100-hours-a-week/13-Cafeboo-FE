@@ -16,7 +16,7 @@ interface Sender {
 
 interface ChatMessage {
   messageId: string;
-  messageType?: "TALK" | "JOIN" | "LEAVE";
+  messageType?: "TALK" | "ENTER" | "LEAVE";
   content: string;
   sentAt: string;
   sender: Sender;
@@ -25,8 +25,7 @@ interface ChatMessage {
 export default function GroupChatPage() {
   const { id: coffeechatId } = useParams();
   const location = useLocation();
-  const state = location.state as { memberId?: string; userId?: string } | undefined;
-  const userId = state?.userId;
+  const state = location.state as { memberId?: string;} | undefined;
   const [memberId, setMemberId] = useState<string | undefined>(state?.memberId);
   const navigate = useNavigate();
   const [input, setInput] = useState("");
@@ -89,23 +88,29 @@ export default function GroupChatPage() {
       stompClient.onDisconnect = () => {};
       stompClient.onStompError = () => {};
     };
-  }, [stompClient]);
+  }, [stompClient, coffeechatId]);
 
   useEffect(() => {
-    if (!stompClient || !coffeechatId || !stompClient.connected) return;
-  
+    if (!stompClient || !coffeechatId || connectionStatus !== "connected") {
+      console.log("Subscription skipped. stompClient:", !!stompClient, "coffeechatId:", !!coffeechatId, "connectionStatus:", connectionStatus);
+      return;
+    }
+
+    console.log(`Attempting to subscribe to /topic/chatrooms/${coffeechatId}`);
     const subscription = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
       const chatMsg: ChatMessage = JSON.parse(msg.body);
       console.log("💬 [받은 메시지]", chatMsg);
       setRealtimeMessages((prev) => [...prev, chatMsg]);
     });
-  
+
     console.log("📡 [구독 완료]");
-  
+
     return () => {
+      console.log("📡 [구독 해제]");
       subscription.unsubscribe();
     };
-  }, [stompClient, coffeechatId]);
+  }, [stompClient, coffeechatId, connectionStatus]);
+
 
   // ✅ 채팅방 나가기
   const handleLeaveChat = async () => {
@@ -137,7 +142,7 @@ export default function GroupChatPage() {
   };
 
   const handleSendMessage = () => {
-    if (!input.trim() || !coffeechatId || !userId || !memberId) return;
+    if (!input.trim() || !coffeechatId || !memberId) return;
     const payload = {
       senderId: memberId,
       coffeechatId,
@@ -161,8 +166,9 @@ export default function GroupChatPage() {
       onDeleteChat={handleDeleteChat}
       myMemberId={memberId ?? ""}
       nonScrollClassName={true}
+      mainClassName="h-[calc(100dvh-4rem)]"
     >
-      <div className="flex flex-col bg-gray-50">
+      <div className="flex flex-col h-full">
         {/* 연결 상태 */}
         <div className="text-center py-1 text-xs font-semibold">
           {connectionStatus === "connecting" && <span className="text-yellow-600">연결 중...</span>}
@@ -170,17 +176,14 @@ export default function GroupChatPage() {
           {connectionStatus === "disconnected" && <span className="text-red-600">연결 끊김</span>}
         </div>
 
-        <div className="text-center py-2 text-sm text-gray-500">
-          {new Date().toLocaleDateString("ko-KR")}
-        </div>
-
-        <div ref={chatBoxRef} className="flex-1 overflow-y-auto px-4 space-y-3 pb-4 mb-30">
+        <div ref={chatBoxRef} className="flex-1 overflow-y-auto p-4 space-y-3 mb-12 bg-gray-50">
           {coffeechatId && memberId && (
             <ChatMessages
               coffeeChatId={coffeechatId}
               memberId={memberId}
               realtimeMessages={realtimeMessages}
             />
+            //<ChatMessage2 memberId={memberId} />
           )}
         </div>
 

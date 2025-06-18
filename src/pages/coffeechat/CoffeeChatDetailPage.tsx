@@ -39,7 +39,7 @@ export default function CoffeeChatDetailPage() {
         senderId: result.memberId,
         coffeechatId: id,
         message: `${chatNickname}님이 입장했습니다`,
-        type: "JOIN",
+        type: "ENTER",
       });
 
       // 바로 해제
@@ -51,14 +51,13 @@ export default function CoffeeChatDetailPage() {
       setJoinModalOpen(false);
     } catch (error: any) {
       console.error("커피챗 참여 오류:" + `${error.status}(${error.code}) - ${error.message}`);
-      setAlertMessage(error.message || "카페인 등록에 실패했습니다.");
+      setAlertMessage(error.message || "커피챗 참여 오류에 실패했습니다.");
       setJoinModalOpen(false);
       setIsAlertOpen(true);  
     }
   };
 
   // 채팅하기 버튼
-
   const handleEnterChatRoom = async () => {
     try {
       const { data: freshMembership } = await refetchMembership();
@@ -69,7 +68,6 @@ export default function CoffeeChatDetailPage() {
       }
       navigate(`/main/coffeechat/${id}/chat`, {
         state: {
-          userId: membershipData.userId,
           memberId: membershipData.memberId,
         },
       });
