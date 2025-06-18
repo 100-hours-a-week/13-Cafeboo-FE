@@ -13,12 +13,13 @@ interface GroupMemberMenuProps {
   onClose: () => void;
   members: Member[];
   onLeave: () => void;
+  onDelete: () => void;
   myMemberId: string;
 }
 
 const getInitial = (name: string) => name ? name[0] : '?';
 
-export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, myMemberId }: GroupMemberMenuProps) {
+export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, onDelete, myMemberId }: GroupMemberMenuProps) {
   const navigate = useNavigate();
 
   const goHome = () => {
@@ -137,12 +138,21 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, my
 
         {/* 하단: 나가기 버튼 (항상 아래 고정) */}
         <div className="p-4">
+        {host?.memberId === myMemberId ? (
+          <button
+            onClick={onDelete}
+            className="w-full py-3 rounded-sm bg-gray-100 text-red-500 font-semibold text-base hover:bg-gray-200 cursor-pointer"
+          >
+            커피챗 삭제하기
+          </button>
+        ) : (
           <button
             onClick={onLeave}
             className="w-full py-3 rounded-sm bg-gray-100 text-red-500 font-semibold text-base hover:bg-gray-200 cursor-pointer"
           >
             커피챗 나가기
           </button>
+        )}
         </div>
       </div>
     </>

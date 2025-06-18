@@ -40,3 +40,21 @@ export const useCreateCoffeeChat = () => {
     });
 };
 
+// ✅ DELETE 요청
+export const deleteCoffeeChat = async (coffeeChatId: string): Promise<void> => {
+  await apiClient.delete(`/api/v1/coffee-chats/${coffeeChatId}`);
+};
+
+export const useDeleteCoffeeChat = () => {
+  const queryClient = useQueryClient();
+
+  return createMutationHandler(
+    deleteCoffeeChat,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['coffeeChats'] });
+      },
+    }
+  );
+};
+
