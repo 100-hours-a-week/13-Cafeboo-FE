@@ -66,7 +66,13 @@ export const fetchWriteCoffeeChatReview = async (
   if (payload.images) {
     payload.images.forEach((img) => formData.append("images", img));
   }
-  await apiClient.post(`/api/v1/coffee-chats/reviews/${coffeeChatId}`, formData);
+  await apiClient.post(
+    `/api/v1/coffee-chats/reviews/${coffeeChatId}`,
+    formData,
+    {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }
+  );
 };
 
 export const useWriteCoffeeChatReview = (coffeeChatId: string) => {

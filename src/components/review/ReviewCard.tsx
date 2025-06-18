@@ -1,15 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
 import SectionCard from "@/components/common/SectionCard";
 import HeartButton from "@/components/common/HeartButton";
 import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
 import Icon from "@/assets/cafeboo.png";
+import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
 
 interface ReviewCardProps {
   item: CoffeeChatReviewSummary;
 }
 
 export default function ReviewCard({ item }: ReviewCardProps) {
+  const [liked, setLiked] = useState(item.liked); 
+  const [likesCount, setLikesCount] = useState(item.likesCount); 
+
   const navigate = useNavigate();
   const {
     data: membersData,
@@ -25,6 +30,19 @@ export default function ReviewCard({ item }: ReviewCardProps) {
       },
     });
  };
+
+ const likeMutation = useLikeCoffeeChatReview(item.coffeeChatId);
+
+ const handleLikeToggle = (newLiked: boolean) => {
+  // API 호출
+  if (likeMutation.isLoading) return;
+
+  likeMutation.mutateFn();
+
+  // 로컬 상태 업데이트
+  setLiked(newLiked);
+  setLikesCount((prev) => prev + (newLiked ? 1 : -1));
+};
 
   return (
     <SectionCard className="!px-2" onClick={handleClick}>
@@ -82,9 +100,9 @@ export default function ReviewCard({ item }: ReviewCardProps) {
               </div>
 
               <HeartButton
-                initiallyLiked={false}
-                likeCount={item.likesCount}
-                onToggle={() => {}}
+                initiallyLiked={liked}
+                likeCount={likesCount}
+                onToggle={handleLikeToggle}
               />
             </>
           )}

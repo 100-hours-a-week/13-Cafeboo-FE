@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, Clock, MapPin, User, Hash, Users, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 import { useCoffeeChatReviewDetail, useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
@@ -8,7 +8,6 @@ import HeartButton from '../common/HeartButton';
 interface Props {
   coffeeChatId: string;
 }
-
 
 interface Writer {
   name: string;
@@ -29,11 +28,11 @@ interface CoffeeChatData {
   tags: string[];
   address: string;
   likeCount: number;
+  liked: boolean;
   reviews: Review[];
 }
 
 export default function ViewReviewForm({ coffeeChatId }: Props) {
-  const [isLiked, setIsLiked] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const {
@@ -42,6 +41,16 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
     isError,
     error,
   } = useCoffeeChatReviewDetail(coffeeChatId);
+
+  const [liked, setLiked] = useState<boolean>(coffeeChatData?.liked ?? false);
+  const [likeCount, setLikeCount] = useState<number>(coffeeChatData?.likeCount ?? 0);
+
+  useEffect(() => {
+    if (coffeeChatData) {
+      setLiked(coffeeChatData.liked);
+      setLikeCount(coffeeChatData.likeCount);
+    }
+  }, [coffeeChatData]);
 
   const likeMutation = useLikeCoffeeChatReview(coffeeChatId);
 
@@ -53,12 +62,15 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
     return <div className="text-sm text-center text-red-500">후기를 불러오는 데 실패했습니다.</div>;
   }
 
-  const handleLike = () => {
+  const handleLikeToggle = (newLiked: boolean) => {
+    // API 호출
     if (likeMutation.isLoading) return;
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 1000);
-  
+
     likeMutation.mutateFn();
+
+    // 로컬 상태 업데이트
+    setLiked(newLiked);
+    setLikeCount((prev) => prev + (newLiked ? 1 : -1));
   };
 
   const renderImages = (imageUrls: string[]) => {
@@ -112,9 +124,9 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
 
           {/* 오른쪽: 하트 버튼 */}
           <HeartButton
-                  initiallyLiked={false}
-                  likeCount={coffeeChatData.likeCount}
-                  onToggle={() => {}}
+            initiallyLiked={liked}
+            likeCount={likeCount}
+            onToggle={handleLikeToggle}
           />
         </div>
 

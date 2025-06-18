@@ -83,6 +83,7 @@ export interface CoffeeChatReviewSummary {
     tags: string[];
     address: string;
     likesCount: number;
+    liked: boolean;
     imagesCount: number;
     previewImageUrl: string;
 }
@@ -114,6 +115,7 @@ export interface CoffeeChatReviewDetailData {
     tags: string[];
     address: string;
     likeCount: number;
+    liked: boolean;
     reviews: CoffeeChatReviewDetail[];
 }
 
