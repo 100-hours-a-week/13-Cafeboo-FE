@@ -5,10 +5,10 @@ import { Client, IMessage } from '@stomp/stompjs';
 // 채팅 메시지 타입 (필요한 경우 사용)
 interface ChatMessage {
   messageId: string;
-  messageType: "TALK" | "JOIN" | "LEAVE";
+  messageType?: "TALK" | "JOIN" | "LEAVE";
   content: string | null;
   sentAt: string;
-  sender: { userId: string; name: string; profileImageUrl: string; };
+  sender: { memberId: string; chatNickname: string; profileImageUrl: string; };
 }
 
 // WebSocket 스토어의 상태 타입 정의
@@ -60,11 +60,15 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`); // 또는 '/ws'
 
     const client = new Client({
-      webSocketFactory: () => socket,
-      //reconnectDelay: 5000,
-      heartbeatIncoming: 10000,
+      webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`),
+      reconnectDelay: 5000,
+      heartbeatIncoming: 0,
       heartbeatOutgoing: 10000,
-      debug: (str) => console.log(new Date(), str), // 디버그 로그 추가
+      debug: (str) => {
+        if (!str.includes(">>>")) {
+          console.log(new Date(), str);
+        }
+      },
 
       onConnect: (frame) => {
         console.log('Zustand: Connected: ' + frame);
@@ -101,6 +105,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       // deactivate()가 호출되면 onDisconnect 콜백이 실행되어 isConnected 상태가 업데이트됩니다.
     } else {
       console.log('Zustand: Not connected, no need to disconnect.');
+      stompClient?.activate();
     }
   },
 

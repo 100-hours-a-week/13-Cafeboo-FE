@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import PageLayout from "@/layout/PageLayout";
 import ChatTab from "@/components/coffeechat/ChatTab";
 import ChatCardList from "@/components/coffeechat/ChatCardList";
-import ReviewCardList from "@/components/coffeechat/ReviewCardList";
+import ReviewCardList from "@/components/review/ReviewCardList";
 import { useNavigate } from "react-router-dom";
 import ScrollToTop from '@/components/common/ScrolltoTop';
 import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
@@ -19,12 +19,13 @@ export default function CoffeeChatPage() {
   const isReviewTab = filter === "REVIEWS";
 
   // 일반 커피챗 목록
+  
   const {
     data,
     isLoading,
     isError,
   } = useCoffeeChatList(filter, {
-    enabled: !isReviewTab, // 👈 여기가 핵심
+    enabled: !isReviewTab,
   });
   const coffeechats = data?.coffeechats ?? [];
 

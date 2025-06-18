@@ -27,10 +27,15 @@ export default function HeartButton({
   return (
     <button
       onClick={handleClick}
-      className="relative w-5 h-5 flex items-center justify-center"
+      className={clsx(
+        "relative flex items-center px-2 py-0.5 rounded-full transition-all duration-200 cursor-pointer",
+        liked
+          ? "text-red-500 bg-red-50 hover:bg-red-100"
+          : "text-gray-400 hover:text-red-400 hover:bg-red-50"
+      )}
     >
       <Heart
-        size={14}
+        size={17}
         fill={liked ? "currentColor" : "none"}
         className={clsx("transition-transform", {
           "text-red-500": liked,
@@ -39,12 +44,12 @@ export default function HeartButton({
       />
       {animating && (
         <Heart
-          size={14}
+          size={17}
           fill="currentColor"
-          className="absolute left-1/2 top-0 animate-float-up text-red-500"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-float-up text-red-500"
         />
       )}
-      <span className="ml-1 text-xs text-gray-600">{likeCount + (liked ? 1 : 0)}</span>
+      <span className="ml-1 text-base text-gray-600">{likeCount + (liked ? 1 : 0)}</span>
     </button>
   );
 }
