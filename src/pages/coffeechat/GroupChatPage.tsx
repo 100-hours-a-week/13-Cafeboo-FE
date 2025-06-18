@@ -4,6 +4,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa6";
 import { IMessage } from "@stomp/stompjs";
 import { useWebSocketStore } from "@/stores/webSocketStore";
+import { useDeleteCoffeeChat } from "@/api/coffeechat/coffeechatApi";
 import { useCoffeeChatMembers, useCoffeeChatMembership, useLeaveCoffeeChat } from "@/api/coffeechat/coffeechatMemberApi";
 import ChatMessages from "@/components/coffeechat/ChatMessages";
 
@@ -36,6 +37,7 @@ export default function GroupChatPage() {
   const { data: membership, refetch: refetchMembership } = useCoffeeChatMembership(coffeechatId ?? "");
   const { data: members } = useCoffeeChatMembers(coffeechatId ?? "");
   const { mutateAsyncFn: leaveChat } = useLeaveCoffeeChat();
+  const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
   const [realtimeMessages, setRealtimeMessages] = useState<ChatMessage[]>([]);
 
   // ✅ 멤버 확인 및 상태 설정
@@ -119,6 +121,21 @@ export default function GroupChatPage() {
     }
   };
 
+  // 커피챗 삭제하기
+  const handleDeleteChat = async () => {
+    if (!coffeechatId) {
+      alert("채팅방 정보를 찾을 수 없습니다.");
+      return;
+    }
+  
+    try {
+      await deleteChat(coffeechatId); 
+      navigate("/main/coffeechat");
+    } catch (err: any) {
+      alert(err?.message || "삭제 중 오류가 발생했습니다.");
+    }
+  };
+
   const handleSendMessage = () => {
     if (!input.trim() || !coffeechatId || !userId || !memberId) return;
     const payload = {
@@ -141,7 +158,9 @@ export default function GroupChatPage() {
       isGroupChat={true}
       chatMembers={members?.members ?? []}
       onLeaveChat={handleLeaveChat}
+      onDeleteChat={handleDeleteChat}
       myMemberId={memberId ?? ""}
+      nonScrollClassName={true}
     >
       <div className="flex flex-col bg-gray-50">
         {/* 연결 상태 */}
@@ -155,7 +174,7 @@ export default function GroupChatPage() {
           {new Date().toLocaleDateString("ko-KR")}
         </div>
 
-        <div ref={chatBoxRef} className="flex-1 overflow-y-auto px-4 space-y-3 pb-4">
+        <div ref={chatBoxRef} className="flex-1 overflow-y-auto px-4 space-y-3 pb-4 mb-30">
           {coffeechatId && memberId && (
             <ChatMessages
               coffeeChatId={coffeechatId}
@@ -165,11 +184,11 @@ export default function GroupChatPage() {
           )}
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full bg-white px-6 py-3 shadow-md z-10">
+        <div className="absolute bottom-0 left-0 w-full bg-white px-8 py-2 shadow-md z-10">
           <div className="flex items-center gap-2 max-w-xl mx-auto">
             <input
               type="text"
-              className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-[#FE9400]"
+              className="flex-1 border border-gray-300 rounded-full px-4 py-1.5 focus:outline-none focus:border-[#FE9400]"
               placeholder="메시지를 입력하세요"
               value={input}
               onChange={(e) => setInput(e.target.value)}

@@ -12,6 +12,7 @@ interface HeaderProps {
   isGroupChat?: boolean;    
   chatMembers?: Member[];     
   onLeaveChat?: () => void; 
+  onDeleteChat?: () => void;
   myMemberId?: string 
 }
 
@@ -23,6 +24,7 @@ const Header = ({
   isGroupChat = false,   
   chatMembers,
   onLeaveChat,
+  onDeleteChat,
   myMemberId,
 }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,6 +98,7 @@ const Header = ({
           onClose={() => setIsMenuOpen(false)}
           members={chatMembers || []}
           onLeave={onLeaveChat || (() => {})}
+          onDelete={onDeleteChat || (() => {})}
           myMemberId={myMemberId || ""}
         />
       ) : (

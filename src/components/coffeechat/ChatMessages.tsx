@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInfiniteCoffeeChatMessages } from "@/api/coffeechat/coffeechatMessageApi";
 import type { ChatMessage } from "@/api/coffeechat/coffeechat.dto";
 
@@ -18,9 +18,25 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const loadTriggerRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const previousScrollHeightRef = useRef<number>(0);
 
-  // ✅ 무한 스크롤 (과거 내역 불러오기)
+  // ✅ 메시지 병합 로직
+  useEffect(() => {
+    const initialMessages = data?.pages.flatMap((page) => page.messages) ?? [];
+    setMessages([...initialMessages]);
+  }, [data]);
+
+  // ✅ 실시간 메시지 오면 뒤에 추가
+  useEffect(() => {
+    if (realtimeMessages.length > 0) {
+      setMessages((prev) => [...prev, ...realtimeMessages]);
+    }
+  }, [realtimeMessages]);
+
+  // ✅ 무한 스크롤 (과거 메시지)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,16 +50,16 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
         threshold: 1.0,
       }
     );
-  
+
     const el = loadTriggerRef.current;
     if (el) observer.observe(el);
-  
+
     return () => {
       if (el) observer.unobserve(el);
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // ✅ 스크롤 위치 유지
+  // ✅ 과거 메시지 스크롤 유지
   useEffect(() => {
     if (!isFetchingNextPage && scrollRef.current) {
       const diff = scrollRef.current.scrollHeight - previousScrollHeightRef.current;
@@ -51,11 +67,12 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
     }
   }, [data]);
 
-  // ✅ 메시지 병합
-  const combinedMessages = [
-    ...(data?.pages.flatMap((page) => page.messages) ?? []),
-    ...realtimeMessages,
-  ];
+  // ✅ 최초 로딩 시 맨 아래로 이동
+  useEffect(() => {
+    if (data && bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "auto" });
+    }
+  }, [data]);
 
   const formatTime = (iso: string) =>
     new Date(iso).toLocaleTimeString("ko-KR", {
@@ -67,11 +84,11 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
   return (
     <div
       ref={scrollRef}
-      className="flex-1 overflow-y-auto px-4 space-y-3 pb-36 flex flex-col-reverse"
+      className="flex-1 overflow-y-auto px-4 pb-36 flex flex-col space-y-3"
     >
       <div ref={loadTriggerRef} />
 
-      {combinedMessages.map((msg) => {
+      {messages.map((msg) => {
         const type = msg.messageType ?? "TALK";
 
         if (type === "JOIN" || type === "LEAVE") {
@@ -115,9 +132,13 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
       {isFetchingNextPage && (
         <div className="text-center text-gray-400 py-2 text-sm">불러오는 중...</div>
       )}
+
+      <div ref={bottomRef} />
     </div>
   );
 }
+
+
 
 
 
