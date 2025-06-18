@@ -7,6 +7,8 @@ import { useWebSocketStore } from "@/stores/webSocketStore";
 import { useDeleteCoffeeChat } from "@/api/coffeechat/coffeechatApi";
 import { useCoffeeChatMembers, useCoffeeChatMembership, useLeaveCoffeeChat } from "@/api/coffeechat/coffeechatMemberApi";
 import ChatMessages from "@/components/coffeechat/ChatMessages";
+import { useQueryClient } from "@tanstack/react-query";
+
 
 interface Sender {
   memberId: string;
@@ -38,6 +40,16 @@ export default function GroupChatPage() {
   const { mutateAsyncFn: leaveChat } = useLeaveCoffeeChat();
   const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
   const [realtimeMessages, setRealtimeMessages] = useState<ChatMessage[]>([]);
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries({
+        queryKey: ["coffeechatMessages", coffeechatId],
+      });
+    };
+  }, [queryClient, coffeechatId]);
 
   // ✅ 멤버 확인 및 상태 설정
   useEffect(() => {

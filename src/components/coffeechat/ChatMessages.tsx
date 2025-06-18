@@ -23,37 +23,42 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const previousScrollHeightRef = useRef<number>(0);
 
-  // 메시지 세팅
+  // 📌 메시지 불러오고 정렬하여 상태 설정
   useEffect(() => {
     if (!data || data.pages.length === 0) return;
-  
-    const lastPage = data.pages[data.pages.length - 1]; 
-    const newMessages = (lastPage as CoffeeChatMessagesResponse).messages ?? [];
-  
-    setMessages((prev) => {
-      const existingIds = new Set(prev.map((m) => m.messageId));
-      const uniqueNew = newMessages.filter((m) => !existingIds.has(m.messageId));
-      return [...uniqueNew, ...prev]; // 앞에만 추가
-    });
-  }, [data?.pages.length]); 
 
-  // 실시간 메시지 병합 (중복 제거)
+    const allMessages = data.pages.flatMap(
+      (page) => (page as CoffeeChatMessagesResponse).messages ?? []
+    );
+
+    const uniqueMessages = Array.from(
+      new Map(allMessages.map((m) => [m.messageId, m])).values()
+    ).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
+
+    setMessages((prev) => {
+      const prevMap = new Map(prev.map((m) => [m.messageId, m]));
+      const combined = [...uniqueMessages, ...prev.filter((m) => !prevMap.has(m.messageId))];
+      return combined;
+    });
+  }, [data]);
+
+  // 📌 실시간 메시지 반영
   useEffect(() => {
     if (realtimeMessages.length === 0) return;
+
     setMessages((prev) => {
       const existingIds = new Set(prev.map((m) => m.messageId));
-      const newMessages = realtimeMessages.filter((m) => !existingIds.has(m.messageId));
-      return [...prev, ...newMessages];
+      const newMsgs = realtimeMessages.filter((m) => !existingIds.has(m.messageId));
+      return [...prev, ...newMsgs];
     });
   }, [realtimeMessages]);
 
-  // 무한 스크롤 로딩 트리거
+  // 📌 IntersectionObserver로 이전 페이지 요청
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        const scrollTop = scrollRef.current?.scrollTop ?? 0;
-        if (entry.isIntersecting && hasPreviousPage && !isFetchingPreviousPage && scrollTop <= 50) {
+        if (entry.isIntersecting && hasPreviousPage && !isFetchingPreviousPage) {
           previousScrollHeightRef.current = scrollRef.current?.scrollHeight || 0;
           fetchPreviousPage();
         }
@@ -63,15 +68,16 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
         threshold: 1.0,
       }
     );
-  
+
     const el = loadTriggerRef.current;
     if (el) observer.observe(el);
+
     return () => {
       if (el) observer.unobserve(el);
     };
   }, [fetchPreviousPage, hasPreviousPage, isFetchingPreviousPage]);
 
-  // 과거 메시지 로딩 후 스크롤 위치 유지
+  // 📌 이전 메시지 불러온 후 스크롤 위치 유지
   useEffect(() => {
     if (!isFetchingPreviousPage && scrollRef.current) {
       const diff = scrollRef.current.scrollHeight - previousScrollHeightRef.current;
@@ -79,7 +85,7 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
     }
   }, [data]);
 
-  // 초기 로딩 시 맨 아래로 스크롤
+  // 📌 처음 로딩 시 맨 아래로 스크롤
   useEffect(() => {
     if (data && bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: "auto" });
@@ -143,6 +149,7 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
     </div>
   );
 }
+
 
 
 
