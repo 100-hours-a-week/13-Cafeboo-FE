@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart } from "lucide-react";
 import clsx from "clsx";
 
@@ -16,6 +16,10 @@ export default function HeartButton({
   const [liked, setLiked] = useState(initiallyLiked);
   const [animating, setAnimating] = useState(false);
 
+  useEffect(() => {
+    setLiked(initiallyLiked);
+  }, [initiallyLiked]);
+
   const handleClick = () => {
     const newLiked = !liked;
     setLiked(newLiked);
@@ -26,7 +30,10 @@ export default function HeartButton({
 
   return (
     <button
-      onClick={handleClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();    
+      }}
       className={clsx(
         "relative flex items-center px-2 py-0.5 rounded-full transition-all duration-200 cursor-pointer",
         liked
