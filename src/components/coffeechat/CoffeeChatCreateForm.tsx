@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/popover';
 import LocationSelector, { LocationData } from '@/components/coffeechat/LocationSelector';
 import { extractAreaUnit } from '@/utils/parseUtils';
-import { format } from 'date-fns';
+import { format, setMinutes, addHours } from 'date-fns';
 import { z } from 'zod';
 import type { CreateCoffeeChatRequestDTO } from '@/api/coffeechat/coffeechat.dto';
 
@@ -57,7 +57,7 @@ export default function CoffeeChatForm({
   const [content, setContent] = useState('');
   const [chatNickname, setChatNickname] = useState('');
   const [profileImageType, setProfileImageType] = useState('DEFAULT');
-  const [time, setTime] = useState('10:00');
+  const [time, setTime] = useState(format(addHours(setMinutes(new Date(), 0), 1), 'HH:mm'));
   const [memberCount, setMemberCount] = useState(2);
   const [tags, setTags] = useState<string[]>([]);
   const [newTag, setNewTag] = useState('');

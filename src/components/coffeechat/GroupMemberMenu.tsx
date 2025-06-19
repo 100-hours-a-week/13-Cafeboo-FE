@@ -82,20 +82,20 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
                       <img
                         src={host.profileImageUrl}
                         alt={host.chatNickname}
-                        className="w-10 h-10 rounded-full object-cover bg-gray-200"
+                        className="w-8 h-8 rounded-full object-cover bg-gray-200"
                       />
                     ) : (
-                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
+                      <div className="w-8 h-8 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
                         {getInitial(host.chatNickname)}
                       </div>
                     )}
                     <span className="flex items-center gap-1">
-                      {host.chatNickname}
                       {host.memberId === myMemberId && (
-                        <span className="ml-2 w-5 h-5 bg-amber-100 text-amber-600 text-xs rounded-full flex items-center justify-center">
+                        <span className="mr-1 w-4 h-4 bg-black/50 text-white text-[8pt] rounded-full flex items-center text-center justify-center">
                           나
                         </span>
                       )}
+                      {host.chatNickname}
                     </span>
                   </div>
                 ) : (
@@ -114,10 +114,10 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
                       <img
                         src={m.profileImageUrl}
                         alt={m.chatNickname}
-                        className="w-10 h-10 rounded-full object-cover bg-gray-200"
+                        className="w-8 h-8 rounded-full object-cover bg-gray-200"
                       />
                     ) : (
-                      <div className="w-10 h-10 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
+                      <div className="w-8 h-8 flex items-center justify-center bg-indigo-400 text-white rounded-full text-base">
                         {getInitial(m.chatNickname)}
                       </div>
                     )}
