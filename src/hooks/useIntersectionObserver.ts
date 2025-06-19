@@ -9,7 +9,9 @@ export const useIntersectionObserver = (
   const callback = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) onIntersect(entry, observer);
+        if (entry.isIntersecting) {
+          onIntersect(entry, observer);
+        }
       });
     },
     [onIntersect]

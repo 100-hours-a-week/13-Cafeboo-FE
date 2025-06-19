@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useInfiniteCoffeeChatMessages } from "@/api/coffeechat/coffeechatMessageApi";
 import { CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
 import type { ChatMessage } from "@/api/coffeechat/coffeechat.dto";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 interface ChatMessagesProps {
   coffeeChatId: string;
@@ -9,7 +12,11 @@ interface ChatMessagesProps {
   realtimeMessages: ChatMessage[];
 }
 
-export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages }: ChatMessagesProps) {
+export default function ChatMessages({
+  coffeeChatId,
+  memberId,
+  realtimeMessages,
+}: ChatMessagesProps) {
   const {
     data,
     fetchPreviousPage,
@@ -18,12 +25,14 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
   } = useInfiniteCoffeeChatMessages(coffeeChatId);
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const loadTriggerRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const previousScrollHeightRef = useRef<number>(0);
+  const mountedRef = useRef(false);
+  const initialScrolledRef = useRef(false);
+  const prevScrollHeightRef = useRef<number>(0);
+  const isRestoringScrollRef = useRef<boolean>(false);
 
-  // 📌 메시지 불러오고 정렬하여 상태 설정
+  // 메시지 병합 및 정렬
   useEffect(() => {
     if (!data || data.pages.length === 0) return;
 
@@ -35,14 +44,10 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
       new Map(allMessages.map((m) => [m.messageId, m])).values()
     ).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 
-    setMessages((prev) => {
-      const prevMap = new Map(prev.map((m) => [m.messageId, m]));
-      const combined = [...uniqueMessages, ...prev.filter((m) => !prevMap.has(m.messageId))];
-      return combined;
-    });
+    setMessages(uniqueMessages);
   }, [data]);
 
-  // 📌 실시간 메시지 반영
+  // 실시간 메시지 반영
   useEffect(() => {
     if (realtimeMessages.length === 0) return;
 
@@ -53,107 +58,134 @@ export default function ChatMessages({ coffeeChatId, memberId, realtimeMessages 
     });
   }, [realtimeMessages]);
 
-  // 📌 IntersectionObserver로 이전 페이지 요청
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && hasPreviousPage && !isFetchingPreviousPage) {
-          previousScrollHeightRef.current = scrollRef.current?.scrollHeight || 0;
+  // IntersectionObserver
+  const { ref: loadTriggerRef } = useIntersectionObserver(
+    () => {
+      if (!mountedRef.current || isRestoringScrollRef.current) return;
+      if (hasPreviousPage && !isFetchingPreviousPage) {
+        if (scrollRef.current) {
+          prevScrollHeightRef.current = scrollRef.current.scrollHeight;
+          isRestoringScrollRef.current = true;
           fetchPreviousPage();
         }
-      },
-      {
-        root: scrollRef.current,
-        threshold: 1.0,
       }
-    );
-
-    const el = loadTriggerRef.current;
-    if (el) observer.observe(el);
-
-    return () => {
-      if (el) observer.unobserve(el);
-    };
-  }, [fetchPreviousPage, hasPreviousPage, isFetchingPreviousPage]);
-
-  // 📌 이전 메시지 불러온 후 스크롤 위치 유지
-  useEffect(() => {
-    if (!isFetchingPreviousPage && scrollRef.current) {
-      const diff = scrollRef.current.scrollHeight - previousScrollHeightRef.current;
-      scrollRef.current.scrollTop += diff;
+    },
+    {
+      root: scrollRef.current,
+      threshold: 1.0,
     }
-  }, [data]);
+  );
 
-  // 📌 처음 로딩 시 맨 아래로 스크롤
   useEffect(() => {
-    if (data && bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: "auto" });
-    }
-  }, [data]);
+    mountedRef.current = true;
+  }, []);
 
-  const formatTime = (iso: string) =>
-    new Date(iso).toLocaleTimeString("ko-KR", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
+  useEffect(() => {
+    if (!mountedRef.current || !scrollRef.current || !isRestoringScrollRef.current) return;
 
-  return (
-    <div
-      ref={scrollRef}
-      className="flex-1 overflow-y-auto px-4 pb-36 flex flex-col justify-end space-y-3"
-    >
-      <div ref={loadTriggerRef} />
+    if (prevScrollHeightRef.current > 0 && !isFetchingPreviousPage) {
+      requestAnimationFrame(() => {
+        if (!scrollRef.current || !isRestoringScrollRef.current) return;
 
-      {messages.map((msg) => {
-        const isMine = msg.sender.memberId === memberId;
-        const isSystem = msg.messageType === "ENTER" || msg.messageType === "LEAVE";
+        const currentScrollHeight = scrollRef.current.scrollHeight;
+        const heightDifference = currentScrollHeight - prevScrollHeightRef.current;
+        const currentScrollTop = scrollRef.current.scrollTop;
 
-        if (isSystem) {
-          return (
-            <div key={msg.messageId} className="text-center text-sm text-gray-400">
-              {msg.sender.chatNickname}님이 {msg.messageType === "ENTER" ? "입장" : "퇴장"}하셨습니다.
-            </div>
-          );
+        if (heightDifference > 0) {
+          scrollRef.current.scrollTop = currentScrollTop + heightDifference;
         }
 
-        return (
-          <div key={msg.messageId} className={`w-full ${isMine ? "flex justify-end" : "flex justify-start"}`}>
-            <div className={`flex flex-col ${isMine ? "items-end" : "items-start"} max-w-[80%]`}>
-              {!isMine && <div className="text-sm text-gray-600 mb-1">{msg.sender.chatNickname}</div>}
-              <div className={`flex items-end gap-1 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
-                <div
-                  className={`px-4 py-2 rounded-2xl text-sm shadow max-w-xs whitespace-pre-wrap break-words ${
-                    isMine
-                      ? "bg-[#FE9400] text-white rounded-br-none"
-                      : "bg-white text-gray-800 rounded-bl-none"
-                  }`}
-                >
-                  {msg.content}
+        prevScrollHeightRef.current = 0;
+        isRestoringScrollRef.current = false;
+      });
+    }
+  }, [data, isFetchingPreviousPage]);
+
+  // ✅ 초기 렌더링 시 맨 아래로 자동 스크롤
+  useEffect(() => {
+    if (!data || !bottomRef.current) return;
+
+    if (!initialScrolledRef.current && data.pages.length >= 1) {
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          bottomRef.current?.scrollIntoView({ behavior: "auto" });
+          initialScrolledRef.current = true;
+        });
+      }, 0);
+    }
+  }, [data?.pages.length]);
+
+  // ✅ 내 메시지 오면 스크롤 아래로
+  useEffect(() => {
+    if (!bottomRef.current || isFetchingPreviousPage) return;
+
+    const isMyNewMessage = realtimeMessages.some(
+      (m) => m.sender.memberId === memberId
+    );
+
+    if (isMyNewMessage) {
+      requestAnimationFrame(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  }, [realtimeMessages, memberId, isFetchingPreviousPage]);
+
+  // 중복 제거된 메시지 메모이제이션
+  const deduplicatedMessages = useMemo(() => {
+    return Array.from(new Map(messages.map((m) => [m.messageId, m])).values());
+  }, [messages]);
+
+  return (
+    <div ref={scrollRef} className="h-full overflow-y-auto scrollbar-hide pb-4">
+      <div className="flex flex-col justify-end min-h-full space-y-6">
+        <div ref={loadTriggerRef} />
+
+        {deduplicatedMessages.map((msg) => {
+          const isMine = msg.sender.memberId === memberId;
+          const isSystem = msg.messageType === "ENTER" || msg.messageType === "LEAVE";
+
+          if (isSystem) {
+            return (
+              <div key={msg.messageId} className="text-center text-sm text-gray-400">
+                {msg.sender.chatNickname}님이{" "}
+                {msg.messageType === "ENTER" ? "입장" : "퇴장"}하셨습니다.
+              </div>
+            );
+          }
+
+          return (
+            <div key={msg.messageId} className={`w-full ${isMine ? "flex justify-end" : "flex justify-start"}`}>
+              <div className={`flex flex-col ${isMine ? "items-end" : "items-start"} max-w-[90%]`}>
+                {!isMine && (
+                  <div className="text-sm text-gray-600 mb-1">
+                    {msg.sender.chatNickname}
+                  </div>
+                )}
+                <div className={`flex items-end gap-1 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
+                  <div
+                    className={`px-4 py-2 rounded-xl text-sm shadow max-w-xs whitespace-pre-wrap break-words ${
+                      isMine
+                        ? "bg-[#FE9400]/90 text-white rounded-tr-xs"
+                        : "bg-white text-gray-800 rounded-tl-none"
+                    }`}
+                  >
+                    {msg.content}
+                  </div>
+                  <span className="text-[11px] text-gray-400 whitespace-nowrap mb-0.5">
+                    {format(new Date(msg.sentAt), "a h:mm", { locale: ko })}
+                  </span>
                 </div>
-                <span className="text-[11px] text-gray-400 whitespace-nowrap mb-0.5">
-                  {formatTime(msg.sentAt)}
-                </span>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      {isFetchingPreviousPage && (
-        <div className="text-center text-gray-400 py-2 text-sm">불러오는 중...</div>
-      )}
+        {isFetchingPreviousPage && (
+          <div className="text-center text-gray-400 py-2 text-sm">불러오는 중...</div>
+        )}
 
-      <div ref={bottomRef} />
+        <div ref={bottomRef} />
+      </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
