@@ -35,7 +35,7 @@ export default function CardHeader({ room, filter }: CardHeaderProps) {
   return (
     <div className="flex items-start justify-between mb-3">
       <div>{badge}</div>
-      <div className="flex items-center text-gray-800 px-2 py-1 rounded-full text-sm font-medium">
+      <div className="flex items-center text-gray-700 px-2 py-1 rounded-full text-sm">
         <Users className="w-4 h-4 mr-1" />
         {room.currentMemberCount} / {room.maxMemberCount}
       </div>

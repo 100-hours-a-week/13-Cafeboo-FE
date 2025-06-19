@@ -23,7 +23,7 @@ export default function ChatCard({
   return (
     <SectionCard
       className={
-        "transition-all duration-200 hover:shadow-md hover:scale-[1.01] !py-3" +
+        "transition-all duration-200 hover:shadow-md !py-3" +
         (isClickable ? " cursor-pointer" : "")
       }
       onClick={isClickable ? onRoomClick : undefined}

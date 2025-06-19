@@ -71,6 +71,28 @@ export const useJoinCoffeeChat = (coffeeChatId: string) => {
     );
 };
 
+// ✅ POST 요청
+export const fetchJoinCoffeeChatListener = async (
+  coffeeChatId: string
+): Promise<void> => {
+  await apiClient.post(`/api/v1/coffee-chats/${coffeeChatId}/listeners`);
+};
+
+export const useJoinCoffeeChatListener = (coffeeChatId: string) => {
+  const queryClient = useQueryClient();
+
+  return createMutationHandler(
+    () => fetchJoinCoffeeChatListener(coffeeChatId),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['coffeeChats'] });
+        queryClient.invalidateQueries({ queryKey: ['coffeeChatDetail', coffeeChatId] });
+      },
+    }
+  );
+};
+
+
 // ✅ DELETE 요청
 export const fetchLeaveCoffeeChat = async (
     coffeechatId: string,
