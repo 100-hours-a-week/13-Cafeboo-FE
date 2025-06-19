@@ -11,8 +11,7 @@ import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
 import { useJoinCoffeeChatListener } from "@/api/coffeechat/coffeechatMemberApi";
 import AlertModal from "@/components/common/AlertModal";
-import Map from '@/assets/map.png'
-
+import {   useKakaoLoader, StaticMap } from 'react-kakao-maps-sdk';
 type JoinParams = { chatNickname: string; profileType: "DEFAULT" | "USER" };
 
 export default function CoffeeChatDetailPage() {
@@ -28,7 +27,7 @@ export default function CoffeeChatDetailPage() {
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
   const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
-  
+
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
@@ -180,20 +179,32 @@ export default function CoffeeChatDetailPage() {
           <span>{maxMemberCount}명</span>
         </div>
 
-        <hr className="border-gray-200 my-4" />
+        <div className="flex flex-col gap-2">
+          {/* 주소 + 버튼들 한 줄 정렬 */}
+          <div className="flex items-center text-sm text-gray-800 space-x-3">
+            <div className="flex items-center space-x-1">
+              <MapPin className="w-4 h-4" />
+              <span>{location?.address ?? "-"}</span>
+            </div>
 
-        {/* 위치 */}
-        <div className="font-semibold leading-tight">위치</div>
-        <div className="flex items-center space-x-1 text-gray-800 text-sm">
-          <MapPin className="w-4 h-4" />
-          <span>{location?.address ?? "-"}</span>
+            <div className="flex gap-2">
+              <button
+                onClick={() => window.open(location?.kakaoPlaceUrl, "_blank")}
+                className="bg-gray-100 text-xs px-2 py-1 rounded-sm cursor-pointer"
+              >
+                정보 보기
+              </button>
+
+              <button
+                onClick={() => setIsSheetOpen(true)}
+                className="bg-gray-100 text-xs px-2 py-1 rounded-sm cursor-pointer"
+              >
+                지도 보기
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-
-      <MapBottomSheet
-        open={isSheetOpen}
-        onClose={() => setIsSheetOpen(false)}
-      />
 
       {/* 하단 액션 */}
       <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
@@ -215,6 +226,12 @@ export default function CoffeeChatDetailPage() {
           </button>
         )}
       </div>
+
+      <MapBottomSheet
+        open={isSheetOpen}
+        onClose={() => setIsSheetOpen(false)}
+        location={location} 
+      />
 
       {/* 참여 모달 */}
       <JoinCoffeeChatModal
