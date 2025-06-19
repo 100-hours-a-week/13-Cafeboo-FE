@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
 import SectionCard from "@/components/common/SectionCard";
-import HeartButton from "@/components/common/HeartButton";
+import HeartButton from "@/components/review/HeartButton";
 import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
 import Icon from "@/assets/cafeboo.png";
 import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
@@ -45,7 +45,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
 };
 
   return (
-    <SectionCard className="!px-2" onClick={handleClick}>
+    <SectionCard className="!px-2 cursor-pointer" onClick={handleClick}>
       {/* 이미지 영역 */}
       <div className="mb-3">
         <div className="w-32 h-32 mx-auto rounded-2xl relative overflow-hidden">

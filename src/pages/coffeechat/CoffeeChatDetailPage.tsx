@@ -9,6 +9,7 @@ import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
+import { useJoinCoffeeChatListener } from "@/api/coffeechat/coffeechatMemberApi";
 import AlertModal from "@/components/common/AlertModal";
 import Map from '@/assets/map.png'
 
@@ -26,7 +27,8 @@ export default function CoffeeChatDetailPage() {
   const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
-
+  const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
+  
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
@@ -60,19 +62,28 @@ export default function CoffeeChatDetailPage() {
   // 채팅하기 버튼
   const handleEnterChatRoom = async () => {
     try {
+      await joinListener();
+ 
       const { data: freshMembership } = await refetchMembership();
       const membershipData = freshMembership ?? membership;
+  
       if (!membershipData?.isMember || !membershipData?.memberId) {
         console.log("참여자만 채팅방에 입장할 수 있습니다!");
         return;
       }
+  
       navigate(`/main/coffeechat/${id}/chat`, {
         state: {
           memberId: membershipData.memberId,
         },
       });
     } catch (error: any) {
-      alert(error?.message || membershipError?.message || "입장 권한 확인 중 오류가 발생했습니다.");
+      alert(
+        error?.message ||
+          joinError?.message ||
+          membershipError?.message ||
+          "입장 중 오류가 발생했습니다."
+      );
     }
   };
 

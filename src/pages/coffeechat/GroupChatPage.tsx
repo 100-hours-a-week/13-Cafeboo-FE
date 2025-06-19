@@ -9,7 +9,6 @@ import { useCoffeeChatMembers, useCoffeeChatMembership, useLeaveCoffeeChat } fro
 import ChatMessages from "@/components/coffeechat/ChatMessages";
 import { useQueryClient } from "@tanstack/react-query";
 
-
 interface Sender {
   memberId: string;
   chatNickname: string;
@@ -31,7 +30,6 @@ export default function GroupChatPage() {
   const [memberId, setMemberId] = useState<string | undefined>(state?.memberId);
   const navigate = useNavigate();
   const [input, setInput] = useState("");
-  const chatBoxRef = useRef<HTMLDivElement>(null);
   const { connect, disconnect, sendMessage, stompClient } = useWebSocketStore();
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
 
@@ -180,26 +178,18 @@ export default function GroupChatPage() {
       nonScrollClassName={true}
       mainClassName="h-[calc(100dvh-4rem)]"
     >
-      <div className="flex flex-col h-full">
-        {/* 연결 상태 */}
-        <div className="text-center py-1 text-xs font-semibold">
-          {connectionStatus === "connecting" && <span className="text-yellow-600">연결 중...</span>}
-          {connectionStatus === "connected" && <span className="text-green-600">연결됨</span>}
-          {connectionStatus === "disconnected" && <span className="text-red-600">연결 끊김</span>}
-        </div>
-
-        <div ref={chatBoxRef} className="flex-1 overflow-y-auto p-4 space-y-3 mb-12 bg-gray-50">
+      <div className="flex-1 h-full relative">
+        <div className="absolute inset-0 top-0 bottom-14 px-4 py-2 bg-gray-50">
           {coffeechatId && memberId && (
             <ChatMessages
               coffeeChatId={coffeechatId}
               memberId={memberId}
               realtimeMessages={realtimeMessages}
             />
-            //<ChatMessage2 memberId={memberId} />
           )}
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full bg-white px-8 py-2 shadow-md z-10">
+        <div className="absolute bottom-0 left-0 w-full h-14 bg-white px-1 py-2 z-10">
           <div className="flex items-center gap-2 max-w-xl mx-auto">
             <input
               type="text"

@@ -41,7 +41,7 @@ export const fetchCoffeeChatMessages = async (
       getPreviousPageParam: (firstPage) =>
         firstPage.hasNext ? firstPage.nextCursor : undefined,
 
-      refetchOnMount: "always",
+      refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       enabled: !!coffeeChatId,
     });

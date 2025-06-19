@@ -1,35 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Heart, Clock, MapPin, User, Hash, Users, FilePen } from 'lucide-react';
+import { CalendarIcon, Clock, MapPin, Hash, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 import { useCoffeeChatReviewDetail, useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
+import { useCoffeeChatMembers } from '@/api/coffeechat/coffeechatMemberApi';
 import EmptyState from '@/components/common/EmptyState';
-import HeartButton from '../common/HeartButton';
+import HeartButton from '@/components/review/HeartButton';
 
 interface Props {
   coffeeChatId: string;
-}
-
-interface Writer {
-  name: string;
-  profileImageUrl: string;
-}
-
-interface Review {
-  reviewId: string;
-  text: string;
-  imageUrls: string[];
-  writer: Writer;
-}
-
-interface CoffeeChatData {
-  coffeechatId: string;
-  title: string;
-  time: string;
-  tags: string[];
-  address: string;
-  likeCount: number;
-  liked: boolean;
-  reviews: Review[];
 }
 
 export default function ViewReviewForm({ coffeeChatId }: Props) {
@@ -41,6 +19,12 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
     isError,
     error,
   } = useCoffeeChatReviewDetail(coffeeChatId);
+
+  const {
+    data: membersData,
+    isLoading: isMembersLoading,
+    isError: isMembersError,
+  } = useCoffeeChatMembers(coffeeChatId);
 
   const [liked, setLiked] = useState<boolean>(coffeeChatData?.liked ?? false);
   const [likeCount, setLikeCount] = useState<number>(coffeeChatData?.likeCount ?? 0);
@@ -98,51 +82,83 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
   };
 
   return (
-    <div className="space-y-8">
+    <>
       <section>
-        <h1 className="text-lg font-semibold mb-2">{coffeeChatData.title}</h1>
-
-        {/* 시간 / 위치 / 인원 + 하트 버튼 줄 */}
-        <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
-          {/* 왼쪽: 시간 / 위치 / 인원 */}
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-1">
-              <Clock className="w-4 h-4" />
-              <span>{coffeeChatData.time}</span>
-            </div>
-            <div className="text-gray-400">|</div>
-            <div className="flex items-center space-x-1">
-              <MapPin className="w-4 h-4" />
-              <span>{coffeeChatData.address}</span>
-            </div>
-            <div className="text-gray-400">|</div>
-            <div className="flex items-center space-x-1">
-              <Users className="w-4 h-4" />
-              <span>3명</span>
-            </div>
-          </div>
-
-          {/* 오른쪽: 하트 버튼 */}
-          <HeartButton
+        <div className="flex items-center justify-between mb-4">
+        
+        <h1 className="text-xl font-semibold truncate">{coffeeChatData.title}</h1>
+        <HeartButton
             initiallyLiked={liked}
             likeCount={likeCount}
             onToggle={handleLikeToggle}
           />
         </div>
+        {coffeeChatData.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {coffeeChatData.tags.map((tag: string, index: number) => (
+              <span
+                key={index}
+                className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
+              >
+                <Hash className="w-3 h-3 mr-1" />
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <hr className="border-gray-200 my-4" />
 
-        {/* 태그 */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {coffeeChatData.tags.map((tag: string, index: number) => (
-            <span
-              key={index}
-              className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
-            >
-              <Hash className="w-3 h-3 mr-1" />
-              {tag}
-            </span>
-          ))}
+        <h2 className="font-semibold mb-4">정보</h2>
+        {/* 시간 / 위치 / 인원 + 하트 버튼 줄 */}
+        <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
+          {/* 왼쪽: 시간 / 위치 / 인원 */}
+          <div className="flex flex-col items-left space-y-3">
+            <div className="flex items-center space-x-3">
+              <CalendarIcon className="w-3.5 h-3.5" />
+              <span className='text-black'>{coffeeChatData.date}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <Clock className="w-3.5 h-3.5" />
+              <span className='text-black'>{coffeeChatData.time}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <MapPin  className="w-3.5 h-3.5" />
+              <span className='text-black'>{coffeeChatData.address}</span>
+            </div>
+          </div>
         </div>
       </section>
+
+      <hr className="border-gray-200 my-4" />
+
+
+      <h2 className="font-semibold mb-4">참여자 목록 ({membersData?.totalMemberCounts})</h2>
+      <ul className="space-y-3">
+      {membersData?.members.map((member) => (
+        <li
+          key={member.memberId}
+          className="flex items-center gap-3"
+        >
+          {member.profileImageUrl ? (
+            <img
+              src={member.profileImageUrl}
+              alt={member.chatNickname}
+              className="w-8 h-8 rounded-full object-cover bg-gray-200"
+            />
+          ) : (
+            <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
+              {member.chatNickname}
+            </div>
+          )}
+            <span className="flex items-center gap-1 text-sm">
+              {member.chatNickname}
+            </span>
+        </li>
+      ))}
+    </ul>
+
+      <hr className="border-gray-200 my-4" />
 
 
       {/* 참여자 후기 섹션 */}
@@ -178,13 +194,13 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
                     }}
                   />
                 </div>
-                <span className="text-sm text-gray-500">{review.writer.chatNickname}</span>
+                <span className="text-sm">{review.writer.chatNickname}</span>
               </div>
             </div>
             </SectionCard>
           ))}
         </div>
         )}
-      </div>
+      </>
   );
 };

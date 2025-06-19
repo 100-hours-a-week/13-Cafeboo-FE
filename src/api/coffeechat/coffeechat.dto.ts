@@ -28,6 +28,7 @@ export interface CoffeeChatMember {
 export interface CoffeeChatListItem {
     coffeeChatId: string;
     title: string;
+    date: string;
     time: string;
     maxMemberCount: number;
     currentMemberCount: number;
@@ -111,6 +112,7 @@ export interface CoffeeChatReviewDetail {
 export interface CoffeeChatReviewDetailData {
     coffeeChatId: string;
     title: string;
+    date: string;
     time: string;
     tags: string[];
     address: string;
