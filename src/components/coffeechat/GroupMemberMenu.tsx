@@ -23,7 +23,7 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate('/main/home');
+    navigate('/main/coffeechat');
     onClose();
   };
 
@@ -122,12 +122,12 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
                       </div>
                     )}
                     <span className="flex items-center gap-1">
-                      {m.chatNickname}
                       {m.memberId === myMemberId && (
-                        <span className="ml-2 w-5 h-5 bg-amber-100 text-amber-600 text-xs font-semibold rounded-full flex items-center justify-center">
+                        <span className="mr-1 w-4 h-4 bg-black/50 text-white text-[8pt] font-semibold rounded-full flex items-center justify-center">
                           나
                         </span>
                       )}
+                      {m.chatNickname}
                     </span>
                   </li>
                 ))}

@@ -130,14 +130,15 @@ export default function GroupChatPage() {
     }
     try {
       await leaveChat({ coffeechatId, memberId });
-      const leavePayload = {
+  
+      const payload = {
         senderId: memberId,
         coffeechatId,
-        message: `${membership?.chatNickname}님이 나갔갔습니다`,
+        message: `${membership?.chatNickname}님이 나갔습니다`,
         type: "LEAVE",
       };
-      sendMessage(`/app/chatrooms/${coffeechatId}`, leavePayload);
   
+      sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
       navigate("/main/coffeechat");
     } catch (err: any) {
       alert(err?.message || "나가기 중 오류가 발생했습니다.");
@@ -187,7 +188,7 @@ export default function GroupChatPage() {
       mainClassName="h-[calc(100dvh-4rem)]"
     >
       <div className="flex-1 h-full relative">
-        <div className="absolute inset-0 top-0 bottom-14 px-4 py-2 bg-gray-50">
+        <div className="absolute inset-0 top-0 bottom-14 p-2 bg-gray-50">
           {coffeechatId && memberId && (
             <ChatMessages
               coffeeChatId={coffeechatId}

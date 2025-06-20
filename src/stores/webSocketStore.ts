@@ -19,7 +19,7 @@ interface WebSocketState {
   currentCoffeechatId: string | null;
 
   // 액션 함수들
-  connect: (coffeechatId: string) => void;
+  connect: (coffeechatId: string, onConnected?: () => void) => void;
   disconnect: () => void;
   sendMessage: (destination: string, payload: any) => void; // 메시지 전송 함수
   addMessage: (message: ChatMessage) => void; // 메시지 추가 함수
@@ -32,7 +32,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   messages: [],
   currentCoffeechatId: null, // 현재 연결된 커피챗 ID
 
-  connect: (coffeechatId: string) => {
+  connect: (coffeechatId: string, onConnected?: () => void) => {
     const { stompClient, isConnected, currentCoffeechatId } = get();
 
     // 이미 연결 중이고 같은 커피챗 ID면 다시 연결하지 않음
@@ -73,13 +73,8 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       onConnect: (frame) => {
         console.log('Zustand: Connected: ' + frame);
         set({ isConnected: true, stompClient: client });
-
-        // 이 스토어에서 바로 구독을 관리할 수 있습니다.
-        // 하지만 구독은 해당 커피챗 ID에 따라 동적으로 이루어져야 하므로,
-        // 각 채팅방 컴포넌트에서 useWebSocketStore를 이용해 직접 구독하는 것이 더 유연합니다.
-        // 예를 들어: GroupChatPage의 useEffect에서 useWebSocketStore().stompClient를 가져와 구독.
+        if (onConnected) onConnected(); 
       },
-
       onStompError: (frame) => {
         console.error('Zustand: STOMP Error:', frame);
         set({ isConnected: false, stompClient: null });
@@ -110,16 +105,16 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   },
 
   sendMessage: (destination: string, payload: any) => {
-    const { stompClient } = get();
-    if (stompClient && stompClient.connected) {
-      stompClient.publish({
-        destination,
-        body: JSON.stringify(payload),
-      });
-    } else {
-      console.warn('Zustand: Cannot send message, not connected.');
-      set({ isConnected: false });
+    const { stompClient, isConnected } = get();
+    if (!stompClient || !isConnected || !stompClient.connected) {
+      console.warn('❌ Zustand: Cannot send message — WebSocket not connected.');
+      return;
     }
+  
+    stompClient.publish({
+      destination,
+      body: JSON.stringify(payload),
+    });
   },
 
   addMessage: (message: ChatMessage) => {
