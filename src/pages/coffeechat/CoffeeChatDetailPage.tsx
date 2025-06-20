@@ -1,18 +1,16 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
-import { MapPin, Users } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, User, Users, Crown } from "lucide-react";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
 import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
-import { useJoinCoffeeChat, useCoffeeChatMembership } from "@/api/coffeechat/coffeechatMemberApi";
+import { useJoinCoffeeChat, useCoffeeChatMembership, useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
 import { useJoinCoffeeChatListener } from "@/api/coffeechat/coffeechatMemberApi";
 import AlertModal from "@/components/common/AlertModal";
-import Map from '@/assets/map.png'
-
 type JoinParams = { chatNickname: string; profileType: "DEFAULT" | "USER" };
 
 export default function CoffeeChatDetailPage() {
@@ -26,29 +24,31 @@ export default function CoffeeChatDetailPage() {
 
   const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
   const { mutateAsyncFn: joinCoffeeChat, isError: isJoinError, error: joinError } = useJoinCoffeeChat(id ?? "");
+  const { data: members, isLoading: isMembersLoading, isError: isMembersError, error: membersError, refetch: refetchMembers } = useCoffeeChatMembers(id ?? "");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
   const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
-  
+
+  const nonHostMembers = members?.members?.filter((m) => !m.isHost) ?? [];
+
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
 
-      // 웹소켓 연결
-      connect(id ?? "");
-
-      // 입장 메시지 전송
-      sendMessage(`/app/chatrooms/${id}`, {
-        senderId: result.memberId,
-        coffeechatId: id,
-        message: `${chatNickname}님이 입장했습니다`,
-        type: "ENTER",
+      connect(id ?? "", () => {
+        const payload = {
+          senderId: result.memberId,
+          coffeechatId: id,
+          message: `${chatNickname}님이 입장했습니다`,
+          type: "ENTER",
+        };
+      
+        sendMessage(`/app/chatrooms/${id}`, payload);
+      
+        disconnect(); // 연결 종료
       });
 
-      // 바로 해제
-      disconnect();
-
-      // refetch로 데이터 갱신
       refetch();
+      refetchMembers();
 
       setJoinModalOpen(false);
     } catch (error: any) {
@@ -116,6 +116,7 @@ export default function CoffeeChatDetailPage() {
   const {
     title,
     content,
+    date,
     time,
     maxMemberCount,
     currentMemberCount,
@@ -125,7 +126,7 @@ export default function CoffeeChatDetailPage() {
   } = data;
 
   return (
-    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={() => navigate('/main/coffeechat')}>
+    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={() => navigate('/main/coffeechat')} mainClassName="!pb-20">
       <div className="bg-white space-y-4">
         <div className="flex items-center justify-between mb-2">
           <div>{badge}</div>
@@ -164,36 +165,65 @@ export default function CoffeeChatDetailPage() {
         <hr className="border-gray-200 my-4" />
 
         <div className="font-semibold leading-tight">정보</div>
-        {/* 방장 */}
-        <div className="flex items-center gap-2 mb-2 text-sm">
-          <div className="text-[#838a97] w-15">방장</div>
-          <span>{writer?.chatNickname ?? "-"}</span>
-        </div>
-        {/* 시각 */}
-        <div className="flex items-center gap-2 mb-2 text-sm">
-          <div className="text-[#838a97] w-15">시각</div>
-          <span>{time}</span>
-        </div>
-        {/* 모집인원 */}
-        <div className="flex items-center gap-2 mb-2 text-sm">
-          <div className="text-[#838a97] w-15">모집 인원</div>
-          <span>{maxMemberCount}명</span>
-        </div>
 
-        <hr className="border-gray-200 my-4" />
+        <div className="flex flex-col items-left space-y-2">
+          <div className="flex items-center space-x-3">
+            <CalendarIcon className="w-4 h-4 text-gray-500" />
+            <span>{date}</span>
+          </div>
 
-        {/* 위치 */}
-        <div className="font-semibold leading-tight">위치</div>
-        <div className="flex items-center space-x-1 text-gray-800 text-sm">
-          <MapPin className="w-4 h-4" />
-          <span>{location?.address ?? "-"}</span>
-        </div>
+          <div className="flex items-center space-x-3">
+            <Clock className="w-4 h-4 text-gray-500" />
+            <span>{time}</span>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3">
+              <MapPin className="w-4 h-4 text-gray-500" />
+              <span>{location?.address ?? "-"}</span>
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={() => window.open(location?.kakaoPlaceUrl, "_blank")}
+                className="bg-gray-100 hover:bg-gray-200 text-black text-xs px-2 py-1 rounded-sm cursor-pointer"
+              >
+                정보 보기
+              </button>
+
+              <button
+                onClick={() => setIsSheetOpen(true)}
+                className="bg-gray-100 hover:bg-gray-200 text-black text-xs px-2 py-1 rounded-sm cursor-pointer"
+              >
+                지도 보기
+              </button>
+            </div>
+          </div>
+        </div>   
       </div>
 
-      <MapBottomSheet
-        open={isSheetOpen}
-        onClose={() => setIsSheetOpen(false)}
-      />
+      <hr className="border-gray-200 my-4" />
+
+      <div className="font-semibold leading-tight">멤버</div>
+
+      <ul className="space-y-3">
+        {members?.members.map((member) => (
+          <li key={member.memberId} className="flex items-center gap-3">
+            {member.profileImageUrl ? (
+              <img
+                src={member.profileImageUrl}
+                alt={member.chatNickname}
+                className="w-8 h-8 rounded-full object-cover bg-gray-200"
+              />
+            ) : (
+              <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
+                {member.chatNickname.slice(0, 1)}
+              </div>
+            )}
+            <span className="text-sm text-black">{member.chatNickname}</span>
+          </li>
+        ))}
+      </ul>
 
       {/* 하단 액션 */}
       <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
@@ -215,6 +245,12 @@ export default function CoffeeChatDetailPage() {
           </button>
         )}
       </div>
+
+      <MapBottomSheet
+        open={isSheetOpen}
+        onClose={() => setIsSheetOpen(false)}
+        location={location} 
+      />
 
       {/* 참여 모달 */}
       <JoinCoffeeChatModal

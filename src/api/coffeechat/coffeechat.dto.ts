@@ -48,6 +48,7 @@ export interface CoffeeChatDetailResponseDTO {
     coffeeChatId: string;
     title: string;
     content: string;
+    date: string;
     time: string;
     maxMemberCount: number;
     currentMemberCount: number;
@@ -70,6 +71,7 @@ export interface CoffeeChatMembershipResponseDTO {
     isMember: boolean;
     userId: string | null;
     memberId: string | null;
+    chatNickname: string | null;
   }
   
 export interface CoffeeChatMembersResponseDTO {

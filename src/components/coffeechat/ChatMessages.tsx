@@ -147,37 +147,53 @@ export default function ChatMessages({
           if (isSystem) {
             return (
               <div key={msg.messageId} className="text-center text-sm text-gray-400">
-                {msg.sender.chatNickname}님이{" "}
-                {msg.messageType === "ENTER" ? "입장" : "퇴장"}하셨습니다.
+                {msg.content}
               </div>
             );
           }
 
           return (
-            <div key={msg.messageId} className={`w-full ${isMine ? "flex justify-end" : "flex justify-start"}`}>
-              <div className={`flex flex-col ${isMine ? "items-end" : "items-start"} max-w-[90%]`}>
+            <div
+              key={msg.messageId}
+              className={`flex ${isMine ? "justify-end" : "justify-start"} items-start`}
+            >
+              {/* 상대방 메시지일 경우: 프로필 이미지 */}
+              {!isMine && (
+                <img
+                  src={msg.sender.profileImageUrl}
+                  alt={msg.sender.chatNickname}
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+              )}
+          
+              <div className={`flex flex-col ${isMine ? "items-end max-w-[90%] " : "items-start max-w-[80%]"}`}>
+                {/* 상대방일 경우 닉네임 표시 */}
                 {!isMine && (
-                  <div className="text-sm text-gray-600 mb-1">
-                    {msg.sender.chatNickname}
-                  </div>
+                  <div className="text-xs mb-1">{msg.sender.chatNickname}</div>
                 )}
-                <div className={`flex items-end gap-1 ${isMine ? "flex-row-reverse" : "flex-row"}`}>
+          
+                {/* 말풍선 + 시간 (inline 정렬) */}
+                <div className={`flex items-end gap-1.5 ${isMine ? "flex-row-reverse" : ""}`}>
+                  {/* 말풍선 */}
                   <div
                     className={`px-4 py-2 rounded-xl text-sm shadow max-w-xs whitespace-pre-wrap break-words ${
                       isMine
-                        ? "bg-[#FE9400]/90 text-white rounded-tr-xs"
+                        ? "bg-[#FE9400]/80 text-white rounded-tr-xs"
                         : "bg-white text-gray-800 rounded-tl-none"
                     }`}
                   >
                     {msg.content}
                   </div>
-                  <span className="text-[11px] text-gray-400 whitespace-nowrap mb-0.5">
-                    {format(new Date(msg.sentAt), "a h:mm", { locale: ko })}
-                  </span>
+          
+                  {/* 시간 */}
+                  <div className="text-[10px] text-[#595959] mb-0.5 min-w-[36px] shrink-0">
+                    {format(new Date(msg.sentAt), "aa h:mm", { locale: ko })}
+                  </div>
                 </div>
               </div>
             </div>
           );
+          
         })}
 
         {isFetchingPreviousPage && (

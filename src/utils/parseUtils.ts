@@ -31,3 +31,9 @@ export const extractAreaUnit = (address: string): string => {
 
     return address;
   };
+
+  // 카카오 장소 ID 파싱 함수
+  export const extractPlaceId = (kakaoPlaceUrl: string) => {
+    const match = kakaoPlaceUrl.match(/(?:,|\/)(\d{5,})$/);
+    return match ? match[1] : null;
+  }
