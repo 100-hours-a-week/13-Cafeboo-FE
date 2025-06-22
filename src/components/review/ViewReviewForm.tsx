@@ -88,7 +88,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
         
         <h1 className="text-xl font-semibold truncate">{coffeeChatData.title}</h1>
         <HeartButton
-            initiallyLiked={liked}
+            liked={liked}
             likeCount={likeCount}
             onToggle={handleLikeToggle}
           />

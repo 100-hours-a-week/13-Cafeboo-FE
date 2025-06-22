@@ -1,40 +1,32 @@
-import { useState, useEffect, useRef } from "react";
 import { Heart } from "lucide-react";
 import clsx from "clsx";
+import { useRef, useState } from "react";
 import FloatHeart from "./FloatHeart";
 
 interface HeartButtonProps {
-  initiallyLiked?: boolean;
+  liked: boolean;
   likeCount: number;
   onToggle?: (liked: boolean) => void;
 }
 
 export default function HeartButton({
-  initiallyLiked = false,
+  liked,
   likeCount,
   onToggle,
 }: HeartButtonProps) {
-  const [liked, setLiked] = useState(initiallyLiked);
+  const heartRef = useRef<SVGSVGElement | null>(null);
   const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
-  const heartRef = useRef<SVGSVGElement | null>(null); // ✅ 하트 아이콘 참조
-
-  useEffect(() => {
-    setLiked(initiallyLiked);
-  }, [initiallyLiked]);
 
   const handleClick = () => {
     if (heartRef.current) {
       const rect = heartRef.current.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
-      const y = rect.top - 10; // 하트 바로 위에서 시작
-
+      const y = rect.top - 10;
       setCoords({ x, y });
       setTimeout(() => setCoords(null), 500);
     }
 
-    const newLiked = !liked;
-    setLiked(newLiked);
-    if (onToggle) onToggle(newLiked);
+    if (onToggle) onToggle(!liked);
   };
 
   return (
@@ -45,15 +37,15 @@ export default function HeartButton({
           handleClick();
         }}
         className={clsx(
-          "relative flex items-center px-2 py-0.5 rounded-full transition-all duration-200 cursor-pointer",
+          "relative flex items-center px-2 py- rounded-full transition-all duration-200 cursor-pointer",
           liked
             ? "text-red-500 bg-red-50 hover:bg-red-100"
             : "text-gray-400 hover:text-red-400 hover:bg-red-50"
         )}
       >
         <Heart
-          ref={heartRef} // ✅ ref 연결
-          size={17}
+          ref={heartRef}
+          size={16}
           fill={liked ? "currentColor" : "none"}
           className={clsx("transition-transform", {
             "text-red-500": liked,
@@ -67,5 +59,7 @@ export default function HeartButton({
     </>
   );
 }
+
+
 
 

@@ -102,7 +102,7 @@ export const useLikeCoffeeChatReview = (coffeeChatId: string) => {
     () => fetchLikeCoffeeChatReview(coffeeChatId),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["coffeeChatReviews"] });
+        queryClient.invalidateQueries({ queryKey: ["coffeeChatReviews"], exact: false });
         queryClient.invalidateQueries({ queryKey: ["coffeeChatReviewDetail", coffeeChatId] });
       },
     }

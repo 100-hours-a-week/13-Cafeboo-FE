@@ -44,6 +44,11 @@ export default function ReviewCard({ item }: ReviewCardProps) {
   setLikesCount((prev) => prev + (newLiked ? 1 : -1));
 };
 
+useEffect(() => {
+  setLiked(item.liked);
+  setLikesCount(item.likesCount);
+}, [item.liked, item.likesCount]);
+
   return (
     <SectionCard className="!px-2 cursor-pointer" onClick={handleClick}>
       {/* 이미지 영역 */}
@@ -101,7 +106,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
               </div>
 
               <HeartButton
-                initiallyLiked={liked}
+                liked={liked}
                 likeCount={likesCount}
                 onToggle={handleLikeToggle}
               />

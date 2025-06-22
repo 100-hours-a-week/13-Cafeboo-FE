@@ -225,7 +225,7 @@ export default function CoffeeChatDetailPage() {
       </ul>
 
       {/* 하단 액션 */}
-      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
+      <div className="absolute bottom-0 left-0 w-full flex px-0 py-3 bg-white border-t border-gray-300 z-30">
         <img src={Icon} alt="Cafeboo" className="h-12 w-auto mr-4 rounded-lg bg-[#FEF0D7]" />
         {data.isJoined ? (
           <button

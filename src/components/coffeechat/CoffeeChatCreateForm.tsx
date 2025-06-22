@@ -422,7 +422,7 @@ export default function CoffeeChatForm({
         </div>
 
         {/* Create Button */}
-        <div className="px-6">
+        <div className="px-4">
           <button className="w-full py-3 bg-[#FE9400] text-white rounded-lg font-semibold cursor-pointer" onClick={handleSubmit}>
             커피챗 생성하기
           </button>
