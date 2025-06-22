@@ -30,6 +30,8 @@ export default function GroupChatPage() {
   const [memberId, setMemberId] = useState<string | undefined>(state?.memberId);
   const navigate = useNavigate();
   const [input, setInput] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [inputHeight, setInputHeight] = useState(40);
   const { connect, disconnect, sendMessage, stompClient } = useWebSocketStore();
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
 
@@ -128,17 +130,16 @@ export default function GroupChatPage() {
       alert("채팅방 정보를 찾을 수 없습니다.");
       return;
     }
+    const payload = {
+      senderId: memberId,
+      coffeechatId,
+      message: `${membership?.chatNickname}님이 나갔습니다`,
+      type: "LEAVE",
+    };
+
+    sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
     try {
       await leaveChat({ coffeechatId, memberId });
-  
-      const payload = {
-        senderId: memberId,
-        coffeechatId,
-        message: `${membership?.chatNickname}님이 나갔습니다`,
-        type: "LEAVE",
-      };
-  
-      sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
       navigate("/main/coffeechat");
     } catch (err: any) {
       alert(err?.message || "나가기 중 오류가 발생했습니다.");
@@ -160,6 +161,7 @@ export default function GroupChatPage() {
     }
   };
 
+
   const handleSendMessage = () => {
     if (!input.trim() || !coffeechatId || !memberId) return;
     const payload = {
@@ -168,11 +170,14 @@ export default function GroupChatPage() {
       message: input,
       type: "TALK",
     };
-    console.log("💬 [보낸 메시지]", payload);
     sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
     setInput("");
+  
+    // ✅ 높이 초기화
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
   };
-
 
   return (
     <PageLayout
@@ -198,28 +203,49 @@ export default function GroupChatPage() {
           )}
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full h-14 bg-white px-1 py-2 z-10">
-          <div className="flex items-center gap-2 max-w-xl mx-auto">
-            <input
-              type="text"
-              className="flex-1 border border-gray-300 rounded-full px-4 py-1.5 focus:outline-none focus:border-[#FE9400]"
-              placeholder="메시지를 입력하세요"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.nativeEvent.isComposing && input.trim()) {
-                  handleSendMessage();
-                }
-              }}
-            />
+        <div className="absolute bottom-0 left-0 w-full h-auto bg-white px-1 py-2 z-10">
+          <div className="flex items-end max-w-xl mx-auto">
+          <textarea
+            ref={textareaRef}
+            rows={1}
+            value={input}
+            placeholder="메시지를 입력하세요"
+            className="flex-grow min-w-0 resize-none border border-gray-300 px-4 py-2 focus:outline-none focus:border-[#FE9400] transition-all duration-100 overflow-y-auto rounded-3xl scrollbar-hide"
+            style={{ height: inputHeight }}
+            onChange={(e) => {
+              setInput(e.target.value);
+              if (textareaRef.current) {
+                textareaRef.current.style.height = "auto";
+                const scrollHeight = textareaRef.current.scrollHeight;
+                const maxHeight = 60;
+                const newHeight = Math.min(scrollHeight, maxHeight);
+                textareaRef.current.style.height = `${newHeight}px`;
+                setInputHeight(newHeight);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (
+                e.key === "Enter" &&
+                !e.shiftKey &&
+                !e.nativeEvent.isComposing &&
+                input.trim()
+              ) {
+                e.preventDefault();
+                handleSendMessage();
+              }
+            }}
+          />
+
+
             <div
               onClick={handleSendMessage}
-              className="w-9 h-9 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
+              className="ml-2 shrink-0 w-9 h-9 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
             >
               <FaArrowUp className="w-4 h-4" />
             </div>
           </div>
         </div>
+
       </div>
     </PageLayout>
   );

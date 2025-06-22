@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import PageLayout from "@/layout/PageLayout";
 import ChatTab from "@/components/coffeechat/ChatTab";
 import ChatCardList from "@/components/coffeechat/ChatCardList";
@@ -39,7 +39,7 @@ export default function CoffeeChatPage() {
     >
       <ChatTab filter={filter} onChange={setFilter} />
       <ScrollToTop key={filter} selector="main" top={0} />
-      <div className="space-y-4 px-1">
+      <div className="space-y-4">
       {isReviewTab ? (
           <ReviewCardList
           />

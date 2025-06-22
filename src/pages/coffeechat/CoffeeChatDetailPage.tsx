@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
-import { CalendarIcon, Clock, MapPin, User, Users, Crown } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, User, Users, Hash } from "lucide-react";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
@@ -27,8 +27,6 @@ export default function CoffeeChatDetailPage() {
   const { data: members, isLoading: isMembersLoading, isError: isMembersError, error: membersError, refetch: refetchMembers } = useCoffeeChatMembers(id ?? "");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
   const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
-
-  const nonHostMembers = members?.members?.filter((m) => !m.isHost) ?? [];
 
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
@@ -143,16 +141,17 @@ export default function CoffeeChatDetailPage() {
 
         {/* 태그 */}
         {tags?.length > 0 && (
-          <div className="flex gap-2 mb-4">
-            {tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
-              >
-                # {tag}
-              </span>
-            ))}
-          </div>
+          <div className="flex flex-wrap gap-2 mb-4 mt-2">
+          {tags.map((tag: string, index: number) => (
+            <span
+              key={index}
+              className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
+            >
+              <Hash className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
+        </div>
         )}
 
         {/* 설명 */}
@@ -226,7 +225,7 @@ export default function CoffeeChatDetailPage() {
       </ul>
 
       {/* 하단 액션 */}
-      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
+      <div className="absolute bottom-0 left-0 w-full flex px-0 py-3 bg-white border-t border-gray-300 z-30">
         <img src={Icon} alt="Cafeboo" className="h-12 w-auto mr-4 rounded-lg bg-[#FEF0D7]" />
         {data.isJoined ? (
           <button

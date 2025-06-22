@@ -88,7 +88,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
         
         <h1 className="text-xl font-semibold truncate">{coffeeChatData.title}</h1>
         <HeartButton
-            initiallyLiked={liked}
+            liked={liked}
             likeCount={likeCount}
             onToggle={handleLikeToggle}
           />
@@ -111,19 +111,19 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
 
         <h2 className="font-semibold mb-4">정보</h2>
         {/* 시간 / 위치 / 인원 + 하트 버튼 줄 */}
-        <div className="flex items-center justify-between mb-3 text-sm text-gray-500">
+        <div className="flex items-center justify-between mb-3 text-gray-500">
           {/* 왼쪽: 시간 / 위치 / 인원 */}
-          <div className="flex flex-col items-left space-y-3">
+          <div className="flex flex-col items-left space-y-2">
             <div className="flex items-center space-x-3">
-              <CalendarIcon className="w-3.5 h-3.5" />
+              <CalendarIcon className="w-4 h-4" />
               <span className='text-black'>{coffeeChatData.date}</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Clock className="w-3.5 h-3.5" />
+              <Clock className="w-4 h-4" />
               <span className='text-black'>{coffeeChatData.time}</span>
             </div>
             <div className="flex items-center space-x-3">
-              <MapPin  className="w-3.5 h-3.5" />
+              <MapPin  className="w-4 h-4" />
               <span className='text-black'>{coffeeChatData.address}</span>
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
       <hr className="border-gray-200 my-4" />
 
 
-      <h2 className="font-semibold mb-4">참여자 목록 ({membersData?.totalMemberCounts})</h2>
+      <h2 className="font-semibold mb-4">멤버 ({membersData?.totalMemberCounts})</h2>
       <ul className="space-y-3">
       {membersData?.members.map((member) => (
         <li
