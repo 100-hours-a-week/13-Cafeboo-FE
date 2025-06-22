@@ -89,6 +89,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
                     key={member.memberId}
                     src={member.profileImageUrl}
                     alt={member.chatNickname}
+                    loading="lazy"
                     className="w-6 h-6 rounded-full border border-white bg-gray-200"
                   />
                 ))}

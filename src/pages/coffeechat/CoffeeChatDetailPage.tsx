@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
-import { CalendarIcon, Clock, MapPin, User, Users, Crown } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, User, Users, Hash } from "lucide-react";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
@@ -143,16 +143,17 @@ export default function CoffeeChatDetailPage() {
 
         {/* 태그 */}
         {tags?.length > 0 && (
-          <div className="flex gap-2 mb-4">
-            {tags.map((tag, idx) => (
-              <span
-                key={idx}
-                className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
-              >
-                # {tag}
-              </span>
-            ))}
-          </div>
+          <div className="flex flex-wrap gap-2 mb-4 mt-2">
+          {tags.map((tag: string, index: number) => (
+            <span
+              key={index}
+              className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
+            >
+              <Hash className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
+        </div>
         )}
 
         {/* 설명 */}
