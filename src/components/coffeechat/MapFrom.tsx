@@ -21,6 +21,23 @@ export default function MapForm({ location }: Props) {
     libraries: ['services'],
   });
 
+  const handleOpenKakaoMap = () => {
+    const kakaoWebUrl = `https://map.kakao.com/link/to/${placeId}`;
+    const kakaoAppUrl = `kakaomap://route?ep=${latitude},${longitude}`;
+  
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  
+    if (isMobile) {
+      window.location.href = kakaoAppUrl;
+  
+      setTimeout(() => {
+        window.location.href = kakaoWebUrl;
+      }, 1500);
+    } else {
+      window.open(kakaoWebUrl, "_blank");
+    }
+  };
+
   useEffect(() => {
     if (loading || !window.kakao) return;
 
@@ -48,12 +65,12 @@ export default function MapForm({ location }: Props) {
     <div className="relative w-full h-full">
       <div id="map" className="w-full h-full" />
       <div className="fixed bottom-0 left-0 w-full p-6 bg-white shadow-md z-100">
-        <button
-          onClick={() => window.open(`https://map.kakao.com/link/to/${placeId}`, "_blank")}
-          className="w-full py-3 bg-[#FE9400] text-white rounded-lg cursor-pointer"
-        >
-          Kakao Map으로 길찾기
-        </button>
+      <button
+        onClick={handleOpenKakaoMap}
+        className="w-full py-3 bg-[#FE9400] text-white rounded-lg cursor-pointer"
+      >
+        Kakao Map으로 길찾기
+      </button>
       </div>
     </div>
   );

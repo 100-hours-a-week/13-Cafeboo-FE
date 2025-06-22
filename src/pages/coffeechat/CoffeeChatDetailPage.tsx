@@ -28,8 +28,6 @@ export default function CoffeeChatDetailPage() {
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
   const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
 
-  const nonHostMembers = members?.members?.filter((m) => !m.isHost) ?? [];
-
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
