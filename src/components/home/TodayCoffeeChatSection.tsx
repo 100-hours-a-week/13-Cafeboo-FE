@@ -34,11 +34,11 @@ export default function TodayCoffeeChatSection() {
             <SectionCard
                 key={room.coffeeChatId}
                 onClick={() => navigate(`/main/coffeechat/${room.coffeeChatId}`)}
-                className="!w-[200px] flex-shrink-0 cursor-pointer mr-3 px-3 py-2"
+                className="!w-[190px] flex-shrink-0 cursor-pointer mr-3 px-2 py-2"
                 >
                 <div className="flex items-center gap-3">
                     {/* 왼쪽 아이콘 영역 */}
-                    <div className="flex items-center justify-center w-16 h-16 rounded-md overflow-hidden bg-gray-50">
+                    <div className="flex items-center justify-center w-15 h-15 rounded-md overflow-hidden">
                     <img
                         src={Icon}
                         alt="preview"
