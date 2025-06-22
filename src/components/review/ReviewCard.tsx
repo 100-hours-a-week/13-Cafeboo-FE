@@ -50,7 +50,7 @@ useEffect(() => {
 }, [item.liked, item.likesCount]);
 
   return (
-    <SectionCard className="!px-2 cursor-pointer" onClick={handleClick}>
+    <SectionCard className="!px-2 cursor-pointer !border-gray-200" onClick={handleClick}>
       {/* 이미지 영역 */}
       <div className="mb-3">
         <div className="w-32 h-32 mx-auto rounded-2xl relative overflow-hidden">

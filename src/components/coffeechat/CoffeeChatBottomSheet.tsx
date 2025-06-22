@@ -2,6 +2,7 @@ import { useCreateCoffeeChat } from '@/api/coffeechat/coffeechatApi';
 import type { CreateCoffeeChatRequestDTO } from '@/api/coffeechat/coffeechat.dto';
 import FullPageSheet from '@/components/common/FullPageBottomSheet';
 import CoffeeChatForm from '@/components/coffeechat/CoffeeChatCreateForm';
+import { useToastStore } from '@/stores/toastStore'; 
 
 interface Props {
     open: boolean;
@@ -10,14 +11,15 @@ interface Props {
 
 export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
   const { mutateAsyncFn, isLoading } = useCreateCoffeeChat();
+  const { showToast } = useToastStore();
 
   const handleFormSubmit = async (payload: CreateCoffeeChatRequestDTO) => {
     try {
       await mutateAsyncFn(payload);
-      alert('커피챗이 생성되었습니다!');
+      showToast('success', '커피챗이 생성되었습니다!');
       onClose();
     } catch (error: any) {
-      console.log(error.message || '생성에 실패했습니다.');
+      showToast('error', error?.message || '생성에 실패했습니다.'); 
     }
   };
 

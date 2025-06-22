@@ -3,10 +3,9 @@ import './index.css';
 import Logo from '@/assets/logo.svg';
 import Icon from '@/assets/cute_coffee_favicon_128.ico'
 import BG from '@/assets/background.png'
-import { Toaster } from '@/components/ui/sonner'; 
+import CustomToast from '@/components/common/CustomToast';
 
 function App() {
-
   return (
     <div
       className="min-h-screen flex items-center justify-start"
@@ -32,17 +31,7 @@ function App() {
             className="relative w-screen w-full h-screen max-w-sm bg-white px-6 scrollbar-hide overflow-hidden"
           >
           <Routes />
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              duration: 2000,
-              style: {
-                background: 'linear-gradient(90deg, #4A5B71 0%, #5E6F89 100%)',
-                padding: '15px 18px',
-                color: 'white',
-              },
-            }}
-          />
+          <CustomToast />
         </div>
       </div>
     </div>

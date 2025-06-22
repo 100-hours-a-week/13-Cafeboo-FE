@@ -4,6 +4,7 @@ import { Camera, X, Clock, MapPin, Users, Edit, Hash } from 'lucide-react';
 import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useCoffeeChatMembership } from '@/api/coffeechat/coffeechatMemberApi';
 import { useWriteCoffeeChatReview } from '@/api/coffeechat/coffeechatReviewApi';
+import { useToastStore } from '@/stores/toastStore'; 
 
 interface UploadedImage {
   id: string;
@@ -20,6 +21,7 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
   const [content, setContent] = useState<string>('');
   const [images, setImages] = useState<UploadedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const showToast = useToastStore((state) => state.showToast);
   const maxLength = 150;
   const {
     data: chatDetail,
@@ -90,20 +92,21 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
 
   const handleSubmit = async () => {
     if (!content.trim() && images.length === 0) {
-      alert('내용을 입력하거나 사진을 추가해주세요.');
+      showToast("error", "내용을 입력하거나 사진을 추가해주세요.");
       return;
     }
-    console.log(images);
+
     try {
       await mutateAsyncFn({
         memberId: membership.memberId!,
         text: content.trim(),
         images: images.map((img) => img.file),
       });
-      alert('후기 작성이 완료되었습니다.');
+      showToast("success", "후기 작성이 완료되었습니다.");
       navigate('/main/coffeechat');
     } catch (error) {
       console.error("후기 작성 실패:", submitError?.message);
+      showToast("error", "후기 작성에 실패했습니다.");
     }
   };
 

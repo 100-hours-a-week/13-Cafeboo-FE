@@ -16,6 +16,7 @@ import AlertModal from '@/components/common/AlertModal';
 import { Info, AlertTriangle } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
 import SectionCard from '@/components/common/SectionCard';
+import TodayCoffeeChatSection from '@/components/home/TodayCoffeeChatSection';
 
 export default function HomePage() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -99,6 +100,8 @@ export default function HomePage() {
             />
           )}
         </SectionCard>
+
+        <TodayCoffeeChatSection />
 
         {/* 카페인 추가 버튼 */}
         <button
