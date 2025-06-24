@@ -23,6 +23,8 @@ body {
   display: block !important;
   place-items: unset !important;
   overscroll-behavior: none;
+  overflow: hidden;
+  position: fixed;
   margin: 0;
 
   padding: 0;
