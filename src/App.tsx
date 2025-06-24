@@ -34,7 +34,7 @@ function App() {
       <div className="relative z-10 w-full h-full max-w-sm mx-auto lg:ml-128 xl:ml-192 2xl:ml-272">
         <div
           id="alert-modal-container"
-          className="relative w-full h-full bg-white px-6 overflow-hidden scrollbar-hide"
+          className="relative w-full h-full bg-white px-4 overflow-hidden scrollbar-hide"
         >
           <Routes />
           <CustomToast />

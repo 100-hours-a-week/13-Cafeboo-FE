@@ -54,7 +54,7 @@ const Header = ({
   return (
     <>
       <header className="absolute max-w-md top-0 left-0 h-14 z-30 bg-white w-full mx-auto">
-        <div className="w-full mx-auto px-6 h-full flex items-center justify-between">
+        <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
           {/* 왼쪽: 로고 또는 뒤로가기 */}
           {mode === 'title' ? (
             <button
