@@ -109,17 +109,24 @@ export default function GroupChatPage() {
     }
 
     console.log(`Attempting to subscribe to /topic/chatrooms/${coffeechatId}`);
-    const subscription = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
+    const chatSub = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
       const chatMsg: ChatMessage = JSON.parse(msg.body);
       console.log("💬 [받은 메시지]", chatMsg);
       setRealtimeMessages((prev) => [...prev, chatMsg]);
     });
 
     console.log("📡 [구독 완료]");
+    // ❗ 오류 메시지 수신
+    const errorSub = stompClient.subscribe(`/user/queue/errors`, (msg: IMessage) => {
+      console.log(msg.body);
+      const errorMsg = msg.body;
+      console.warn("⚠️ STOMP Error Message:", errorMsg);
+      alert(`오류: ${errorMsg}`); 
+    });
 
     return () => {
-      console.log("📡 [구독 해제]");
-      subscription.unsubscribe();
+      chatSub.unsubscribe();
+      errorSub.unsubscribe();
     };
   }, [stompClient, coffeechatId, connectionStatus]);
 
