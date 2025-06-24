@@ -2,9 +2,8 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { useInfiniteCoffeeChatMessages } from "@/api/coffeechat/coffeechatMessageApi";
 import { CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
 import type { ChatMessage } from "@/api/coffeechat/coffeechat.dto";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { formatTimeToKorean } from "@/utils/formatUtils";
 
 interface ChatMessagesProps {
   coffeeChatId: string;
@@ -163,6 +162,8 @@ export default function ChatMessages({
                   src={msg.sender.profileImageUrl}
                   alt={msg.sender.chatNickname}
                   className="w-8 h-8 rounded-full mr-2"
+                  loading="eager" 
+                  decoding="async"
                 />
               )}
           
@@ -187,7 +188,7 @@ export default function ChatMessages({
           
                   {/* 시간 */}
                   <div className="text-[10px] text-[#595959] mb-0.5 min-w-[36px] shrink-0">
-                    {format(new Date(msg.sentAt), "aa h:mm", { locale: ko })}
+                      {formatTimeToKorean(msg.sentAt)}
                   </div>
                 </div>
               </div>

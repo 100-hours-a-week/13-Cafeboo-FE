@@ -137,13 +137,14 @@ export default function GroupChatPage() {
       type: "LEAVE",
     };
 
-    sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
-    try {
-      await leaveChat({ coffeechatId, memberId });
-      navigate("/main/coffeechat");
-    } catch (err: any) {
-      alert(err?.message || "나가기 중 오류가 발생했습니다.");
-    }
+    sendMessage(`/app/chatrooms/${coffeechatId}`, payload, async () => {
+      try {
+        await leaveChat({ coffeechatId, memberId });
+        navigate("/main/coffeechat");
+      } catch (err: any) {
+        alert(err?.message || "나가기 중 오류가 발생했습니다.");
+      }
+    });
   };
 
   // 커피챗 삭제하기

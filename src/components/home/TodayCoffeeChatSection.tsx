@@ -1,5 +1,3 @@
-// components/home/TodayCoffeeChatSection.tsx
-
 import { useNavigate } from "react-router-dom";
 import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
 import HorizontalScroller from "@/components/common/HorizontalScroller";
@@ -26,7 +24,7 @@ export default function TodayCoffeeChatSection() {
       </div>
 
       {/* 카드 스크롤 영역 */}
-      <HorizontalScroller className="px-1">
+      <HorizontalScroller className="px-1 justify-start">
         {rooms.length === 0 ? (
           <div className="text-sm text-gray-500">오늘의 커피챗이 없습니다.</div>
         ) : (
@@ -34,7 +32,7 @@ export default function TodayCoffeeChatSection() {
             <SectionCard
                 key={room.coffeeChatId}
                 onClick={() => navigate(`/main/coffeechat/${room.coffeeChatId}`)}
-                className="!w-[190px] flex-shrink-0 cursor-pointer mr-3 px-2 py-2"
+                className="!w-[190px] flex-shrink-0 cursor-pointer mr-3 px-2 py-2 !ml-0"
                 >
                 <div className="flex items-center gap-3">
                     {/* 왼쪽 아이콘 영역 */}

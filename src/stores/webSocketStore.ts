@@ -21,7 +21,7 @@ interface WebSocketState {
   // 액션 함수들
   connect: (coffeechatId: string, onConnected?: () => void) => void;
   disconnect: () => void;
-  sendMessage: (destination: string, payload: any) => void; // 메시지 전송 함수
+  sendMessage: (destination: string, payload: any, onSent?: () => void) => void;
   addMessage: (message: ChatMessage) => void; // 메시지 추가 함수
   clearMessages: () => void; // 메시지 초기화 함수
 }
@@ -104,7 +104,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     }
   },
 
-  sendMessage: (destination: string, payload: any) => {
+  sendMessage: (destination: string, payload: any, onSent?: () => void) => {
     const { stompClient, isConnected } = get();
     if (!stompClient || !isConnected || !stompClient.connected) {
       console.warn('❌ Zustand: Cannot send message — WebSocket not connected.');
@@ -115,6 +115,12 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       destination,
       body: JSON.stringify(payload),
     });
+  
+    if (onSent) {
+      setTimeout(() => {
+        onSent();
+      }, 200); 
+    }
   },
 
   addMessage: (message: ChatMessage) => {
