@@ -110,7 +110,7 @@ export default function FABContainer({
         return (
           <div
             key={btn.key}
-            className="absolute right-5 z-15"
+            className="fixed lg:absolute right-5 z-15"
             style={{ bottom: `${spacing}px` }}
           >
             {btn.element}
