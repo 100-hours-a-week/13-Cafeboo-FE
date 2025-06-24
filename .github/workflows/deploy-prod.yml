@@ -16,12 +16,12 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          credentials_json: '${{ secrets.GCP_SA_KEY_2 }}'
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: elevated-valve-459107-h8
+          project_id: master-isotope-462503-m9
           version: latest
 
       - name: Install pnpm
@@ -36,11 +36,12 @@ jobs:
         run: |
           VITE_API_BASE_URL="${{ secrets.VITE_API_BASE_URL_PROD }}" \
           VITE_REST_API_KEY="${{ secrets.VITE_REST_API_KEY }}" \
+          VITE_KAKAO_MAP_KEY="${{ secrets.VITE_KAKAO_MAP_KEY }}" \
           pnpm run build
 
       - name: Upload to GCP Cloud Storage (PROD)
         run: |
-          gsutil -m rsync -r ./dist gs://frontend-cafeboo-prod
+          gsutil -m rsync -r ./dist gs://v2-prod-frontend-bucket
 
       - name: Invalidate CDN cache
         run: |
