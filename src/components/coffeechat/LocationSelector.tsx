@@ -193,20 +193,28 @@ export default function LocationSelector({ value, onChange }: Props) {
   return (
     <div className="relative h-[400px] rounded overflow-hidden">
       <div className="absolute top-4 left-4 right-4 z-10">
-        <div className="flex gap-2 bg-white rounded shadow-lg px-3 py-2">
-          <input
-            value={keyword}
-            onChange={handleSearchInputChange}
-            placeholder="장소 검색"
-            className="flex-1 outline-none text-sm"
-          />
-          <button
-            onClick={handleSearchClick}
-            className="text-[#FE9400] font-semibold text-sm cursor-pointer"
-          >
-            검색
-          </button>
-        </div>
+      <form
+  onSubmit={(e) => {
+    e.preventDefault();
+    handleSearchClick();
+  }}
+  className="relative w-full max-w-xs"
+>
+  <input
+    type="search"
+    value={keyword}
+    onChange={handleSearchInputChange}
+    placeholder="장소 검색"
+    className="w-full pl-3 pr-14 py-2 text-sm rounded shadow bg-white outline-none"
+  />
+  <button
+    type="submit"
+    className="absolute right-2 top-1/2 -translate-y-1/2 text-[#FE9400] font-semibold text-sm min-w-[40px]"
+  >
+    검색
+  </button>
+</form>
+
 
         {showList && places.length > 0 && (
           <ul

@@ -28,7 +28,7 @@ function App() {
       <div className="mx-auto lg:ml-128 xl:ml-192 2xl:ml-272">
         <div
             id="alert-modal-container" 
-            className="relative w-screen w-full h-screen max-w-sm bg-white px-6 scrollbar-hide overflow-hidden"
+            className="relative w-screen w-full h-[100dvh] max-w-sm bg-white px-6 scrollbar-hide overflow-hidden"
           >
           <Routes />
           <CustomToast />

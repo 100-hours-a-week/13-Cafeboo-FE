@@ -106,7 +106,7 @@ export default function HomePage() {
         {/* 카페인 추가 버튼 */}
         <button
           className="
-          fixed lg:absolute bottom-6
+          absolute bottom-6
           left-1/2 transform -translate-x-1/2
           w-40 h-12
           rounded-full
