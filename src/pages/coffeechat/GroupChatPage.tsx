@@ -8,6 +8,8 @@ import { useDeleteCoffeeChat } from "@/api/coffeechat/coffeechatApi";
 import { useCoffeeChatMembers, useCoffeeChatMembership, useLeaveCoffeeChat } from "@/api/coffeechat/coffeechatMemberApi";
 import ChatMessages from "@/components/coffeechat/ChatMessages";
 import { useQueryClient } from "@tanstack/react-query";
+import RetryButton from "@/components/coffeechat/RetryButton";
+import { ChevronLeft } from "lucide-react";
 
 interface Sender {
   memberId: string;
@@ -32,7 +34,8 @@ export default function GroupChatPage() {
   const [input, setInput] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [inputHeight, setInputHeight] = useState(40);
-  const { connect, disconnect, sendMessage, stompClient } = useWebSocketStore();
+  const [isSpinning, setIsSpinning] = useState(false);
+  const { connect, disconnect, sendMessage, stompClient, error, retryConnect } = useWebSocketStore();
   const [connectionStatus, setConnectionStatus] = useState<"connecting" | "connected" | "disconnected">("disconnected");
 
   const { data: membership, refetch: refetchMembership } = useCoffeeChatMembership(coffeechatId ?? "");
@@ -104,29 +107,16 @@ export default function GroupChatPage() {
 
   useEffect(() => {
     if (!stompClient || !coffeechatId || connectionStatus !== "connected") {
-      console.log("Subscription skipped. stompClient:", !!stompClient, "coffeechatId:", !!coffeechatId, "connectionStatus:", connectionStatus);
       return;
     }
 
-    console.log(`Attempting to subscribe to /topic/chatrooms/${coffeechatId}`);
     const chatSub = stompClient.subscribe(`/topic/chatrooms/${coffeechatId}`, (msg: IMessage) => {
       const chatMsg: ChatMessage = JSON.parse(msg.body);
-      console.log("💬 [받은 메시지]", chatMsg);
       setRealtimeMessages((prev) => [...prev, chatMsg]);
-    });
-
-    console.log("📡 [구독 완료]");
-    // ❗ 오류 메시지 수신
-    const errorSub = stompClient.subscribe(`/user/queue/errors`, (msg: IMessage) => {
-      console.log(msg.body);
-      const errorMsg = msg.body;
-      console.warn("⚠️ STOMP Error Message:", errorMsg);
-      alert(`오류: ${errorMsg}`); 
     });
 
     return () => {
       chatSub.unsubscribe();
-      errorSub.unsubscribe();
     };
   }, [stompClient, coffeechatId, connectionStatus]);
 
@@ -188,6 +178,26 @@ export default function GroupChatPage() {
   };
 
   return (
+    <>
+    {error && (
+      <>
+      <div className="absolute top-0 left-0 w-full bg-blue-500 opacity-90 text-white text-sm py-2 px-4 z-100 flex justify-between items-center">
+        <span>웹소켓 연결 상태를 확인 후 다시 시도해주세요</span>
+        <RetryButton onRetry={retryConnect} />
+      </div>
+        <div className="absolute bottom-16 left-8 w-full flex z-100">
+        <button
+          onClick={() => navigate(-1)}
+          className="pl-2 pr-3 py-1 bg-white text-gray-500 border border-gray-300 text-sm rounded-full shadow hover:bg-gray-100 transition-all"
+        >
+          <div className="flex items-center">
+            <ChevronLeft className="w-3 h-3 mr-1"/>
+            뒤로가기
+          </div>
+        </button>
+      </div>
+      </>
+    )}
     <PageLayout
       headerMode="title"
       headerTitle="그룹 채팅방"
@@ -200,6 +210,7 @@ export default function GroupChatPage() {
       nonScrollClassName={true}
       mainClassName="h-[calc(100dvh-4rem)]"
     >
+    
       <div className="flex-1 h-full relative">
         <div className="absolute inset-0 top-0 bottom-14 p-2 bg-gray-50">
           {coffeechatId && memberId && (
@@ -247,15 +258,16 @@ export default function GroupChatPage() {
 
             <div
               onClick={handleSendMessage}
-              className="ml-2 shrink-0 w-9 h-9 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
+              className="ml-2 shrink-0 w-10 h-10 bg-[#FE9400] text-white flex items-center justify-center rounded-full hover:bg-[#FE9400]/80 cursor-pointer"
             >
-              <FaArrowUp className="w-4 h-4" />
+              <FaArrowUp className="w-5 h-5" />
             </div>
           </div>
         </div>
 
       </div>
     </PageLayout>
+    </>
   );
 }
 

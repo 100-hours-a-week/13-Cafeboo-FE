@@ -1,41 +1,41 @@
 import { create } from 'zustand';
 import SockJS from 'sockjs-client';
 import { Client, IMessage } from '@stomp/stompjs';
+import { useToastStore } from '@/stores/toastStore';
 
-// 채팅 메시지 타입 (필요한 경우 사용)
 interface ChatMessage {
   messageId: string;
   messageType?: "TALK" | "JOIN" | "LEAVE";
   content: string | null;
   sentAt: string;
-  sender: { memberId: string; chatNickname: string; profileImageUrl: string; };
+  sender: { memberId: string; chatNickname: string; profileImageUrl: string };
 }
 
-// WebSocket 스토어의 상태 타입 정의
 interface WebSocketState {
   stompClient: Client | null;
   isConnected: boolean;
-  messages: ChatMessage[]; // 전역에서 채팅 메시지를 관리할 수도 있습니다.
+  error: string | null;
+  messages: ChatMessage[];
   currentCoffeechatId: string | null;
 
-  // 액션 함수들
   connect: (coffeechatId: string, onConnected?: () => void) => void;
   disconnect: () => void;
+  retryConnect: () => void;
   sendMessage: (destination: string, payload: any, onSent?: () => void) => void;
-  addMessage: (message: ChatMessage) => void; // 메시지 추가 함수
-  clearMessages: () => void; // 메시지 초기화 함수
+  addMessage: (message: ChatMessage) => void;
+  clearMessages: () => void;
 }
 
 export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   stompClient: null,
   isConnected: false,
+  error: null,
   messages: [],
-  currentCoffeechatId: null, // 현재 연결된 커피챗 ID
+  currentCoffeechatId: null,
 
   connect: (coffeechatId: string, onConnected?: () => void) => {
     const { stompClient, isConnected, currentCoffeechatId } = get();
 
-    // 이미 연결 중이고 같은 커피챗 ID면 다시 연결하지 않음
     if (
       isConnected &&
       currentCoffeechatId === coffeechatId &&
@@ -43,53 +43,79 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       stompClient.connected
     ) {
       console.log('Zustand: Already connected to this coffeechat.');
-      set({ isConnected: true });
+      set({ isConnected: true, error: null });
       return;
     }
 
-    // 기존 연결이 있다면 해제
     if (stompClient?.connected) {
       console.log('Zustand: Disconnecting previous connection to connect to new coffeechat.');
       stompClient.deactivate();
       set({ isConnected: false, stompClient: null, currentCoffeechatId: null });
     }
 
-    set({ currentCoffeechatId: coffeechatId, messages: [] });
-    console.log(`Zustand: Attempting to connect to WebSocket for coffeechat ${coffeechatId}...`);
-
-    const socket = new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`); // 또는 '/ws'
+    set({ currentCoffeechatId: coffeechatId, messages: [], error: null });
 
     const client = new Client({
       webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`),
       reconnectDelay: 5000,
       heartbeatIncoming: 0,
       heartbeatOutgoing: 10000,
-      debug: (str) => {
-        if (!str.includes(">>>")) {
-          console.log(new Date(), str);
-        }
-      },
 
       onConnect: (frame) => {
-        console.log('Zustand: Connected: ' + frame);
-        set({ isConnected: true, stompClient: client });
-        if (onConnected) onConnected(); 
+        set({ isConnected: true, stompClient: client, error: null });
+        const toastStore = useToastStore;
+        client.subscribe('/user/queue/errors', (msg: IMessage) => {
+          console.warn("⚠️ Zustand STOMP Error:", msg.body);
+          toastStore.getState().showToast(
+            "error",
+            "부적절한 표현이 감지되어 메시지를 전송할 수 없습니다."
+          );
+        });
+
+        if (onConnected) onConnected();
       },
+
       onStompError: (frame) => {
         console.error('Zustand: STOMP Error:', frame);
-        set({ isConnected: false, stompClient: null });
+        set({
+          isConnected: false,
+          stompClient: null,
+          error: 'STOMP 연결 오류가 발생했습니다.',
+        });
       },
+
       onWebSocketError: (event) => {
         console.error('Zustand: WebSocket Error:', event);
-        set({ isConnected: false, stompClient: null });
+        set({
+          isConnected: false,
+          stompClient: null,
+          error: '서버와의 연결이 끊어졌습니다.',
+        });
       },
+
       onDisconnect: (frame) => {
         console.log('Zustand: Disconnected:', frame);
-        set({ isConnected: false, stompClient: null, currentCoffeechatId: null });
-      }
+        set({
+          isConnected: false,
+          stompClient: null,
+          currentCoffeechatId: null,
+          error: 'WebSocket 연결이 끊어졌습니다.',
+        });
+      },
     });
 
-    client.activate(); // 연결 시작
+    // ✅ 직접 연결 종료도 감지
+    client.onWebSocketClose = (event) => {
+      console.warn("Zustand: WebSocket closed", event);
+      set({
+        isConnected: false,
+        stompClient: null,
+        currentCoffeechatId: null,
+        error: 'WebSocket 연결이 닫혔습니다.',
+      });
+    };
+
+    client.activate();
   },
 
   disconnect: () => {
@@ -97,10 +123,22 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     if (stompClient?.connected) {
       console.log('Zustand: Manual Disconnect initiated.');
       stompClient.deactivate();
-      // deactivate()가 호출되면 onDisconnect 콜백이 실행되어 isConnected 상태가 업데이트됩니다.
+      set({
+        isConnected: false,
+        stompClient: null,
+        currentCoffeechatId: null,
+        error: 'WebSocket 연결이 종료되었습니다.', 
+      });
     } else {
       console.log('Zustand: Not connected, no need to disconnect.');
-      stompClient?.activate();
+    }
+  },
+
+  retryConnect: () => {
+    const { currentCoffeechatId } = get();
+    if (currentCoffeechatId) {
+      console.log('Zustand: Retrying connection...');
+      get().connect(currentCoffeechatId);
     }
   },
 
@@ -110,26 +148,28 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       console.warn('❌ Zustand: Cannot send message — WebSocket not connected.');
       return;
     }
-  
+
     stompClient.publish({
       destination,
       body: JSON.stringify(payload),
     });
-  
+
     if (onSent) {
       setTimeout(() => {
         onSent();
-      }, 200); 
+      }, 200);
     }
   },
 
   addMessage: (message: ChatMessage) => {
     set((state) => ({
-      messages: [...state.messages, message]
+      messages: [...state.messages, message],
     }));
   },
 
   clearMessages: () => {
     set({ messages: [] });
-  }
+  },
 }));
+
+

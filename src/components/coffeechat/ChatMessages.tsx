@@ -145,7 +145,7 @@ export default function ChatMessages({
 
           if (isSystem) {
             return (
-              <div key={msg.messageId} className="text-center text-sm text-gray-400">
+              <div key={msg.messageId} className="text-center text-sm text-gray-400 underline decoration-gray-300">
                 {msg.content}
               </div>
             );
