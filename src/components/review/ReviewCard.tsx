@@ -88,7 +88,7 @@ useEffect(() => {
             <span className="text-red-400 text-xs">에러</span>
           ) : (
             <>
-              <div className="flex items-center -space-x-2">
+              <div className="flex items-center -space-x-2.5">
                 {membersData?.members.slice(0, 2).map((member: any) => (
                   <img
                     key={member.memberId}

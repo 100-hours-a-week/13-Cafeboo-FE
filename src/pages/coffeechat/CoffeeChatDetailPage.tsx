@@ -165,7 +165,7 @@ export default function CoffeeChatDetailPage() {
 
         <div className="font-semibold leading-tight">정보</div>
 
-        <div className="flex flex-col items-left space-y-2">
+        <div className="flex flex-col items-left space-y-1.5">
           <div className="flex items-center space-x-3">
             <CalendarIcon className="w-4 h-4 text-gray-500" />
             <span>{date}</span>

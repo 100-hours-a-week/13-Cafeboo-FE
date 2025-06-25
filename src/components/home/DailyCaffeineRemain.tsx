@@ -22,13 +22,29 @@ export default function DailyCaffeineRemain({
 }: DailyCaffeineRemainProps) {
   const data = caffeineByHour;
 
+  // 현재 시간 → 가장 가까운 정각 계산
   const now = new Date();
   const nowHour = now.getHours();
   const nowMinute = now.getMinutes();
   const roundedHour = nowMinute >= 30 ? nowHour + 1 : nowHour;
   const nowTimeStr = `${(roundedHour % 24).toString().padStart(2, '0')}:00`;
-  const nowIndex = data.findIndex((d) => d.time === nowTimeStr);
-  const scrollIndex = Math.max(0, nowIndex - 1); // 1시간 전
+
+  // 중복 시각 있을 경우 중심에 가까운 인덱스를 찾기
+  const centerIndex = Math.floor(data.length / 2);
+  const allNowIndices = data
+    .map((d, i) => (d.time === nowTimeStr ? i : -1))
+    .filter((i) => i !== -1);
+
+  const nowIndex =
+    allNowIndices.length > 0
+      ? allNowIndices.reduce((closest, idx) => {
+          return Math.abs(idx - centerIndex) < Math.abs(closest - centerIndex)
+            ? idx
+            : closest;
+        }, allNowIndices[0])
+      : -1;
+
+  const scrollIndex = Math.max(0, nowIndex - 1);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [nowX, setNowX] = useState<number | null>(null);
@@ -47,13 +63,13 @@ export default function DailyCaffeineRemain({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (containerRef.current) {
+      if (containerRef.current && scrollIndex >= 0) {
         const scrollX = scrollIndex * (BAR_WIDTH + BAR_GAP);
         containerRef.current.scrollTo({ left: scrollX, behavior: 'smooth' });
       }
 
       if (nowIndex >= 0) {
-        const x = nowIndex * (BAR_WIDTH + BAR_GAP) + BAR_WIDTH;
+        const x = nowIndex * (BAR_WIDTH + BAR_GAP);
         setNowX(x);
       }
     }, 100);
@@ -73,7 +89,6 @@ export default function DailyCaffeineRemain({
     sleepSensitiveThreshold,
     ...caffeineByHour.map((d) => d.caffeineMg)
   );
-
   const tickCount = Math.ceil(maxRemaining / 100) + 1;
   const ticks = Array.from({ length: tickCount }, (_, i) => i * 100);
 
@@ -100,7 +115,7 @@ export default function DailyCaffeineRemain({
         </ResponsiveContainer>
       </div>
 
-      {/* 스크롤 가능한 차트 */}
+      {/* 스크롤 차트 */}
       <div className="flex-1 overflow-x-auto scrollbar-hide">
         <HorizontalScroller ref={containerRef}>
           <div
@@ -144,20 +159,7 @@ export default function DailyCaffeineRemain({
             {/* Now 마커 */}
             {nowX !== null && (
               <div
-                className="
-                  absolute 
-                  bottom-[-5px] 
-                  translate-x-[-50%] translate-y-[-24px] 
-                  bg-gray-200 
-                  rounded-full 
-                  px-2 py-[1px]
-                  text-[10px] 
-                  font-semibold 
-                  text-[#595959]
-                  shadow-[0_0_0_2px_rgba(255,255,255,0.7)]
-                  z-10
-                  transform
-                "
+                className="absolute bottom-[-5px] translate-x-[-50%] translate-y-[-24px] bg-gray-200 rounded-full px-2 py-[1px] text-[10px] font-semibold text-[#595959] shadow-[0_0_0_2px_rgba(255,255,255,0.7)] z-10 transform"
                 style={{ left: `${nowX + BAR_WIDTH / 2}px` }}
               >
                 Now
@@ -169,6 +171,7 @@ export default function DailyCaffeineRemain({
     </div>
   );
 }
+
 
 
 

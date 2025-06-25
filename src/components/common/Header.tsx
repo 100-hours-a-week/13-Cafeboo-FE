@@ -64,7 +64,7 @@ const Header = ({
               <ChevronLeft className="w-6 h-6 cursor-pointer" style={{ color: textColor }} />
             </button>
           ) : (
-            <div className="w-full h-full flex items-center" onClick={goHome}>
+            <div className="h-full flex items-center" onClick={goHome}>
               <img src={Logo} alt="Cafeboo" className="h-8 w-auto cursor-pointer"/>
             </div>
           )}

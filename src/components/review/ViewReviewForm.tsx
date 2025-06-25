@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ViewReviewForm({ coffeeChatId }: Props) {
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const {
     data: coffeeChatData,
@@ -67,7 +67,8 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
             <img 
               src={url} 
               alt={`후기 이미지 ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover cursor-pointer"
+              onClick={() => setSelectedImage(url)}
               onError={(e) => {
                 // 이미지 로드 실패시 플레이스홀더 표시
                 const target = e.target as HTMLImageElement;
@@ -113,7 +114,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
         {/* 시간 / 위치 / 인원 + 하트 버튼 줄 */}
         <div className="flex items-center justify-between mb-3 text-gray-500">
           {/* 왼쪽: 시간 / 위치 / 인원 */}
-          <div className="flex flex-col items-left space-y-2">
+          <div className="flex flex-col items-left space-y-1.5">
             <div className="flex items-center space-x-3">
               <CalendarIcon className="w-4 h-4" />
               <span className='text-black'>{coffeeChatData.date}</span>
@@ -133,7 +134,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
       <hr className="border-gray-200 my-4" />
 
 
-      <h2 className="font-semibold mb-4">멤버 ({membersData?.totalMemberCounts})</h2>
+      <h2 className="font-semibold mb-4">멤버</h2>
       <ul className="space-y-3">
       {membersData?.members.map((member) => (
         <li
@@ -178,7 +179,7 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
               {renderImages(review.imageUrls)}
               
               {/* 후기 내용 */}
-              <p className="text-sm text-[#333333] mb-3">{review.text}</p>
+              <p className="text-sm text-[#333333] mb-3 pb-3 border-b border-gray-300">{review.text}</p>
               
               {/* 작성자 정보 */}
               <div className="flex items-center space-x-2">
@@ -194,12 +195,25 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
                     }}
                   />
                 </div>
-                <span className="text-sm">{review.writer.chatNickname}</span>
+                <span className="text-sm font-medium">{review.writer.chatNickname}</span>
               </div>
             </div>
             </SectionCard>
           ))}
         </div>
+        )}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-10"
+            onClick={() => setSelectedImage(null)}
+          >
+            <img
+              src={selectedImage}
+              alt="프로필 확대"
+              className="max-w-[80svw] max-h-[80svh] rounded-xl shadow-lg object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
         )}
       </>
   );

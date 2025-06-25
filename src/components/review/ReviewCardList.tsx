@@ -17,11 +17,8 @@ export default function ReviewCardList() {
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // ✅ 마운트 시 filter 기억
   const initialFilter = useRef(filter);
-
-  // ✅ 최초 filter와 현재 filter가 다를 때만 transition 적용
-  const enableTransition = filter !== initialFilter.current;
+  const [hasSwitched, setHasSwitched] = useState(false); 
 
   useEffect(() => {
     const idx = REVIEW_TABS.findIndex((tab) => tab.value === filter);
@@ -29,6 +26,10 @@ export default function ReviewCardList() {
     if (el) {
       const { offsetLeft, clientWidth } = el;
       setIndicatorStyle({ left: offsetLeft, width: clientWidth });
+    }
+
+    if (filter !== initialFilter.current) {
+      setHasSwitched(true);
     }
   }, [filter]);
 
@@ -53,7 +54,8 @@ export default function ReviewCardList() {
           {/* 슬라이딩 배경 */}
           <div
             className={`absolute top-[3px] h-[calc(100%-6px)] rounded-sm shadow bg-white z-0 
-              ${enableTransition ? "transition-all duration-300 ease-in-out" : ""}`}
+              ${hasSwitched ? "transition-all duration-300 ease-in-out" : ""}
+            `}
             style={{
               left: indicatorStyle.left,
               width: indicatorStyle.width,
@@ -105,6 +107,7 @@ export default function ReviewCardList() {
     </>
   );
 }
+
 
 
 
