@@ -1,13 +1,13 @@
 import ProfileCard from '@/components/mypage/ProfileCard';
 import SettingsMenu from '@/components/mypage/SettingMenu';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
-import { useUserProfile } from '@/api/profileApi';
-import { useLogout } from '@/api/LogoutApi';
-import { useDeleteUser } from '@/api/deletUserApi';
+import { useUserProfile } from '@/api/mypage/profileApi';
+import { useLogout } from '@/api/mypage/LogoutApi';
+import { useDeleteUser } from '@/api/mypage/deletUserApi';
 import { useState } from 'react';
 import EmptyState from '@/components/common/EmptyState';
 import SectionCard from '@/components/common/SectionCard';
@@ -15,8 +15,8 @@ import SectionCard from '@/components/common/SectionCard';
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
   const { data: userProfile, isLoading, isError, error } = useUserProfile();
-  const { logout, isLoading: isLogoutLoading, isSuccess:isLogoutSuccess, isError:isLogoutError, error: logoutError } = useLogout();
-  const { deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
+  const { mutateFn: logout, isLoading: isLogoutLoading, isSuccess:isLogoutSuccess, isError:isLogoutError, error: logoutError } = useLogout();
+  const { mutateFn: deleteUser, isLoading: isDeleting, isError: isDeleteError, error: deleteError } = useDeleteUser();
   const [showLogoutError, setShowLogoutError] = useState(false);
   const [showDeleteError, setShowDeleteError] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -79,15 +79,13 @@ const MyPage: React.FC = () => {
     };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="logo" />
-      <main className="pt-16 space-y-4">
+    <PageLayout headerMode="logo">
         <h2 className="mb-3 text-lg text-[#000000] font-semibold">
           마이 페이지
         </h2>
 
         {/* 프로필 카드 */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 w-full mx-auto">
+        <SectionCard>
           {isLoading ? (
               <div className="flex justify-center items-center h-32">
                 <LoadingSpinner type="clip" size="small" fullScreen={false} />
@@ -95,28 +93,26 @@ const MyPage: React.FC = () => {
             ) : isError ? (
               <EmptyState
                 title="데이터 로딩 실패"
-                description={(error as Error).message}
+                description={error.message}
                 icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
               />
             ) : (
               <ProfileCard
-                  nickname={userProfile?.nickname}
-                  profileImageUrl={userProfile?.profileImageUrl}
-                  caffeineLimit={userProfile?.dailyCaffeineLimitMg}
-                  beanCount={userProfile?.coffeeBean}
-                  challengeCount={userProfile?.challengeCount}
-                  onEditClick={handleEditProfile}
+                nickname={userProfile?.nickname || '닉네임 없음'}
+                dailyCaffeineLimitMg={userProfile?.dailyCaffeineLimitMg ?? 0}
+                coffeeBean={userProfile?.coffeeBean ?? 0}
+                challengeCount={userProfile?.challengeCount ?? 0}
+                onEditClick={handleEditProfile}
               />
             )
           }
-        </div>
+        </SectionCard>
 
         {/* 설정 메뉴 */}
         <SettingsMenu
           onLogout={handleLogout}
           onDeleteAccount={handleDeleteAccount}
         />
-      </main>
       {/* 로그아웃 오류 모달 */}
       {showLogoutError && (
         <AlertModal
@@ -174,7 +170,7 @@ const MyPage: React.FC = () => {
          onConfirm={confirmLogout}
        />
      )}
-    </div>
+    </PageLayout>
   );
 };
 

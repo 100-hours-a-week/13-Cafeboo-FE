@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import type { ApiResponse } from "@/types/api";
+import { useUserStore } from "@/stores/useUserStore";
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -8,55 +10,95 @@ const apiClient = axios.create({
   },
 });
 
+const redirectLoginPage = () => {
+  localStorage.removeItem("access_token");
+  const clearUserId = useUserStore.getState().clearUserId;
+  clearUserId(); 
+  window.location.href = "/auth/login";
+};
+
 let isRefreshing = false;
 let refreshSubscribers: ((token: string) => void)[] = [];
-
-// Axios 요청 인터셉터 (Access Token 자동 추가)
-apiClient.interceptors.request.use((config) => {
-  if (
-    config.url?.includes("/api/v1/auth/kakao") ||
-    config.url?.includes("/api/v1/auth/refresh")
-  ) {
-    delete config.headers.Authorization;
-  } else {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-  }
-  return config;
-});
 
 // Refresh 구독자들에게 결과 전달
 const notifySubscribers = (newToken: string) => {
   refreshSubscribers.forEach((cb) => cb(newToken));
   refreshSubscribers = [];
 };
-const notifySubscribersError = (err: any) => {
-  refreshSubscribers.forEach((cb) => cb(Promise.reject(err) as any));
+const notifySubscribersError = () => {
   refreshSubscribers = [];
 };
 
+// Axios 요청 인터셉터 (Access Token 자동 추가)
+apiClient.interceptors.request.use((config) => {
+  const skipAuth =
+    config.url?.includes("/api/v1/auth/kakao") ||
+    config.url?.includes("/api/v1/auth/refresh");
+
+  if (!skipAuth) {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  } else {
+    delete config.headers.Authorization;
+  }
+
+  return config;
+});
+
 // Axios 응답 인터셉터 (Access Token 만료 처리)
 apiClient.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  (response) => { // 성공 응답
+    return response.data;
+  },
+  async (error: AxiosError<ApiResponse>) => { // 실패 응답
+    const originalRequest = error.config as any;
     const status = error.response?.status;
+    const errorData = error.response?.data;
+    const code = errorData?.code;
+
+    // fallback - 서버응답 없음, 알 수 없는 에러 등
+    if (!error.response?.data) {
+      return Promise.reject({
+        status: 0,
+        code: "NETWORK_ERROR",
+        message: error.message || "알 수 없는 네트워크 오류",
+        data: null,
+        raw: error,
+      } as ApiResponse<null>);
+    }
 
     // /auth/refresh 요청 자체는 재발급 로직 대상에서 제외
     if (originalRequest.url?.includes("/api/v1/auth/refresh")) {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("userId");
-      window.location.href = "/auth/login";
+      redirectLoginPage();
       return Promise.reject(error);
     }
 
-    // Access Token 만료 (401, 403) 처리
-    if ((status === 401 || status === 403) && !originalRequest._retry) {
+    // ✅ 리프레시 응답 에러 코드 → 무조건 로그인 이동
+    const refreshTokenErrorCodes = [
+      "REFRESH_TOKEN_INVALID",
+      "REFRESH_TOKEN_EXPIRED",
+      "REFRESH_TOKEN_MISMATCH",
+    ];
+    if (code && refreshTokenErrorCodes.includes(code)) {
+      redirectLoginPage();
+      return Promise.reject(errorData);
+    }
+
+    const isAccessTokenExpired = status === 401 && code === "ACCESS_TOKEN_EXPIRED";
+    const isAccessTokenInvalid = status === 401 && code === "ACCESS_TOKEN_INVALID";
+
+    // ✅ 토큰 무효 or 권한 없음 → 로그인 이동
+    if (isAccessTokenInvalid) {
+      redirectLoginPage();
+      return Promise.reject(errorData);
+    }
+
+    // ✅ 토큰 만료 → 리프레시 시도
+    if (isAccessTokenExpired && !originalRequest._retry) {
       originalRequest._retry = true;
 
-      // 이미 리프레시 중이면 구독자로 등록
       if (isRefreshing) {
         return new Promise((resolve) => {
           refreshSubscribers.push((newToken: string) => {
@@ -69,28 +111,28 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const response = await apiClient.post("/api/v1/auth/refresh");
-        const newAccessToken = response.data.data.accessToken;
+        const refreshRes = await apiClient.post<ApiResponse<{ accessToken: string; userId: string }>>("/api/v1/auth/refresh");
+        const { accessToken, userId } = refreshRes.data.data;
+        const setUserId = useUserStore((state) => state.setUserId);
 
-        // Access Token 저장
-        localStorage.setItem("access_token", newAccessToken);
+        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem("userId", userId);
+        setUserId(userId);
         isRefreshing = false;
-        notifySubscribers(newAccessToken);
+        notifySubscribers(accessToken);
 
-        // 원래 요청 다시 실행
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return apiClient(originalRequest);
-      } catch (refreshError) {
+      } catch (refreshError: any) {
         isRefreshing = false;
-        notifySubscribersError(refreshError);
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("userId");
-        window.location.href = "/auth/login";
-        return Promise.reject(refreshError);
+        notifySubscribersError();
+        redirectLoginPage();
+        return Promise.reject(refreshError.response?.data);
       }
     }
 
-    return Promise.reject(error);
+    // ✅ 그 외 에러는 react-query에서 처리
+    return Promise.reject(errorData);
   }
 );
 

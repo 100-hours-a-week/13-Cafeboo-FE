@@ -1,4 +1,4 @@
-@import '@/styles/font.css';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 @import 'tailwindcss';
 
@@ -14,11 +14,17 @@
   html {
     font-family: 'Pretendard', system-ui, sans-serif;
   }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 body {
   display: block !important;
   place-items: unset !important;
+  overscroll-behavior: none;
+  overflow: hidden;
+  position: fixed;
   margin: 0;
 
   padding: 0;
@@ -31,6 +37,26 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40px) scale(1.1);
+  }
+}
+
+.animate-float-up {
+  animation: float-up 0.8s ease-out forwards;
 }
 
 .slick-dots {
@@ -192,8 +218,3 @@ body {
   background: rgba(0,0,0,0.4); /* 호버 시 색상 */
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}

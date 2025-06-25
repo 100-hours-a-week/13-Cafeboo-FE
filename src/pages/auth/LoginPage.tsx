@@ -1,7 +1,7 @@
 import LoginForm, { LoginFormData } from '@/components/auth/LoginForm';
 import SocialLogin from '@/components/auth/SocialLogin';
 import { useNavigate } from 'react-router-dom';
-import { requestKakaoLogin } from "@/api/authApi";
+import { requestKakaoLogin } from "@/api/auth/authApi";
 
 const LoginPage = () => {
   const navigate = useNavigate();

@@ -1,11 +1,13 @@
 import { useState, useMemo } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
-import Header from '@/components/common/Header';
+import PageLayout from '@/layout/PageLayout';
 import { BottomSheet } from '@/components/common/BottomSheet';
 import CaffeineSelectForm from '@/components/caffeine/CaffeineSelectForm';
-import CaffeineDetailForm, { CaffeineRecordInput, DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
+import CaffeineDetailForm, { DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
+import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
 import drinkData from '@/data/cafe_drinks.json';
-import { useUpdateCaffeineIntake, useDeleteCaffeineIntake, UpdateIntakePayload } from '@/api/caffeineIntakeApi';
+import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine/caffeineApi';
+import type { UpdateCaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
 
@@ -14,7 +16,7 @@ interface ApiRecord {
   drinkId: string;
   drinkName: string;
   drinkCount: number;
-  caffeineAmount: number;
+  caffeineMg: number;
   intakeTime: string; 
 }
 
@@ -27,17 +29,13 @@ export default function DiaryEdit() {
   }
 
   const {
-    updateIntakeAsync,
-    isUpdating,
-    isUpdateError,
-    updateError
+    mutateAsyncFn: updateCaffeine,
+    isLoading: isUpdating,
   } = useUpdateCaffeineIntake(orig.intakeId);
   
   const {
-    deleteIntakeAsync,
-    isDeleting,
-    isDeleteError,
-    deleteError
+    mutateAsyncFn: deleteIntakeAsync,
+    isLoading: isDeleting,
   } = useDeleteCaffeineIntake(orig.intakeId);
 
   const [drinkId, setDrinkId] = useState<string>(orig.drinkId);
@@ -45,7 +43,7 @@ export default function DiaryEdit() {
   const [date, setDate]           = useState(orig.intakeTime.slice(0, 10));
   const [time, setTime]           = useState(orig.intakeTime.slice(11, 16));
   const [count, setCount]         = useState(String(orig.drinkCount));
-  const [amount, setAmount]       = useState(orig.caffeineAmount);
+  const [amount, setAmount]       = useState(orig.caffeineMg);
   const [size, setSize]           = useState('');
 
   const [selectOpen, setSelectOpen] = useState(false);
@@ -86,23 +84,21 @@ export default function DiaryEdit() {
   };
 
   const handleUpdate = async () => {
-    const payload: Partial<UpdateIntakePayload> = {};
+    const payload: UpdateCaffeineIntakeRequestDTO = {};
     if (drinkId !== orig.drinkId) payload.drinkId = drinkId;
     const iso = `${date}T${time}`;
     if (iso !== orig.intakeTime) payload.intakeTime = iso;
     const nCount = Number(count);
     if (nCount !== orig.drinkCount) payload.drinkCount = nCount;
-    if (amount !== orig.caffeineAmount) payload.caffeineAmount = amount;
+    if (amount !== orig.caffeineMg) payload.caffeineAmount = amount;
     if (size) payload.drinkSize = size;
-
     if (Object.keys(payload).length === 0) {
       alert('변경된 내용이 없습니다.');
       return;
     }
 
     try {
-      console.log(payload);
-      await updateIntakeAsync(payload);
+      await updateCaffeine(payload);
       navigate('/main/diary');
     } catch(err:any) {
       setAlertMessage(err.message ?? '수정에 실패했습니다.');
@@ -122,11 +118,11 @@ export default function DiaryEdit() {
   };
 
   // 2차 시트에서 값 받아서 state 업데이트
-  const handleSubmitRecord = (rec: CaffeineRecordInput) => {
+  const handleSubmitRecord = (rec: CaffeineIntakeRequestDTO) => {
     if (rec.drinkId)     setDrinkId(rec.drinkId.toString());
     if (rec.intakeTime)  { setDate(rec.intakeTime.slice(0,10)); setTime(rec.intakeTime.slice(11,16)); }
     if (rec.drinkCount !== undefined) setCount(String(rec.drinkCount));
-    if (rec.caffeineAmount !== undefined) setAmount(rec.caffeineAmount);
+    if (rec.caffeineAmount !== undefined) setAmount(Number(rec.caffeineAmount.toFixed(1)));
     if (rec.drinkSize !== undefined) setSize(rec.drinkSize);
     if (detail) setDrinkName(detail.name);
     setDetailOpen(false);
@@ -134,10 +130,7 @@ export default function DiaryEdit() {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header mode="title" title="카페인 기록 수정" onBackClick={() => navigate('/main/diary')} />
-
-      <main className="pt-16 space-y-6 p-4">
+    <PageLayout headerMode="title" headerTitle="카페인 기록 수정" onBackClick={() => navigate('/main/diary')}  mainClassName="!space-y-6">
         {/* 음료 */}
         <div className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200">
           <span className="font-medium">음료</span>
@@ -197,10 +190,9 @@ export default function DiaryEdit() {
         >
           {'삭제하기'}
         </button>
-      </main>
 
       {/* 1) 음료 선택 바텀시트 */}
-      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} hideConfirm>
+      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} title="추가할 음료 선택하세요." hideConfirm>
         <CaffeineSelectForm
           drinkData={drinkData}
           onSelectDrink={(cafeName, dId) => {
@@ -237,7 +229,7 @@ export default function DiaryEdit() {
           confirmText="확인"
           showCancelButton={false}
           />
-    </div>
+    </PageLayout>
   );
 }
 

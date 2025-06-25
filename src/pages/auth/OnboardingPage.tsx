@@ -8,7 +8,8 @@ import Step4 from '@/components/onboarding/Step4';
 import { useNavigate } from 'react-router-dom';
 import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
-import { useSubmitHealthInfo, useSubmitCaffeineInfo } from '@/api/onboardingApi';
+import { useSubmitCaffeineInfo } from '@/api/caffeine/caffeineInfoApi';
+import { useSubmitHealthInfo } from '@/api/health/healthInfoApi';
 
 
 const OnboardingPage = () => {
@@ -18,9 +19,8 @@ const OnboardingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
-  const userId = localStorage.getItem("userId");
-  const submitHealthInfo = useSubmitHealthInfo(userId || "");
-  const submitCaffeineInfo = useSubmitCaffeineInfo(userId || "");
+  const submitHealthInfo = useSubmitHealthInfo();
+  const submitCaffeineInfo = useSubmitCaffeineInfo();
   
   const handleModalConfirm = () => {
     setShowModal2(false);
@@ -31,15 +31,25 @@ const OnboardingPage = () => {
   const handleComplete = async () => {
     try {
       // HealthInfo API 요청
-      await submitHealthInfo.mutateAsync({
-        healthInfo,
-        sleepInfo,
+      await submitHealthInfo.mutateAsyncFn({
+        gender: healthInfo.gender,
+        age: healthInfo.age,
+        height: healthInfo.height,
+        weight: healthInfo.weight,
+        isPregnant: healthInfo.isPregnant ?? false,
+        isTakingBirthPill: healthInfo.isTakingBirthPill ?? false,
+        isSmoking: healthInfo.isSmoking ?? false,
+        hasLiverDisease: healthInfo.hasLiverDisease ?? false,
+        sleepTime: sleepInfo.sleepTime,
+        wakeUpTime: sleepInfo.wakeUpTime,
       });
 
       // CaffeineInfo API 요청
-      await submitCaffeineInfo.mutateAsync({
-        caffeineInfo,
-        sleepInfo,
+      await submitCaffeineInfo.mutateAsyncFn({
+        caffeineSensitivity: caffeineInfo.caffeineSensitivity,
+        averageDailyCaffeineIntake: caffeineInfo.averageDailyCaffeineIntake,
+        frequentDrinkTime: sleepInfo.frequentDrinkTime || '00:00',
+        userFavoriteDrinks: caffeineInfo.userFavoriteDrinks || [],
       });
 
       // 성공 시 메인 페이지로 이동

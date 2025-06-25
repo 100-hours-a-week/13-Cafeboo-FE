@@ -30,19 +30,18 @@ export default function AlertModal({
   const [awaitingConfirm, setAwaitingConfirm] = useState<(() => void) | null>(null);
 
   useEffect(() => {
-    const appRoot = document.getElementById('root');
-    if (!appRoot) return;
-
-    let el = appRoot.querySelector<HTMLDivElement>('#modal-container');
+    const container = document.getElementById('alert-modal-container'); 
+    if (!container) return;
+  
+    let el = container.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
       el = document.createElement('div');
       el.id = 'modal-container';
-      appRoot.appendChild(el);
+      container.appendChild(el);
     }
     setContainer(el);
-
+  
     return () => {
-      // 모달이 닫힐 때 컨테이너 정리
       if (el) {
         el.remove();
       }
@@ -67,7 +66,7 @@ export default function AlertModal({
 
       {/* 모달 박스 */}
       <div
-        className="relative bg-white rounded-lg shadow-lg w-9/12 max-w-sm mx-auto overflow-hidden"
+        className="relative bg-white rounded-lg shadow-lg w-9/12 max-w-xs mx-auto overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center p-6 space-y-3 text-center">

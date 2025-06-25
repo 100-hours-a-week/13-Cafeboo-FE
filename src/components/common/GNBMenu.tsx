@@ -36,7 +36,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
       )}
 
       <div
-        className={`fixed sm:absolute top-0 right-0 bottom-0 z-50 transition-transform duration-300
+        className={`absolute top-0 right-0 bottom-0 z-50 transition-transform duration-300
           w-[80%]      
         ${
           isOpen ? 'translate-x-0' : 'translate-x-[110%]'
@@ -65,7 +65,7 @@ const GNBMenu = ({ isOpen, onClose, items }: GNBMenuProps) => {
               key={idx}
               onClick={() => !item.disabled && handleNavigate(item.href)}
               disabled={item.disabled}
-              className={`w-full text-left px-4 py-3 border-b bg-white hover:bg-gray-100`}
+              className={`w-full flex text-left px-4 py-3 border-b bg-white hover:bg-gray-100`}
               style={{
                 color: item.disabled ? '#9CA3AF' : '#000000',
                 borderColor: '#E5E7EB',

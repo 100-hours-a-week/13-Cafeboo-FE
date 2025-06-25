@@ -1,0 +1,50 @@
+name: Deploy Frontend to GCP Cloud Storage
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY_2 }}'
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: master-isotope-462503-m9
+          version: latest
+
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Build frontend
+        run: |
+          VITE_API_BASE_URL="${{ secrets.VITE_API_BASE_URL }}" \
+          VITE_REST_API_KEY="${{ secrets.VITE_REST_API_KEY }}" \
+          VITE_KAKAO_MAP_KEY="${{ secrets.VITE_KAKAO_MAP_KEY }}" \
+          pnpm run build
+
+      - name: Upload to GCP Cloud Storage
+        run: |
+          gsutil -m rsync -r ./dist gs://v2-dev-frontend-bucket
+
+      - name: Invalidate CDN cache
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache v2-dev-url-map \
+            --path "/*" \
+            --global

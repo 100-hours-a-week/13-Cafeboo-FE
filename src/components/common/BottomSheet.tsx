@@ -40,15 +40,13 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
         fixed
         bottom: env(safe-area-inset-bottom)
         bottom: constant(safe-area-inset-bottom)
-        w-full max-w-md
+        w-full max-w-sm
         rounded-t-xl bg-white shadow-lg
         flex flex-col
         mx-auto 
-        sm:mx-auto 
-        md:mx-auto 
         lg:ml-128      
         xl:ml-192   
-        2xl:ml-256  
+        2xl:ml-272  
         [&>div:first-child]:bg-gray-300
       "
       style={{

@@ -74,7 +74,7 @@ export default function DailyCaffeine({
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-lg font-bold text-[#333333]">
+          <span className="text-lg font-bold">
             {consumed} mg
           </span>
           <span className="text-sm text-[#595959]">
@@ -84,7 +84,7 @@ export default function DailyCaffeine({
       </div>
 
       <div className="w-3/5 pl-4 pr-2">
-        <p className="text-base text-[#333333]">
+        <p className="text-base">
           <span className="font-semibold">{nickname}</span>님,
           <br/>
           현재 권장량의{' '}

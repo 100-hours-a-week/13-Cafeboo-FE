@@ -1,4 +1,5 @@
 import { ChevronRight } from 'lucide-react';
+import SectionCard from '@/components/common/SectionCard';
 
 interface SettingsMenuProps {
   onLogout: () => void;
@@ -10,13 +11,13 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
   onDeleteAccount,
 }) => {
   return (
-    <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <SectionCard className='!p-0'>
       {/* 로그아웃 */}
       <div
-        className="flex items-center justify-between p-4 border-b border-gray-200"
+        className="flex items-center justify-between p-4 border-b border-[#dadcdf]"
         onClick={onLogout}
       >
-        <div className="text-[#333333]">로그아웃</div>
+        <div>로그아웃</div>
         <ChevronRight className="text-[#333333] cursor-pointer" size={20} />
       </div>
 
@@ -25,10 +26,10 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({
         className="flex items-center justify-between p-4"
         onClick={onDeleteAccount}
       >
-        <div className="text-[#333333]">회원 탈퇴</div>
+        <div>회원 탈퇴</div>
         <ChevronRight className="text-[#333333] cursor-pointer" size={20} />
       </div>
-    </div>
+    </SectionCard>
   );
 };
 

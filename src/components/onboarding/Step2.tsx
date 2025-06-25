@@ -9,6 +9,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   averageDailyCaffeineIntake: z
@@ -61,7 +62,7 @@ const Step2 = () => {
       {/* 카페인 민감도 */}
       <div className="mb-10">
       <div className="flex items-center mb-2">
-          <Label className="text-base text-[#000000] font-semibold">
+          <Label className="text-base font-semibold">
             카페인 민감도
           </Label>
           <Popover>
@@ -70,7 +71,7 @@ const Step2 = () => {
                 <Info className="w-4 h-4 stroke-2 text-gray-500" />
               </button>
             </PopoverTrigger>
-            <PopoverContent side="top" align="end" className="w-64 p-4 bg-white rounded-lg shadow-lg border border-gray-200">
+            <PopoverContent side="top" align="end" className="w-64 px-4 py-2 bg-white rounded-lg shadow-lg border border-gray-200">
               <div className="flex justify-between items-center mb-3">
                 <h3 className="text-sm font-medium">
                   카페인 민감도란?
@@ -132,25 +133,19 @@ const Step2 = () => {
 
       {/* 하루 평균 섭취량 */}
       <div className="flex items-center justify-between mt-10 mb-8">
-        <Label className="text-base text-[#000000] font-semibold">
+        <Label className="text-base font-semibold">
           하루 평균 카페인 음료 섭취량
         </Label>
         <div className="flex items-center">
           <input
             type="text"
             inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
             value={averageDailyCaffeineIntake}
             onChange={(e) => {
-              let v = e.target.value.replace(/[^0-9.]/g, '');
-              const parts = v.split('.');
-              if (parts.length > 1) {
-                parts[1] = parts[1].slice(0, 1);
-                v = parts[0] + '.' + parts[1];
-              }
-              setAverageDailyCaffeineIntakeInput(v);
-              setValue("averageDailyCaffeineIntake", Number(v));
-              trigger("averageDailyCaffeineIntake"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setAverageDailyCaffeineIntakeInput(sanitized);
+              setValue("averageDailyCaffeineIntake", Number(sanitized));
+              trigger("averageDailyCaffeineIntake");
             }}
             onBlur={() => {
               const num = parseFloat(averageDailyCaffeineIntake);
@@ -176,12 +171,12 @@ const Step2 = () => {
 
       {/* 선호하는 카페인 음료 */}
       <div className="mt-10">
-        <Label className="text-base text-[#000000] mt-4 mb-4 block font-semibold">
+        <Label className="text-base mt-4 mb-4 block font-semibold">
           선호하는 종류(중복 선택 가능)
         </Label>
         <div className="w-full ">
           <Tag
-            items={DRINK_OPTIONS}
+            items={DRINK_OPTIONS.map((label) => ({ label }))}
             value={caffeineInfo.userFavoriteDrinks || []}
             onChange={(values) =>
               updateCaffeine({ userFavoriteDrinks: values })

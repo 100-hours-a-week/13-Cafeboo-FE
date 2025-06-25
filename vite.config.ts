@@ -16,4 +16,7 @@ export default defineConfig({
     open: true,
     strictPort: false,
   },
+  define: {
+    global: 'globalThis',
+  },
 });

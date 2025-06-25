@@ -361,6 +361,632 @@
             "caffeine_mg": 150.0
           }
         ]
+      },
+      {
+        "drinkId": 444,
+        "name": "녹차",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 744,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 30.0
+          }
+        ]
+      },
+      {
+        "drinkId": 445,
+        "name": "녹차",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 745,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 30.0
+          }
+        ]
+      },
+      {
+        "drinkId": 446,
+        "name": "홍차",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 746,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 50.0
+          }
+        ]
+      },
+      {
+        "drinkId": 447,
+        "name": "홍차",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 747,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 50.0
+          }
+        ]
+      },
+      {
+        "drinkId": 448,
+        "name": "얼그레이 티",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 748,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 50.0
+          }
+        ]
+      },
+      {
+        "drinkId": 449,
+        "name": "얼그레이 티",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 749,
+            "size": "S",
+            "capacity_ml": 200,
+            "caffeine_mg": 50.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cafeName": "믹스커피",
+    "drinks": [
+      {
+        "drinkId": 406,
+        "name": "맥심 화이트 골드",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 706,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 40.9
+          }
+        ]
+      },
+      {
+        "drinkId": 407,
+        "name": "맥심 화이트 골드",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 707,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 40.9
+          }
+        ]
+      },
+      {
+        "drinkId": 408,
+        "name": "카누 라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 708,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 35.0
+          }
+        ]
+      },
+      {
+        "drinkId": 409,
+        "name": "카누 라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 709,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 35.0
+          }
+        ]
+      },
+      {
+        "drinkId": 410,
+        "name": "카누 다크로스트 아메리카노",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 710,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 73.0
+          }
+        ]
+      },
+      {
+        "drinkId": 411,
+        "name": "카누 다크로스트 아메리카노",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 711,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 73.0
+          }
+        ]
+      },
+      {
+        "drinkId": 412,
+        "name": "카누 다크로스트 아메리카노 미니",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 712,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 36.0
+          }
+        ]
+      },
+      {
+        "drinkId": 413,
+        "name": "카누 다크로스트 아메리카노 미니",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 713,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 36.0
+          }
+        ]
+      },
+      {
+        "drinkId": 414,
+        "name": "동서 현미녹차",
+        "type": "TEA",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 714,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 11.0
+          }
+        ]
+      },
+      {
+        "drinkId": 415,
+        "name": "동서 현미녹차",
+        "type": "TEA",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 715,
+            "size": "Stick",
+            "capacity_ml": 180,
+            "caffeine_mg": 11.0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "cafeName": "에너지 드링크",
+    "drinks": [
+      {
+        "drinkId": 416,
+        "name": "몬스터 에너지",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 716,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 417,
+        "name": "몬스터 에너지 제로 슈거",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 717,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 418,
+        "name": "몬스터 에너지 울트라",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 718,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 419,
+        "name": "몬스터 에너지 울트라 피치 킨",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 719,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 420,
+        "name": "몬스터 에너지 울트라 시트라",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 720,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 421,
+        "name": "몬스터 에너지 울트라 선라이즈",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 721,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 422,
+        "name": "몬스터 에너지 울트라 스트로베리 드림",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 722,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 423,
+        "name": "몬스터 에너지 망고 로코",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 723,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 424,
+        "name": "몬스터 에너지 파이프라인 펀치",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 724,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 425,
+        "name": "몬스터 에너지 오지 스타일 레모네이드",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 725,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 426,
+        "name": "몬스터 에너지 파피용",
+        "type": "몬스터",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 726,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 427,
+        "name": "핫식스 오리지널",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 727,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 60.0
+          }
+        ]
+      },
+      {
+        "drinkId": 428,
+        "name": "핫식스 제로",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 728,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 60.0
+          }
+        ]
+      },
+      {
+        "drinkId": 429,
+        "name": "핫식스 더킹 파워",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 729,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 430,
+        "name": "핫식스 더킹 제로",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 730,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 431,
+        "name": "핫식스 더킹 포스",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 731,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 432,
+        "name": "핫식스 더킹 러쉬",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 732,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 433,
+        "name": "핫식스 더킹 크러쉬피치",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 733,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 434,
+        "name": "핫식스 더 킹 애플홀릭",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 734,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 435,
+        "name": "핫식스 더킹 퍼플그레이프",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 735,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 100.0
+          }
+        ]
+      },
+      {
+        "drinkId": 436,
+        "name": "핫식스 더 프로 오리지널",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 736,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 120.0
+          }
+        ]
+      },
+      {
+        "drinkId": 437,
+        "name": "핫식스 더 프로 멀티비타민",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 737,
+            "size": "Can",
+            "capacity_ml": 355,
+            "caffeine_mg": 120.0
+          }
+        ]
+      },
+      {
+        "drinkId": 438,
+        "name": "핫식스 더킹 파워 (500ml)",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 738,
+            "size": "Can",
+            "capacity_ml": 500,
+            "caffeine_mg": 200.0
+          }
+        ]
+      },
+      {
+        "drinkId": 439,
+        "name": "핫식스 더킹 제로 (500ml)",
+        "type": "핫식스",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 739,
+            "size": "Can",
+            "capacity_ml": 500,
+            "caffeine_mg": 200.0
+          }
+        ]
+      },
+      {
+        "drinkId": 440,
+        "name": "레드불 에너지 드링크",
+        "type": "레드불",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 740,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 62.5
+          }
+        ]
+      },
+      {
+        "drinkId": 441,
+        "name": "레드불 슈가프리",
+        "type": "레드불",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 741,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 62.5
+          }
+        ]
+      },
+      {
+        "drinkId": 442,
+        "name": "레드불 퍼플 에디션",
+        "type": "레드불",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 742,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 62.5
+          }
+        ]
+      },
+      {
+        "drinkId": 443,
+        "name": "레드불 그린 에디션",
+        "type": "레드불",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 743,
+            "size": "Can",
+            "capacity_ml": 250,
+            "caffeine_mg": 62.5
+          }
+        ]
       }
     ]
   },
@@ -3254,6 +3880,34 @@
             "size": "R",
             "capacity_ml": 710,
             "caffeine_mg": 452.0
+          }
+        ]
+      },
+      {
+        "drinkId": 444,
+        "name": "카페라떼",
+        "type": "COFFEE",
+        "temperature": "ICED",
+        "sizes": [
+          {
+            "drinkSizeId": 744,
+            "size": "R",
+            "capacity_ml": 630,
+            "caffeine_mg": 237
+          }
+        ]
+      },
+      {
+        "drinkId": 445,
+        "name": "카페라떼",
+        "type": "COFFEE",
+        "temperature": "HOT",
+        "sizes": [
+          {
+            "drinkSizeId": 745,
+            "size": "R",
+            "capacity_ml": 630,
+            "caffeine_mg": 237
           }
         ]
       },
@@ -7504,151 +8158,6 @@
             "size": "G",
             "capacity_ml": 472,
             "caffeine_mg": 136.5
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "cafeName": "믹스커피",
-    "drinks": [
-      {
-        "drinkId": 406,
-        "name": "맥심 화이트 골드",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 706,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 40.9
-          }
-        ]
-      },
-      {
-        "drinkId": 407,
-        "name": "맥심 화이트 골드",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 707,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 40.9
-          }
-        ]
-      },
-      {
-        "drinkId": 408,
-        "name": "카누 라떼",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 708,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 35.0
-          }
-        ]
-      },
-      {
-        "drinkId": 409,
-        "name": "카누 라떼",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 709,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 35.0
-          }
-        ]
-      },
-      {
-        "drinkId": 410,
-        "name": "카누 다크로스트 아메리카노",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 710,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 73.0
-          }
-        ]
-      },
-      {
-        "drinkId": 411,
-        "name": "카누 다크로스트 아메리카노",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 711,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 73.0
-          }
-        ]
-      },
-      {
-        "drinkId": 412,
-        "name": "카누 다크로스트 아메리카노 미니",
-        "type": "COFFEE",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 712,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 36.0
-          }
-        ]
-      },
-      {
-        "drinkId": 413,
-        "name": "카누 다크로스트 아메리카노 미니",
-        "type": "COFFEE",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 713,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 36.0
-          }
-        ]
-      },
-      {
-        "drinkId": 414,
-        "name": "동서 현미녹차",
-        "type": "TEA",
-        "temperature": "HOT",
-        "sizes": [
-          {
-            "drinkSizeId": 714,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 11.0
-          }
-        ]
-      },
-      {
-        "drinkId": 415,
-        "name": "동서 현미녹차",
-        "type": "TEA",
-        "temperature": "ICED",
-        "sizes": [
-          {
-            "drinkSizeId": 715,
-            "size": "Stick",
-            "capacity_ml": 180,
-            "caffeine_mg": 11.0
           }
         ]
       }

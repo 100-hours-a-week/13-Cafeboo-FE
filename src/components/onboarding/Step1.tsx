@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useOnboardingStore } from '@/stores/onboardingStore';
 import { AlertCircle } from 'lucide-react';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import TwoOptionToggle from '@/components/common/TwoOptionToggle';
+import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   age: z
@@ -27,6 +28,9 @@ type FormData = z.infer<typeof formSchema>;
 
 const Step1 = () => {
   const { healthInfo, updateHealth } = useOnboardingStore();
+  const [heightInput, setHeightInput] = useState(
+    healthInfo.height != null ? String(healthInfo.height) : ''
+  );
   const [weightInput, setWeightInput] = useState(
     healthInfo.weight != null ? String(healthInfo.weight) : ''
   );
@@ -41,7 +45,7 @@ const Step1 = () => {
 
   useEffect(() => {
     setValue("age", healthInfo.age ?? '');
-    setValue("height", healthInfo.height ?? '');
+    setHeightInput(healthInfo.height != null ? String(healthInfo.height) : '');
     setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '');
   }, [healthInfo, setValue]);
 
@@ -49,66 +53,30 @@ const Step1 = () => {
     <div className="space-y-6 py-4">
       {/* 성별 */}
       <div className="mb-8">
-        <Label className="text-base text-[#000000] mb-2 block font-semibold">
-          성별
-        </Label>
-        <ToggleGroup
-          type="single"
-          value={healthInfo.gender??'M'}
-          onValueChange={(v) =>{
-            if (v) updateHealth({ gender: v as 'M' | 'F' });
-          }}
-          className="flex w-full"
-        >
-          <ToggleGroupItem
-            value="M"
-            className="
-              flex-1 py-2 text-sm font-medium text-center cursor-pointer
-              rounded-l-lg border border-[#D9D9D9]
-              data-[state=on]:bg-white
-              data-[state=on]:border-[#FE9400]
-              data-[state=on]:text-[#333333]
-              data-[state=off]:bg-[#F1F3F3]
-              data-[state=off]:text-[#595959]
-              data-[state=off]:border-r-0
-            "
-          >
-            남자
-          </ToggleGroupItem>
-
-          <ToggleGroupItem
-            value="F"
-            className="
-              flex-1 py-2 text-sm font-medium text-center cursor-pointer
-              rounded-r-lg border border-[#D9D9D9]
-              data-[state=on]:bg-white
-              data-[state=on]:border-[#FE9400]
-              data-[state=on]:text-[#333333]
-              data-[state=off]:bg-[#F1F3F3]
-              data-[state=off]:text-[#595959]
-              data-[state=off]:border-l-0
-            "
-          >
-            여자
-          </ToggleGroupItem>
-        </ToggleGroup>
+        <TwoOptionToggle
+          options={[
+            { label: '남자', value: 'M' },
+            { label: '여자', value: 'F' },
+          ]}
+          value={String(healthInfo.gender)}
+          onChange={(v) => updateHealth({ gender: v })}
+        />
       </div>
 
       {/* 나이 입력 (mobile numeric pad) */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">나이</Label>
+        <Label className="text-base font-semibold">나이</Label>
         <div className="flex items-center">
           <span className="text-base">만</span>
           <input
             type="text"
             inputMode="numeric"
-            pattern="[0-9]*"
             value={healthInfo.age ?? ''}
             onChange={(e) => {
-              const v = e.target.value.replace(/\D/g, '');
-              updateHealth({ age: v === '' ? undefined : Number(v) });
-              setValue("age", Number(v));
-              trigger("age"); 
+              const sanitized = sanitizeIntegerInput(e.target.value);
+              updateHealth({ age: sanitized === '' ? undefined : Number(sanitized) });
+              setValue("age", Number(sanitized));
+              trigger("age");
             }}
             className="
               w-16             
@@ -133,18 +101,22 @@ const Step1 = () => {
 
       {/* 신장 입력 */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">신장</Label>
+        <Label className="text-base font-semibold">신장</Label>
         <div className="flex items-center">
           <input
             type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            value={healthInfo.height ?? ''}
+            inputMode="decimal"
+            value={heightInput}
             onChange={(e) => {
-              const v = e.target.value.replace(/\D/g, '');
-              updateHealth({ height: v === '' ? undefined : Number(v) });
-              setValue("height", Number(v));
-              trigger("height"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setHeightInput(sanitized);
+              setValue("height", Number(sanitized));
+              trigger("height");
+            }}
+            onBlur={() => {
+              const num = parseFloat(heightInput);
+              if (!isNaN(num)) updateHealth({ height: num });
+              else updateHealth({ height: undefined });
             }}
             className="
               w-16             
@@ -169,23 +141,17 @@ const Step1 = () => {
 
       {/* 체중 입력 */}
       <div className="flex items-center justify-between mb-8">
-        <Label className="text-base text-[#000000] font-semibold">체중</Label>
+        <Label className="text-base font-semibold">체중</Label>
         <div className="flex items-center">
           <input
             type="text"
             inputMode="decimal"
-            pattern="[0-9]*[.]?[0-9]*"
             value={weightInput}
             onChange={(e) => {
-              let v = e.target.value.replace(/[^0-9.]/g, '');
-              const parts = v.split('.');
-              if (parts.length > 1) {
-                parts[1] = parts[1].slice(0, 1);
-                v = parts[0] + '.' + parts[1];
-              }
-              setWeightInput(v);
-              setValue("weight", Number(v));
-              trigger("weight"); 
+              const sanitized = sanitizeDecimalInput(e.target.value);
+              setWeightInput(sanitized);
+              setValue("weight", Number(sanitized));
+              trigger("weight");
             }}
             onBlur={() => {
               const num = parseFloat(weightInput);
@@ -221,53 +187,19 @@ const Step1 = () => {
 
           return (
             <div key={key}>
-              <Label className="text-[#000000] mb-2 block text-base font-semibold">
-                {label}
-              </Label>
-
-              <ToggleGroup
-                type="single"
-                value={val ? 'yes' : 'no'}
-                onValueChange={(v) => {
-                  if (v) {
-                    updateHealth({ [key]: v === 'yes' });
-                  }
-                }}
-                className="flex w-full"
-              >
-                <ToggleGroupItem
-                  value="yes"
-                  className="
-                    flex-1 py-2 text-sm font-medium text-center cursor-pointer
-                    rounded-l-lg border border-[#D9D9D9]
-                    data-[state=on]:bg-white
-                    data-[state=on]:border-[#FE9400]
-                    data-[state=on]:text-[#333333]
-                    data-[state=off]:bg-[#F1F3F3]
-                    data-[state=off]:text-[#595959]
-                    data-[state=off]:border-r-0
-                  "
-                >
-                  예
-                </ToggleGroupItem>
-
-                <ToggleGroupItem
-                  value="no"
-                  className="
-                    flex-1 py-2 text-sm font-medium text-center cursor-pointer
-                    rounded-r-lg border border-[#D9D9D9]
-                    data-[state=on]:bg-white
-                    data-[state=on]:border-[#FE9400]
-                    data-[state=on]:text-[#333333]
-                    data-[state=off]:bg-[#F1F3F3]
-                    data-[state=off]:text-[#595959]
-                    data-[state=off]:border-l-0
-                  "
-                >
-                  아니오
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+            <Label className="mb-2 block text-base font-semibold">
+              {label}
+            </Label>
+    
+            <TwoOptionToggle
+              options={[
+                { label: '예', value: 'true' },
+                { label: '아니오', value: 'false' },
+              ]}
+              value={String(val)}
+              onChange={(v) => updateHealth({ [key]: v === 'true' })}
+            />
+          </div>
           );
         })}
       </div>
