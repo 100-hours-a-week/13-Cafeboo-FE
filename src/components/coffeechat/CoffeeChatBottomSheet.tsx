@@ -14,11 +14,16 @@ export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
   const { showToast } = useToastStore();
 
   const handleFormSubmit = async (payload: CreateCoffeeChatRequestDTO) => {
+    if (!navigator.onLine) {
+      showToast("error", "인터넷 연결을 확인해주세요");
+      return;
+    }
     try {
       await mutateAsyncFn(payload);
       showToast('success', '커피챗이 생성되었습니다!');
       onClose();
     } catch (error: any) {
+      console.log(error);
       showToast('error', error?.message || '생성에 실패했습니다.'); 
     }
   };

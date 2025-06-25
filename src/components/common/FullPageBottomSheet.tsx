@@ -66,7 +66,7 @@ export default function FullPageSheet({
         </div>
 
         {/* 본문 */}
-        <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-6 pt-2">
+        <div className="flex-1 overflow-y-auto scrollbar-hide px-4 pb-6 pt-1">
           {children}
         </div>
       </div>

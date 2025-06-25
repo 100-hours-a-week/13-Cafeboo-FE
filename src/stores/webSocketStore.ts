@@ -94,7 +94,6 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
       },
 
       onDisconnect: (frame) => {
-        console.log('Zustand: Disconnected:', frame);
         set({
           isConnected: false,
           stompClient: null,
@@ -105,8 +104,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     });
 
     // ✅ 직접 연결 종료도 감지
-    client.onWebSocketClose = (event) => {
-      console.warn("Zustand: WebSocket closed", event);
+    client.onWebSocketClose = () => {
       set({
         isConnected: false,
         stompClient: null,
@@ -121,7 +119,6 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   disconnect: () => {
     const { stompClient } = get();
     if (stompClient?.connected) {
-      console.log('Zustand: Manual Disconnect initiated.');
       stompClient.deactivate();
       set({
         isConnected: false,
@@ -135,10 +132,17 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   },
 
   retryConnect: () => {
-    const { currentCoffeechatId } = get();
+    const { currentCoffeechatId, stompClient } = get();
+  
+    if (stompClient && stompClient.active) {
+      stompClient.deactivate();
+    }
+  
     if (currentCoffeechatId) {
-      console.log('Zustand: Retrying connection...');
-      get().connect(currentCoffeechatId);
+      console.log("Zustand: Retrying connection...");
+      setTimeout(() => {
+        get().connect(currentCoffeechatId);
+      }, 300); 
     }
   },
 

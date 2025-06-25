@@ -17,8 +17,6 @@ export default function CoffeeChatPage() {
   const navigate = useNavigate();
 
   const isReviewTab = filter === "REVIEWS";
-
-  // 일반 커피챗 목록
   
   const {
     data,
@@ -29,8 +27,8 @@ export default function CoffeeChatPage() {
   });
   const coffeechats = data?.coffeechats ?? [];
 
-  // (REVIEWS는 나중에 별도 API로!)
   return (
+    <>
     <PageLayout
       headerMode="logo"
       mainRef={mainRef}
@@ -70,6 +68,7 @@ export default function CoffeeChatPage() {
         onClose={() => setIsSheetOpen(false)}
       />
     </PageLayout>
+    </>
   );
 }
 

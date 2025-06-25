@@ -16,6 +16,7 @@ import { extractAreaUnit } from '@/utils/parseUtils';
 import { format, setMinutes, addHours } from 'date-fns';
 import { z } from 'zod';
 import type { CreateCoffeeChatRequestDTO } from '@/api/coffeechat/coffeechat.dto';
+import { useToastStore } from '@/stores/toastStore';
 
 const isFutureTime = (inputTime: string) => {
   if (!/^\d{2}:\d{2}$/.test(inputTime)) return false;
@@ -63,6 +64,7 @@ export default function CoffeeChatForm({
   const [newTag, setNewTag] = useState('');
   const timeInputRef = useRef<HTMLInputElement | null>(null);
   const [location, setLocation] = useState<LocationData | null>(null);
+  const { showToast } = useToastStore();
 
   const incrementmemberCount = () => setMemberCount(prev => Math.min(30, prev + 1));
   const decrementmemberCount = () => setMemberCount(prev => Math.max(2, prev - 1));
@@ -88,7 +90,7 @@ export default function CoffeeChatForm({
 
   const handleSubmit = () => {
     if (!location) {
-      alert('만나는 장소를 선택해 주세요.');
+      showToast('error', '만나는 장소를 선택해 주세요.');
       return;
     }
     const data = {
@@ -110,7 +112,7 @@ export default function CoffeeChatForm({
   
     const result = CoffeeChatSchema.safeParse(data);
     if (!result.success) {
-      alert(result.error.issues[0].message);
+      showToast('error', result.error.issues[0].message);
       return;
     }
 
@@ -241,7 +243,7 @@ export default function CoffeeChatForm({
               className="px-2 py-4 hover:no-underline"
               onClick={(e) => {
                 e.preventDefault();
-                timeInputRef.current?.showPicker?.(); 
+                timeInputRef.current?.showPicker?.();
                 timeInputRef.current?.focus();
               }}
             >
@@ -249,7 +251,27 @@ export default function CoffeeChatForm({
                 <div className="flex items-center">
                   <Clock className="w-5 h-5 text-[#FE9400] mr-3" />
                   <span className="font-medium text-base">만나는 시각</span>
+
+                  {/* Info 아이콘 (Popover) */}
+                  <Popover>
+                    <PopoverTrigger
+                      asChild
+                      onClick={(e) => e.stopPropagation()} // Accordion 펼쳐지지 않게
+                    >
+                      <button
+                        type="button"
+                        className="ml-1 text-gray-400 hover:text-[#FE9400] focus:outline-none"
+                        aria-label="만나는 시각 안내"
+                      >
+                        <Info className="w-4 h-4"/>
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-60 text-sm text-gray-700" sideOffset={10}>
+                      커피챗은 당일만 생성 가능합니다.
+                    </PopoverContent>
+                  </Popover>
                 </div>
+
                 {time && (
                   <span className="text-gray-500 mr-1">{time}</span>
                 )}

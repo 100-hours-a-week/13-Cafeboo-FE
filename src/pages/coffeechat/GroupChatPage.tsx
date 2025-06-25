@@ -181,7 +181,7 @@ export default function GroupChatPage() {
     <>
     {error && (
       <>
-      <div className="absolute top-0 left-0 w-full bg-blue-500 opacity-90 text-white text-sm py-2 px-4 z-100 flex justify-between items-center">
+      <div className="absolute top-0 left-0 w-full bg-blue-500 opacity-95 text-white text-sm py-2 px-4 z-100 flex justify-between items-center">
         <span>웹소켓 연결 상태를 확인 후 다시 시도해주세요</span>
         <RetryButton onRetry={retryConnect} />
       </div>
