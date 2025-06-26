@@ -239,7 +239,7 @@ export default function CoffeeChatDetailPage() {
       </ul>
 
       {/* 하단 액션 */}
-      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-50 h-18 items-center">
+      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30 h-18 items-center">
         {data.writer.memberId === membership?.memberId ? (
               <img
                 src={TrashCanIcon}
@@ -297,7 +297,7 @@ export default function CoffeeChatDetailPage() {
       <AlertModal
         isOpen={isAlertOpen2}
         title="커피챗을 삭제하시겠습니까?"
-        message="채팅 내역은 모두 삭제됩니다"
+        message="채팅 내역이 모두 삭제됩니다"
         onClose={() => setIsAlertOpen2(false)}
         onConfirm={handleDeleteChat}
         onCancel={() => setIsAlertOpen2(false)}
