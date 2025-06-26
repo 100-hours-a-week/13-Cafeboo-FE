@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
 import HorizontalScroller from "@/components/common/HorizontalScroller";
 import SectionCard from "@/components/common/SectionCard";
-import CoffeeChatIcon from "@/assets/CoffeeChatIcon.png";
+import CoffeeChatIcon from "@/assets/coffeechat3D.png";
 import { Users, ChevronRight } from "lucide-react";
 
 export default function TodayCoffeeChatSection() {
