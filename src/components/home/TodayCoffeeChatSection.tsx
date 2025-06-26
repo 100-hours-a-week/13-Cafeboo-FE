@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
 import HorizontalScroller from "@/components/common/HorizontalScroller";
 import SectionCard from "@/components/common/SectionCard";
-import Icon from "@/assets/coffeechat3D.png";
+import CoffeeChatIcon from "@/assets/CoffeeChatIcon.png";
 import { Users, ChevronRight } from "lucide-react";
 
 export default function TodayCoffeeChatSection() {
@@ -39,9 +39,9 @@ export default function TodayCoffeeChatSection() {
                     {/* 왼쪽 아이콘 영역 */}
                     <div className="flex items-center justify-center w-16 h-16 rounded-md overflow-hidden">
                     <img
-                        src={Icon}
+                        src={CoffeeChatIcon}
                         alt="preview"
-                        className="h-16 w-16 object-contain opacity-90"
+                        className="h-15 w-15 object-contain"
                     />
                     </div>
 

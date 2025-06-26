@@ -139,12 +139,7 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
         {/* 하단: 나가기 버튼 (항상 아래 고정) */}
         <div className="p-4">
         {host?.memberId === myMemberId ? (
-          <button
-            onClick={onDelete}
-            className="w-full py-3 rounded-sm bg-gray-100 text-red-500 font-semibold text-base hover:bg-gray-200 cursor-pointer"
-          >
-            커피챗 삭제하기
-          </button>
+          <></>
         ) : (
           <button
             onClick={onLeave}

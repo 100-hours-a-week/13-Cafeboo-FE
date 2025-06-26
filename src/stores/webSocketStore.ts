@@ -132,19 +132,9 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   },
 
   retryConnect: () => {
-    const { currentCoffeechatId, stompClient } = get();
-  
-    if (stompClient && stompClient.active) {
-      stompClient.deactivate();
-    }
-  
-    if (currentCoffeechatId) {
-      console.log("Zustand: Retrying connection...");
-      setTimeout(() => {
-        get().connect(currentCoffeechatId);
-      }, 300); 
-    }
+    window.location.reload();
   },
+  
 
   sendMessage: (destination: string, payload: any, onSent?: () => void) => {
     const { stompClient, isConnected } = get();
@@ -166,11 +156,15 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   },
 
   addMessage: (message: ChatMessage) => {
-    set((state) => ({
-      messages: [...state.messages, message],
-    }));
+    set((state) => {
+      if (state.messages.find((m) => m.messageId === message.messageId)) {
+        return state; 
+      }
+      return {
+        messages: [...state.messages, message],
+      };
+    });
   },
-
   clearMessages: () => {
     set({ messages: [] });
   },

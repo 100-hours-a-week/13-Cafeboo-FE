@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import PageLayout from "@/layout/PageLayout";
-import { CalendarIcon, Clock, MapPin, User, Users, Hash } from "lucide-react";
+import { CalendarIcon, Clock, MapPin, Users, Hash } from "lucide-react";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import Icon from '@/assets/cute_coffee_favicon_128.ico'
+import TrashCanIcon from '@/assets/TrashCan4.png'
+import CoffeeChat from '@/assets/CoffeeChatIcon.png'
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
 import { useWebSocketStore } from '@/stores/webSocketStore';
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
-import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
+import { useDeleteCoffeeChat, useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
 import { useJoinCoffeeChat, useCoffeeChatMembership, useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
 import { useJoinCoffeeChatListener } from "@/api/coffeechat/coffeechatMemberApi";
 import AlertModal from "@/components/common/AlertModal";
@@ -18,6 +19,7 @@ export default function CoffeeChatDetailPage() {
   const navigate = useNavigate();
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isAlertOpen2, setIsAlertOpen2] = useState(false);
   const { connect, disconnect, sendMessage } = useWebSocketStore();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -27,7 +29,8 @@ export default function CoffeeChatDetailPage() {
   const { data: members, isLoading: isMembersLoading, isError: isMembersError, error: membersError, refetch: refetchMembers } = useCoffeeChatMembers(id ?? "");
   const { data: membership, isLoading: isMembershipLoading, isError: isMembershipError, error: membershipError, refetch: refetchMembership } = useCoffeeChatMembership(id ?? "");
   const { mutateAsyncFn: joinListener, isLoading: isListenerLoading, isError: isListenerError, error: listenerError } = useJoinCoffeeChatListener(id ?? "");
-
+  const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
+  
   const handleJoinSubmit = async ({ chatNickname, profileType }: JoinParams) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileType });
@@ -51,7 +54,7 @@ export default function CoffeeChatDetailPage() {
       setJoinModalOpen(false);
     } catch (error: any) {
       console.error("커피챗 참여 오류:" + `${error.status}(${error.code}) - ${error.message}`);
-      setAlertMessage(error.message || "커피챗 참여 오류에 실패했습니다.");
+      setAlertMessage(error.message || "커피챗 참여에 실패했습니다.");
       setJoinModalOpen(false);
       setIsAlertOpen(true);  
     }
@@ -84,6 +87,17 @@ export default function CoffeeChatDetailPage() {
       );
     }
   };
+
+    // 커피챗 삭제하기
+    const handleDeleteChat = async () => {
+      try {
+        await deleteChat(id ?? ""); 
+        setIsAlertOpen2(false);
+        navigate("/main/coffeechat");
+      } catch (err: any) {
+        alert(err?.message || "삭제 중 오류가 발생했습니다.");
+      }
+    };
 
   const handleJoin = () => setJoinModalOpen(true);
   
@@ -225,8 +239,22 @@ export default function CoffeeChatDetailPage() {
       </ul>
 
       {/* 하단 액션 */}
-      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30">
-        <img src={Icon} alt="Cafeboo" className="h-12 w-auto mr-4 rounded-lg bg-[#FEF0D7]" />
+      <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-50 h-18 items-center">
+        {data.writer.memberId === membership?.memberId ? (
+              <img
+                src={TrashCanIcon}
+                alt="삭제"
+                className="h-12 w-auto mr-4 cursor-pointer"
+                onClick={() => setIsAlertOpen2(true)}
+              />
+            ) : (
+              <img
+                src={CoffeeChat}
+                alt="커피챗"
+                className="h-12 w-auto mr-4 cursor-pointer"
+                onClick={() => navigate('/main/coffeechat')}
+              />
+            )}
         {data.isJoined ? (
           <button
             onClick={handleEnterChatRoom}
@@ -265,6 +293,17 @@ export default function CoffeeChatDetailPage() {
         onConfirm={() => setIsAlertOpen(false)}
         confirmText="확인"
         showCancelButton={false}
+      />
+      <AlertModal
+        isOpen={isAlertOpen2}
+        title="커피챗을 삭제하시겠습니까?"
+        message="채팅 내역은 모두 삭제됩니다"
+        onClose={() => setIsAlertOpen2(false)}
+        onConfirm={handleDeleteChat}
+        onCancel={() => setIsAlertOpen2(false)}
+        confirmText="삭제"
+        cancelText="취소"
+        showCancelButton={true}
       />
     </PageLayout>
   );

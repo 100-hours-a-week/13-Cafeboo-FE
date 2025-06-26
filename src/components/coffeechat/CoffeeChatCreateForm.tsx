@@ -260,10 +260,10 @@ export default function CoffeeChatForm({
                     >
                       <button
                         type="button"
-                        className="ml-1 text-gray-400 hover:text-[#FE9400] focus:outline-none"
+                        className="items-center justify-center ml-1 text-gray-400 hover:text-[#FE9400] focus:outline-none"
                         aria-label="만나는 시각 안내"
                       >
-                        <Info className="w-4 h-4"/>
+                        <Info className="w-3.5 h-3.5"/>
                       </button>
                     </PopoverTrigger>
                     <PopoverContent className="w-60 text-sm text-gray-700" sideOffset={10}>
@@ -413,10 +413,10 @@ export default function CoffeeChatForm({
                           tabIndex={0}
                           aria-label="장소 정보 보기"
                         >
-                          <Info className="w-4 h-4" />
+                          <Info className="w-3.5 h-3.5" />
                         </span >
                       </PopoverTrigger>
-                      <PopoverContent className="w-70 z-[100]" sideOffset={10}>
+                      <PopoverContent className="w-70 z-[100] absolute right-[-5px]" sideOffset={10}>
                           <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-[#FE9400]/10 rounded-full flex items-center justify-center">
                               <MapPin className="w-5 h-5 text-[#FE9400]" />
