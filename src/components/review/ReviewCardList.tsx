@@ -40,7 +40,7 @@ export default function ReviewCardList() {
     refetch: refetchReviews,
   } = useCoffeeChatReviews(filter);
 
-  const reviews = reviewsData?.coffeeChatReviews ?? [];
+  const reviews = [...(reviewsData?.coffeeChatReviews ?? [])].reverse();
 
   useEffect(() => {
     refetchReviews();
@@ -107,8 +107,3 @@ export default function ReviewCardList() {
     </>
   );
 }
-
-
-
-
-  

@@ -33,18 +33,26 @@ export default function ChatMessages({
 
   // 메시지 병합 및 정렬
   useEffect(() => {
-    if (!data || data.pages.length === 0) return;
-
-    const allMessages = data.pages.flatMap(
-      (page) => (page as CoffeeChatMessagesResponse).messages ?? []
-    );
-
-    const uniqueMessages = Array.from(
-      new Map(allMessages.map((m) => [m.messageId, m])).values()
+    if ((!data || data.pages.length === 0) && realtimeMessages.length === 0) {
+      setMessages([]);
+      return;
+    }
+  
+    // API에서 불러온 메시지들
+    const apiMessages = data
+      ? data.pages.flatMap((page) => (page as CoffeeChatMessagesResponse).messages ?? [])
+      : [];
+  
+    // 실시간 메시지와 합치기
+    const combinedMessages = [...apiMessages, ...realtimeMessages];
+  
+    // 중복 제거 및 정렬
+    const uniqueSortedMessages = Array.from(
+      new Map(combinedMessages.map((m) => [m.messageId, m])).values()
     ).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
-
-    setMessages(uniqueMessages);
-  }, [data]);
+  
+    setMessages(uniqueSortedMessages);
+  }, [data, realtimeMessages]);
 
   // 실시간 메시지 반영
   useEffect(() => {
@@ -129,25 +137,33 @@ export default function ChatMessages({
     }
   }, [realtimeMessages, memberId, isFetchingPreviousPage]);
 
-  // 중복 제거된 메시지 메모이제이션
-  const deduplicatedMessages = useMemo(() => {
-    return Array.from(new Map(messages.map((m) => [m.messageId, m])).values());
-  }, [messages]);
-
   return (
     <div ref={scrollRef} className="h-full overflow-y-auto scrollbar-hide pb-4">
       <div className="flex flex-col justify-end min-h-full space-y-6">
+        {isFetchingPreviousPage && (
+          <div className="text-center text-gray-400 py-2 text-sm">불러오는 중...</div>
+        )}
+
         <div ref={loadTriggerRef} />
 
-        {deduplicatedMessages.map((msg) => {
+        {messages.map((msg) => {
           const isMine = msg.sender.memberId === memberId;
           const isSystem = msg.messageType === "ENTER" || msg.messageType === "LEAVE";
 
           if (isSystem) {
             return (
-              <div key={msg.messageId} className="text-center text-sm text-gray-400 underline decoration-gray-300">
-                {msg.content}
-              </div>
+              <div
+              key={msg.messageId}
+              className="
+                mx-auto mt-2 mb-4 inline-block
+                rounded-full bg-gray-200 px-4 py-1
+                text-center text-sm  text-gray-500
+                select-none
+                "
+              style={{ maxWidth: '60%', userSelect: 'none' }}
+            >
+              {msg.content}
+            </div>
             );
           }
 
@@ -196,10 +212,6 @@ export default function ChatMessages({
           );
           
         })}
-
-        {isFetchingPreviousPage && (
-          <div className="text-center text-gray-400 py-2 text-sm">불러오는 중...</div>
-        )}
 
         <div ref={bottomRef} />
       </div>

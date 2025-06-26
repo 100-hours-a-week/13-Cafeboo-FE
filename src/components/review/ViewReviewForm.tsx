@@ -61,9 +61,9 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
     if (imageUrls.length === 0) return null;
     
     return (
-      <div className="flex flex-wrap gap-2 mb-3">
+      <div className="flex flex-wrap gap-2">
         {imageUrls.map((url, index) => (
-          <div key={index} className="w-16 h-16 bg-gray-200 rounded overflow-hidden">
+          <div key={index} className="w-16 h-16 bg-gray-50 rounded overflow-hidden">
             <img 
               src={url} 
               alt={`후기 이미지 ${index + 1}`}
@@ -173,16 +173,9 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
         ) : (
         <div className="space-y-4">
           {coffeeChatData.reviews.map((review) => (
-            <SectionCard>
-            <div key={review.reviewId}>
-              {/* 이미지 그리드 */}
-              {renderImages(review.imageUrls)}
-              
-              {/* 후기 내용 */}
-              <p className="text-sm text-[#333333] mb-3 pb-3 border-b border-gray-300">{review.text}</p>
-              
+            <SectionCard key={review.reviewId}>
               {/* 작성자 정보 */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2 mb-3">
                 <div className="w-5 h-5 bg-gray-300 rounded-full overflow-hidden">
                   <img 
                     src={review.writer.profileImageUrl} 
@@ -191,15 +184,26 @@ export default function ViewReviewForm({ coffeeChatId }: Props) {
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
-                      target.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center"><svg class="w-3 h-3 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path></svg></div>';
+                      target.parentElement!.innerHTML = `
+                        <div class="w-full h-full flex items-center justify-center">
+                          <svg class="w-3 h-3 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path>
+                          </svg>
+                        </div>`;
                     }}
                   />
                 </div>
                 <span className="text-sm font-medium">{review.writer.chatNickname}</span>
               </div>
-            </div>
+
+              {/* 후기 내용 */}
+              <p className="text-sm text-[#333333] mb-3">{review.text}</p>
+
+              {/* 이미지 그리드 */}
+              {renderImages(review.imageUrls)}
             </SectionCard>
           ))}
+
         </div>
         )}
         {selectedImage && (
