@@ -35,7 +35,7 @@ export default function HomePage() {
   const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
       await recordCaffeineIntake(record);
-      refetch();
+      await refetch();
     } catch (error:any) {
       console.error("카페인 섭취 등록 오류:"+`${error.status}(${error.code}) - ${error.message}`);
       setAlertMessage(error.message || "카페인 등록에 실패했습니다.");

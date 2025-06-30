@@ -240,7 +240,7 @@ export default function CoffeeChatDetailPage() {
 
       {/* 하단 액션 */}
       <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30 h-18 items-center">
-        {data.writer.memberId === membership?.memberId ? (
+        {writer.memberId === membership?.memberId ? (
               <img
                 src={TrashCanIcon}
                 alt="삭제"

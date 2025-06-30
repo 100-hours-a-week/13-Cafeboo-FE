@@ -8,7 +8,7 @@ import AlertModal from '@/components/common/AlertModal';
 import { Info } from 'lucide-react';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
-export default function MypageEditPage() {
+export default function MyPageEditPage() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
