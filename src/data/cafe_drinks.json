@@ -3884,13 +3884,13 @@
         ]
       },
       {
-        "drinkId": 444,
+        "drinkId": 450,
         "name": "카페라떼",
         "type": "COFFEE",
         "temperature": "ICED",
         "sizes": [
           {
-            "drinkSizeId": 744,
+            "drinkSizeId": 750,
             "size": "R",
             "capacity_ml": 630,
             "caffeine_mg": 237
@@ -3898,13 +3898,13 @@
         ]
       },
       {
-        "drinkId": 445,
+        "drinkId": 451,
         "name": "카페라떼",
         "type": "COFFEE",
         "temperature": "HOT",
         "sizes": [
           {
-            "drinkSizeId": 745,
+            "drinkSizeId": 751,
             "size": "R",
             "capacity_ml": 630,
             "caffeine_mg": 237
