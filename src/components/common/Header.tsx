@@ -33,7 +33,6 @@ const Header = ({
   const menuItems = [
     { label: '카페인 히스토리', href: '/main/diary' },
     { label: '커피챗', href: '/main/coffeechat'},
-    { label: '챌린지', href: '/main/challenge', disabled: true },
     { label: '마이 페이지', href: '/main/mypage' },
   ];
 

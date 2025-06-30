@@ -8,6 +8,7 @@ import ScrollToTop from '@/components/common/ScrolltoTop';
 import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
 import { useCoffeeChatFilter } from "@/stores/useCoffeeChatFilter";
 import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
+type ChatFilter = "ALL" | "JOINED" | "REVIEWABLE" | "REVIEWS";
 
 export default function CoffeeChatPage() {
   const filter = useCoffeeChatFilter((state) => state.filter);
@@ -22,10 +23,20 @@ export default function CoffeeChatPage() {
     data,
     isLoading,
     isError,
+    refetch,
   } = useCoffeeChatList(filter, {
     enabled: !isReviewTab,
   });
+
   const coffeechats = data?.coffeechats ?? [];
+
+  const handleTabClick = (tab: ChatFilter) => {
+    if (filter === tab) {
+      refetch(); 
+    } else {
+      setFilter(tab);
+    }
+  };
 
   return (
     <>
@@ -35,7 +46,7 @@ export default function CoffeeChatPage() {
       showAdd={true}
       onAddClick={() => setIsSheetOpen(true)}
     >
-      <ChatTab filter={filter} onChange={setFilter} />
+      <ChatTab filter={filter} onChange={handleTabClick} />
       <ScrollToTop key={filter} selector="main" top={0} />
       <div className="space-y-4">
       {isReviewTab ? (

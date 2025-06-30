@@ -8,7 +8,7 @@ interface ChatTabProps {
 const TABS: { value: ChatFilter; label: string }[] = [
   { value: "ALL", label: "전체" },
   { value: "JOINED", label: "참여 중" },
-  { value: "REVIEWABLE", label: "참여 후기" },
+  { value: "REVIEWABLE", label: "후기 작성" },
   { value: "REVIEWS", label: "전체 후기" },
 ];
 
@@ -19,6 +19,7 @@ export default function ChatTab({ filter, onChange }: ChatTabProps) {
         <button
           key={tab.value}
           onClick={() => onChange(tab.value)}
+          aria-pressed={filter === tab.value}
           className={`pb-0.5 font-semibold cursor-pointer ${
             filter === tab.value
               ? "text-black border-b-2 border-[#FE9400]"
