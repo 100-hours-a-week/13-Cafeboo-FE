@@ -3,7 +3,7 @@ name: Deploy Frontend to GCP Cloud Storage (PROD)
 on:
   push:
     branches:
-      - main
+      - v2-loadtest
 
 jobs:
   deploy:
@@ -16,12 +16,12 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY_2 }}'
+          credentials_json: '${{ secrets.GCP_SA_KEY_LOADTEST }}'
 
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: master-isotope-462503-m9
+          project_id: cafeboo-459107
           version: latest
 
       - name: Install pnpm
@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload to GCP Cloud Storage (PROD)
         run: |
-          gsutil -m rsync -r ./dist gs://v2-prod-frontend-bucket
+          gsutil -m rsync -r ./dist gs://frontend-cafeboo-prod
 
       - name: Invalidate CDN cache
         run: |
