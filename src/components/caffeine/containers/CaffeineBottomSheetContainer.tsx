@@ -11,9 +11,10 @@ interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmitRecord: (record: any) => void;
+  selectedDate?: string; 
 }
 
-export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSubmitRecord }: Props) {
+export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSubmitRecord, selectedDate }: Props) {
   const [selected, setSelected] = useState<Selected | null>(null);
 
   const detail = useMemo(() => {
@@ -35,8 +36,9 @@ export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSub
         size: size.size,
         capacity_ml: size.capacity_ml,
       })),
+      date: selectedDate,
     };
-  }, [selected]);
+  }, [selected, selectedDate]);
 
   const handleOpenChange = (isOpen: boolean) => {
     onOpenChange(isOpen);
@@ -59,3 +61,4 @@ export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSub
     />
   );
 }
+
