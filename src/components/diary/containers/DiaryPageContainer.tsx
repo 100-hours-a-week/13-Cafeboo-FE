@@ -40,6 +40,10 @@ export default function DiaryPageContainer() {
     return map;
   }, [dataCalendar]);
 
+  const handleMainClick = () => {
+    navigate('/main/report');
+  };
+
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
   };
@@ -84,6 +88,7 @@ export default function DiaryPageContainer() {
 
   // 핸들러 묶음
   const handlers = {
+    onMainClick:handleMainClick,
     onDateSelect: handleDateSelect,
     onMonthChange: handleMonthChange,
     onEdit: handleEdit,
