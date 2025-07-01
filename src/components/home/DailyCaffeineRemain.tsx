@@ -56,12 +56,6 @@ export default function DailyCaffeineRemain({
   const minWidth = (BAR_WIDTH + BAR_GAP) * data.length + BAR_WIDTH;
 
   useEffect(() => {
-    const onResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       if (containerRef.current && scrollIndex >= 0) {
         const scrollX = scrollIndex * (BAR_WIDTH + BAR_GAP);

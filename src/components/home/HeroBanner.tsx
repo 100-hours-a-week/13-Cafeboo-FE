@@ -31,8 +31,8 @@ export default function HeroBanner({
   return (
     <div className="relative w-full aspect-16/8 overflow-hidden">
       <Slider {...settings} className="h-full">
-        {slides.map((slide, idx) => (
-          <div key={idx} className="w-full h-full">
+        {slides.map((slide) => (
+          <div key={slide.imageUrl} className="w-full h-full">
             <img
               src={slide.imageUrl}
               alt={'이미지'}
@@ -44,3 +44,4 @@ export default function HeroBanner({
     </div>
   );
 }
+
