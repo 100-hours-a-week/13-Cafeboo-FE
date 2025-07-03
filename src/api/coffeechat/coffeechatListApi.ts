@@ -30,7 +30,7 @@ export const useCoffeeChatList = (
     ['coffeeChats', status],
     () => fetchCoffeeChatList(status),
     {
-      staleTime: 60000,
+      staleTime: 0,
       gcTime: 300000,
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,

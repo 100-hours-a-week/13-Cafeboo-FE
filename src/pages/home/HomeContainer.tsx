@@ -4,7 +4,7 @@ import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import HomePageUI from '@/pages/home/HomePageUI';
 
-export default function HomePageContainer() {
+export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');

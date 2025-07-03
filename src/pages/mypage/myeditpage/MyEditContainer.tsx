@@ -5,7 +5,7 @@ import { useCaffeineInfo, useUpdateCaffeineInfo } from '@/api/caffeine/caffeineI
 import MyEditPageUI from '@/pages/mypage/myeditpage/MyEditPageUI';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
-export default function MyEditPageContainer() {
+export default function MyEditContainer() {
   const navigate = useNavigate();
   const { data: healthInfo, refetch: refetchHealthInfo } = useHealthInfo();
   const { data: caffeineInfo, refetch: refetchCaffeineInfo } = useCaffeineInfo();

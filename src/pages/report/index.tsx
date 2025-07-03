@@ -1,6 +1,6 @@
-import ReportPageContainer from "@/pages/report/ReportPageContainer";
+import ReportContainer from "@/pages/report/ReportContainer";
 
 export default function ReportPage() {
-  return <ReportPageContainer />;
+  return <ReportContainer />;
 }
 

@@ -1,5 +1,5 @@
-import DiaryPageContainer from '@/pages/diary/diarypage/DiaryPageContainer';
+import DiaryContainer from '@/pages/diary/diarypage/DiaryContainer';
 
 export default function DiaryPage() {
-  return <DiaryPageContainer />;
+  return <DiaryContainer />;
 }

@@ -1,4 +1,4 @@
-import ChatCard from "@/components/coffeechat/ChatCard";
+import ChatCard from "@/components/coffeechat/chatcard";
 import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
 
 interface ChatCardListProps {

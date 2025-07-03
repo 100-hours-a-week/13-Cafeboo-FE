@@ -8,7 +8,7 @@ import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import { getWeekOfMonth } from 'date-fns';
 
-export default function ReportPageContainer() {
+export default function ReportContainer() {
   const navigate = useNavigate();
 
   const today = new Date();
