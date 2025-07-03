@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useHealthInfo, useUpdateHealthInfo } from '@/api/health/healthInfoApi';
 import { useCaffeineInfo, useUpdateCaffeineInfo } from '@/api/caffeine/caffeineInfoApi';
-import MyEditPageUI from '@/components/mypage/MyEditPageUI';
+import MyEditPageUI from '@/pages/mypage/myeditpage/MyEditPageUI';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export default function MyEditPageContainer() {

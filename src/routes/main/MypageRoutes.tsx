@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import MyPage from '@/pages/mypage/MyPage';
-import MyEditPage from '@/pages/mypage/MyEditPage';
+import MyPage from '@/pages/mypage/mypage';
+import MyEditPage from '@/pages/mypage/myeditpage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 
 const MypageRoutes = () => (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReportPageUI from '@/components/report/ReportPageUI';
+import ReportPageUI from '@/pages/report/ReportPageUI';
 import { useWeeklyReport } from '@/api/report/weeklyReportApi';
 import { useMonthlyReport } from '@/api/report/monthlyReportApi';
 import { useYearlyReport } from '@/api/report/yearlyReportApi';
