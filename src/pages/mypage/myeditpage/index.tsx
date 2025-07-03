@@ -1,5 +1,5 @@
-import MyEditPageContainer from "@/pages/mypage/myeditpage/MyEditPageContainer";
+import MyEditContainer from "@/pages/mypage/myeditpage/MyEditContainer";
 
 export default function MyEditPage() {
-  return <MyEditPageContainer />;
+  return <MyEditContainer />;
 }

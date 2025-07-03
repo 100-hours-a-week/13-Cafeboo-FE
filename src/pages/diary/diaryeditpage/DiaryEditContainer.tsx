@@ -15,7 +15,7 @@ interface ApiRecord {
   intakeTime: string;
 }
 
-export default function DiaryEditPageContainer() {
+export default function DiaryEditContainer() {
   const navigate = useNavigate();
   const location = useLocation();
   const orig = (location.state as { record?: ApiRecord })?.record;

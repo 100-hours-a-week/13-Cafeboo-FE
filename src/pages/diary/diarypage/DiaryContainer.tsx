@@ -6,7 +6,7 @@ import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import DiaryPageUI from '@/pages/diary/diarypage/DiaryPageUI';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 
-export default function DiaryPageContainer() {
+export default function DiaryContainer() {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today.toISOString().slice(0, 10));
   const [year, setYear] = useState(today.getFullYear());

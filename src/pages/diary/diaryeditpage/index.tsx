@@ -1,5 +1,5 @@
-import DiaryEditPageContainer from '@/pages/diary/diaryeditpage/DiaryEditPageContainer';
+import DiaryEditContainer from '@/pages/diary/diaryeditpage/DiaryEditContainer';
 
 export default function DiaryEditPage() {
-  return <DiaryEditPageContainer />;
+  return <DiaryEditContainer />;
 }
