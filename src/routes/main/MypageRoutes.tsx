@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import MyPagePage from '@/pages/mypage/MypagePage';
-import MyPageEditPage from '@/pages/mypage/MypageEditPage';
+import MyPage from '@/pages/mypage/MyPage';
+import MyEditPage from '@/pages/mypage/MyEditPage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 
 const MypageRoutes = () => (
   <Routes>
-    <Route path="/" element={<MyPagePage />} />
-    <Route path="edit" element={<MyPageEditPage />} />
+    <Route path="/" element={<MyPage />} />
+    <Route path="edit" element={<MyEditPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );

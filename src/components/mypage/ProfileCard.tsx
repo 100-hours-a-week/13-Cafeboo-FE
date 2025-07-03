@@ -1,5 +1,3 @@
-import { ChevronRight } from 'lucide-react';
-
 interface ProfileCardProps {
   nickname: string;
   profileImageUrl: string;
@@ -24,9 +22,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         className="relative rounded-xl max-w-md mx-auto"
       >
         {/* 프로필 사진과 닉네임+회원탈퇴 영역 */}
-        <div className="flex items-center justify-start gap-4">
+        <div className="flex items-center justify-start gap-3">
           {/* 왼쪽: 프로필 사진 */}
-          <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+          <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
             <img
               src={profileImageUrl}
               alt="프로필"
