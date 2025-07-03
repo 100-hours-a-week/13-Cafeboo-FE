@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import TwoOptionToggle from '@/components/common/TwoOptionToggle';
-import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Input } from '@/components/ui/input';
 import { Tag } from '../common/Tag';
 import { Range } from 'react-range';
