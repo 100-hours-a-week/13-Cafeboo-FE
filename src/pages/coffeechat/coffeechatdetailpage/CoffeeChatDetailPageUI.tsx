@@ -171,18 +171,18 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
         <div className="flex flex-col items-left space-y-1.5">
           <div className="flex items-center space-x-3">
             <CalendarIcon className="w-4 h-4 text-gray-500" />
-            <span>{date}</span>
+            <span className="text-sm">{date}</span>
           </div>
 
           <div className="flex items-center space-x-3">
             <Clock className="w-4 h-4 text-gray-500" />
-            <span>{time}</span>
+            <span className="text-sm">{time}</span>
           </div>
 
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-3">
               <MapPin className="w-4 h-4 text-gray-500" />
-              <span>{location?.address ?? "-"}</span>
+              <span className="text-sm">{location?.address ?? "-"}</span>
             </div>
 
             <div className="flex gap-2">
@@ -202,6 +202,8 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
             </div>
           </div>
         </div>
+
+        <hr className="border-gray-200 my-4" />
 
         {/* 멤버 리스트 */}
         <div className="font-semibold leading-tight">멤버</div>
