@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyPagePageUI from '@/components/mypage/MyPageUI';
+import MyPagePageUI from '@/pages/mypage/mypage/MyPageUI';
 import { useUserProfile, useUpdateUserProfile } from '@/api/mypage/profileApi';
 import { useLogout } from '@/api/mypage/LogoutApi';
 import { useDeleteUser } from '@/api/mypage/deletUserApi';

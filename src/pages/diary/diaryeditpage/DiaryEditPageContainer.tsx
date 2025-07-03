@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import drinkData from '@/data/cafe_drinks.json';
 import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { UpdateCaffeineIntakeRequestDTO, CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
-import DiaryEditPageUI from '@/components/diary/DiaryEditPageUI';
+import DiaryEditPageUI from '@/pages/diary/diaryeditpage/DiaryEditPageUI';
 import type { DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
 
 interface ApiRecord {

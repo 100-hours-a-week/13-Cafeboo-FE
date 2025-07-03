@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDailyCaffeineReport } from '@/api/home/dailyReportApi';
 import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
-import HomePageUI from '@/components/home/HomePageUI';
+import HomePageUI from '@/pages/home/HomePageUI';
 
 export default function HomePageContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);

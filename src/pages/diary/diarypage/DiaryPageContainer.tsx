@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCalendar } from '@/api/diary/calendarApi';
 import { useDailyIntake } from '@/api/diary/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
-import DiaryPageUI from '@/components/diary/DiaryPageUI';
+import DiaryPageUI from '@/pages/diary/diarypage/DiaryPageUI';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 
 export default function DiaryPageContainer() {
