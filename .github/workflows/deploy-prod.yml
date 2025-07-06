@@ -41,7 +41,7 @@ jobs:
 
       - name: Upload to GCP Cloud Storage (PROD)
         run: |
-          gsutil -m rsync -r ./dist gs://frontend-cafeboo-prod
+          gsutil -m rsync -r ./dist gs://v2-prod-frontend-bucket-test
 
       - name: Invalidate CDN cache
         run: |
