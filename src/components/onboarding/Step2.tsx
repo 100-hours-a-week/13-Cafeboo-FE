@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useOnboardingStore } from '@/stores/onboardingStore';
 import { Label } from '@/components/ui/label';
-import * as SliderPrimitive from '@radix-ui/react-slider';
+import { Range } from 'react-range';
 import { Tag } from '@/components/common/Tag';
 import { AlertCircle, Info } from 'lucide-react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -104,31 +104,82 @@ const Step2 = () => {
             </PopoverContent>
           </Popover>
         </div>
-        <SliderPrimitive.Root
-          className="relative flex items-center mt-10 mb-10 ml-4 mr-8"
-          value={[caffeineInfo.caffeineSensitivity]}
-          min={0}
-          max={100}
-          step={1}
-          onValueChange={([v]) => updateCaffeine({ caffeineSensitivity: v })}
-        >
-          <SliderPrimitive.Track className="relative flex-1 h-1 bg-[#AAAAAA]/30 rounded-full">
-            <SliderPrimitive.Range className="absolute h-full bg-[#FE9400]" />
-          </SliderPrimitive.Track>
-
-          <SliderPrimitive.Thumb className="relative block h-6 w-6 rounded-full bg-white border-2 border-[#FE9400]">
-            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FE9400] text-white text-xs px-2 py-1 rounded-full">
-              {caffeineInfo.caffeineSensitivity}
-            </div>
-          </SliderPrimitive.Thumb>
-
-          <span className="absolute left-[-15px] text-sm text-[#595959]">
-            0
-          </span>
-          <span className="absolute right-[-30px] text-sm text-[#595959]">
-            100
-          </span>
-        </SliderPrimitive.Root>
+        <div className='px-3 mt-10'>
+          <Range
+            step={1}
+            min={0}
+            max={100}
+            values={[caffeineInfo.caffeineSensitivity]}
+            onChange={([v]) => updateCaffeine({ caffeineSensitivity: v })}
+            renderTrack={({ props, children }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: '6px',
+                  width: '100%',
+                  background: '#AAAAAA4D',
+                  borderRadius: '9999px',
+                  position: 'relative',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    height: '6px',
+                    borderRadius: '9999px',
+                    backgroundColor: '#FE9400',
+                    width: `${caffeineInfo.caffeineSensitivity}%`,
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+                {children}
+              </div>
+            )}
+            renderThumb={({ props }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: '24px',
+                  width: '24px',
+                  borderRadius: '50%',
+                  backgroundColor: 'white',
+                  border: '2px solid #FE9400',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative',
+                  boxSizing: 'border-box',
+                  cursor: 'pointer',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: 'calc(100% + 8px)',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    backgroundColor: '#FE9400',
+                    color: 'white',
+                    fontSize: '12px',
+                    padding: '2px 6px',
+                    borderRadius: '9999px',
+                    whiteSpace: 'nowrap',
+                    userSelect: 'none',
+                  }}
+                >
+                  {caffeineInfo.caffeineSensitivity}
+                </div>
+              </div>
+            )}
+          />
+        </div>
+        <div className="flex justify-between mt-2 pl-2 text-[#595959] text-sm select-none">
+          <span>0</span>
+          <span>100</span>
+        </div>
       </div>
 
       {/* 하루 평균 섭취량 */}
