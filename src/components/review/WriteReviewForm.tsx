@@ -1,10 +1,6 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Camera, X, Clock, MapPin, Users, Edit, Hash } from 'lucide-react';
-import { useCoffeeChatDetail } from "@/api/coffeechat/coffeechatApi";
-import { useCoffeeChatMembership } from '@/api/coffeechat/coffeechatMemberApi';
-import { useWriteCoffeeChatReview } from '@/api/coffeechat/coffeechatReviewApi';
-import { useToastStore } from '@/stores/toastStore'; 
+import { Camera, X, Clock, MapPin, CalendarIcon, Edit, Hash } from 'lucide-react';
+import { useToastStore } from '@/stores/toastStore';
 
 interface UploadedImage {
   id: string;
@@ -14,69 +10,53 @@ interface UploadedImage {
 
 interface Props {
   coffeeChatId: string;
+  chatDetail: {
+    date: string;
+    title: string;
+    time: string;
+    location: { address: string };
+    currentMemberCount: number;
+    tags: string[];
+  };
+  memberId?: string;
+  onSubmit: (params: { memberId: string; text: string; images: File[] }) => Promise<void>;
+  writeLoading: boolean;
 }
 
-export default function WriteReviewForm({ coffeeChatId }: Props) {  
-  const navigate = useNavigate();
+export default function WriteReviewForm({
+  coffeeChatId,
+  chatDetail,
+  memberId,
+  onSubmit,
+  writeLoading,
+}: Props) {
   const [content, setContent] = useState<string>('');
   const [images, setImages] = useState<UploadedImage[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const showToast = useToastStore((state) => state.showToast);
   const maxLength = 150;
-  const {
-    data: chatDetail,
-    isLoading: isChatLoading,
-    isError: isChatError,
-  } = useCoffeeChatDetail(coffeeChatId);
-
-  const {
-    mutateAsyncFn,
-    isLoading,
-    isError: isSubmitError,
-    error: submitError,
-  } = useWriteCoffeeChatReview(coffeeChatId);
-
-  const {
-    data: membership,
-    isLoading: isMembershipLoading,
-    isError: isMembershipError,
-  } = useCoffeeChatMembership(coffeeChatId);
-
-  // 로딩 처리
-  if (isChatLoading || isMembershipLoading) {
-    return <div className="text-center text-sm text-gray-500">로딩 중...</div>;
-  }
-
-  // 에러 처리
-  if (isChatError || isMembershipError || !chatDetail || !membership?.isMember || !membership.memberId) {
-    return (
-      <div className="text-center text-red-500 text-sm">
-        후기를 작성하려면 커피챗에 참여해야 합니다.
-      </div>
-    );
-  }
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
-  
+
     const MAX_COUNT = 3;
     const MAX_SIZE_MB = 5;
-  
+
     const fileArray = Array.from(files);
     const remainingSlots = MAX_COUNT - images.length;
-  
+
     const validFiles = fileArray.slice(0, remainingSlots).filter((file) => {
       if (!file.type.startsWith('image/')) return false;
-  
+
       if (file.size > MAX_SIZE_MB * 1024 * 1024) {
-        showToast("error", "사진은 5MB 이하만 업로드 가능합니다.");
+        showToast('error', '사진은 5MB 이하만 업로드 가능합니다.');
         return false;
       }
-  
+
       return true;
     });
-  
+
     validFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -90,15 +70,14 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
       };
       reader.readAsDataURL(file);
     });
-  
+
     if (event.target) {
       event.target.value = '';
     }
   };
-  
 
   const removeImage = (imageId: string) => {
-    setImages(prev => prev.filter(img => img.id !== imageId));
+    setImages((prev) => prev.filter((img) => img.id !== imageId));
   };
 
   const triggerFileInput = () => {
@@ -107,21 +86,25 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
 
   const handleSubmit = async () => {
     if (!content.trim() && images.length === 0) {
-      showToast("error", "내용을 입력하거나 사진을 추가해주세요.");
+      showToast('error', '내용을 입력하거나 사진을 추가해주세요.');
+      return;
+    }
+
+    if (!memberId) {
+      showToast('error', '로그인 상태를 확인해주세요.');
       return;
     }
 
     try {
-      await mutateAsyncFn({
-        memberId: membership.memberId!,
+      await onSubmit({
+        memberId,
         text: content.trim(),
         images: images.map((img) => img.file),
       });
-      showToast("success", "후기 작성이 완료되었습니다.");
-      navigate('/main/coffeechat');
+      setContent('');
+      setImages([]);
     } catch (error) {
-      console.error("후기 작성 실패:", submitError?.message);
-      showToast("error", "후기 작성에 실패했습니다.");
+      showToast('error', '후기 작성에 실패했습니다.');
     }
   };
 
@@ -152,33 +135,35 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
 
       {/* 커피챗 정보 섹션 */}
       <section>
-      <h1 className="text-lg font-semibold mb-2">{chatDetail.title}</h1>
-        <div className="flex items-center text-gray-500 text-sm space-x-3 mb-3">
-          <div className="flex items-center space-x-1">
-            <Clock className="w-4 h-4" />
-            <span>{chatDetail.time}</span>
-          </div>
-          <div className="text-gray-500">|</div>
-          <div className="flex items-center space-x-1">
-            <MapPin className="w-4 h-4" />
-            <span>{chatDetail.location.address}</span>
-          </div>
-          <div className="text-gray-500">|</div>
-          <div className="flex items-center space-x-1">
-            <Users className="w-4 h-4" />
-            <span>{chatDetail.currentMemberCount}명</span>
+        <h1 className="text-lg font-semibold mb-2">{chatDetail.title}</h1>
+        <div className="flex items-center mb-3 text-gray-500">
+          <div className="flex items-left space-x-3 text-sm">
+            <div className="flex items-center space-x-1.5">
+              <CalendarIcon className="w-4 h-4" />
+              <span className="text-black">{chatDetail.date}</span>
+            </div>
+            <div className="text-gray-300">|</div>
+            <div className="flex items-center space-x-1.5">
+              <Clock className="w-4 h-4" />
+              <span className="text-black">{chatDetail.time}</span>
+            </div>          
+            <div className="text-gray-300">|</div>
+            <div className="flex items-center space-x-1.5">
+              <MapPin className="w-4 h-4" />
+              <span className="text-black">{chatDetail.location.address}</span>
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-            {chatDetail.tags.map((tag: string, index: number) => (
-              <span
-                key={index}
-                className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
-              >
-                <Hash className="w-3 h-3 mr-1" />
-                {tag}
-              </span>
-            ))}
+          {chatDetail.tags.map((tag: string, index: number) => (
+            <span
+              key={index}
+              className="inline-flex items-center bg-gray-100 text-gray-600 px-2 py-1 rounded-xs text-xs font-medium"
+            >
+              <Hash className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -191,6 +176,7 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
           placeholder="후기를 작성해 주세요"
           className="w-full h-32 p-3 border border-gray-200 rounded-sm resize-none focus:outline-none focus:border-[#FE9400] text-sm"
           maxLength={maxLength}
+          disabled={writeLoading}
         />
         <div className="flex justify-end items-center mt-0.5">
           <span className="text-xs text-gray-400">
@@ -215,16 +201,19 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
                 className="w-18 h-18 object-cover rounded-lg border border-gray-200"
               />
               <button
+                type="button"
                 onClick={() => removeImage(image.id)}
                 className="absolute -top-2 -right-2 w-5 h-5 bg-white text-gray-400 rounded-full border border-gray-300 flex items-center justify-center text-xs hover:bg-gray-100 transition-colors cursor-pointer"
+                disabled={writeLoading}
               >
                 <X size={12} />
               </button>
             </div>
           ))}
 
-          {images.length < 3 && (
+          {images.length < 3 && !writeLoading && (
             <button
+              type="button"
               onClick={triggerFileInput}
               className="w-18 h-18 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-300 hover:border-gray-400 hover:text-gray-400 transition-colors cursor-pointer"
             >
@@ -241,6 +230,7 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
           multiple
           onChange={handleImageUpload}
           className="hidden"
+          disabled={writeLoading}
         />
       </section>
 
@@ -248,11 +238,13 @@ export default function WriteReviewForm({ coffeeChatId }: Props) {
       <section>
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#FE9400] text-white py-3 rounded-lg transition-colors cursor-pointer"
+          className="w-full bg-[#FE9400] text-white py-3 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
+          disabled={writeLoading}
         >
-          작성완료
+          {writeLoading ? "작성 중..." : "작성완료"}
         </button>
       </section>
     </div>
   );
 }
+

@@ -299,7 +299,7 @@ export default function HealthInfoEditor({
         <Label className="text-base mb-2 block font-semibold">
           카페인 민감도
         </Label>
-        <div className='pl-3 pr-3 mt-10'>
+        <div className='px-3 mt-10'>
         <Range
         step={1}
         min={0}

@@ -10,6 +10,7 @@ import type {
   CoffeeChatReviewDetailData,
   CoffeeChatReviewLikeData,
 } from "@/api/coffeechat/coffeechat.dto";
+import { useToastStore } from '@/stores/toastStore'; 
 
 type ReviewStatus = "ALL" | "MY";
 
@@ -93,12 +94,14 @@ export const fetchWriteCoffeeChatReview = async (
 
 export const useWriteCoffeeChatReview = (coffeeChatId: string) => {
   const queryClient = useQueryClient();
+  const showToast = useToastStore((state) => state.showToast);
   return createMutationHandler(
     (payload: WriteCoffeeChatReviewPayload) => fetchWriteCoffeeChatReview(coffeeChatId, payload),
     {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["coffeeChatReviews"] });
         queryClient.invalidateQueries({ queryKey: ["coffeeChatReviewDetail", coffeeChatId] });
+        showToast("success", "후기가 등록되었습니다!");
       },
     }
   );

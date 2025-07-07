@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import CoffeeChatPage from '@/pages/coffeechat/coffeechatpage';
 import CoffeeChatDetailPage from '@/pages/coffeechat/coffeechatdetailpage';
 import GroupChatPage from '@/pages/coffeechat/groupchatpage';
-import CoffeeChatReviewPage from '@/pages/coffeechat/CoffeeChatReviewPage';
+import CoffeeChatReviewPage from '@/pages/coffeechat/coffeechatreviewpage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 
 const CoffeeChatRoutes = () => (
