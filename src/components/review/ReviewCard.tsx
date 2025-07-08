@@ -4,8 +4,10 @@ import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
 import SectionCard from "@/components/common/SectionCard";
 import HeartButton from "@/components/review/HeartButton";
 import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
-import Icon from "@/assets/cafeboo.png";
+import Icon from "@/assets/CoffeeChatIcon.png";
 import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
+import MemberImage from '@/components/common/MemberImage';
+import { useImageSize } from '@/hooks/useImageSize';
 
 interface ReviewCardProps {
   item: CoffeeChatReviewSummary;
@@ -29,25 +31,25 @@ export default function ReviewCard({ item }: ReviewCardProps) {
         coffeeChatId: item.coffeeChatId,
       },
     });
- };
+  };
 
- const likeMutation = useLikeCoffeeChatReview(item.coffeeChatId);
+  const likeMutation = useLikeCoffeeChatReview(item.coffeeChatId);
 
- const handleLikeToggle = (newLiked: boolean) => {
-  // API 호출
-  if (likeMutation.isLoading) return;
+  const handleLikeToggle = (newLiked: boolean) => {
+    if (likeMutation.isLoading) return;
 
-  likeMutation.mutateFn();
+    likeMutation.mutateFn();
 
-  // 로컬 상태 업데이트
-  setLiked(newLiked);
-  setLikesCount((prev) => prev + (newLiked ? 1 : -1));
-};
+    setLiked(newLiked);
+    setLikesCount((prev) => prev + (newLiked ? 1 : -1));
+  };
 
-useEffect(() => {
-  setLiked(item.liked);
-  setLikesCount(item.likesCount);
-}, [item.liked, item.likesCount]);
+  useEffect(() => {
+    setLiked(item.liked);
+    setLikesCount(item.likesCount);
+  }, [item.liked, item.likesCount]);
+
+  const size = useImageSize(item.previewImageUrl);
 
   return (
     <SectionCard className="!px-2 cursor-pointer !border-gray-200" onClick={handleClick}>
@@ -58,11 +60,13 @@ useEffect(() => {
             <img
               src={item.previewImageUrl}
               alt="preview"
+              width={size?.width}
+              height={size?.height}
               className="w-full h-full object-cover"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#FE9400]/20 to-gray-200 flex items-center justify-center">
-              <img src={Icon} alt="icon" className="w-16 h-16 object-contain" />
+              <img src={Icon} alt="icon" width={952} height={953} className="w-13 h-13 object-contain" />
             </div>
           )}
 
@@ -90,18 +94,17 @@ useEffect(() => {
             <>
               <div className="flex items-center -space-x-2.5">
                 {membersData?.members.slice(0, 2).map((member: any) => (
-                  <img
+                  <MemberImage
                     key={member.memberId}
-                    src={member.profileImageUrl}
+                    url={member.profileImageUrl}
                     alt={member.chatNickname}
-                    loading="lazy"
-                    className="w-6 h-6 rounded-full border border-white bg-gray-200"
+                    className="w-6 h-6 border border-white"
                   />
                 ))}
                 {membersData?.totalMemberCounts && membersData?.totalMemberCounts > 2 && (
-                <div className="w-6 h-6 rounded-full border border-white bg-gray-200 text-[10px] text-gray-600 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full border border-white bg-gray-200 text-[10px] text-gray-600 flex items-center justify-center">
                     +{membersData.totalMemberCounts - 2}
-                </div>
+                  </div>
                 )}
               </div>
 
@@ -117,3 +120,4 @@ useEffect(() => {
     </SectionCard>
   );
 }
+

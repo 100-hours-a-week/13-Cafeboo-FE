@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
-import Logo from '@/assets/logo.svg';
+import Logo from '@/assets/logo.png';
 
 export interface LoginFormData {
   email: string;

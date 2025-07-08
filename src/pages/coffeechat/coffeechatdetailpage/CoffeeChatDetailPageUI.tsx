@@ -215,6 +215,8 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
                 <img
                   src={member.profileImageUrl}
                   alt={member.chatNickname}
+                  width={1000}
+                  height={1000}
                   className="w-8 h-8 rounded-full object-cover bg-gray-200"
                 />
               ) : (
@@ -233,6 +235,8 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
             <img
               src={TrashCanIcon}
               alt="삭제"
+              width={1024}
+              height={1024}
               className="h-11 w-auto mr-4 cursor-pointer"
               onClick={handleAlert2Open} 
             />

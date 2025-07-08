@@ -36,6 +36,8 @@ export default function HeroBanner({
             <img
               src={slide.imageUrl}
               alt={'이미지'}
+              width={574}
+              height={287}
               className="w-full h-full object-contain object-center"
             />
           </div>

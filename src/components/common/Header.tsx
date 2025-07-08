@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GNBMenu from '@/components/common/GNBMenu';
-import Logo from '@/assets/logo.svg';
+import Logo from '@/assets/logo.png';
 import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
 
 interface HeaderProps {
@@ -64,7 +64,7 @@ const Header = ({
             </button>
           ) : (
             <div className="h-full flex items-center" onClick={goHome}>
-              <img src={Logo} alt="Cafeboo" className="h-8 w-auto cursor-pointer"/>
+              <img src={Logo} alt="Cafeboo" width={409} height={188} className="h-8 w-auto cursor-pointer"/>
             </div>
           )}
 
