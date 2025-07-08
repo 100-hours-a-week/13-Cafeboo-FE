@@ -47,6 +47,8 @@ export default function TodayCoffeeChat({ rooms }: TodayCoffeeChatSectionProps) 
                   <img
                     src={CoffeeChatIcon}
                     alt="preview"
+                    width={1270}
+                    height={1196}
                     className="h-15 w-15 object-contain"
                   />
                 </div>

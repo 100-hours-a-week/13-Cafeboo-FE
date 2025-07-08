@@ -6,6 +6,8 @@ interface UploadedImage {
   id: string;
   file: File;
   preview: string;
+  width?: number;
+  height?: number;
 }
 
 interface Props {
@@ -39,42 +41,51 @@ export default function WriteReviewForm({
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
-
+  
     const MAX_COUNT = 3;
     const MAX_SIZE_MB = 5;
-
+  
     const fileArray = Array.from(files);
     const remainingSlots = MAX_COUNT - images.length;
-
+  
     const validFiles = fileArray.slice(0, remainingSlots).filter((file) => {
       if (!file.type.startsWith('image/')) return false;
-
+  
       if (file.size > MAX_SIZE_MB * 1024 * 1024) {
         showToast('error', '사진은 5MB 이하만 업로드 가능합니다.');
         return false;
       }
-
+  
       return true;
     });
-
+  
     validFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const preview = e.target?.result as string;
-        const newImage: UploadedImage = {
-          id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
-          file,
-          preview,
+  
+        // 이미지 크기 알아내기
+        const img = new Image();
+        img.onload = () => {
+          const newImage: UploadedImage = {
+            id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+            file,
+            preview,
+            width: img.naturalWidth,
+            height: img.naturalHeight,
+          };
+          setImages((prev) => [...prev, newImage]);
         };
-        setImages((prev) => [...prev, newImage]);
+        img.src = preview;
       };
       reader.readAsDataURL(file);
     });
-
+  
     if (event.target) {
       event.target.value = '';
     }
   };
+  
 
   const removeImage = (imageId: string) => {
     setImages((prev) => prev.filter((img) => img.id !== imageId));
@@ -198,6 +209,8 @@ export default function WriteReviewForm({
               <img
                 src={image.preview}
                 alt="업로드된 이미지"
+                width={image.width}
+                height={image.height}
                 className="w-18 h-18 object-cover rounded-lg border border-gray-200"
               />
               <button

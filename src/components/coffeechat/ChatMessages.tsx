@@ -4,6 +4,7 @@ import { CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
 import type { ChatMessage } from "@/api/coffeechat/coffeechat.dto";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { formatTimeToKorean } from "@/utils/formatUtils";
+import MemberImage from "../common/MemberImage";
 
 interface ChatMessagesProps {
   coffeeChatId: string;
@@ -174,12 +175,10 @@ export default function ChatMessages({
             >
               {/* 상대방 메시지일 경우: 프로필 이미지 */}
               {!isMine && (
-                <img
-                  src={msg.sender.profileImageUrl}
+                <MemberImage
+                  url={msg.sender.profileImageUrl}
                   alt={msg.sender.chatNickname}
                   className="w-8 h-8 rounded-full mr-2"
-                  loading="eager" 
-                  decoding="async"
                 />
               )}
           

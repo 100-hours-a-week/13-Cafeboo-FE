@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { CalendarIcon, Clock, MapPin, Hash, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 import EmptyState from '@/components/common/EmptyState';
 import HeartButton from '@/components/review/HeartButton';
+import MemberImage from '@/components/common/MemberImage';
+import { useImageSize } from '@/hooks/useImageSize';
 
 interface Props {
   coffeeChatData: any;
@@ -20,16 +22,19 @@ export default function ViewReviewForm({
   onLikeToggle,
 }: Props) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const size = useImageSize(selectedImage);
 
   const renderImages = (imageUrls: string[]) => {
     if (!imageUrls || imageUrls.length === 0) return null;
     return (
       <div className="flex flex-wrap gap-2">
-        {imageUrls.map((url: string, index: number) => (
+        {imageUrls.map((url, index) => (
           <div key={index} className="w-16 h-16 bg-gray-50 rounded overflow-hidden">
             <img
               src={url}
               alt={`후기 이미지 ${index + 1}`}
+              width={64}  
+              height={64}
               className="w-full h-full object-cover cursor-pointer"
               onClick={() => setSelectedImage(url)}
               onError={(e) => {
@@ -43,7 +48,7 @@ export default function ViewReviewForm({
         ))}
       </div>
     );
-  };
+  };  
 
   return (
     <>
@@ -94,11 +99,11 @@ export default function ViewReviewForm({
         {membersData?.members.map((member: any) => (
           <li key={member.memberId} className="flex items-center gap-3">
             {member.profileImageUrl ? (
-              <img
-                src={member.profileImageUrl}
-                alt={member.chatNickname}
-                className="w-8 h-8 rounded-full object-cover bg-gray-200"
-              />
+              <MemberImage
+              url={member.profileImageUrl}
+              alt={member.chatNickname}
+              className="w-8 h-8"
+            />
             ) : (
               <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
                 {member.chatNickname}
@@ -120,50 +125,64 @@ export default function ViewReviewForm({
         />
       ) : (
         <div className="space-y-4">
-          {coffeeChatData.reviews.map((review: any) => (
-            <SectionCard key={review.reviewId}>
-              <div className="flex items-center space-x-2 mb-3">
-                <div className="w-5 h-5 bg-gray-300 rounded-full overflow-hidden">
-                  <img
-                    src={review.writer.profileImageUrl}
-                    alt={review.writer.chatNickname}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement!.innerHTML = `
-                        <div class="w-full h-full flex items-center justify-center">
-                          <svg class="w-3 h-3 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path>
-                          </svg>
-                        </div>`;
-                    }}
-                  />
+          {coffeeChatData.reviews.map((review: any) => {
+            const size = useImageSize(review.writer.profileImageUrl);
+
+            return (
+              <SectionCard key={review.reviewId}>
+                <div className="flex items-center space-x-2 mb-3">
+                  <div className="w-5 h-5 rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
+                    {size ? (
+                      <img
+                        src={review.writer.profileImageUrl}
+                        alt={review.writer.chatNickname}
+                        width={size.width}
+                        height={size.height}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-300" />
+                    )}
+                  </div>
+                  <span className="text-sm font-medium">{review.writer.chatNickname}</span>
                 </div>
-                <span className="text-sm font-medium">{review.writer.chatNickname}</span>
-              </div>
 
-              <p className="text-sm text-[#333333] mb-3">{review.text}</p>
+                <p className="text-sm text-[#333333] mb-3">{review.text}</p>
 
-              {renderImages(review.imageUrls)}
-            </SectionCard>
-          ))}
+                {renderImages(review.imageUrls)}
+              </SectionCard>
+            );
+          })}
         </div>
       )}
 
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-10"
-          onClick={() => setSelectedImage(null)}
-        >
-          <img
-            src={selectedImage}
-            alt="프로필 확대"
-            className="max-w-[80svw] max-h-[80svh] rounded-xl shadow-lg object-contain"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
-      )}
+    {selectedImage && size && (
+      <div
+        className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-10"
+        onClick={() => setSelectedImage(null)}
+      >
+        <img
+          src={selectedImage}
+          alt="사진 확대"
+          width={size.width}
+          height={size.height}
+          className="max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg object-contain"
+          onClick={(e) => e.stopPropagation()}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.className = 'max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg bg-gray-300 flex items-center justify-center';
+            fallbackDiv.textContent = '이미지를 불러올 수 없습니다.';
+            target.parentElement?.appendChild(fallbackDiv);
+          }}
+        />
+      </div>
+    )}
     </>
   );
 }

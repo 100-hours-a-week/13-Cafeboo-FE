@@ -27,6 +27,8 @@ export default function CardFooter({
             <img
               src={room.writer.profileImageUrl}
               alt={room.writer.chatNickname}
+              width={1000}
+              height={1000}
               className="w-8 h-8 rounded-full object-cover"
             />
           ) : (

@@ -4,6 +4,7 @@ import SectionCard from '@/components/common/SectionCard';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import EmptyState from '@/components/common/EmptyState';
 import AlertModal from '@/components/common/AlertModal';
+import MemberImage from '@/components/common/MemberImage';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
 import { BiSolidPencil } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
@@ -166,8 +167,8 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
               className="relative w-28 h-28 mx-auto my-8 rounded-full overflow-hidden cursor-pointer group"
               onClick={() => fileInputRef.current?.click()}
             >
-              <img
-                src={editProfileImageUrl || '/default-profile.png'}
+              <MemberImage
+                url={editProfileImageUrl || '/default-profile.png'}
                 alt="프로필 편집용 이미지"
                 className="w-full h-full object-cover rounded-full bg-gray-100"
               />
@@ -184,7 +185,6 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
               />
             </div>
 
-            <label className="block mb-2 font-semibold">닉네임</label>
             <input
               type="text"
               className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent mb-4"
