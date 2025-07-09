@@ -102,7 +102,7 @@ export default function HomePageUI({
       <TodayCoffeeChatContainer />
 
       <button
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-40 h-12 rounded-full font-semibold text-base bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] z-20 mx-auto cursor-pointer"
+        className="absolute bottom-22 left-1/2 transform -translate-x-1/2 w-40 h-12 rounded-full font-semibold text-base bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] z-20 mx-auto cursor-pointer"
         onClick={() => setIsSheetOpen(true)}
       >
         <Plus size={24} className="mr-2" />

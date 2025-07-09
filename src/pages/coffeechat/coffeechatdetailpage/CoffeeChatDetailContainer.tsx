@@ -99,7 +99,7 @@ export default function CoffeeChatDetailContainer() {
   const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
 
   const handleBackClick = () => {
-    navigate('/main/coffeechat'); 
+    navigate('/coffeechat'); 
   };
 
   const handleJoinSubmit = async ({
@@ -150,7 +150,7 @@ export default function CoffeeChatDetailContainer() {
         return;
       }
 
-      navigate(`/main/coffeechat/${id}/chat`, {
+      navigate(`/coffeechat/${id}/chat`, {
         state: { memberId: membershipData.memberId },
       });
     } catch (error: any) {
@@ -167,7 +167,7 @@ export default function CoffeeChatDetailContainer() {
     try {
       await deleteChat(id ?? "");
       setIsAlertOpen2(false);
-      navigate("/main/coffeechat");
+      navigate("/coffeechat");
     } catch (err: any) {
       alert(err?.message || "삭제 중 오류가 발생했습니다.");
     }
@@ -175,7 +175,7 @@ export default function CoffeeChatDetailContainer() {
 
   
   const handleGoBackToCoffeeChat = () => {
-    navigate("/main/coffeechat");
+    navigate("/coffeechat");
   };
 
   const handleJoin = () => setJoinModalOpen(true);

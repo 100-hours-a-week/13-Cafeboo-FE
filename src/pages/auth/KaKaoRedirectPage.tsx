@@ -20,7 +20,7 @@ const KakaoRedirectPage = () => {
   useEffect(() => {
     const fetchKakaoToken = async () => {
       if (!code) {
-        navigate("/auth/login");
+        navigate("/mypage");
         return;
       }
 
@@ -37,20 +37,20 @@ const KakaoRedirectPage = () => {
         if (requiresOnboarding) {
           navigate("/auth/onboarding");
         } else {
-          navigate("/main/home"); // 로그인 성공 후 메인 페이지로 이동
+          navigate("/mypage");
         }
       } catch (error: unknown) {
         const err = error as ApiResponse<null>;
         const message = err.message ?? "로그인 처리 중 오류가 발생했습니다.";
         console.error("로그인 실패:", message);
-        navigate("/auth/login");
+        navigate("/mypage");
       }
     };
 
     fetchKakaoToken();
   }, [code, navigate]);
 
-  return <LoadingSpinner size="large" type="clip"/>
+  return <LoadingSpinner size="small" type="beat"/>
 };
 
 export default KakaoRedirectPage;

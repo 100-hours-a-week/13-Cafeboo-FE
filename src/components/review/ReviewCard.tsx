@@ -25,7 +25,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
   } = useCoffeeChatMembers(item.coffeeChatId);
 
   const handleClick = () => {
-    navigate(`/main/coffeechat/${item.coffeeChatId}/review`, {
+    navigate(`/coffeechat/${item.coffeeChatId}/review`, {
       state: {
         viewOnly: true,
         coffeeChatId: item.coffeeChatId,

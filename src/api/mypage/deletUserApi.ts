@@ -22,7 +22,7 @@ export const useDeleteUser = () => {
         clearUserId();
         localStorage.removeItem('access_token');
         queryClient.clear();
-        window.location.href = '/auth/login';
+        window.location.href = '/mypage';
       },
       onError: (error) => {
         console.error('회원탈퇴 중 오류:', error);

@@ -41,9 +41,6 @@ interface ReportPageUIProps {
   status: Status;
   handlers: Handlers;
   controls: Controls;
-  navigation: {
-    onMainClick: () => void;
-  };
 }
 
 export default function ReportPageUI({
@@ -58,7 +55,6 @@ export default function ReportPageUI({
   status,
   handlers,
   controls,
-  navigation,
 }: ReportPageUIProps) {
   const {
     isLoading,
@@ -76,14 +72,11 @@ export default function ReportPageUI({
     setIsAlertOpen,
     alertMessage,
   } = controls;
-  const { onMainClick } = navigation;
 
   return (
     <PageLayout
       headerMode="logo"
-      fabType="diary"
       showAdd={true}
-      onMainClick={onMainClick}
       onAddClick={() => setIsSheetOpen(true)}
     >
       <DropdownSelector

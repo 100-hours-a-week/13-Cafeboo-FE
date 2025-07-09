@@ -1,4 +1,5 @@
 import apiClient from "@/api/apiClient";
+import { useNavigate } from "react-router-dom";
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { useUserStore } from '@/stores/useUserStore';
@@ -12,13 +13,14 @@ const logout = async () => {
 export const useLogout = () => {
   const queryClient = useQueryClient();
   const clearUserId = useUserStore((state) => state.clearUserId);
+  const navigate = useNavigate();
 
   const handleAfterLogout = () => {
     localStorage.setItem('afterLogout', 'true');
     localStorage.removeItem('access_token');
     clearUserId();   
     queryClient.clear();
-    window.location.href = '/auth/login';
+    navigate('/mypage');
   };
 
   return createMutationHandler<void, ApiResponse<null>, void>(

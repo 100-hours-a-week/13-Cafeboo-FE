@@ -108,10 +108,6 @@ export default function ReportContainer() {
     alertMessage,
   };
 
-  const navigation = {
-    onMainClick: () => navigate('/main/diary'),
-  };
-
   return (
     <ReportPageUI
       periodType={periodType}
@@ -125,7 +121,6 @@ export default function ReportContainer() {
       status={status}
       handlers={handlers}
       controls={controls}
-      navigation={navigation}
     />
   );
 }

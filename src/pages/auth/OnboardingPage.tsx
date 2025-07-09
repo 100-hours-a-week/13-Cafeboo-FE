@@ -24,7 +24,7 @@ const OnboardingPage = () => {
   
   const handleModalConfirm = () => {
     setShowModal2(false);
-    navigate('/auth/login');
+    navigate('/mypage');
   };
 
   // API 호출

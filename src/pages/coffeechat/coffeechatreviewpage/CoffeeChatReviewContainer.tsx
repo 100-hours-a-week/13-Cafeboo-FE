@@ -53,7 +53,7 @@ export default function CoffeeChatReviewPageContainer() {
   const handleWriteReviewSubmit = async (params: { memberId: string; text: string; images: File[] }) => {
     try {
       await writeReviewMutation.mutateAsyncFn(params);
-      navigate('/main/coffeechat');
+      navigate('/coffeechat');
     } catch (error) {
       throw error;
     }

@@ -7,7 +7,7 @@ import CoffeeChatMenu from '@/assets/CoffeeChatMenu.svg';
 
 function CoffeeChatIcon({ size = 20, isActive = false }) {
     const activeFilter =
-      'invert(17%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(33%) contrast(92%)';
+      'invert(77%) sepia(11%) saturate(231%) hue-rotate(177deg) brightness(89%) contrast(84%)';
   
     const inactiveFilter =
       'invert(74%) sepia(14%) saturate(235%) hue-rotate(179deg) brightness(86%) contrast(87%)';
@@ -51,14 +51,14 @@ export default function BottomNavBar() {
     <nav className="absolute bottom-0 left-0 right-0 h-18 flex border-t border-gray-200 bg-white z-50 max-w-md mx-auto">
         {menus.map(({ name, path, icon: Icon }) => {
         const isActive = activePath === path;
-        const color = isActive ? '#333333' : '#9CA3AF';
+        const color = isActive ? '#333333' : '#A5ABB4';
 
         return (
             <button
             key={path}
             onClick={() => handleClick(path)}
             className={`flex-1 flex flex-col items-center justify-center text-xs cursor-pointer gap-1 ${
-                isActive ? 'text-[#333333] font-semibold' : 'text-gray-400'
+                isActive ? 'text-[#333333] font-semibold' : 'text-[#A5ABB4]'
             }`}
             >
             {name === '커피챗' ? (

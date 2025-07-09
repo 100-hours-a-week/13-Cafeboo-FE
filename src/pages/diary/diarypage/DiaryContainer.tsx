@@ -40,10 +40,6 @@ export default function DiaryContainer() {
     return map;
   }, [dataCalendar]);
 
-  const handleMainClick = () => {
-    navigate('/main/report');
-  };
-
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
   };
@@ -57,7 +53,7 @@ export default function DiaryContainer() {
   const handleEdit = (intakeId: string) => {
     const record = dataDaily?.intakeList.find((r) => r.intakeId === intakeId);
     if (record) {
-      navigate(`/main/diary/edit/${intakeId}`, { state: { record } });
+      navigate(`/diary/edit/${intakeId}`, { state: { record } });
     }
   };
 
@@ -88,7 +84,6 @@ export default function DiaryContainer() {
 
   // 핸들러 묶음
   const handlers = {
-    onMainClick:handleMainClick,
     onDateSelect: handleDateSelect,
     onMonthChange: handleMonthChange,
     onEdit: handleEdit,

@@ -62,17 +62,17 @@ export default function CoffeeChatContainer() {
   };
 
   const handleRoomClick = (room: any) => {
-    navigate(`/main/coffeechat/${room.coffeeChatId}`);
+    navigate(`/coffeechat/${room.coffeeChatId}`);
   };
 
   const handleReviewClick = (room: any) => {
-    navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
+    navigate(`/coffeechat/${room.coffeeChatId}/review`, {
       state: { viewOnly: false, coffeeChatId: room.coffeeChatId },
     });
   };
 
   const handleViewClick = (room: any) => {
-    navigate(`/main/coffeechat/${room.coffeeChatId}/review`, {
+    navigate(`/coffeechat/${room.coffeeChatId}/review`, {
       state: { viewOnly: true, coffeeChatId: room.coffeeChatId },
     });
   };
