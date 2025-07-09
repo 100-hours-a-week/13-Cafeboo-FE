@@ -1,21 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { Calendar, Plus, BarChart2, ChevronUp } from "lucide-react";
+import { Plus, ChevronUp } from "lucide-react";
 
-type FABType = "diary" | "report";
 
 interface FABProps {
   showAdd?: boolean;
-  fabType?: FABType;
   onAddClick?: () => void;
-  onMainClick?: () => void;
   scrollTargetSelector?: string;
 }
 
 export default function FABContainer({
   showAdd = false,
-  fabType,
   onAddClick,
-  onMainClick,
   scrollTargetSelector = "#scroll-container",
 }: FABProps) {
   const [showToTop, setShowToTop] = useState(false);
@@ -55,7 +50,7 @@ export default function FABContainer({
       element: (
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-white text-gray-600 border border-gray-300 flex items-center justify-center shadow-sm cursor-pointer transition-all duration-300"
+          className="w-12 h-12 rounded-full bg-white text-gray-600 border border-gray-300 flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] cursor-pointer transition-all duration-300"
         >
           <ChevronUp size={24} />
         </button>
@@ -69,35 +64,9 @@ export default function FABContainer({
       element: (
         <button
           onClick={onAddClick}
-          className="w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-sm cursor-pointer transition-all duration-300"
+          className="w-12 h-12 rounded-full bg-[#FE9400] text-white flex items-center justify-center shadow-[0_6px_10px_rgba(0,0,0,0.2)] cursor-pointer transition-all duration-300"
         >
           <Plus size={24} />
-        </button>
-      ),
-    });
-  }
-
-  if (fabType === "diary") {
-    buttons.push({
-      key: "diary",
-      element: (
-        <button
-          onClick={onMainClick}
-          className="w-12 h-12 rounded-full bg-gray-500 text-white flex items-center justify-center shadow-sm cursor-pointer transition-all duration-300"
-        >
-          <Calendar size={24} />
-        </button>
-      ),
-    });
-  } else if (fabType === "report") {
-    buttons.push({
-      key: "report",
-      element: (
-        <button
-          onClick={onMainClick}
-          className="w-12 h-12 rounded-full bg-gray-500 text-white flex items-center justify-center shadow-sm cursor-pointer transition-all duration-300"
-        >
-          <BarChart2 size={24} />
         </button>
       ),
     });
@@ -106,7 +75,7 @@ export default function FABContainer({
   return (
     <>
       {buttons.map((btn, idx) => {
-        const spacing = 24 + idx * 64;
+        const spacing = 88 + idx * 64;
         return (
           <div
             key={btn.key}
