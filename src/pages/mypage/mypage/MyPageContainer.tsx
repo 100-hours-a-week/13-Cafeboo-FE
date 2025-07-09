@@ -4,12 +4,16 @@ import MyPagePageUI from '@/pages/mypage/mypage/MyPageUI';
 import { useUserProfile, useUpdateUserProfile } from '@/api/mypage/profileApi';
 import { useLogout } from '@/api/mypage/LogoutApi';
 import { useDeleteUser } from '@/api/mypage/deletUserApi';
+import { requestKakaoLogin } from "@/api/auth/authApi";
 import { UpdateUserProfilePayload } from '@/api/mypage/profile.dto';
 import { useToastStore } from '@/stores/toastStore';
+import { useUserStore } from '@/stores/useUserStore';
+import LoginUI from '@/components/auth/LoginUI';
 
 export default function MyPageContainer() {
   const navigate = useNavigate();
   const { showToast } = useToastStore();
+  const userId = useUserStore((state) => state.userId);
 
   const { data: userProfile, isLoading, isError, error, refetch } = useUserProfile();
   const {
@@ -142,6 +146,18 @@ export default function MyPageContainer() {
     confirmLogout,
     confirmDelete,
   };
+
+  if (!userId) {
+    const handleKakaoLogin = async() => {
+      try {
+        await requestKakaoLogin();
+      } catch (error) {
+        console.error("카카오 로그인 요청 실패:", error);
+      }
+    };
+
+    return <LoginUI onKakaoLogin={handleKakaoLogin} />;
+  }
 
   return (
     <MyPagePageUI

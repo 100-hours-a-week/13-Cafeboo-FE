@@ -106,7 +106,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
       <SectionCard className='border-none !px-2'>
         {isLoading ? (
           <div className="flex justify-center items-center h-32">
-            <LoadingSpinner type="clip" size="small" fullScreen={false} />
+            <LoadingSpinner type="clip" size="medium" fullScreen={false} />
           </div>
         ) : isError ? (
           <EmptyState
@@ -136,7 +136,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
         </button>
         <button
           className="w-full flex items-center text-left px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
-          onClick={() => navigate('/main/mypage/edit')}
+          onClick={() => navigate('/mypage/edit')}
         >
           <LuCircleUserRound className="w-4.5 h-4.5 mr-3 text-[#333]" />
           내 정보 수정
