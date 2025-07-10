@@ -2,20 +2,13 @@ import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import apiClient from "@/api/apiClient";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
-import { ApiResponse } from "@/types/api";
-import { useUserStore } from "@/stores/useUserStore";
-
-type LoginResponse = {
-  userId: string;
-  accessToken: string;
-  requiresOnboarding: boolean;
-};
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const KakaoRedirectPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
-  const setUserId = useUserStore((state) => state.setUserId);
+  const setAuth = useAuthStore((state) => state.setAuth);
 
   useEffect(() => {
     const fetchKakaoToken = async () => {
@@ -25,32 +18,33 @@ const KakaoRedirectPage = () => {
       }
 
       try {
-        const response = await apiClient.post<LoginResponse>("/api/v1/auth/kakao", { code });
+        const response = await apiClient.post("/api/v1/auth/kakao", { code });
         const { userId, accessToken, requiresOnboarding } = response.data;
 
-        // Access Token 로컬스토리지 저장
         localStorage.setItem("access_token", accessToken);
-        localStorage.setItem("userId", userId);
-        setUserId(userId);
+        setAuth(userId, "USER", null); 
 
-        // 온보딩 페이지 필요 여부에 따라 경로 설정
+        const redirectPath = sessionStorage.getItem("redirectAfterLogin") || "/mypage";
+
         if (requiresOnboarding) {
           navigate("/auth/onboarding");
         } else {
-          navigate("/mypage");
+          navigate(redirectPath);
         }
-      } catch (error: unknown) {
-        const err = error as ApiResponse<null>;
-        const message = err.message ?? "로그인 처리 중 오류가 발생했습니다.";
-        console.error("로그인 실패:", message);
+
+        sessionStorage.removeItem("redirectAfterLogin");
+      } catch (error) {
+        console.error("로그인 실패:", error);
         navigate("/mypage");
       }
     };
 
     fetchKakaoToken();
-  }, [code, navigate]);
+  }, [code, navigate, setAuth]);
 
-  return <LoadingSpinner size="small" type="beat"/>
+  return <LoadingSpinner size="small" type="beat" />;
 };
 
 export default KakaoRedirectPage;
+
+

@@ -7,13 +7,13 @@ import { useDeleteUser } from '@/api/mypage/deletUserApi';
 import { requestKakaoLogin } from "@/api/auth/authApi";
 import { UpdateUserProfilePayload } from '@/api/mypage/profile.dto';
 import { useToastStore } from '@/stores/toastStore';
-import { useUserStore } from '@/stores/useUserStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 import LoginUI from '@/components/auth/LoginUI';
 
 export default function MyPageContainer() {
   const navigate = useNavigate();
   const { showToast } = useToastStore();
-  const userId = useUserStore((state) => state.userId);
+  const role = useAuthStore((state) => state.role);
 
   const { data: userProfile, isLoading, isError, error, refetch } = useUserProfile();
   const {
@@ -147,7 +147,7 @@ export default function MyPageContainer() {
     confirmDelete,
   };
 
-  if (!userId) {
+  if (role === "GUEST") {
     const handleKakaoLogin = async() => {
       try {
         await requestKakaoLogin();
