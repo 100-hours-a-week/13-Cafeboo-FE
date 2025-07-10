@@ -7,7 +7,7 @@ export default function RequireAuth() {
   const [showModal, setShowModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
-  const clearUserId = useAuthStore.getState().clearAuth;
+  const clearAuth = useAuthStore.getState().clearAuth;
 
   useEffect(() => {
     const token = localStorage.getItem('userId');
@@ -22,8 +22,8 @@ export default function RequireAuth() {
   const handleClose = () => {
     setShowModal(false);
     localStorage.removeItem('access_token');
-    clearUserId(); 
-    navigate('/auth/login', { replace: true });
+    clearAuth(); 
+    navigate('/mypage', { replace: true });
   };
 
   if (!checked && !showModal) {

@@ -16,6 +16,7 @@ interface AuthStore {
   kakaoLogin: () => Promise<void>;
 
   isGuestTokenValid: () => boolean;
+  isGuest: () => boolean;
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
@@ -63,5 +64,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
     const todayStr = new Date().toISOString().slice(0, 10);
     return expiry === todayStr;
+  },
+
+  isGuest: () => {
+    return get().role === "GUEST";
   },
 }));
