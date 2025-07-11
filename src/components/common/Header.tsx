@@ -56,7 +56,7 @@ const Header = ({
                 alt="Cafeboo"
                 width={409}
                 height={188}
-                className="h-8 w-auto cursor-pointer"
+                className="h-9 w-auto cursor-pointer"
               />
             </div>
           )}

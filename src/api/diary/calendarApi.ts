@@ -1,5 +1,4 @@
 import apiClient from '@/api/apiClient';
-import { getUserIdFromStore } from '@/utils/auth';
 import { createQueryHandler } from '@/utils/createQueryHandler'; 
 import { MonthlyCalendarResponse } from '@/api/diary/calendar.dto';
 

@@ -22,7 +22,7 @@ export default function CustomToast() {
   return (
     <div
       className={`
-        absolute top-6 left-1/2 -translate-x-1/2 z-[9999] w-[80%] max-w-sm
+        absolute top-6 left-1/2 -translate-x-1/2 z-[9999] w-[90%] max-w-sm
         transition-opacity duration-300
         ${visible ? 'opacity-100' : 'opacity-0'}
       `}

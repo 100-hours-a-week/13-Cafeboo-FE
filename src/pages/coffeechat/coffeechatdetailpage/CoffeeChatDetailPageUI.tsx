@@ -230,7 +230,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
         </ul>
 
         {/* 하단 액션 버튼들 */}
-        <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-30 h-18 items-center">
+        <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-10 h-18 items-center">
           {writer.memberId === membership?.memberId ? (
             <img
               src={TrashCanIcon}
@@ -255,6 +255,13 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
             >
               <IoChatbubblesOutline className="w-5 h-5 mr-2" />
               채팅하기
+            </button>
+          ) : currentMemberCount === maxMemberCount ? (
+            <button
+              disabled
+              className="w-full py-3 bg-[#FE9400]/60 text-white rounded-lg font-semibold"
+            >
+              모집이 완료되었습니다
             </button>
           ) : (
             <button

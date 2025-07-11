@@ -106,7 +106,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
       <SectionCard className='border-none !px-2'>
         {isLoading ? (
           <div className="flex justify-center items-center h-32">
-            <LoadingSpinner type="clip" size="small" fullScreen={false} />
+            <LoadingSpinner type="clip" size="medium" fullScreen={false} />
           </div>
         ) : isError ? (
           <EmptyState
@@ -136,7 +136,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
         </button>
         <button
           className="w-full flex items-center text-left px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
-          onClick={() => navigate('/main/mypage/edit')}
+          onClick={() => navigate('/mypage/edit')}
         >
           <LuCircleUserRound className="w-4.5 h-4.5 mr-3 text-[#333]" />
           내 정보 수정
@@ -190,7 +190,8 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
               className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent mb-4"
               value={editNickname}
               onChange={(e) => setEditNickname(e.target.value)}
-              placeholder="닉네임 입력"
+              placeholder="닉네임 입력(최대 10자)"
+              maxLength={10}
             />
 
             <div className="flex gap-2 w-full mt-3">

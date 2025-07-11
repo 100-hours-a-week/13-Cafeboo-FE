@@ -5,6 +5,7 @@ import ChatCardList from "@/components/coffeechat/ChatCardList";
 import ReviewCardList from "@/components/review/ReviewCardList";
 import ScrollToTop from '@/components/common/ScrolltoTop';
 import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
+import LoginRequiredModal from '@/components/common/LoginRequiredModal';
 import type { ChatFilter, ReviewFilter } from "@/types/filters";
 
 interface StatusProps {
@@ -19,6 +20,8 @@ interface StatusProps {
   isErrorReviews: boolean;
   isSheetOpen: boolean;
   mainRef: React.RefObject<HTMLDivElement>;
+  isGuest: boolean;
+  isLoginAlertOpen: boolean;
 }
 
 interface HandlersProps {
@@ -30,6 +33,7 @@ interface HandlersProps {
   reviewTabSetFilter: (val: ReviewFilter) => void;
   onAddClick: () => void;
   onCloseSheet: () => void;
+  onLoginAlertClose: () => void;
 }
 
 interface Props {
@@ -50,6 +54,8 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
     isErrorReviews,
     isSheetOpen,
     mainRef,
+    isGuest,
+    isLoginAlertOpen,
   } = status;
 
   const {
@@ -61,6 +67,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
     reviewTabSetFilter,
     onAddClick,
     onCloseSheet,
+    onLoginAlertClose,
   } = handlers;
 
   return (
@@ -94,6 +101,12 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
         )}
       </div>
       <CoffeeChatBottomSheet open={isSheetOpen} onClose={onCloseSheet} />
+
+      <LoginRequiredModal
+        key={isLoginAlertOpen ? 'open' : 'close'}
+        isOpen={isLoginAlertOpen}
+        onClose={onLoginAlertClose}
+      />
     </PageLayout>
   );
 }

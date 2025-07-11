@@ -23,7 +23,7 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate('/main/coffeechat');
+    navigate('/coffeechat');
     onClose();
   };
 

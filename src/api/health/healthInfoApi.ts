@@ -6,14 +6,14 @@ import { createQueryHandler } from "@/utils/createQueryHandler";
 import { getUserIdFromStore } from "@/utils/auth";
 
 // ✅ GET 요청
-export const fetchHealthInfo = async (): Promise<HealthInfoRequestDTO> => {
+export const fetchHealthInfo = async (): Promise<HealthInfoResponseDTO> => {
   const userId = getUserIdFromStore();
   const response = await apiClient.get(`/api/v1/users/${userId}/health`);
   return response.data;
 };
 
 export const useHealthInfo = () =>
-  createQueryHandler<['healthInfo'], HealthInfoRequestDTO>(
+  createQueryHandler<['healthInfo'], HealthInfoResponseDTO>(
     ['healthInfo'],
     fetchHealthInfo,
     {

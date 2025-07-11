@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useDailyCaffeineReport } from '@/api/home/dailyReportApi';
 import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
+import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
 
 export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const isGuest = useAuthStore(state => state.isGuest());
 
   const {
     data: report,
@@ -31,6 +33,7 @@ export default function HomeContainer() {
 
   return (
     <HomePageUI
+      isGuest={isGuest}
       isSheetOpen={isSheetOpen}
       setIsSheetOpen={setIsSheetOpen}
       isAlertOpen={isAlertOpen}

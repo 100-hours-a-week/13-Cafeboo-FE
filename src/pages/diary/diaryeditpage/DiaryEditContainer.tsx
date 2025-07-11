@@ -20,7 +20,7 @@ export default function DiaryEditContainer() {
   const location = useLocation();
   const orig = (location.state as { record?: ApiRecord })?.record;
   if (!orig) {
-    return <Navigate to="/main/diary" replace />;
+    return <Navigate to="/diary" replace />;
   }
 
   const { mutateAsyncFn: updateCaffeine, isLoading: isUpdating } = useUpdateCaffeineIntake(orig.intakeId);
@@ -88,7 +88,7 @@ export default function DiaryEditContainer() {
 
     try {
       await updateCaffeine(payload);
-      navigate('/main/diary');
+      navigate('/diary');
     } catch (err: any) {
       setAlertMessage(err.message ?? '수정에 실패했습니다.');
       setIsAlertOpen(true);
@@ -98,7 +98,7 @@ export default function DiaryEditContainer() {
   const handleDelete = async () => {
     try {
       await deleteIntakeAsync();
-      navigate('/main/diary');
+      navigate('/diary');
     } catch (err: any) {
       setAlertMessage(err.message ?? '삭제에 실패했습니다.');
       setIsAlertOpen(true);
