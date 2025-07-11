@@ -7,12 +7,14 @@ interface HeartButtonProps {
   liked: boolean;
   likeCount: number;
   onToggle?: (liked: boolean) => void;
+  disabled?: boolean;
 }
 
 export default function HeartButton({
   liked,
   likeCount,
   onToggle,
+  disabled = false,
 }: HeartButtonProps) {
   const heartRef = useRef<SVGSVGElement | null>(null);
   const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
@@ -34,25 +36,25 @@ export default function HeartButton({
       <button
         onClick={(e) => {
           e.stopPropagation();
-          handleClick();
+          if(!disabled) handleClick();
         }}
         className={clsx(
-          "relative flex items-center px-2 py- rounded-full transition-all duration-200 cursor-pointer",
-          liked
-            ? "text-red-500 bg-red-50 hover:bg-red-100"
-            : "text-gray-400 hover:text-red-400 hover:bg-red-50"
+          "relative flex items-center px-2 py- rounded-full transition-all duration-200",
+          liked ? "text-red-500": "text-gray-400",
+          !disabled ? "cursor-pointer hover:text-red-400":''
         )}
       >
         <Heart
           ref={heartRef}
-          size={16}
+          size={14}
           fill={liked ? "currentColor" : "none"}
-          className={clsx("transition-transform", {
-            "text-red-500": liked,
-            "text-gray-400 hover:text-red-400": !liked,
-          })}
+          className={clsx(
+            "transition-transform",
+            liked ? "text-red-500" : "text-gray-400",
+            !disabled && "hover:text-red-400"
+          )}
         />
-        <span className="ml-1 text-base text-gray-600">{likeCount}</span>
+        <span className="ml-1 text-sm text-gray-600">{likeCount}</span>
       </button>
 
       {coords && <FloatHeart x={coords.x} y={coords.y} />}

@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCoffeeChatFilter } from "@/stores/useCoffeeChatFilter";
 import { useReviewTabStore } from "@/stores/reviewTabStore";
 import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
 import { useCoffeeChatReviews } from "@/api/coffeechat/coffeechatReviewApi";
 import CoffeeChatPageUI from "./CoffeeChatPageUI";
+import { useAuthStore } from "@/stores/useAuthStore"; 
 import type { ChatFilter, ReviewFilter } from "@/types/filters";
 
 export default function CoffeeChatContainer() {
@@ -13,9 +14,11 @@ export default function CoffeeChatContainer() {
   const setFilter = useCoffeeChatFilter((state) => state.setFilter);
   const setReviewTabFilter = useReviewTabStore(state => state.setFilter);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  const isGuest = useAuthStore(state => state.isGuest());
   const isReviewTab = filter === "REVIEWS";
 
   const {
@@ -42,6 +45,9 @@ export default function CoffeeChatContainer() {
 
   // 핸들러 함수들
   const handleTabClick = (tab: ChatFilter) => {
+    if (isLoginAlertOpen) {
+      setIsLoginAlertOpen(false);
+    }
     if (filter === tab) {
       if (isReviewTab) {
         refetchReviews();
@@ -53,6 +59,10 @@ export default function CoffeeChatContainer() {
     }
   };
 
+  useEffect(() => {
+    console.log('isLoginAlertOpen changed:', isLoginAlertOpen);
+  }, [isLoginAlertOpen]);
+
   const handleReviewTabClick = (tab: ReviewFilter) => {
     if (reviewTabFilter === tab) {
       refetchReviews();
@@ -62,7 +72,11 @@ export default function CoffeeChatContainer() {
   };
 
   const handleRoomClick = (room: any) => {
-    navigate(`/coffeechat/${room.coffeeChatId}`);
+    if (isGuest) {
+      setIsLoginAlertOpen(true);
+    } else {
+      navigate(`/coffeechat/${room.coffeeChatId}`);
+    }
   };
 
   const handleReviewClick = (room: any) => {
@@ -75,6 +89,14 @@ export default function CoffeeChatContainer() {
     navigate(`/coffeechat/${room.coffeeChatId}/review`, {
       state: { viewOnly: true, coffeeChatId: room.coffeeChatId },
     });
+  };
+
+  const handleAddClick = () => {
+    if (isGuest) {
+      setIsLoginAlertOpen(true);
+    } else {
+      setIsSheetOpen(true);
+    }
   };
 
   // 상태 객체
@@ -90,6 +112,8 @@ export default function CoffeeChatContainer() {
     isErrorReviews,
     isSheetOpen,
     mainRef,
+    isGuest,
+    isLoginAlertOpen,
   };
 
   // 핸들러 객체
@@ -100,7 +124,8 @@ export default function CoffeeChatContainer() {
     onTabChange: handleTabClick,
     onReviewTabChange: handleReviewTabClick,
     reviewTabSetFilter: setReviewTabFilter,
-    onAddClick: () => setIsSheetOpen(true),
+    onAddClick: handleAddClick,
+    onLoginAlertClose: () => setIsLoginAlertOpen(false),
     onCloseSheet: () => setIsSheetOpen(false),
   };
 
