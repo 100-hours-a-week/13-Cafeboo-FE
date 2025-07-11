@@ -190,7 +190,8 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
               className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent mb-4"
               value={editNickname}
               onChange={(e) => setEditNickname(e.target.value)}
-              placeholder="닉네임 입력"
+              placeholder="닉네임 입력(최대 10자)"
+              maxLength={10}
             />
 
             <div className="flex gap-2 w-full mt-3">

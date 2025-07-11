@@ -32,7 +32,9 @@ const KakaoRedirectPage = () => {
           navigate(redirectPath);
         }
 
-        sessionStorage.removeItem("redirectAfterLogin");
+        setTimeout(() => {
+          sessionStorage.removeItem("redirectAfterLogin");
+        }, 200);
       } catch (error) {
         console.error("로그인 실패:", error);
         navigate("/mypage");

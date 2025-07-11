@@ -5,12 +5,12 @@ import { IoMdCalendar } from 'react-icons/io';
 import { VscGraph } from 'react-icons/vsc';
 import CoffeeChatMenu from '@/assets/CoffeeChatMenu.svg';
 
-function CoffeeChatIcon({ size = 20, isActive = false }) {
+function CoffeeChatIcon({ size = 22, isActive = false }) {
     const activeFilter =
-      'invert(77%) sepia(11%) saturate(231%) hue-rotate(177deg) brightness(89%) contrast(84%)';
+      'invert(13%) sepia(9%) saturate(10%) hue-rotate(319deg) brightness(95%) contrast(80%)';
   
     const inactiveFilter =
-      'invert(74%) sepia(14%) saturate(235%) hue-rotate(179deg) brightness(86%) contrast(87%)';
+      'invert(77%) sepia(11%) saturate(231%) hue-rotate(177deg) brightness(89%) contrast(84%)';
   
     return (
       <img
@@ -61,10 +61,10 @@ export default function BottomNavBar() {
                 isActive ? 'text-[#333333] font-semibold' : 'text-[#A5ABB4]'
             }`}
             >
-            {name === '커피챗' ? (
-                <CoffeeChatIcon size={22} isActive={isActive} />
+           {name === '커피챗' ? (
+              <CoffeeChatIcon size={22} isActive={isActive} />
             ) : (
-                <Icon size={22} color={color} />
+              <Icon size={22} color={color} />
             )}
             {name}
             </button>
