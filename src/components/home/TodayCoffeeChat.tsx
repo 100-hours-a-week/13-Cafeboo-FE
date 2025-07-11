@@ -3,6 +3,7 @@ import HorizontalScroller from "@/components/common/HorizontalScroller";
 import SectionCard from "@/components/common/SectionCard";
 import CoffeeChatIcon from "@/assets/coffeechat3D.png";
 import { Users, ChevronRight } from "lucide-react";
+import LoginRequiredModal from "../common/LoginRequiredModal";
 
 interface TodayCoffeeChatSectionProps {
   rooms: Array<{
@@ -13,10 +14,32 @@ interface TodayCoffeeChatSectionProps {
     currentMemberCount: number;
     maxMemberCount: number;
   }>;
+  isGuest: boolean; 
+  isLoginAlertOpen: boolean;
+  onLoginAlertOpen: () => void;
+  onLoginAlertClose: () => void;
 }
 
-export default function TodayCoffeeChat({ rooms }: TodayCoffeeChatSectionProps) {
+export default function TodayCoffeeChatSection({
+  rooms,
+  isGuest,
+  isLoginAlertOpen,
+  onLoginAlertOpen,
+  onLoginAlertClose,
+}: TodayCoffeeChatSectionProps & {
+  onLoginAlertOpen: () => void;
+  onLoginAlertClose: () => void;
+}) {
   const navigate = useNavigate();
+
+  
+  const handleCardClick = (coffeeChatId: string) => {
+    if (isGuest) {
+      onLoginAlertOpen();
+    } else {
+      navigate(`/coffeechat/${coffeeChatId}`);
+    }
+  };
 
   return (
     <div className="mt-4">
@@ -24,7 +47,7 @@ export default function TodayCoffeeChat({ rooms }: TodayCoffeeChatSectionProps) 
       <div className="flex items-center justify-between mb-2 px-1">
         <h2 className="text-base font-semibold text-[#333333]">오늘의 커피챗</h2>
         <div className="flex text-xs font-medium items-center justify-center">
-          <button onClick={() => navigate("/main/coffeechat")}>
+          <button onClick={() => navigate("/coffeechat")}>
             <ChevronRight className="w-5 h-5 cursor-pointer text-800" />
           </button>
         </div>
@@ -38,7 +61,7 @@ export default function TodayCoffeeChat({ rooms }: TodayCoffeeChatSectionProps) 
           rooms.map((room) => (
             <SectionCard
               key={room.coffeeChatId}
-              onClick={() => navigate(`/main/coffeechat/${room.coffeeChatId}`)}
+              onClick={() => handleCardClick(room.coffeeChatId)}
               className="!w-[200px] flex-shrink-0 cursor-pointer mr-3 px-2 py-2 !ml-0"
             >
               <div className="flex items-center gap-3">
@@ -71,6 +94,10 @@ export default function TodayCoffeeChat({ rooms }: TodayCoffeeChatSectionProps) 
           ))
         )}
       </HorizontalScroller>
+      <LoginRequiredModal
+        isOpen={isLoginAlertOpen}
+        onClose={onLoginAlertClose}
+      />
     </div>
   );
 }

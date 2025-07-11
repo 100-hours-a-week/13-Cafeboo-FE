@@ -8,6 +8,8 @@ import Icon from "@/assets/CoffeeChatIcon.png";
 import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
 import MemberImage from '@/components/common/MemberImage';
 import { useImageSize } from '@/hooks/useImageSize';
+import { useAuthStore } from "@/stores/useAuthStore";
+import LoginRequiredModal from "@/components/common/LoginRequiredModal";
 
 interface ReviewCardProps {
   item: CoffeeChatReviewSummary;
@@ -16,6 +18,8 @@ interface ReviewCardProps {
 export default function ReviewCard({ item }: ReviewCardProps) {
   const [liked, setLiked] = useState(item.liked); 
   const [likesCount, setLikesCount] = useState(item.likesCount); 
+  const isGuest = useAuthStore(state => state.isGuest());
+  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
 
   const navigate = useNavigate();
   const {
@@ -25,21 +29,30 @@ export default function ReviewCard({ item }: ReviewCardProps) {
   } = useCoffeeChatMembers(item.coffeeChatId);
 
   const handleClick = () => {
-    navigate(`/main/coffeechat/${item.coffeeChatId}/review`, {
-      state: {
-        viewOnly: true,
-        coffeeChatId: item.coffeeChatId,
-      },
-    });
+    if (isGuest) {
+      setIsLoginAlertOpen(true);
+    } else {
+      navigate(`/coffeechat/${item.coffeeChatId}/review`, {
+        state: {
+          viewOnly: true,
+          coffeeChatId: item.coffeeChatId,
+        },
+      });
+    }
   };
 
   const likeMutation = useLikeCoffeeChatReview(item.coffeeChatId);
 
   const handleLikeToggle = (newLiked: boolean) => {
+    if (isGuest) {
+      setIsLoginAlertOpen(true);
+      return; 
+    }
+  
     if (likeMutation.isLoading) return;
-
+  
     likeMutation.mutateFn();
-
+  
     setLiked(newLiked);
     setLikesCount((prev) => prev + (newLiked ? 1 : -1));
   };
@@ -52,6 +65,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
   const size = useImageSize(item.previewImageUrl);
 
   return (
+    <>
     <SectionCard className="!px-2 cursor-pointer !border-gray-200" onClick={handleClick}>
       {/* 이미지 영역 */}
       <div className="mb-3">
@@ -112,12 +126,18 @@ export default function ReviewCard({ item }: ReviewCardProps) {
                 liked={liked}
                 likeCount={likesCount}
                 onToggle={handleLikeToggle}
+                disabled={isGuest}
               />
             </>
           )}
         </div>
       </div>
     </SectionCard>
+    <LoginRequiredModal
+      isOpen={isLoginAlertOpen}
+      onClose={() => setIsLoginAlertOpen(false)}
+    />
+    </>
   );
 }
 

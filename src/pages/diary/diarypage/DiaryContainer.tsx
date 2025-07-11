@@ -5,6 +5,7 @@ import { useDailyIntake } from '@/api/diary/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import DiaryPageUI from '@/pages/diary/diarypage/DiaryPageUI';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 export default function DiaryContainer() {
   const today = new Date();
@@ -14,6 +15,7 @@ export default function DiaryContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const isGuest = useAuthStore(state => state.isGuest());
   const navigate = useNavigate();
 
   const {
@@ -40,10 +42,6 @@ export default function DiaryContainer() {
     return map;
   }, [dataCalendar]);
 
-  const handleMainClick = () => {
-    navigate('/main/report');
-  };
-
   const handleDateSelect = async (date: string) => {
     setSelectedDate(date);
   };
@@ -57,7 +55,7 @@ export default function DiaryContainer() {
   const handleEdit = (intakeId: string) => {
     const record = dataDaily?.intakeList.find((r) => r.intakeId === intakeId);
     if (record) {
-      navigate(`/main/diary/edit/${intakeId}`, { state: { record } });
+      navigate(`/diary/edit/${intakeId}`, { state: { record } });
     }
   };
 
@@ -88,7 +86,6 @@ export default function DiaryContainer() {
 
   // 핸들러 묶음
   const handlers = {
-    onMainClick:handleMainClick,
     onDateSelect: handleDateSelect,
     onMonthChange: handleMonthChange,
     onEdit: handleEdit,
@@ -97,6 +94,7 @@ export default function DiaryContainer() {
 
   return (
     <DiaryPageUI
+      isGuest={isGuest} 
       year={year}
       month={month}
       selectedDate={selectedDate}

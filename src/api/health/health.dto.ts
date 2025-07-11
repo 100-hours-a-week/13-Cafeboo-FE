@@ -3,12 +3,12 @@ export interface HealthInfoResponseDTO {
     age: number;
     height: number;
     weight: number;
-    pregnant: boolean;
-    taking_birth_pill: boolean;
-    smoking: boolean;
-    has_liver_disease: boolean;
-    sleep_time: string;
-    wake_up_time: string;
+    isPregnant: boolean;
+    isTakingBirthPill: boolean;
+    isSmoking: boolean;
+    hasLiverDisease: boolean;
+    sleepTime: string;
+    wakeUpTime: string;
     createdAt?: string;
     updatedAt?: string;
 }

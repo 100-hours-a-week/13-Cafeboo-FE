@@ -19,10 +19,10 @@ interface Handlers {
   onMonthChange: (year: number, month: number) => void;
   onEdit: (intakeId: string) => void;
   onSubmitRecord: (record: any) => void;
-  onMainClick: () => void;
 }
 
 interface DiaryPageUIProps {
+  isGuest: boolean;
   year: number;
   month: number;
   selectedDate: string;
@@ -39,6 +39,7 @@ interface DiaryPageUIProps {
 }
 
 export default function DiaryPageUI({
+  isGuest,
   year,
   month,
   selectedDate,
@@ -53,15 +54,14 @@ export default function DiaryPageUI({
   alertMessage,
   handlers,
 }: DiaryPageUIProps) {
-  const { onMainClick, onDateSelect, onMonthChange, onEdit, onSubmitRecord } = handlers;
+  const { onDateSelect, onMonthChange, onEdit, onSubmitRecord } = handlers;
 
   return (
     <PageLayout
-      headerMode="logo"
-      fabType="report"        
+      headerMode="logo"      
       showAdd={true}        
-      onMainClick={onMainClick} 
-      onAddClick={() => setIsSheetOpen(true)}  
+      onAddClick={() => setIsSheetOpen(true)}
+      showGuestModeBanner={isGuest}  
     >
       <SectionCard>
         {calendarStatus.isLoading ? (

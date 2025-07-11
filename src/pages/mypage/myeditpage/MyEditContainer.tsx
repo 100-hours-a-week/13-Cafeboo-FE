@@ -42,7 +42,7 @@ export default function MyEditContainer() {
       await refetchHealthInfo();
       await refetchCaffeineInfo();
 
-      navigate('/main/mypage');
+      navigate('/mypage');
     } catch (e: any) {
       console.error('수정 중 오류:', e);
       setError(e.message || '수정 중 오류가 발생했습니다.');
@@ -63,7 +63,7 @@ export default function MyEditContainer() {
       error={error}
       setError={setError}
       onSave={handleSave}
-      onBackClick={() => navigate('/main/mypage')}
+      onBackClick={() => navigate('/mypage')}
       initHealth={healthInfo}
       initCaffeine={caffeineInfo}
     />

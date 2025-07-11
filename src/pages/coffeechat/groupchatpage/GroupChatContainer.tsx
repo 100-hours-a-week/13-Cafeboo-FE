@@ -75,14 +75,14 @@ export default function GroupChatContainer() {
         const m = res.data ?? membership;
         if (!m?.isMember || !m?.memberId) {
           alert("참여자만 입장할 수 있습니다.");
-          navigate(`/main/coffeechat/${coffeechatId}`);
+          navigate(`/coffeechat/${coffeechatId}`);
           return;
         }
         setMemberId(m.memberId);
       })
       .catch(() => {
         alert("참여 정보를 확인할 수 없습니다.");
-        navigate(`/main/coffeechat/${coffeechatId}`);
+        navigate(`/coffeechat/${coffeechatId}`);
       });
   }, [coffeechatId]);
 
@@ -153,14 +153,14 @@ export default function GroupChatContainer() {
 
         sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
 
-        navigate("/main/coffeechat");
+        navigate("/coffeechat");
     } catch (err: any) {
         alert(err?.message || "나가기 중 오류가 발생했습니다.");
     }
   };
 
   const handleBackClick = () => {
-    navigate(`/main/coffeechat/${coffeechatId}`);
+    navigate(`/coffeechat/${coffeechatId}`);
   };
 
   // 커피챗 삭제
@@ -171,7 +171,7 @@ export default function GroupChatContainer() {
     }
     try {
       await deleteChat(coffeechatId);
-      navigate("/main/coffeechat");
+      navigate("/coffeechat");
     } catch (err: any) {
       alert(err?.message || "삭제 중 오류가 발생했습니다.");
     }

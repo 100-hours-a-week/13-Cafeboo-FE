@@ -30,6 +30,7 @@ interface Controls {
 }
 
 interface ReportPageUIProps {
+  isGuest: boolean;
   periodType: 'weekly' | 'monthly' | 'yearly';
   selectedYear: string;
   selectedMonth: string;
@@ -41,12 +42,10 @@ interface ReportPageUIProps {
   status: Status;
   handlers: Handlers;
   controls: Controls;
-  navigation: {
-    onMainClick: () => void;
-  };
 }
 
 export default function ReportPageUI({
+  isGuest,
   periodType,
   selectedYear,
   selectedMonth,
@@ -58,7 +57,6 @@ export default function ReportPageUI({
   status,
   handlers,
   controls,
-  navigation,
 }: ReportPageUIProps) {
   const {
     isLoading,
@@ -76,15 +74,13 @@ export default function ReportPageUI({
     setIsAlertOpen,
     alertMessage,
   } = controls;
-  const { onMainClick } = navigation;
 
   return (
     <PageLayout
       headerMode="logo"
-      fabType="diary"
       showAdd={true}
-      onMainClick={onMainClick}
       onAddClick={() => setIsSheetOpen(true)}
+      showGuestModeBanner={isGuest}
     >
       <DropdownSelector
         selectedPeriod={periodType}
