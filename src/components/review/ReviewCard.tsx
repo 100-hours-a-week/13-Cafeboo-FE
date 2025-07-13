@@ -9,17 +9,16 @@ import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
 import MemberImage from '@/components/common/MemberImage';
 import { useImageSize } from '@/hooks/useImageSize';
 import { useAuthStore } from "@/stores/useAuthStore";
-import LoginRequiredModal from "@/components/common/LoginRequiredModal";
 
 interface ReviewCardProps {
   item: CoffeeChatReviewSummary;
+  onRequireLogin: () => void;
 }
 
-export default function ReviewCard({ item }: ReviewCardProps) {
+export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
   const [liked, setLiked] = useState(item.liked); 
   const [likesCount, setLikesCount] = useState(item.likesCount); 
   const isGuest = useAuthStore(state => state.isGuest());
-  const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
 
   const navigate = useNavigate();
   const {
@@ -30,7 +29,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
 
   const handleClick = () => {
     if (isGuest) {
-      setIsLoginAlertOpen(true);
+      onRequireLogin();
     } else {
       navigate(`/coffeechat/${item.coffeeChatId}/review`, {
         state: {
@@ -45,7 +44,7 @@ export default function ReviewCard({ item }: ReviewCardProps) {
 
   const handleLikeToggle = (newLiked: boolean) => {
     if (isGuest) {
-      setIsLoginAlertOpen(true);
+      onRequireLogin();
       return; 
     }
   
@@ -65,7 +64,6 @@ export default function ReviewCard({ item }: ReviewCardProps) {
   const size = useImageSize(item.previewImageUrl);
 
   return (
-    <>
     <SectionCard className="!px-2 cursor-pointer !border-gray-200" onClick={handleClick}>
       {/* 이미지 영역 */}
       <div className="mb-3">
@@ -133,11 +131,6 @@ export default function ReviewCard({ item }: ReviewCardProps) {
         </div>
       </div>
     </SectionCard>
-    <LoginRequiredModal
-      isOpen={isLoginAlertOpen}
-      onClose={() => setIsLoginAlertOpen(false)}
-    />
-    </>
   );
 }
 

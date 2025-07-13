@@ -17,6 +17,7 @@ type ReviewCardListProps = {
   };
   isLoading: boolean;
   isError: boolean;
+  onRequireLogin: () => void;
 };
 
 export default function ReviewCardList({
@@ -25,6 +26,7 @@ export default function ReviewCardList({
   reviewsData,
   isLoading,
   isError,
+  onRequireLogin,
 }: ReviewCardListProps) {
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -107,7 +109,7 @@ export default function ReviewCardList({
         {!isLoading &&
           !isError &&
           reviews.map((item) => (
-            <ReviewCard key={item.coffeeChatId} item={item} />
+            <ReviewCard key={item.coffeeChatId} item={item} onRequireLogin={onRequireLogin} />
           ))}
       </div>
     </>
