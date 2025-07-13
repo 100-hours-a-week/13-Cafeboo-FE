@@ -3,6 +3,9 @@ import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/assets/logo.png';
 import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
+import { useAuthStore } from '@/stores/useAuthStore';
+import { useUserProfile } from '@/api/mypage/profileApi';
+import { requestKakaoLogin } from '@/api/auth/authApi';
 
 interface HeaderProps {
   mode: 'logo' | 'title';
@@ -15,7 +18,7 @@ interface HeaderProps {
   myMemberId?: string;
 }
 
-const Header = ({
+export default function Header ({
   mode,
   title,
   onBackClick,
@@ -24,9 +27,11 @@ const Header = ({
   onLeaveChat,
   onDeleteChat,
   myMemberId,
-}: HeaderProps) => {
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const isGuest = useAuthStore(state => state.isGuest());
+  const { data: profileData, isLoading, isError } = useUserProfile();
 
   const handleBack = () => {
     if (onBackClick) {
@@ -38,6 +43,14 @@ const Header = ({
 
   const goHome = () => {
     navigate('/');
+  };
+
+  const handleKakaoLogin = async() => {
+    try {
+      await requestKakaoLogin();
+    } catch (error) {
+      console.error("카카오 로그인 요청 실패:", error);
+    }
   };
 
   return (
@@ -70,17 +83,54 @@ const Header = ({
             </h1>
           )}
 
-          {/* 오른쪽: 그룹 채팅 메뉴 버튼 (isGroupChat일 때만) */}
-          {isGroupChat && (
-            <div className="flex items-center space-x-2">
+          {/* 오른쪽: 그룹 채팅 메뉴 버튼 (isGroupChat일 때만) + 게스트/로그인 또는 프로필 사진 */}
+          <div className="flex items-center">
+            {isGroupChat ? (
               <button
                 onClick={() => setIsMenuOpen(true)}
                 className="p-1 rounded-full hover:opacity-80 cursor-pointer"
               >
-                <Menu className="w-6 h-6"/>
+                <Menu className="w-6 h-6" />
               </button>
-            </div>
-          )}
+            ) : (
+              <>
+                {isGuest ? (
+                  <button
+                    onClick={handleKakaoLogin}
+                    className="px-2 py-1 text-[#FE9400] underline font-semibold cursor-pointer"
+                    style={{ textUnderlineOffset: '2px' }}
+                  >
+                    로그인
+                  </button>
+                ) : (
+                  <>
+                  {!isLoading && !isError && profileData ? (
+                    <div
+                      className="flex items-center space-x-1.5"
+                    >
+                      <div className='flex'>
+                      <span className="text-sm font-semibold text-gray-800">{profileData.nickname}</span>
+                      <span className="text-sm text-gray-800">님</span>
+                      </div>
+                      {profileData.profileImageUrl ? (
+                        <img
+                          src={profileData.profileImageUrl}
+                          alt="프로필"
+                          className="w-7 h-7 rounded-full bg-gray-100"
+                        />
+                      ) : (
+                        <div className="w-7 h-7 rounded-full bg-gray-300" />
+                      )}
+
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-gray-300" />
+                  )}
+                </>
+              )}
+            </>
+            )}
+          </div>
         </div>
       </header>
 
@@ -98,6 +148,3 @@ const Header = ({
     </>
   );
 };
-
-export default Header;
-

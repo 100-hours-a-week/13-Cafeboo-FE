@@ -13,7 +13,7 @@ import LoginUI from '@/components/auth/LoginUI';
 export default function MyPageContainer() {
   const navigate = useNavigate();
   const { showToast } = useToastStore();
-  const role = useAuthStore((state) => state.role);
+  const isGuest = useAuthStore(state => state.isGuest());
 
   const { data: userProfile, isLoading, isError, error, refetch } = useUserProfile();
   const {
@@ -147,7 +147,7 @@ export default function MyPageContainer() {
     confirmDelete,
   };
 
-  if (role === "GUEST") {
+  if (isGuest) {
     const handleKakaoLogin = async() => {
       try {
         await requestKakaoLogin();

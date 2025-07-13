@@ -2,7 +2,6 @@ import Header from '@/components/common/Header';
 import FABContainer from "@/components/common/FABContainer";
 import BottomNavBar from '@/components/common/BottomNavBar';
 import { Member } from '@/components/coffeechat/GroupMemberMenu';
-import GuestModeBannerContainer from '@/components/home/containers/GuestModeBannerContainer';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -28,7 +27,6 @@ export default function PageLayout({
   children,
   headerMode = 'logo',
   headerTitle,
-  showGuestModeBanner = false,
   onBackClick,
   mainClassName,
   nonScrollClassName = false,
@@ -61,9 +59,8 @@ export default function PageLayout({
         ref={mainRef}
         className={`
           mt-14 scrollbar-hide pb-28 h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom)) 
-          ${headerMode === 'title' ? 'px-2' : 'mb-18'} 
+          ${headerMode === 'title' ? 'px-2' : 'pt-2 mb-18'} 
           ${nonScrollClassName ? '!pb-0' : 'overflow-y-auto'}
-          ${showGuestModeBanner ? 'pt-10':''}
         `}
       
       >
@@ -78,7 +75,6 @@ export default function PageLayout({
         onAddClick={onAddClick}
         scrollTargetSelector="main"
       />
-      {showGuestModeBanner && <GuestModeBannerContainer/> }
       {headerMode !== 'title' && <BottomNavBar />}
     </div>
   );

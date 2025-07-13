@@ -30,7 +30,6 @@ interface Controls {
 }
 
 interface ReportPageUIProps {
-  isGuest: boolean;
   periodType: 'weekly' | 'monthly' | 'yearly';
   selectedYear: string;
   selectedMonth: string;
@@ -45,7 +44,6 @@ interface ReportPageUIProps {
 }
 
 export default function ReportPageUI({
-  isGuest,
   periodType,
   selectedYear,
   selectedMonth,
@@ -80,7 +78,6 @@ export default function ReportPageUI({
       headerMode="logo"
       showAdd={true}
       onAddClick={() => setIsSheetOpen(true)}
-      showGuestModeBanner={isGuest}
     >
       <DropdownSelector
         selectedPeriod={periodType}
