@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useDailyCaffeineReport } from '@/api/home/dailyReportApi';
 import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
+import { useDrinkList } from '@/api/home/drinkListApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
+import type { DrinkList } from '@/api/home/drinkList.dto';
+import { findDrinkInfo } from '@/utils/drinkUtils'; 
 import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
+import cafeList from '@/data/cafe_drinks.json';
 
 export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -20,6 +24,28 @@ export default function HomeContainer() {
   } = useDailyCaffeineReport();
 
   const { mutateAsyncFn: recordCaffeineIntake } = useRecordCaffeineIntake();
+
+  const { data: recommendedDrinks = [], isLoading: isDrinksLoading, isError: isDrinksError, error: drinksError } = useDrinkList();
+
+  const aiDrinks = recommendedDrinks.map((rec: DrinkList) => {
+    const info = findDrinkInfo(cafeList, rec.drink_id);
+    if (!info) return null;
+
+    return {
+      brand: info.cafeName,
+      name: info.name,
+      score: Math.floor(rec.score * 10000),
+      temperature: info.temperature,
+      logo: undefined, 
+    };
+  })
+  .filter(Boolean) as {
+    brand: string;
+    name: string;
+    score: number;
+    temperature: string;
+    logo?: string;
+  }[];
 
   const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
@@ -43,6 +69,10 @@ export default function HomeContainer() {
       isReportLoading={isReportLoading}
       isReportError={isReportError}
       reportError={reportError}
+      aiDrinks={aiDrinks}
+      isDrinksLoading={isDrinksLoading}
+      isDrinksError={isDrinksError}
+      drinksError={drinksError}
       onSubmitRecord={handleSubmitRecord}
     />
   );
