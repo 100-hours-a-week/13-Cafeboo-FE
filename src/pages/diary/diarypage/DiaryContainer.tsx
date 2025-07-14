@@ -5,7 +5,6 @@ import { useDailyIntake } from '@/api/diary/calendarListApi';
 import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import DiaryPageUI from '@/pages/diary/diarypage/DiaryPageUI';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
-import { useAuthStore } from '@/stores/useAuthStore';
 
 export default function DiaryContainer() {
   const today = new Date();
@@ -15,7 +14,6 @@ export default function DiaryContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const isGuest = useAuthStore(state => state.isGuest());
   const navigate = useNavigate();
 
   const {
@@ -94,7 +92,6 @@ export default function DiaryContainer() {
 
   return (
     <DiaryPageUI
-      isGuest={isGuest} 
       year={year}
       month={month}
       selectedDate={selectedDate}

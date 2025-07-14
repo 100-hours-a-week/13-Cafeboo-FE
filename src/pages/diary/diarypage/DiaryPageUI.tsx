@@ -22,7 +22,6 @@ interface Handlers {
 }
 
 interface DiaryPageUIProps {
-  isGuest: boolean;
   year: number;
   month: number;
   selectedDate: string;
@@ -39,7 +38,6 @@ interface DiaryPageUIProps {
 }
 
 export default function DiaryPageUI({
-  isGuest,
   year,
   month,
   selectedDate,
@@ -60,8 +58,7 @@ export default function DiaryPageUI({
     <PageLayout
       headerMode="logo"      
       showAdd={true}        
-      onAddClick={() => setIsSheetOpen(true)}
-      showGuestModeBanner={isGuest}  
+      onAddClick={() => setIsSheetOpen(true)}  
     >
       <SectionCard>
         {calendarStatus.isLoading ? (

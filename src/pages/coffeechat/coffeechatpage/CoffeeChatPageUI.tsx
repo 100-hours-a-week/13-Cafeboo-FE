@@ -34,6 +34,7 @@ interface HandlersProps {
   onAddClick: () => void;
   onCloseSheet: () => void;
   onLoginAlertClose: () => void;
+  onOpenLoginModal: () => void;
 }
 
 interface Props {
@@ -68,6 +69,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
     onAddClick,
     onCloseSheet,
     onLoginAlertClose,
+    onOpenLoginModal,
   } = handlers;
 
   return (
@@ -87,6 +89,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
             reviewsData={reviewData}
             isLoading={isLoadingReviews}
             isError={isErrorReviews}
+            onRequireLogin={onOpenLoginModal} 
           />
         ) : (
           <ChatCardList
@@ -103,7 +106,6 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
       <CoffeeChatBottomSheet open={isSheetOpen} onClose={onCloseSheet} />
 
       <LoginRequiredModal
-        key={isLoginAlertOpen ? 'open' : 'close'}
         isOpen={isLoginAlertOpen}
         onClose={onLoginAlertClose}
       />

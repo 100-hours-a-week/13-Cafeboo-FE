@@ -44,8 +44,8 @@ export default function TodayCoffeeChatSection({
   return (
     <div className="mt-4">
       {/* 제목 & 더보기 버튼 */}
-      <div className="flex items-center justify-between mb-2 px-1">
-        <h2 className="text-base font-semibold text-[#333333]">오늘의 커피챗</h2>
+      <div className="flex items-center justify-between mb-2 pr-1">
+      <h2 className="text-base font-semibold text-[#333333]">오늘의 커피챗</h2>
         <div className="flex text-xs font-medium items-center justify-center">
           <button onClick={() => navigate("/coffeechat")}>
             <ChevronRight className="w-5 h-5 cursor-pointer text-800" />
@@ -54,7 +54,7 @@ export default function TodayCoffeeChatSection({
       </div>
 
       {/* 카드 스크롤 영역 */}
-      <HorizontalScroller className="px-1 justify-start">
+      <HorizontalScroller className="justify-start">
         {rooms.length === 0 ? (
           <div className="text-sm text-gray-500">오늘의 커피챗이 없습니다.</div>
         ) : (

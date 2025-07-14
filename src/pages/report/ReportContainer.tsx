@@ -5,7 +5,6 @@ import { useMonthlyReport } from '@/api/report/monthlyReportApi';
 import { useYearlyReport } from '@/api/report/yearlyReportApi';
 import { recordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
-import { useAuthStore } from '@/stores/useAuthStore';
 import { getWeekOfMonth } from 'date-fns';
 
 export default function ReportContainer() {
@@ -14,7 +13,6 @@ export default function ReportContainer() {
   const defaultYear = String(today.getFullYear());
   const defaultMonth = String(today.getMonth() + 1);
   const defaultWeek = `${getWeekOfMonth(today)}`;
-  const isGuest = useAuthStore(state => state.isGuest());
 
   const [periodType, setPeriodType] = useState<'weekly' | 'monthly' | 'yearly'>('weekly');
   const [selectedYear, setSelectedYear] = useState(defaultYear);
@@ -110,7 +108,6 @@ export default function ReportContainer() {
 
   return (
     <ReportPageUI
-      isGuest={isGuest} 
       periodType={periodType}
       selectedYear={selectedYear}
       selectedMonth={selectedMonth}

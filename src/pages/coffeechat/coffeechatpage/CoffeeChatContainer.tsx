@@ -44,10 +44,12 @@ export default function CoffeeChatContainer() {
   const coffeechats = coffeeChatData?.coffeechats ?? [];
 
   // 핸들러 함수들
+  const openLoginModal = () => {
+    setIsLoginAlertOpen(false);
+    setTimeout(() => setIsLoginAlertOpen(true), 10);
+  };
+
   const handleTabClick = (tab: ChatFilter) => {
-    if (isLoginAlertOpen) {
-      setIsLoginAlertOpen(false);
-    }
     if (filter === tab) {
       if (isReviewTab) {
         refetchReviews();
@@ -59,10 +61,6 @@ export default function CoffeeChatContainer() {
     }
   };
 
-  useEffect(() => {
-    console.log('isLoginAlertOpen changed:', isLoginAlertOpen);
-  }, [isLoginAlertOpen]);
-
   const handleReviewTabClick = (tab: ReviewFilter) => {
     if (reviewTabFilter === tab) {
       refetchReviews();
@@ -73,7 +71,7 @@ export default function CoffeeChatContainer() {
 
   const handleRoomClick = (room: any) => {
     if (isGuest) {
-      setIsLoginAlertOpen(true);
+      openLoginModal();
     } else {
       navigate(`/coffeechat/${room.coffeeChatId}`);
     }
@@ -93,7 +91,7 @@ export default function CoffeeChatContainer() {
 
   const handleAddClick = () => {
     if (isGuest) {
-      setIsLoginAlertOpen(true);
+      openLoginModal();
     } else {
       setIsSheetOpen(true);
     }
@@ -127,6 +125,7 @@ export default function CoffeeChatContainer() {
     onAddClick: handleAddClick,
     onLoginAlertClose: () => setIsLoginAlertOpen(false),
     onCloseSheet: () => setIsSheetOpen(false),
+    onOpenLoginModal: openLoginModal,
   };
 
   return <CoffeeChatPageUI status={status} handlers={handlers} />;
