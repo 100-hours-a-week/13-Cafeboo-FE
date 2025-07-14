@@ -8,6 +8,7 @@ import { findDrinkInfo } from '@/utils/drinkUtils';
 import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
 import cafeList from '@/data/cafe_drinks.json';
+import { brandLogos } from '@/data/brandLogos';
 
 export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -30,13 +31,14 @@ export default function HomeContainer() {
   const aiDrinks = recommendedDrinks.map((rec: DrinkList) => {
     const info = findDrinkInfo(cafeList, rec.drink_id);
     if (!info) return null;
+    console.log(brandLogos[info.cafeName]);
 
     return {
       brand: info.cafeName,
       name: info.name,
       score: Math.floor(rec.score * 10000),
       temperature: info.temperature,
-      logo: undefined, 
+      logo: brandLogos[info.cafeName] ?? undefined,
     };
   })
   .filter(Boolean) as {
