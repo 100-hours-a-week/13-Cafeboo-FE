@@ -1,7 +1,7 @@
 import Routes from '@/routes';
 import './index.css';
-import Logo from '@/assets/logo-shadow.svg';
-import Icon from '@/assets/icon-shadow.svg';
+import Logo from '@/assets/logo.png';
+import Icon from '@/assets/icon.svg';
 import BG from '@/assets/background.png';
 import CustomToast from '@/components/common/CustomToast';
 import AuthInitializer from '@/providers/AuthInitializer'; 
