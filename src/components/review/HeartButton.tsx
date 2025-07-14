@@ -39,7 +39,7 @@ export default function HeartButton({
           if(!disabled) handleClick();
         }}
         className={clsx(
-          "relative flex items-center px-2 py- rounded-full transition-all duration-200",
+          "relative flex items-center px-2 rounded-full transition-all duration-200",
           liked ? "text-red-500": "text-gray-400",
           !disabled ? "cursor-pointer hover:text-red-400":''
         )}

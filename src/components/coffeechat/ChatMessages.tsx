@@ -161,7 +161,7 @@ export default function ChatMessages({
                 text-center text-sm  text-gray-500
                 select-none
                 "
-              style={{ maxWidth: '60%', userSelect: 'none' }}
+              style={{ maxWidth: '70%', userSelect: 'none' }}
             >
               {msg.content}
             </div>

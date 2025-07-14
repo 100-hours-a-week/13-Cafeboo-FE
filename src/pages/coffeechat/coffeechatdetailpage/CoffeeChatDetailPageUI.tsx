@@ -127,7 +127,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
   } = data;
 
   return (
-    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={handleBackClick} mainClassName="!pb-20">
+    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={handleBackClick} mainClassName="pt-2 pb-16">
       <div className="bg-white space-y-4">
         <div className="flex items-center justify-between mb-2">
           <div>{badge}</div>
