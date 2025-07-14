@@ -9,6 +9,7 @@ interface Props {
     drinkid: number;
     name: string;
     cafeName: string;
+    temperature: string; 
     sizes: {
       drinkSizeId: number;
       caffeine_mg: number;
@@ -22,6 +23,7 @@ interface Props {
 }
 
 export default function CaffeineBottomSheet({ open, detail, onSelectDrink, onOpenChange, onSubmitRecord }: Props) {
+
   return (
     <>
       <BottomSheet

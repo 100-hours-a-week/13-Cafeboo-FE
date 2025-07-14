@@ -2,9 +2,13 @@ import { useState, useRef } from 'react';
 import { format } from 'date-fns';
 import { Clock, Minus, Plus } from 'lucide-react';
 import Small from '@/assets/small.png';
+import Small_ice from '@/assets/small-ice.png';
 import Medium from '@/assets/medium.png';
+import Medium_ice from '@/assets/medium-ice.png'
 import Large from '@/assets/large.png';
+import Large_ice from '@/assets/large-ice.png'
 import ExtraLarge from '@/assets/extralarge.png';
+import ExtraLarge_ice from '@/assets/extralarge-ice.png'
 import Stick from '@/assets/stick.png';  
 import Monster from '@/assets/monster.png'
 import Hot6 from '@/assets/hot6.png'
@@ -24,6 +28,7 @@ export interface DrinkDetail {
   sizes: DrinkSize[];
   date?: string;
   cafeName: string;
+  temperature: string;
 }
 
 export interface CaffeineDetailFormProps {
@@ -52,19 +57,29 @@ export default function CaffeineDetailForm({
   const isEnergyDrink = drink.cafeName === '에너지 드링크';
   
   const sizeImages: string[] = isMixCoffee
-    ? [Stick]
-    : isEnergyDrink
-      ? [(() => {
-          if (drink.name.includes('핫식스')) return Hot6;
-          if (drink.name.includes('레드불')) return Redbull;
-          if (drink.name.includes('몬스터')) return Monster;
-          return Medium; 
-        })()]
-      : (() => {
-          const imgs = [Medium, Large, ExtraLarge];
-          if (sizes.length === 4) imgs.unshift(Small);
-          return imgs;
-        })();
+  ? [Stick]
+  : isEnergyDrink
+    ? [(() => {
+        if (drink.name.includes('핫식스')) return Hot6;
+        if (drink.name.includes('레드불')) return Redbull;
+        if (drink.name.includes('몬스터')) return Monster;
+        return Medium; 
+      })()]
+    : (() => {
+        const imgsBase = sizes.length === 4 
+          ? [Small, Medium, Large, ExtraLarge]
+          : [Medium, Large, ExtraLarge];
+
+        const imgsIce = sizes.length === 4 
+          ? [Small_ice, Medium_ice, Large_ice, ExtraLarge_ice]
+          : [Medium_ice, Large_ice, ExtraLarge_ice];
+
+        if (drink.temperature === 'ICED') {
+          return imgsIce;
+        } else {
+          return imgsBase;
+        }
+      })();
 
   // 카페인 총량 계산 (소수점 첫째 자리까지)
   const caffeineTotal = (selectedSize.caffeine_mg * count).toFixed(1);

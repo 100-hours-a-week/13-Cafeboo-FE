@@ -37,6 +37,7 @@ export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSub
         capacity_ml: size.capacity_ml,
       })),
       date: selectedDate,
+      temperature: drink.temperature,
     };
   }, [selected, selectedDate]);
 
