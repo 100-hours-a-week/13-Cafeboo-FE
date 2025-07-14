@@ -37,10 +37,10 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false }: AiD
                   <img
                     src={drink.logo}
                     alt={drink.brand}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-11 h-11 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
+                  <div className="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
                     {drink.brand[0]}
                   </div>
                 )}
@@ -49,7 +49,7 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false }: AiD
               {/* 가운데: 브랜드명 + 온도 + 이름 */}
               <div className="flex-1 flex flex-col gap-1 min-w-0">
                 <div className="flex items-center gap-1">
-                  <span className="text-xs text-gray-600 font-medium truncate">{drink.brand}</span>
+                  <span className="text-xs text-gray-600 font-bold truncate">{drink.brand}</span>
                   {drink.temperature && (
                     <span
                       className={`text-[8px] font-medium px-1.5 rounded-full border ${
@@ -62,19 +62,19 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false }: AiD
                     </span>
                   )}
                 </div>
-                <div className="font-semibold text-black leading-tight truncate">{drink.name}</div>
+                <div className="font-medium text-black leading-tight truncate">{drink.name}</div>
               </div>
 
               {/* 오른쪽: score */}
               <div className="mr-2 flex flex-col items-center justify-center text-center">
                 <span
-                  className={`text-xl font-bold leading-none ${
+                  className={`text-lg font-bold leading-none ${
                     idx === 0 ? 'text-[#FE9400]' : 'text-gray-400'
                   }`}
                 >
                   {drink.score}
                 </span>
-                <span className="text-[11px] text-gray-400 leading-none">score</span>
+                <span className="text-[10px] text-gray-400 leading-none">score</span>
               </div>
             </div>
           ))}
