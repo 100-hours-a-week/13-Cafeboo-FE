@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { Tag, TagItem } from '@/components/common/Tag';
 import { Coffee, Search } from 'lucide-react';
 import EmptyState from '@/components/common/EmptyState';
-import HorizontalScroller from '../common/HorizontalScroller';
 
 interface DrinkSize {
   drinkSizeId: number;
