@@ -1,9 +1,9 @@
-name: Deploy Frontend to GCP Cloud Storage (PROD)
+name: Deploy Frontend to AWS S3 (PROD)
 
 on:
   push:
     branches:
-      - main
+      - v3-aws-test
 
 jobs:
   deploy:
@@ -12,17 +12,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: '${{ secrets.GCP_SA_KEY_2 }}'
-
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          project_id: master-isotope-462503-m9
-          version: latest
 
       - name: Install pnpm
         run: |
@@ -39,12 +28,19 @@ jobs:
           VITE_KAKAO_MAP_KEY="${{ secrets.VITE_KAKAO_MAP_KEY }}" \
           pnpm run build
 
-      - name: Upload to GCP Cloud Storage (PROD)
-        run: |
-          gsutil -m rsync -r ./dist gs://v2-prod-frontend-bucket
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2 # 서울 리전 
 
-      - name: Invalidate CDN cache
+      - name: Upload to AWS S3
         run: |
-          gcloud compute url-maps invalidate-cdn-cache cafeboo-frontend \
-            --path "/*" \
-            --global
+          aws s3 sync ./dist s3://v3-prod-frontend-bucket --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
