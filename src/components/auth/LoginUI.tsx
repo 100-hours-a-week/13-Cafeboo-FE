@@ -31,7 +31,7 @@ const LoginUI: React.FC<LoginUIProps> = ({ onKakaoLogin }) => {
             </button>
 
             <p className="mt-6 text-gray-500 text-sm">
-                로그인 하시면 나만의 맞춤 분석과 추천 기능을 경험하실 수 있습니다.
+                로그인하시면 나만의 맞춤 분석과 추천 기능을 경험하실 수 있습니다.
             </p>
         </div>
     </PageLayout>

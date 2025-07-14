@@ -162,7 +162,7 @@ export default function HomePageUI({
           icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
         />
       ) : (
-        <AiDrinkRecommendation aiDrinks={aiDrinks} />
+        <AiDrinkRecommendation aiDrinks={aiDrinks} isGuest={isGuest}/>
       )}
 
 

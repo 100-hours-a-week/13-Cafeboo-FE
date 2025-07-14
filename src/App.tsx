@@ -1,7 +1,7 @@
 import Routes from '@/routes';
 import './index.css';
-import Logo from '@/assets/logo.png';
-import Icon from '@/assets/icon.svg';
+import Logo from '@/assets/logo-shadow.svg';
+import Icon from '@/assets/icon-shadow.svg';
 import BG from '@/assets/background.png';
 import CustomToast from '@/components/common/CustomToast';
 import AuthInitializer from '@/providers/AuthInitializer'; 
@@ -23,8 +23,8 @@ function App() {
       {/* 좌측 설명 영역 */}
       <div className="fixed top-1/2 -translate-y-1/2 xl:ml-36 2xl:left-50 p-8 hidden lg:flex flex-col items-center justify-center z-10">
         <div className="flex items-center justify-center">
-          <img src={Icon} alt="CafeBoo Logo" width={36} height={36} className="h-28 w-auto mb-6 mr-2" />
-          <img src={Logo} alt="Cafeboo" width={409} height={188} className="h-32 w-auto" />
+          <img src={Icon} alt="CafeBoo Logo" width={36} height={36} className="h-30 w-auto mb-6 mr-1" />
+          <img src={Logo} alt="Cafeboo" width={409} height={188} className="h-36 w-auto" />
         </div>
         <div className="text-xl font-semibold items-center justify-center">
           일상의 카페인을 기록해보세요!
