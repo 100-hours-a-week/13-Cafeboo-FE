@@ -50,6 +50,7 @@ export default function DiaryEditContainer() {
       drinkid: d.drinkId,
       name: d.name,
       cafeName: selectedDrink.cafeName,
+      temperature: d.temperature,
       sizes: d.sizes.map(s => ({
         drinkSizeId: s.drinkSizeId,
         size: s.size,
