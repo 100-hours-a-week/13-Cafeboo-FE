@@ -4,6 +4,7 @@ import { useRecordCaffeineIntake } from '@/api/caffeine/caffeineApi';
 import { useDrinkList } from '@/api/home/drinkListApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import type { DrinkList } from '@/api/home/drinkList.dto';
+import { requestKakaoLogin } from '@/api/auth/authApi';
 import { findDrinkInfo } from '@/utils/drinkUtils'; 
 import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
@@ -48,6 +49,14 @@ export default function HomeContainer() {
     logo?: string;
   }[];
 
+  const handleKakaoLogin = async() => {
+    try {
+      await requestKakaoLogin();
+    } catch (error) {
+      console.error("카카오 로그인 요청 실패:", error);
+    }
+  };
+
   const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {
       await recordCaffeineIntake(record);
@@ -75,6 +84,7 @@ export default function HomeContainer() {
       isDrinksError={isDrinksError}
       drinksError={drinksError}
       onSubmitRecord={handleSubmitRecord}
+      handleKaKaoLogin={handleKakaoLogin}
     />
   );
 }

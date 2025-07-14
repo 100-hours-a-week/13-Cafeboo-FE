@@ -37,6 +37,7 @@ interface HomePageUIProps {
   isDrinksError: boolean;
   drinksError?: any;
   onSubmitRecord: (record: any) => Promise<void>;
+  handleKaKaoLogin: () => void;
 }
 
 export default function HomePageUI({
@@ -55,11 +56,12 @@ export default function HomePageUI({
   isDrinksError,
   drinksError,
   onSubmitRecord,
+  handleKaKaoLogin,
 }: HomePageUIProps) {
   const slides = [
-    { imageUrl: BannerImage1, text: '' },
-    { imageUrl: BannerImage2, text: '' },
-    { imageUrl: BannerImage3, text: '' },
+    { imageUrl: BannerImage1, link: '/coffeechat' },
+    { imageUrl: BannerImage2, link: '/report' },
+    { imageUrl: BannerImage3, link: '/diary' },
   ];
 
   // 카페부 2기 서비스 버튼 목록
@@ -162,7 +164,7 @@ export default function HomePageUI({
           icon={<AlertTriangle className="w-10 h-10 text-[#D1D1D1]" />}
         />
       ) : (
-        <AiDrinkRecommendation aiDrinks={aiDrinks} isGuest={isGuest}/>
+        <AiDrinkRecommendation aiDrinks={aiDrinks} isGuest={isGuest} directKakaoLogin={handleKaKaoLogin}/>
       )}
 
 

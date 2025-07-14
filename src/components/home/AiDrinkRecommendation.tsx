@@ -10,10 +10,11 @@ interface Drink {
   
 interface AiDrinkRecommendationProps {
   aiDrinks: Drink[];
-  isGuest?: boolean; // 추가
+  isGuest?: boolean;
+  directKakaoLogin: () => void;
 }
 
-export default function AiDrinkRecommendation({ aiDrinks, isGuest = false }: AiDrinkRecommendationProps) {
+export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, directKakaoLogin }: AiDrinkRecommendationProps) {
   if (aiDrinks.length === 0) {
     return (
       <SectionCard>
@@ -88,8 +89,20 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false }: AiD
           회원 전용 서비스입니다.
         </div>
         <div className="text-sm text-gray-600">
-          AI 맞춤 추천을 받으려면 <span className="font-medium">로그인</span>하세요.
-        </div>
+              AI 맞춤 추천을 받으려면{' '}
+              <span
+                onClick={directKakaoLogin}
+                className="text-[#FE9400] underline cursor-pointer"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') directKakaoLogin();
+                }}
+              >
+                로그인
+              </span>
+              {' '}하세요.
+            </div>
         </div>
       </div>
       )}
