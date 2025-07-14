@@ -31,7 +31,6 @@ export default function HomeContainer() {
   const aiDrinks = recommendedDrinks.map((rec: DrinkList) => {
     const info = findDrinkInfo(cafeList, rec.drink_id);
     if (!info) return null;
-    console.log(brandLogos[info.cafeName]);
 
     return {
       brand: info.cafeName,
