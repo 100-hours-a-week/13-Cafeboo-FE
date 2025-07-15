@@ -9,13 +9,18 @@ export function useImageSize(url: string | null) {
       return;
     }
     const img = new Image();
-    img.onload = () => {
-      setSize({ width: img.naturalWidth, height: img.naturalHeight });
-    };
-    img.onerror = () => {
-      setSize(null);
-    };
+  
+    const onLoad = () => setSize({ width: img.naturalWidth, height: img.naturalHeight });
+    const onError = () => setSize(null);
+  
+    img.addEventListener('load', onLoad);
+    img.addEventListener('error', onError);
     img.src = url;
+  
+    return () => {
+      img.removeEventListener('load', onLoad);
+      img.removeEventListener('error', onError);
+    };
   }, [url]);
 
   return size;

@@ -244,6 +244,8 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
             <img
               src={CoffeeChat}
               alt="커피챗"
+              width={952}
+              height={953}
               className="h-11 w-auto mr-4 cursor-pointer"
               onClick={handleGoBackToCoffeeChat}
             />

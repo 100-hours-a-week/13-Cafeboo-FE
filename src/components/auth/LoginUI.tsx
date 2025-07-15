@@ -10,7 +10,7 @@ const LoginUI: React.FC<LoginUIProps> = ({ onKakaoLogin }) => {
   return (
     <PageLayout headerMode="logo" mainClassName='mt-6'>
         <div className="flex flex-col bg-gray-50 shadow-[0_0_5px_rgba(0,0,0,0.15)] rounded items-center px-8 py-6 m-3">
-            <img src={Logo} alt="CafeBoo" className="w-24 h-auto mb-2" />
+            <img src={Logo} alt="CafeBoo" width={409} height={188} className="w-24 h-auto mb-2" />
 
             <p className="text-center mb-6 max-w-xs leading-relaxed font-semibold">
                 일상의 카페인을 기록해보세요! 

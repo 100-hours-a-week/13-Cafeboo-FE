@@ -51,7 +51,6 @@ export default function CaffeineSelectForm({
   const brandOptions: TagItem[] = useMemo(() => {
     return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName))).map((label) => ({
       label,
-      isNew: label === '에너지 드링크', 
     }));
   }, [drinkData]);
 
@@ -93,7 +92,7 @@ export default function CaffeineSelectForm({
     <div className="flex flex-col h-full">
       <div className="flex-1 overflow-y-auto scrollbar-hide">
         {/* 상단 고정 영역 */}
-        <div className="sticky top-0 z-10 space-y-4 p-1 bg-white mb-2">
+        <div className="sticky top-0 z-10 space-y-2 p-1 bg-white mb-2">
           {/* 검색 입력 */}
           <div className="relative w-full">
             <Search
@@ -126,7 +125,7 @@ export default function CaffeineSelectForm({
             onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0].label)}
             multiple={false}
             scrollable
-            className="whitespace-nowrap"
+            className="whitespace-nowrap pb-0.5"
           />
 
           {/* 타입 필터 */}
@@ -137,7 +136,7 @@ export default function CaffeineSelectForm({
                 onClick={() => setTypeFilter(type)}
                 className={`
                   flex-1 text-center py-2 text-sm font-medium
-                  border-b-2 transition-colors
+                  border-b-2 transition-colors mb-2
                   ${
                     typeFilter === type
                       ? 'border-[#FE9400] text-[#FE9400]'

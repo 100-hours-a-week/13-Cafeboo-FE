@@ -38,6 +38,8 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
                   <img
                     src={drink.logo}
                     alt={drink.brand}
+                    width={72}
+                    height={72}
                     className="w-11 h-11 rounded-full object-cover"
                   />
                 ) : (

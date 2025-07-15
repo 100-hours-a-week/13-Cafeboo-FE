@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInfiniteCoffeeChatMessages } from "@/api/coffeechat/coffeechatMessageApi";
 import { CoffeeChatMessagesResponse } from "@/api/coffeechat/coffeechat.dto";
 import type { ChatMessage } from "@/api/coffeechat/coffeechat.dto";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { formatTimeToKorean } from "@/utils/formatUtils";
-import MemberImage from "../common/MemberImage";
+import MemberImage from "@/components/common/MemberImage";
 
 interface ChatMessagesProps {
   coffeeChatId: string;
@@ -161,7 +161,7 @@ export default function ChatMessages({
                 text-center text-sm  text-gray-500
                 select-none
                 "
-              style={{ maxWidth: '70%', userSelect: 'none' }}
+              style={{ maxWidth: '80%', userSelect: 'none' }}
             >
               {msg.content}
             </div>

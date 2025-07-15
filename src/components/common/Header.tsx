@@ -5,6 +5,7 @@ import Logo from '@/assets/logo.png';
 import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useUserProfile } from '@/api/mypage/profileApi';
+import { useImageSize } from '@/hooks/useImageSize';
 import { requestKakaoLogin } from '@/api/auth/authApi';
 
 interface HeaderProps {
@@ -32,6 +33,7 @@ export default function Header ({
   const navigate = useNavigate();
   const isGuest = useAuthStore(state => state.isGuest());
   const { data: profileData, isLoading, isError } = useUserProfile();
+  const size = useImageSize(profileData?.profileImageUrl || null);
 
   const handleBack = () => {
     if (onBackClick) {
@@ -116,6 +118,8 @@ export default function Header ({
                         <img
                           src={profileData.profileImageUrl}
                           alt="프로필"
+                          width={size?.width ?? 28}
+                          height={size?.height ?? 28}
                           className="w-7 h-7 rounded-full bg-gray-100"
                         />
                       ) : (
@@ -141,7 +145,6 @@ export default function Header ({
           onClose={() => setIsMenuOpen(false)}
           members={chatMembers || []}
           onLeave={onLeaveChat || (() => {})}
-          onDelete={onDeleteChat || (() => {})}
           myMemberId={myMemberId || ''}
         />
       )}
