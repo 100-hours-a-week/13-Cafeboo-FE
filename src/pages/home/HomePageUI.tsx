@@ -80,7 +80,7 @@ export default function HomePageUI({
     { name: '마롱', url: 'https://marong.co.kr/', tags: [] },
     { name: '카페부', url: 'https://www.cafeboo.com/', tags: ['소셜', '관리'] },
     { name: '뭉치면산다', url: 'https://moongsan.com/', tags: ['쇼핑'] },
-    { name: '애숲하', url: 'https://leafresh.app/', tags: ['소셜'] },
+    { name: 'Leafresh', url: 'https://leafresh.app/', tags: ['소셜'] },
     { name: '온더탑', url: 'https://onthe-top.com/', tags: ['쇼핑'] },
     { name: '뉴썸', url: 'https://new-sum.com/', tags: ['뉴스'] },
     { name: '탐나라', url: 'https://tam-nara.com/main', tags: ['뉴스'] },
