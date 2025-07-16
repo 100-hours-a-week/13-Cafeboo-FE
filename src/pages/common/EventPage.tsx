@@ -1,5 +1,6 @@
 import PageLayout from '@/layout/PageLayout';
 import Event from '@/assets/eventdetail.png'
+import GoogleFormLink from '@/components/event/GoogleFormLinkButton';
 import { useNavigate } from 'react-router-dom';
 
 const EventPage = () => {
@@ -12,7 +13,8 @@ const EventPage = () => {
                 alt="긴 이벤트 이미지"
                 className="w-full"
             />
-        </div>
+            <GoogleFormLink className='mx-4'/>
+      </div>
     </PageLayout>
   );
 };
