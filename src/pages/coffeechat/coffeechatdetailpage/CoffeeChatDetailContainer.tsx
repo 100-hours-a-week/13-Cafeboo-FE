@@ -99,7 +99,7 @@ export default function CoffeeChatDetailContainer() {
   } = useJoinCoffeeChatListener(id ?? "");
   const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
 
-  const showGoogleForm = id !== undefined && [39, 50, 51].includes(Number(id));
+  const showGoogleForm = id !== undefined && [49, 50, 51].includes(Number(id));
 
   const handleBackClick = () => {
     navigate('/coffeechat'); 
