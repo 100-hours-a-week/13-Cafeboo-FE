@@ -2,9 +2,9 @@ import PageLayout from '@/layout/PageLayout';
 import HeroBanner from '@/components/home/HeroBanner';
 import DailyCaffeineIntakeGraph from '@/components/home/DailyCaffeine';
 import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
-import BannerImage1 from '@/assets/Banner04.png';
-import BannerImage2 from '@/assets/Banner02.png';
-import BannerImage3 from '@/assets/Banner03.png';
+import BannerImage1 from '@/assets/Banner01.png';
+import BannerImage2 from '@/assets/Banner03.png';
+import BannerImage3 from '@/assets/Banner02.png';
 import CaffeineBottomSheetContainer from '@/components/caffeine/containers/CaffeineBottomSheetContainer';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
@@ -59,9 +59,9 @@ export default function HomePageUI({
   handleKaKaoLogin,
 }: HomePageUIProps) {
   const slides = [
-    { imageUrl: BannerImage1, link: '/coffeechat' },
-    { imageUrl: BannerImage2, link: '/report' },
-    { imageUrl: BannerImage3, link: '/diary' },
+    { imageUrl: BannerImage1, link: '/event' },
+    { imageUrl: BannerImage2, link: '/coffeechat' },
+    { imageUrl: BannerImage3, link: '/report' },
   ];
 
   // 카페부 2기 서비스 버튼 목록

@@ -95,44 +95,43 @@ export default function Header ({
                 <Menu className="w-6 h-6" />
               </button>
             ) : (
-              <>
-                {isGuest ? (
-                  <button
-                    onClick={handleKakaoLogin}
-                    className="px-2 py-1 text-[#FE9400] underline font-semibold cursor-pointer"
-                    style={{ textUnderlineOffset: '2px' }}
-                  >
-                    로그인
-                  </button>
-                ) : (
-                  <>
-                  {!isLoading && !isError && profileData ? (
-                    <div
-                      className="flex items-center space-x-1.5"
+              mode !== 'title' && ( 
+                <>
+                  {isGuest ? (
+                    <button
+                      onClick={handleKakaoLogin}
+                      className="px-2 py-1 text-[#FE9400] underline font-semibold cursor-pointer"
+                      style={{ textUnderlineOffset: '2px' }}
                     >
-                      <div className='flex'>
-                      <span className="text-sm font-semibold text-gray-800">{profileData.nickname}</span>
-                      <span className="text-sm text-gray-800">님</span>
-                      </div>
-                      {profileData.profileImageUrl ? (
-                        <img
-                          src={profileData.profileImageUrl}
-                          alt="프로필"
-                          width={size?.width ?? 28}
-                          height={size?.height ?? 28}
-                          className="w-7 h-7 rounded-full bg-gray-100"
-                        />
-                      ) : (
-                        <div className="w-7 h-7 rounded-full bg-gray-300" />
-                      )}
-
-                    </div>
+                      로그인
+                    </button>
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-gray-300" />
+                    !isLoading &&
+                    !isError &&
+                    profileData && (
+                      <div className="flex items-center space-x-1.5">
+                        <div className="flex">
+                          <span className="text-sm font-semibold text-gray-800">
+                            {profileData.nickname}
+                          </span>
+                          <span className="text-sm text-gray-800">님</span>
+                        </div>
+                        {profileData.profileImageUrl ? (
+                          <img
+                            src={profileData.profileImageUrl}
+                            alt="프로필"
+                            width={size?.width ?? 28}
+                            height={size?.height ?? 28}
+                            className="w-7 h-7 rounded-full bg-gray-100"
+                          />
+                        ) : (
+                          <div className="w-7 h-7 rounded-full bg-gray-300" />
+                        )}
+                      </div>
+                    )
                   )}
                 </>
-              )}
-            </>
+              )
             )}
           </div>
         </div>
