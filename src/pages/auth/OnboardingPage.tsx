@@ -24,7 +24,7 @@ const OnboardingPage = () => {
   
   const handleModalConfirm = () => {
     setShowModal2(false);
-    navigate('/mypage');
+    navigate('/');
   };
 
   // API 호출
@@ -54,7 +54,7 @@ const OnboardingPage = () => {
 
       // 성공 시 메인 페이지로 이동
       reset();
-      navigate('/main/home');
+      navigate('/');
     } catch (error) {
       setErrorMessage("온보딩 정보 저장 중 오류가 발생했습니다.");
       setShowModal(true);
