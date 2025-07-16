@@ -141,21 +141,24 @@ export default function GroupChatContainer() {
       return;
     }
 
+    const payload = {
+      senderId: memberId,
+      coffeechatId,
+      message: `${membership?.chatNickname}님이 나갔습니다`,
+      type: "LEAVE",
+    };
+
     try {
-        await leaveChat({ coffeechatId, memberId });
-
-        const payload = {
-            senderId: memberId,
-            coffeechatId,
-            message: `${membership?.chatNickname}님이 나갔습니다`,
-            type: "LEAVE",
-        };
-
-        sendMessage(`/app/chatrooms/${coffeechatId}`, payload);
-
-        navigate("/coffeechat");
+      sendMessage(`/app/chatrooms/${coffeechatId}`, payload, async () => {
+        try {
+          await leaveChat({ coffeechatId, memberId });
+          navigate("/coffeechat");
+        } catch (err: any) {
+          alert(err?.message || "나가기 중 오류가 발생했습니다.");
+        }
+      });
     } catch (err: any) {
-        alert(err?.message || "나가기 중 오류가 발생했습니다.");
+      alert(err?.message || "메시지 전송 중 오류가 발생했습니다.");
     }
   };
 
