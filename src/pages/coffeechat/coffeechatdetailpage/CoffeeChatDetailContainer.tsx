@@ -41,6 +41,7 @@ interface StatusProps {
   isAlertOpen: boolean;
   alertMessage: string;
   isAlertOpen2: boolean;
+  showGoogleForm: boolean;
 }
 
 interface HandlersProps {
@@ -97,6 +98,8 @@ export default function CoffeeChatDetailContainer() {
     error: listenerError,
   } = useJoinCoffeeChatListener(id ?? "");
   const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
+
+  const showGoogleForm = id !== undefined && [49, 50, 51].includes(Number(id));
 
   const handleBackClick = () => {
     navigate('/coffeechat'); 
@@ -201,6 +204,7 @@ export default function CoffeeChatDetailContainer() {
     isAlertOpen,
     alertMessage,
     isAlertOpen2,
+    showGoogleForm,
   };
 
   const handlers: HandlersProps = {
