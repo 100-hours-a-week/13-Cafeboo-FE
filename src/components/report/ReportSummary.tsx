@@ -1,4 +1,3 @@
-import { Coffee } from 'lucide-react';
 import { PeriodType } from './DropdownSelector';
 
 interface ReportSummaryProps {

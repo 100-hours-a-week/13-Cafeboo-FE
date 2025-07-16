@@ -1,7 +1,8 @@
 import apiClient from "@/api/apiClient";
+import { useNavigate } from "react-router-dom";
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
-import { useUserStore } from '@/stores/useUserStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 import type { ApiResponse } from '@/types/api';
 
 // ✅ POST 요청
@@ -11,14 +12,15 @@ const logout = async () => {
 
 export const useLogout = () => {
   const queryClient = useQueryClient();
-  const clearUserId = useUserStore((state) => state.clearUserId);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const navigate = useNavigate();
 
   const handleAfterLogout = () => {
     localStorage.setItem('afterLogout', 'true');
     localStorage.removeItem('access_token');
-    clearUserId();   
+    clearAuth();   
     queryClient.clear();
-    window.location.href = '/auth/login';
+    navigate('/mypage');
   };
 
   return createMutationHandler<void, ApiResponse<null>, void>(
@@ -27,7 +29,6 @@ export const useLogout = () => {
       onSuccess: handleAfterLogout,
       onError: (error) => {
         console.error('로그아웃 중 오류:', error);
-        handleAfterLogout();
       },
     }
   );

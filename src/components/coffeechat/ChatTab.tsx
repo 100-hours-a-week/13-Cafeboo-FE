@@ -14,7 +14,7 @@ const TABS: { value: ChatFilter; label: string }[] = [
 
 export default function ChatTab({ filter, onChange }: ChatTabProps) {
   return (
-    <div className="sticky top-0 bg-white z-10 px-2 border-b border-[#d0ced3] flex space-x-4">
+    <div className="sticky top-0 bg-white z-10 px-2 pt-2 border-b border-[#d0ced3] flex space-x-4">
       {TABS.map((tab) => (
         <button
           key={tab.value}

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import AlertModal from '@/components/common/AlertModal';
-import { useUserStore } from '@/stores/useUserStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 export default function RequireAuth() {
   const [showModal, setShowModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
-  const clearUserId = useUserStore.getState().clearUserId;
+  const clearAuth = useAuthStore.getState().clearAuth;
 
   useEffect(() => {
     const token = localStorage.getItem('userId');
@@ -22,8 +22,8 @@ export default function RequireAuth() {
   const handleClose = () => {
     setShowModal(false);
     localStorage.removeItem('access_token');
-    clearUserId(); 
-    navigate('/auth/login', { replace: true });
+    clearAuth(); 
+    navigate('/mypage', { replace: true });
   };
 
   if (!checked && !showModal) {

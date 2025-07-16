@@ -1,5 +1,5 @@
-import { X, Home } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
+import MemberImage from '@/components/common/MemberImage';
 
 export interface Member {
   memberId: string;
@@ -13,19 +13,12 @@ interface GroupMemberMenuProps {
   onClose: () => void;
   members: Member[];
   onLeave: () => void;
-  onDelete: () => void;
   myMemberId: string;
 }
 
 const getInitial = (name: string) => name ? name[0] : '?';
 
-export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, onDelete, myMemberId }: GroupMemberMenuProps) {
-  const navigate = useNavigate();
-
-  const goHome = () => {
-    navigate('/main/coffeechat');
-    onClose();
-  };
+export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, myMemberId }: GroupMemberMenuProps) {
 
   const host = members.find(m => m.isHost);
   // 참여자 중 본인이 맨 위
@@ -59,9 +52,6 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
             backgroundColor: '#FE9400',
           }}
         >
-          <button onClick={goHome} className="p-1">
-            <Home size={20} className="text-white cursor-pointer" />
-          </button>
           <button onClick={onClose} className="p-1">
             <X size={20} className="text-white cursor-pointer" />
           </button>
@@ -79,8 +69,8 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
                 {host ? (
                   <div className="flex items-center gap-3">
                     {host.profileImageUrl ? (
-                      <img
-                        src={host.profileImageUrl}
+                      <MemberImage
+                        url={host.profileImageUrl}
                         alt={host.chatNickname}
                         className="w-8 h-8 rounded-full object-cover bg-gray-200"
                       />
@@ -111,8 +101,8 @@ export default function GroupMemberMenu ({ isOpen, onClose, members, onLeave, on
                 {sortedMembers.map((m) => (
                   <li key={m.memberId} className="flex items-center gap-3 px-3 py-3">
                     {m.profileImageUrl ? (
-                      <img
-                        src={m.profileImageUrl}
+                      <MemberImage
+                        url={m.profileImageUrl}
                         alt={m.chatNickname}
                         className="w-8 h-8 rounded-full object-cover bg-gray-200"
                       />

@@ -56,12 +56,6 @@ export default function DailyCaffeineRemain({
   const minWidth = (BAR_WIDTH + BAR_GAP) * data.length + BAR_WIDTH;
 
   useEffect(() => {
-    const onResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       if (containerRef.current && scrollIndex >= 0) {
         const scrollX = scrollIndex * (BAR_WIDTH + BAR_GAP);
@@ -89,8 +83,13 @@ export default function DailyCaffeineRemain({
     sleepSensitiveThreshold,
     ...caffeineByHour.map((d) => d.caffeineMg)
   );
-  const tickCount = Math.ceil(maxRemaining / 100) + 1;
-  const ticks = Array.from({ length: tickCount }, (_, i) => i * 100);
+
+  const MIN_TICK_COUNT = 3;
+  const TICK_INTERVAL = 100;
+
+  const maxTickValue = Math.max(maxRemaining, MIN_TICK_COUNT * TICK_INTERVAL);
+  const tickCount = Math.ceil(maxTickValue / TICK_INTERVAL);
+  const ticks = Array.from({ length: tickCount }, (_, i) => (i + 1) * TICK_INTERVAL);
 
   return (
     <div className="flex">

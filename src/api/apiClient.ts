@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import type { ApiResponse } from "@/types/api";
-import { useUserStore } from "@/stores/useUserStore";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -10,11 +10,13 @@ const apiClient = axios.create({
   },
 });
 
-const redirectLoginPage = () => {
+const redirectHomePage = () => {
   localStorage.removeItem("access_token");
-  const clearUserId = useUserStore.getState().clearUserId;
-  clearUserId(); 
-  window.location.href = "/auth/login";
+  const clearAuth = useAuthStore.getState().clearAuth;
+  clearAuth(); 
+  if (typeof window !== "undefined") {
+    window.location.href = "/";
+  }
 };
 
 let isRefreshing = false;
@@ -32,7 +34,7 @@ const notifySubscribersError = () => {
 // Axios 요청 인터셉터 (Access Token 자동 추가)
 apiClient.interceptors.request.use((config) => {
   const skipAuth =
-    config.url?.includes("/api/v1/auth/kakao") ||
+    config.url?.includes("/api/v1/auth/kakao") || config.url?.includes("/api/v1/auth/guest") ||
     config.url?.includes("/api/v1/auth/refresh");
 
   if (!skipAuth) {
@@ -71,27 +73,27 @@ apiClient.interceptors.response.use(
 
     // /auth/refresh 요청 자체는 재발급 로직 대상에서 제외
     if (originalRequest.url?.includes("/api/v1/auth/refresh")) {
-      redirectLoginPage();
+      redirectHomePage();
       return Promise.reject(error);
     }
 
-    // ✅ 리프레시 응답 에러 코드 → 무조건 로그인 이동
+    // ✅ 리프레시 응답 에러 코드
     const refreshTokenErrorCodes = [
       "REFRESH_TOKEN_INVALID",
       "REFRESH_TOKEN_EXPIRED",
       "REFRESH_TOKEN_MISMATCH",
     ];
     if (code && refreshTokenErrorCodes.includes(code)) {
-      redirectLoginPage();
+      redirectHomePage();
       return Promise.reject(errorData);
     }
 
     const isAccessTokenExpired = status === 401 && code === "ACCESS_TOKEN_EXPIRED";
     const isAccessTokenInvalid = status === 401 && code === "ACCESS_TOKEN_INVALID";
 
-    // ✅ 토큰 무효 or 권한 없음 → 로그인 이동
+    // ✅ 토큰 무효 or 권한 없음
     if (isAccessTokenInvalid) {
-      redirectLoginPage();
+      redirectHomePage();
       return Promise.reject(errorData);
     }
 
@@ -100,7 +102,7 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
 
       if (isRefreshing) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
           refreshSubscribers.push((newToken: string) => {
             originalRequest.headers.Authorization = `Bearer ${newToken}`;
             resolve(apiClient(originalRequest));
@@ -111,13 +113,12 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshRes = await apiClient.post<ApiResponse<{ accessToken: string; userId: string }>>("/api/v1/auth/refresh");
-        const { accessToken, userId } = refreshRes.data.data;
-        const setUserId = useUserStore((state) => state.setUserId);
+        const refreshRes = await apiClient.post<ApiResponse<{ accessToken: string; userId: string, role: string }>>("/api/v1/auth/refresh");
+        const { accessToken, userId, role } = refreshRes.data.data;
+        const setAuth = useAuthStore.getState().setAuth;
 
         localStorage.setItem("access_token", accessToken);
-        localStorage.setItem("userId", userId);
-        setUserId(userId);
+        setAuth(userId, role as 'GUEST' | 'USER');
         isRefreshing = false;
         notifySubscribers(accessToken);
 
@@ -126,7 +127,7 @@ apiClient.interceptors.response.use(
       } catch (refreshError: any) {
         isRefreshing = false;
         notifySubscribersError();
-        redirectLoginPage();
+        redirectHomePage();
         return Promise.reject(refreshError.response?.data);
       }
     }

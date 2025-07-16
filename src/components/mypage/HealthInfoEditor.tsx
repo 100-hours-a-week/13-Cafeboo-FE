@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import TwoOptionToggle from '@/components/common/TwoOptionToggle';
-import * as SliderPrimitive from '@radix-ui/react-slider';
 import { Input } from '@/components/ui/input';
 import { Tag } from '../common/Tag';
+import { Range } from 'react-range';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
 import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
@@ -11,10 +11,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useHealthInfo } from '@/api/health/healthInfoApi';
-import { useCaffeineInfo } from '@/api/caffeine/caffeineInfoApi';
-
-// 온보딩에서 쓰던 옵션 배열들
 const DRINK_OPTIONS = [
   '아메리카노',
   '카페라떼',
@@ -29,7 +25,6 @@ const DRINK_OPTIONS = [
   '마끼아또',
   '기타',
 ];
-
 
 const formSchema = z.object({
   age: z
@@ -53,6 +48,24 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export interface HealthInfoEditorProps {
+  initHealth?: {
+    gender: string;
+    age: number;
+    height: number;
+    weight: number;
+    isPregnant: boolean;
+    isTakingBirthPill: boolean;
+    isSmoking: boolean;
+    hasLiverDisease: boolean;
+    sleepTime: string;
+    wakeUpTime: string;
+  };
+  initCaffeine?: {
+    caffeineSensitivity: number;
+    averageDailyCaffeineIntake: number;
+    userFavoriteDrinks: string[];
+    frequentDrinkTime: string;
+  };
   onSave: (data: {
     gender: string;
     age: number;
@@ -71,16 +84,18 @@ export interface HealthInfoEditorProps {
   }) => Promise<void>;
 }
 
-export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
-  const { data: initHealth }       = useHealthInfo();
-  const { data: initCaffeine }     = useCaffeineInfo();
+export default function HealthInfoEditor({
+  initHealth,
+  initCaffeine,
+  onSave,
+}: HealthInfoEditorProps) {
   const [showAlertModal, setShowAlertModal] = useState(false);
 
   const [ageInput, setAgeInput] = useState('');
   const [heightInput, setHeightInput] = useState('');
   const [weightInput, setWeightInput] = useState('');
   const [caffeineInput, setCaffeineInput] = useState('');
-  
+
   const [gender, setGender] = useState<'M' | 'F'>('M');
   const [isPregnant, setPregnancy] = useState(false);
   const [isTakingBirthPill, setBirthControl] = useState(false);
@@ -124,7 +139,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       setValue('weight', initHealth.weight);
     }
   }, [initHealth, setValue]);
-  
+
   useEffect(() => {
     if (initCaffeine) {
       setCaffeineSensitivity(initCaffeine.caffeineSensitivity ?? 50);
@@ -167,14 +182,16 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
     }
   };
 
-  const handleDecimalChange = (setter: (v: string) => void, field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const sanitized = sanitizeDecimalInput(e.target.value);
-    setter(sanitized);
-    const num = Number(sanitized);
-    if (!isNaN(num)) {
-      setValue(field, num);
-      trigger(field);
-    }
+  const handleDecimalChange =
+    (setter: (v: string) => void, field: keyof FormData) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const sanitized = sanitizeDecimalInput(e.target.value);
+      setter(sanitized);
+      const num = Number(sanitized);
+      if (!isNaN(num)) {
+        setValue(field, num);
+        trigger(field);
+      }
   };
 
   return (
@@ -193,44 +210,68 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
       </div>
 
       <div className="flex items-center justify-between mt-8">
-          <Label className="text-base font-semibold">나이</Label>
-          <div className="flex items-center">
-            <span className="text-base">만</span>
-            <input type="text" inputMode="numeric"
-              value={ageInput}
-              onChange={handleAgeChange}
-              className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
-            <span className="text-base mr-2">세</span>
-          </div>
+        <Label className="text-base font-semibold">나이</Label>
+        <div className="flex items-center">
+          <span className="text-base">만</span>
+          <input
+            type="text"
+            inputMode="numeric"
+            value={ageInput}
+            onChange={handleAgeChange}
+            className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"
+          />
+          <span className="text-base mr-2">세</span>
         </div>
-        {errors.age && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.age.message}</p>}
+      </div>
+      {errors.age && (
+        <p className="text-sm text-red-500 flex items-center gap-1">
+          <AlertCircle className="w-4 h-4" />
+          {errors.age.message}
+        </p>
+      )}
 
-        {/* 신장 */}
-        <div className="flex items-center justify-between mt-8">
-          <Label className="text-base font-semibold">신장</Label>
-          <div className="flex items-center">
-            <input type="text" inputMode="decimal"
-              value={heightInput}
-              onChange={handleDecimalChange(setHeightInput, 'height')}
-              className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
-            <span className="text-base">cm</span>
-          </div>
+      {/* 신장 */}
+      <div className="flex items-center justify-between mt-8">
+        <Label className="text-base font-semibold">신장</Label>
+        <div className="flex items-center">
+          <input
+            type="text"
+            inputMode="decimal"
+            value={heightInput}
+            onChange={handleDecimalChange(setHeightInput, 'height')}
+            className="w-16 ml-2 mr-1 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"
+          />
+          <span className="text-base">cm</span>
         </div>
-        {errors.height && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.height.message}</p>}
+      </div>
+      {errors.height && (
+        <p className="text-sm text-red-500 flex items-center gap-1">
+          <AlertCircle className="w-4 h-4" />
+          {errors.height.message}
+        </p>
+      )}
 
-        {/* 체중 */}
-        <div className="flex items-center justify-between mt-8">
-          <Label className="text-base font-semibold">체중</Label>
-          <div className="flex items-center">
-            <input type="text" inputMode="decimal"
-              value={weightInput}
-              onChange={handleDecimalChange(setWeightInput, 'weight')}
-              className="w-16 mx-2 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"/>
-            <span className="text-base">kg</span>
-          </div>
+      {/* 체중 */}
+      <div className="flex items-center justify-between mt-8">
+        <Label className="text-base font-semibold">체중</Label>
+        <div className="flex items-center">
+          <input
+            type="text"
+            inputMode="decimal"
+            value={weightInput}
+            onChange={handleDecimalChange(setWeightInput, 'weight')}
+            className="w-16 mx-2 py-1 text-center border border-[#C7C7CC] rounded-lg text-base focus:outline-none focus:border-[#FE9400]"
+          />
+          <span className="text-base">kg</span>
         </div>
-        {errors.weight && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.weight.message}</p>}
-      
+      </div>
+      {errors.weight && (
+        <p className="text-sm text-red-500 flex items-center gap-1">
+          <AlertCircle className="w-4 h-4" />
+          {errors.weight.message}
+        </p>
+      )}
+
       {/* Boolean 토글 4개 */}
       <div className="grid grid-cols-2 gap-6">
         {[
@@ -240,9 +281,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           { val: hasLiverDisease, setter: setHasLiverDisease, label: '간 질환 여부' },
         ].map(({ val, setter, label }) => (
           <div key={label}>
-            <Label className="mb-2 block text-base font-semibold">
-              {label}
-            </Label>
+            <Label className="mb-2 block text-base font-semibold">{label}</Label>
             <TwoOptionToggle
               options={[
                 { label: '예', value: 'true' },
@@ -251,7 +290,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
               value={String(val)}
               onChange={(v) => setter(v === 'true')}
             />
-        </div>
+          </div>
         ))}
       </div>
 
@@ -260,39 +299,89 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
         <Label className="text-base mb-2 block font-semibold">
           카페인 민감도
         </Label>
-        <SliderPrimitive.Root
-          className="relative flex items-center mt-10 mb-10 ml-4 mr-8"
-          value={[caffeineSensitivity]}
-          min={0}
-          max={100}
-          step={1}
-          onValueChange={([v]) => setCaffeineSensitivity(v)}
-        >
-          <SliderPrimitive.Track className="relative flex-1 h-1 bg-[#AAAAAA]/30 rounded-full">
-            <SliderPrimitive.Range className="absolute h-full bg-[#FE9400]" />
-          </SliderPrimitive.Track>
-
-          <SliderPrimitive.Thumb className="relative block h-6 w-6 rounded-full bg-white border-2 border-[#FE9400]">
-            <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#FE9400] text-white text-xs px-2 py-1 rounded-full">
+        <div className='px-3 mt-10'>
+        <Range
+        step={1}
+        min={0}
+        max={100}
+        values={[caffeineSensitivity]} 
+        onChange={([v]) => setCaffeineSensitivity(v)} 
+        renderTrack={({ props, children }) => (
+          <div
+            {...props}
+            style={{
+              ...props.style,
+              height: '6px',
+              width: '100%',
+              background: '#AAAAAA4D',
+              borderRadius: '9999px',
+              position: 'relative',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                height: '6px',
+                borderRadius: '9999px',
+                backgroundColor: '#FE9400',
+                width: `${caffeineSensitivity}%`,
+                top: 0,
+                left: 0,
+              }}
+            />
+            {children}
+          </div>
+        )}
+        renderThumb={({ props }) => (
+          <div
+            {...props}
+            style={{
+              ...props.style,
+              height: '24px',
+              width: '24px',
+              borderRadius: '50%',
+              backgroundColor: 'white',
+              border: '2px solid #FE9400',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative',
+              boxSizing: 'border-box',
+              cursor: 'pointer',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 'calc(100% + 8px)',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: '#FE9400',
+                color: 'white',
+                fontSize: '12px',
+                padding: '2px 6px',
+                borderRadius: '9999px',
+                whiteSpace: 'nowrap',
+                userSelect: 'none',
+              }}
+            >
               {caffeineSensitivity}
             </div>
-          </SliderPrimitive.Thumb>
+          </div>
+        )}
+      />
+      </div>
 
-          <span className="absolute left-[-15px] text-sm text-[#595959]">
-            0
-          </span>
-          <span className="absolute right-[-30px] text-sm text-[#595959]">
-            100
-          </span>
-        </SliderPrimitive.Root>
+      {/* 좌우 숫자 표시 */}
+      <div className="flex justify-between mt-2 pl-2 text-[#595959] text-sm select-none">
+        <span>0</span>
+        <span>100</span>
+      </div>
       </div>
 
       {/* 하루 평균 섭취량 */}
-
       <div className="flex items-center justify-between mt-10 mb-8">
-        <Label className="text-base font-semibold">
-          하루 평균 카페인 음료 섭취량
-        </Label>
+        <Label className="text-base font-semibold">하루 평균 카페인 음료 섭취량</Label>
         <div className="flex items-center">
           <input
             type="text"
@@ -300,11 +389,11 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
             value={caffeineInput}
             onChange={handleDecimalChange(setCaffeineInput, 'averageDailyCaffeineIntake')}
             className="
-            w-16 mx-1 py-1 text-center 
-            border border-[#C7C7CC]
-            rounded-lg text-base
-            focus:outline-none focus:border-[#FE9400]
-          "
+              w-16 mx-1 py-1 text-center
+              border border-[#C7C7CC]
+              rounded-lg text-base
+              focus:outline-none focus:border-[#FE9400]
+            "
           />
           <span className="text-base">잔</span>
         </div>
@@ -318,9 +407,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 선호 음료 */}
       <div className="mt-10">
-        <Label className="text-base mt-4 mb-4 block font-semibold">
-          선호하는 종류(중복 선택 가능)
-        </Label>
+        <Label className="text-base mt-4 mb-4 block font-semibold">선호하는 종류(중복 선택 가능)</Label>
         <div className="w-full ">
           <Tag
             items={DRINK_OPTIONS.map((label) => ({ label }))}
@@ -333,9 +420,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 자주 마시는 시간대 */}
       <div>
-        <Label className="text-base mb-2 block font-semibold">
-          가장 자주 마시는 시간대
-        </Label>
+        <Label className="text-base mb-2 block font-semibold">가장 자주 마시는 시간대</Label>
         <Input
           type="time"
           step={60}
@@ -343,7 +428,7 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           onChange={(e) => setUsualIntakeTimes(e.target.value)}
           className="
             w-full rounded-lg border border-[#C7C7CC] cursor-pointer
-            px-4 py-2 
+            px-4 py-2
             focus:outline-none focus:border-[#FE9400]
           "
         />
@@ -351,14 +436,11 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
 
       {/* 수면 시간 */}
       <div>
-        <Label className="text-base mb-2 block font-semibold">
-          수면 시간
-        </Label>
+        <Label className="text-base mb-2 block font-semibold">수면 시간</Label>
         <div className="flex items-center space-x-2">
           <Input
             type="time"
             step={60}
-            placeholder="시작 시간 선택"
             value={sleepTime}
             onChange={(e) => setSleepTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
@@ -367,7 +449,6 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
           <Input
             type="time"
             step={60}
-            placeholder="종료 시간 선택"
             value={wakeUpTime}
             onChange={(e) => setWakeTime(e.target.value)}
             className="w-1/2 cursor-pointer border-[#C7C7CC] px-4 focus:outline-none focus:border-[#FE9400]"
@@ -396,3 +477,4 @@ export default function HealthInfoEditor({ onSave }: HealthInfoEditorProps) {
     </div>
   );
 }
+

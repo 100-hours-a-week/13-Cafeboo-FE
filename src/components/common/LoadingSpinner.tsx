@@ -9,10 +9,10 @@ interface LoadingSpinnerProps {
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   fullScreen = true,
   size = 'medium',
-  type = "clip"
+  type = "beat"
 }) => {
   // size를 라이브러리 크기로 매핑
-  const spinnerSize = size === 'small' ? 30 : size === 'large' ? 80 : 50;
+  const spinnerSize = size === 'small' ? 15 : size === 'large' ? 50 : 30;
 
   // 선택된 스피너 타입에 따라 다르게 렌더링
   const SpinnerComponent = type === "clip" ? ClipLoader : BeatLoader;
@@ -23,7 +23,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         fullScreen ? "fixed inset-0 bg-black/50 z-50" : "relative"
       }`}
     >
-      <SpinnerComponent size={spinnerSize} color="#FE9400" />
+      <SpinnerComponent size={spinnerSize} color="#E0E0E0" />
     </div>
   );
 };

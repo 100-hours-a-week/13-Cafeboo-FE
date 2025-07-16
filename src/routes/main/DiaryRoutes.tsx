@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import DiaryPage from '@/pages/diary/DiaryPage';
-import DiaryEditPage from '@/pages/diary/DiaryEditPage';
+import DiaryPage from '@/pages/diary/diarypage';
+import DiaryEditPage from '@/pages/diary/diaryeditpage';
 import NotFoundPage from '@/pages/common/NotFoundPage';
 
 const DiaryRoutes = () => (
