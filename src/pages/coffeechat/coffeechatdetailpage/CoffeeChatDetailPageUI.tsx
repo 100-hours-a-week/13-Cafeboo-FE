@@ -6,6 +6,7 @@ import CoffeeChat from '@/assets/CoffeeChatIcon.png';
 import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
 import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
 import AlertModal from "@/components/common/AlertModal";
+import GoogleFormLink from "@/components/event/GoogleFormLinkButton";
 
 interface Member {
   memberId: string;
@@ -34,6 +35,7 @@ interface StatusProps {
   isAlertOpen: boolean;
   alertMessage: string;
   isAlertOpen2: boolean;
+  showGoogleForm: boolean;
 }
 
 interface HandlersProps {
@@ -73,6 +75,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     isAlertOpen,
     alertMessage,
     isAlertOpen2,
+    showGoogleForm=false,
   } = status;
 
   const {
@@ -163,6 +166,10 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
             {content}
           </p>
         </div>
+
+        {showGoogleForm ? (
+          <GoogleFormLink/>
+        ) : null}
 
         <hr className="border-gray-200 my-4" />
 
