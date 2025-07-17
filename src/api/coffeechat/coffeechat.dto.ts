@@ -60,7 +60,7 @@ export interface CoffeeChatDetailResponseDTO {
 
 export interface JoinCoffeeChatRequestDTO {
     chatNickname: string;
-    profileType: "DEFAULT" | "USER";
+    profileImageType: "DEFAULT" | "USER";
 }
 
 export interface JoinCoffeeChatResponseDTO {

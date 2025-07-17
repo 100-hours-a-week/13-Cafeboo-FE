@@ -5,7 +5,7 @@ import { limitLength } from "@/utils/inputUtils";
 interface JoinCoffeeChatModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (params: { chatNickname: string; profileType: "DEFAULT" | "USER" }) => void;
+  onSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
   defaultProfileType?: "DEFAULT" | "USER";
 }
 
