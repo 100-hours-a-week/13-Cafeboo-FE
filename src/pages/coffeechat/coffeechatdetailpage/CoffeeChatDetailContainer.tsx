@@ -46,7 +46,7 @@ interface StatusProps {
 
 interface HandlersProps {
   handleBackClick: () => void;
-  handleJoinSubmit: (params: { chatNickname: string; profileType: "DEFAULT" | "USER" }) => void;
+  handleJoinSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
   handleEnterChatRoom: () => void;
   handleDeleteChat: () => void;
   handleJoin: () => void;
@@ -107,13 +107,13 @@ export default function CoffeeChatDetailContainer() {
 
   const handleJoinSubmit = async ({
     chatNickname,
-    profileType,
+    profileImageType,
   }: {
     chatNickname: string;
-    profileType: "DEFAULT" | "USER";
+    profileImageType: "DEFAULT" | "USER";
   }) => {
     try {
-      const result = await joinCoffeeChat({ chatNickname, profileType });
+      const result = await joinCoffeeChat({ chatNickname, profileImageType });
 
       connect(id ?? "", () => {
         const payload = {
