@@ -40,7 +40,7 @@ interface StatusProps {
 
 interface HandlersProps {
   handleBackClick: () => void;
-  handleJoinSubmit: (params: { chatNickname: string; profileType: "DEFAULT" | "USER" }) => void;
+  handleJoinSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
   handleEnterChatRoom: () => void;
   handleDeleteChat: () => void;
   handleJoin: () => void;

@@ -5,18 +5,18 @@ import { limitLength } from "@/utils/inputUtils";
 interface JoinCoffeeChatModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (params: { chatNickname: string; profileType: "DEFAULT" | "USER" }) => void;
-  defaultProfileType?: "DEFAULT" | "USER";
+  onSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
+  defaultprofileImageType?: "DEFAULT" | "USER";
 }
 
 export default function JoinCoffeeChatModal({
   isOpen,
   onClose,
   onSubmit,
-  defaultProfileType = "DEFAULT",
+  defaultprofileImageType = "DEFAULT",
 }: JoinCoffeeChatModalProps) {
   const [chatNickname, setChatNickname] = useState("");
-  const [profileType, setProfileType] = useState<"DEFAULT" | "USER">(defaultProfileType);
+  const [profileImageType, setProfileImageType] = useState<"DEFAULT" | "USER">(defaultprofileImageType);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function JoinCoffeeChatModal({
 
   const handleConfirm = () => {
     if (chatNickname.trim().length === 0) return;
-    onSubmit({ chatNickname, profileType });
+    onSubmit({ chatNickname, profileImageType });
     onClose();
   };
 
@@ -66,16 +66,16 @@ export default function JoinCoffeeChatModal({
             </p>
             <div className="space-y-2">
               <div
-                onClick={() => setProfileType('DEFAULT')}
+                onClick={() => setProfileImageType('DEFAULT')}
                 className={`flex items-center justify-between px-4 py-3 border rounded-sm cursor-pointer transition-colors ${
-                  profileType === 'DEFAULT'
+                  profileImageType === 'DEFAULT'
                     ? 'border-[#FE9400] bg-[#FE9400]/5'
                     : 'border-gray-200 hover:border-gray-200'
                 }`}
               >
                 <div className="flex items-center">
                   <div className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}>
-                    {profileType === 'DEFAULT' && (
+                    {profileImageType === 'DEFAULT' && (
                       <div className="w-1.5 h-1.5 bg-[#FE9400] rounded-full"></div>
                     )}
                   </div>
@@ -83,16 +83,16 @@ export default function JoinCoffeeChatModal({
                 </div>
               </div>
               <div
-                onClick={() => setProfileType('USER')}
+                onClick={() => setProfileImageType('USER')}
                 className={`flex items-center justify-between px-4 py-3 border rounded-sm cursor-pointer transition-colors ${
-                  profileType === 'USER'
+                  profileImageType === 'USER'
                     ? 'border-[#FE9400] bg-[#FE9400]/5'
                     : 'border-gray-200 hover:border-gray-200'
                 }`}
               >
                 <div className="flex items-center">
                   <div className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}>
-                    {profileType === 'USER' && (
+                    {profileImageType === 'USER' && (
                       <div className="w-1.5 h-1.5 bg-[#FE9400] rounded-full"></div>
                     )}
                   </div>
