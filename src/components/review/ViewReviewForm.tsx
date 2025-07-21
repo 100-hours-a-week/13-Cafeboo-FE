@@ -94,28 +94,6 @@ export default function ViewReviewForm({
 
       <hr className="border-gray-200 my-4" />
 
-      <h2 className="font-semibold mb-4">멤버</h2>
-      <ul className="space-y-3">
-        {membersData?.members.map((member: any) => (
-          <li key={member.memberId} className="flex items-center gap-3">
-            {member.profileImageUrl ? (
-              <MemberImage
-              url={member.profileImageUrl}
-              alt={member.chatNickname}
-              className="w-8 h-8"
-            />
-            ) : (
-              <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
-                {member.chatNickname}
-              </div>
-            )}
-            <span className="flex items-center gap-1 text-sm">{member.chatNickname}</span>
-          </li>
-        ))}
-      </ul>
-
-      <hr className="border-gray-200 my-4" />
-
       <h2 className="font-semibold mb-4">참여자 후기</h2>
       {coffeeChatData.reviews.length === 0 ? (
         <EmptyState
@@ -159,6 +137,28 @@ export default function ViewReviewForm({
           })}
         </div>
       )}
+
+      <hr className="border-gray-200 my-4" />
+
+      <h2 className="font-semibold mb-4">멤버</h2>
+      <ul className="space-y-3">
+        {membersData?.members.map((member: any) => (
+          <li key={member.memberId} className="flex items-center gap-3">
+            {member.profileImageUrl ? (
+              <MemberImage
+              url={member.profileImageUrl}
+              alt={member.chatNickname}
+              className="w-8 h-8"
+            />
+            ) : (
+              <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
+                {member.chatNickname}
+              </div>
+            )}
+            <span className="flex items-center gap-1 text-sm">{member.chatNickname}</span>
+          </li>
+        ))}
+      </ul>
 
     {selectedImage && size && (
       <div
