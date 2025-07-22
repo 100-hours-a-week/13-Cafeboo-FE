@@ -12,6 +12,7 @@ import EmptyState from '@/components/common/EmptyState';
 import SectionCard from '@/components/common/SectionCard';
 import TodayCoffeeChatContainer from '@/components/home/containers/TodayCoffeeChatContainer';
 import AiDrinkRecommendation from '@/components/home/AiDrinkRecommendation';
+import type { PictureImage } from '@/types/image';
 import { Plus, Info, AlertTriangle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -28,7 +29,7 @@ interface HomePageUIProps {
   reportError: any;
   aiDrinks: {
     brand: string;
-    logo?: string;
+    logo?: PictureImage; 
     temperature?: string;
     name: string;
     score: number;

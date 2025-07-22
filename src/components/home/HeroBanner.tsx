@@ -2,13 +2,10 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
+import type { PictureImage } from '@/types/image';
 
 interface Slide {
-  imageUrl: {
-    sources: { avif: string; webp: string };
-    img: { src: string; w: number; h: number };
-    toString(): string;
-  };
+  imageUrl: PictureImage;
   link: string;
 }
 
