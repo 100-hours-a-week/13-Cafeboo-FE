@@ -2,9 +2,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
+import type { PictureImage } from '@/types/image';
+
+interface Slide {
+  imageUrl: PictureImage;
+  link: string;
+}
 
 export interface HeroBannerProps {
-  slides: Array<{ imageUrl: string; link: string;}>;
+  slides: Slide[];
   autoSlideInterval?: number;
 }
 
@@ -34,14 +40,18 @@ export default function HeroBanner({
     <div className="relative w-full aspect-16/8 overflow-hidden">
       <Slider {...settings} className="h-full">
         {slides.map((slide) => (
-          <div key={slide.imageUrl} className="w-full h-full" onClick={() => navigate(slide.link ?? '/')}>
-            <img
-              src={slide.imageUrl}
-              alt={'이미지'}
-              width={574}
-              height={287}
-              className="w-full h-full object-contain object-center"
-            />
+          <div key={slide.imageUrl.toString()} className="w-full h-full cursor-pointer" onClick={() => navigate(slide.link ?? '/')}>
+            <picture>
+              <source srcSet={slide.imageUrl.sources.avif} type="image/avif" />
+              <source srcSet={slide.imageUrl.sources.webp} type="image/webp" />
+              <img
+                src={slide.imageUrl.img.src}
+                alt="이미지"
+                width={slide.imageUrl.img.w}
+                height={slide.imageUrl.img.h}
+                className="w-full h-full object-contain object-center"
+              />
+            </picture>
           </div>
         ))}
       </Slider>

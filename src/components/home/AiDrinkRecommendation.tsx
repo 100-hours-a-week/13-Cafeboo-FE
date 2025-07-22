@@ -1,13 +1,14 @@
 import SectionCard from "@/components/common/SectionCard";
+import type { PictureImage } from '@/types/image';
 
 interface Drink {
-    brand: string;
-    logo?: string;
-    temperature?: string;
-    name: string;
-    score: number;
-  }
-  
+  brand: string;
+  logo?: PictureImage; 
+  temperature?: string;
+  name: string;
+  score: number;
+}
+
 interface AiDrinkRecommendationProps {
   aiDrinks: Drink[];
   isGuest?: boolean;
@@ -35,13 +36,17 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
               {/* 왼쪽: 브랜드 로고 */}
               <div className="w-12 flex-shrink-0">
                 {drink.logo ? (
-                  <img
-                    src={drink.logo}
-                    alt={drink.brand}
-                    width={72}
-                    height={72}
-                    className="w-11 h-11 rounded-full object-cover"
-                  />
+                  <picture>
+                    <source srcSet={drink.logo.sources.avif} type="image/avif" />
+                    <source srcSet={drink.logo.sources.webp} type="image/webp" />
+                    <img
+                      src={drink.logo.img.src}
+                      alt={drink.brand}
+                      width={drink.logo.img.w} 
+                      height={drink.logo.img.h}
+                      className="w-11 h-11 rounded-full object-cover"
+                    />
+                  </picture>
                 ) : (
                   <div className="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
                     {drink.brand[0]}
@@ -85,12 +90,12 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
       </SectionCard>
 
       {isGuest && (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/70 gap-4 rounded-lg">
-        <div className="flex flex-col items-center bg-white shadow p-4 rounded-md">
-        <div className="font-semibold text-gray-800">
-          회원 전용 서비스입니다.
-        </div>
-        <div className="text-sm text-gray-600">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/70 gap-4 rounded-lg">
+          <div className="flex flex-col items-center bg-white shadow p-4 rounded-md">
+            <div className="font-semibold text-gray-800">
+              회원 전용 서비스입니다.
+            </div>
+            <div className="text-sm text-gray-600">
               AI 맞춤 추천을 받으려면{' '}
               <span
                 onClick={directKakaoLogin}
@@ -105,11 +110,12 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
               </span>
               {' '}하세요.
             </div>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );
 }
+
   
   

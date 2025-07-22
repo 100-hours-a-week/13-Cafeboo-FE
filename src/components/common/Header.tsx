@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '@/assets/logo.png';
+import Logo from '@/assets/logo.png?w=320;640;1280&format=webp;avif&as=picture';
 import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useUserProfile } from '@/api/mypage/profileApi';
@@ -65,14 +65,18 @@ export default function Header ({
               <ChevronLeft className="w-6 h-6 cursor-pointer"/>
             </button>
           ) : (
-            <div className="h-full flex items-center" onClick={goHome}>
-              <img
-                src={Logo}
-                alt="Cafeboo"
-                width={409}
-                height={188}
-                className="h-9 w-auto cursor-pointer"
-              />
+            <div className="h-full flex items-center cursor-pointer" onClick={goHome}>
+              <picture>
+                <source srcSet={Logo.sources.avif} type="image/avif" />
+                <source srcSet={Logo.sources.webp} type="image/webp" />
+                <img
+                  src={Logo.img.src}
+                  alt="Cafeboo 로고"
+                  width={Logo.img.w}
+                  height={Logo.img.h}
+                  className="h-9 w-auto"
+                />
+              </picture>
             </div>
           )}
 

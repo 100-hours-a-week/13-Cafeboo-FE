@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import HorizontalScroller from "@/components/common/HorizontalScroller";
 import SectionCard from "@/components/common/SectionCard";
-import CoffeeChatIcon from "@/assets/coffeechat3D.png";
+import CoffeeChatIcon from '@/assets/coffeechat3D.png?w=160;320;480&format=webp;avif&as=picture';
 import { Users, ChevronRight } from "lucide-react";
-import LoginRequiredModal from "../common/LoginRequiredModal";
+import LoginRequiredModal from "@/components/common/LoginRequiredModal";
 
 interface TodayCoffeeChatSectionProps {
   rooms: Array<{
@@ -67,13 +67,17 @@ export default function TodayCoffeeChatSection({
               <div className="flex items-center gap-3">
                 {/* 왼쪽 아이콘 영역 */}
                 <div className="flex items-center justify-center w-16 h-16 rounded-md overflow-hidden">
-                  <img
-                    src={CoffeeChatIcon}
-                    alt="preview"
-                    width={1270}
-                    height={1196}
-                    className="h-15 w-15 object-contain"
-                  />
+                  <picture>
+                    <source srcSet={CoffeeChatIcon.sources.avif} type="image/avif" />
+                    <source srcSet={CoffeeChatIcon.sources.webp} type="image/webp" />
+                    <img
+                      src={CoffeeChatIcon.img.src}
+                      alt="preview"
+                      width={CoffeeChatIcon.img.w}
+                      height={CoffeeChatIcon.img.h}
+                      className="h-15 w-15 object-contain"
+                    />
+                  </picture>
                 </div>
 
                 {/* 오른쪽 정보 영역 */}

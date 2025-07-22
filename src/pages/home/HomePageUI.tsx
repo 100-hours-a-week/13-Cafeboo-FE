@@ -2,9 +2,9 @@ import PageLayout from '@/layout/PageLayout';
 import HeroBanner from '@/components/home/HeroBanner';
 import DailyCaffeineIntakeGraph from '@/components/home/DailyCaffeine';
 import DailyCaffeineRemain from '@/components/home/DailyCaffeineRemain';
-import BannerImage1 from '@/assets/Banner01.png';
-import BannerImage2 from '@/assets/Banner03.png';
-import BannerImage3 from '@/assets/Banner02.png';
+import BannerImage1 from '@/assets/Banner01.png?w=351;702;1053&format=webp;avif&as=picture';
+import BannerImage2 from '@/assets/Banner03.png?w=351;702;1053&format=webp;avif&as=picture';
+import BannerImage3 from '@/assets/Banner02.png?w=351;702;1053&format=webp;avif&as=picture';
 import CaffeineBottomSheetContainer from '@/components/caffeine/containers/CaffeineBottomSheetContainer';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import AlertModal from '@/components/common/AlertModal';
@@ -12,6 +12,7 @@ import EmptyState from '@/components/common/EmptyState';
 import SectionCard from '@/components/common/SectionCard';
 import TodayCoffeeChatContainer from '@/components/home/containers/TodayCoffeeChatContainer';
 import AiDrinkRecommendation from '@/components/home/AiDrinkRecommendation';
+import type { PictureImage } from '@/types/image';
 import { Plus, Info, AlertTriangle } from 'lucide-react';
 import { useState } from 'react';
 
@@ -28,7 +29,7 @@ interface HomePageUIProps {
   reportError: any;
   aiDrinks: {
     brand: string;
-    logo?: string;
+    logo?: PictureImage; 
     temperature?: string;
     name: string;
     score: number;

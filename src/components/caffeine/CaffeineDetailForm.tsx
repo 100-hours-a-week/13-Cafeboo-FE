@@ -1,19 +1,33 @@
 import { useState, useRef } from 'react';
 import { format } from 'date-fns';
 import { Clock, Minus, Plus } from 'lucide-react';
-import Small from '@/assets/small.png';
-import Small_ice from '@/assets/small-ice.png';
-import Medium from '@/assets/medium.png';
-import Medium_ice from '@/assets/medium-ice.png'
-import Large from '@/assets/large.png';
-import Large_ice from '@/assets/large-ice.png'
-import ExtraLarge from '@/assets/extralarge.png';
-import ExtraLarge_ice from '@/assets/extralarge-ice.png'
-import Stick from '@/assets/stick.png';  
-import Monster from '@/assets/monster.png'
-import Hot6 from '@/assets/hot6.png'
-import Redbull from '@/assets/redbull.png'
+import Small from '@/assets/small.png?w=64;96;144&format=webp;avif&as=picture';
+import Small_ice from '@/assets/small-ice.png?w=64;96;144&format=webp;avif&as=picture';
+import Medium from '@/assets/medium.png?w=64;96;144&format=webp;avif&as=picture';
+import Medium_ice from '@/assets/medium-ice.png?w=64;96;144&format=webp;avif&as=picture';
+import Large from '@/assets/large.png?w=64;96;144&format=webp;avif&as=picture';
+import Large_ice from '@/assets/large-ice.png?w=64;96;144&format=webp;avif&as=picture';
+import ExtraLarge from '@/assets/extralarge.png?w=64;96;144&format=webp;avif&as=picture';
+import ExtraLarge_ice from '@/assets/extralarge-ice.png?w=64;96;144&format=webp;avif&as=picture';
+import Stick from '@/assets/stick.png?w=64;96;144&format=webp;avif&as=picture';  
+import Monster from '@/assets/monster.png?w=64;96;144&format=webp;avif&as=picture';
+import Hot6 from '@/assets/hot6.png?w=64;96;144&format=webp;avif&as=picture';
+import Redbull from '@/assets/redbull.png?w=64;96;144&format=webp;avif&as=picture';
 import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
+
+interface ImageSet {
+  sources: {
+    avif: string;  
+    webp: string;  
+  };
+  img: {
+    src: string; 
+    w: number;  
+    h: number;    
+    toString(): string;
+  };
+  toString(): string;
+}
 
 interface DrinkSize {
   drinkSizeId: number;
@@ -56,7 +70,7 @@ export default function CaffeineDetailForm({
   const isMixCoffee = drink.cafeName === '믹스커피';
   const isEnergyDrink = drink.cafeName === '에너지 드링크';
   
-  const sizeImages: string[] = isMixCoffee
+  const sizeImages: ImageSet[] = isMixCoffee
   ? [Stick]
   : isEnergyDrink
     ? [(() => {
@@ -141,13 +155,17 @@ export default function CaffeineDetailForm({
                   : 'bg-gray-50 border-gray-200'
               }`}
             >
+            <picture>
+              <source srcSet={imgSrc.sources.avif} type="image/avif" />
+              <source srcSet={imgSrc.sources.webp} type="image/webp" />
               <img
-                src={imgSrc}
+                src={imgSrc.img.src}
                 alt={`${size.size} cup`}
                 width={288}
                 height={500}
                 className="w-12 mb-2 max-h-20 h-auto object-contain"
               />
+            </picture>
               <span className="text-sm font-medium text-gray-700">
                 {size.size}
               </span>

@@ -10,6 +10,7 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
 import cafeList from '@/data/cafe_drinks.json';
 import { brandLogos } from '@/data/brandLogos';
+import type { PictureImage } from '@/types/image';
 
 export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function HomeContainer() {
       name: info.name,
       score: Math.floor(rec.score * 10000),
       temperature: info.temperature,
-      logo: brandLogos[info.cafeName] ?? undefined,
+      logo: brandLogos[info.cafeName], 
     };
   })
   .filter(Boolean) as {
@@ -46,7 +47,7 @@ export default function HomeContainer() {
     name: string;
     score: number;
     temperature: string;
-    logo?: string;
+    logo?: PictureImage;  
   }[];
 
   const handleKakaoLogin = async() => {
