@@ -4,7 +4,7 @@ import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
 import SectionCard from "@/components/common/SectionCard";
 import HeartButton from "@/components/review/HeartButton";
 import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
-import Icon from "@/assets/CoffeeChatIcon.png";
+import Icon from '@/assets/CoffeeChatIcon.png?w=48;64&format=webp;avif&as=picture';
 import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
 import MemberImage from '@/components/common/MemberImage';
 import { useImageSize } from '@/hooks/useImageSize';
@@ -78,7 +78,17 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#FE9400]/20 to-gray-200 flex items-center justify-center">
-              <img src={Icon} alt="icon" width={952} height={953} className="w-13 h-13 object-contain" />
+              <picture>
+                <source srcSet={Icon.sources?.avif} type="image/avif" />
+                <source srcSet={Icon.sources?.webp} type="image/webp" />
+                <img
+                  src={Icon.img?.src} 
+                  alt="icon"
+                  width={Icon.img?.w}
+                  height={Icon.img?.h}
+                  className="w-13 h-13 object-contain"
+                />
+              </picture>
             </div>
           )}
 
