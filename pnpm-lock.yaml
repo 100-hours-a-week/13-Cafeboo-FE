@@ -53,6 +53,9 @@ importers:
       axios:
         specifier: 1.6.8
         version: 1.6.8
+      browser-image-compression:
+        specifier: ^2.0.2
+        version: 2.0.2
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -133,7 +136,7 @@ importers:
         version: 3.3.0
       ui:
         specifier: git+https://github.com/shadcn/ui.git
-        version: git+https://github.com/shadcn/ui.git#f85ca066dcf488257ab9f8b349c1075a40552185(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2673,6 +2676,9 @@ packages:
 
   browser-assert@1.2.1:
     resolution: {integrity: sha512-nfulgvOR6S4gt9UKCeGJOuSGBPGiFT6oQ/2UBnvTY/5aQ1PnksW72fhZkM30DzoRRv2WpwZf1vHHEr3mtuXIWQ==}
+
+  browser-image-compression@2.0.2:
+    resolution: {integrity: sha512-pBLlQyUf6yB8SmmngrcOw3EoS4RpQ1BcylI3T9Yqn7+4nrQTXJD4sJDe5ODnJdrvNMaio5OicFo75rDyJD2Ucw==}
 
   browserslist@4.25.0:
     resolution: {integrity: sha512-PJ8gYKeS5e/whHBh8xrwYK+dAvEj7JXtz6uTucnMRB8OiGTsKccFekoRrjajPBHV8oOY+2tI4uxeceSimKwMFA==}
@@ -5750,8 +5756,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ui@git+https://github.com/shadcn/ui.git#f85ca066dcf488257ab9f8b349c1075a40552185:
-    resolution: {commit: f85ca066dcf488257ab9f8b349c1075a40552185, repo: https://github.com/shadcn/ui.git, type: git}
+  ui@git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5:
+    resolution: {commit: a9ab05ad83b46e5387c6657f9324edfb9f98a9e5, repo: https://github.com/shadcn/ui.git, type: git}
     version: 0.0.1
 
   unbox-primitive@1.1.0:
@@ -5827,6 +5833,9 @@ packages:
   uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
+
+  uzip@0.20201231.0:
+    resolution: {integrity: sha512-OZeJfZP+R0z9D6TmBgLq2LHzSSptGMGDGigGiEe0pr8UBe/7fdflgHlHBNDASTXB5jnFuxHpNaJywSg8YFeGng==}
 
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
@@ -6465,7 +6474,7 @@ snapshots:
       '@types/node': 20.5.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.4.5)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.5))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.5))(ts-node@10.9.2(@types/node@24.0.14)(typescript@5.4.5))(typescript@5.4.5)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -8640,6 +8649,10 @@ snapshots:
 
   browser-assert@1.2.1: {}
 
+  browser-image-compression@2.0.2:
+    dependencies:
+      uzip: 0.20201231.0
+
   browserslist@4.25.0:
     dependencies:
       caniuse-lite: 1.0.30001720
@@ -8837,7 +8850,7 @@ snapshots:
 
   cookie@1.0.2: {}
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.5))(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.4.5))(ts-node@10.9.2(@types/node@24.0.14)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.4.5)
@@ -11963,7 +11976,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  ui@git+https://github.com/shadcn/ui.git#f85ca066dcf488257ab9f8b349c1075a40552185(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
+  ui@git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       '@babel/core': 7.27.3
       '@changesets/changelog-github': 0.4.8
@@ -12117,6 +12130,8 @@ snapshots:
       which-typed-array: 1.1.19
 
   uuid@9.0.1: {}
+
+  uzip@0.20201231.0: {}
 
   v8-compile-cache-lib@3.0.1: {}
 

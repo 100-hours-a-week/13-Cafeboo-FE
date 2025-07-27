@@ -26,4 +26,7 @@ export default defineConfig({
     global: 'globalThis',
   },
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.webp', '**/*.avif'],
+  optimizeDeps: {
+    include: ['browser-image-compression'],
+  },
 });

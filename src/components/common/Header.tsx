@@ -126,7 +126,7 @@ export default function Header ({
                             alt="프로필"
                             width={size?.width ?? 28}
                             height={size?.height ?? 28}
-                            className="w-7 h-7 rounded-full bg-gray-100"
+                            className="w-7 h-7 rounded-full bg-gray-100 object-cover"
                           />
                         ) : (
                           <div className="w-7 h-7 rounded-full bg-gray-300" />

@@ -49,6 +49,7 @@ interface MyPageUIProps {
   setEditNickname: (name: string) => void;
   editProfileImageUrl: string;
   setEditProfileImageUrl: (url: string) => void;
+  isCompressing: boolean;
   navigate: any;
 }
 
@@ -62,6 +63,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
   setEditNickname,
   editProfileImageUrl,
   setEditProfileImageUrl,
+  isCompressing,
   navigate,
 }) => {
   const {
@@ -183,6 +185,11 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
                 className="hidden"
                 onChange={onProfileImageChange}
               />
+              {isCompressing && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-full z-50">
+                  <LoadingSpinner fullScreen={false} size="medium" type="clip" />
+                </div>
+              )}
             </div>
 
             <input
