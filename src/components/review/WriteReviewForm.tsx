@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Camera, X, Clock, MapPin, CalendarIcon, Edit, Hash } from 'lucide-react';
 import { useToastStore } from '@/stores/toastStore';
+import imageCompression from 'browser-image-compression';
 
 interface UploadedImage {
   id: string;
@@ -38,38 +39,43 @@ export default function WriteReviewForm({
   const showToast = useToastStore((state) => state.showToast);
   const maxLength = 150;
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
-  
+
     const MAX_COUNT = 3;
     const MAX_SIZE_MB = 5;
-  
+
     const fileArray = Array.from(files);
     const remainingSlots = MAX_COUNT - images.length;
-  
+
     const validFiles = fileArray.slice(0, remainingSlots).filter((file) => {
       if (!file.type.startsWith('image/')) return false;
-  
+
       if (file.size > MAX_SIZE_MB * 1024 * 1024) {
         showToast('error', '사진은 5MB 이하만 업로드 가능합니다.');
         return false;
       }
-  
       return true;
     });
-  
-    validFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const preview = e.target?.result as string;
-  
-        // 이미지 크기 알아내기
+
+    for (const file of validFiles) {
+      try {
+        const options = {
+          maxSizeMB: 1,
+          maxWidthOrHeight: 1024,
+          useWebWorker: true,
+          initialQuality: 0.8,
+        };
+
+        const compressedFile = await imageCompression(file, options);
+        const preview = URL.createObjectURL(compressedFile);
+
         const img = new Image();
         img.onload = () => {
           const newImage: UploadedImage = {
             id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
-            file,
+            file: compressedFile,
             preview,
             width: img.naturalWidth,
             height: img.naturalHeight,
@@ -77,15 +83,16 @@ export default function WriteReviewForm({
           setImages((prev) => [...prev, newImage]);
         };
         img.src = preview;
-      };
-      reader.readAsDataURL(file);
-    });
-  
+      } catch (error) {
+        console.error('이미지 압축 실패:', error);
+        showToast('error', '이미지 압축에 실패했습니다.');
+      }
+    }
+
     if (event.target) {
       event.target.value = '';
     }
   };
-  
 
   const removeImage = (imageId: string) => {
     setImages((prev) => prev.filter((img) => img.id !== imageId));
