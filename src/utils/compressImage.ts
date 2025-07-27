@@ -12,6 +12,7 @@ export async function compressImage(
     useWebWorker: true,
     maxIteration: 10,
     initialQuality,
+    fileType: 'image/webp',
   };
 
   try {

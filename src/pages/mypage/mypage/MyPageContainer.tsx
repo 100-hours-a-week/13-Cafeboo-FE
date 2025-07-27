@@ -66,13 +66,10 @@ export default function MyPageContainer() {
         showToast('error', '지원하지 않는 이미지 형식입니다.');
         return;
       }
-
-      console.log('📏 압축 전 이미지 크기:', (file.size / 1024).toFixed(2), 'KB');
       setIsCompressing(true);
 
       try {
         const compressedFile = await compressImage(file, 0.3, 1024, 0.9);
-        console.log('📉 압축 후 이미지 크기:', (compressedFile.size / 1024).toFixed(2), 'KB');
 
         const previewUrl = URL.createObjectURL(compressedFile);
         setEditProfileImageUrl(previewUrl);
