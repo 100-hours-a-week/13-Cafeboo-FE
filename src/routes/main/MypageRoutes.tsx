@@ -1,14 +1,18 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import MyPage from '@/pages/mypage/mypage';
-import MyEditPage from '@/pages/mypage/myeditpage';
-import NotFoundPage from '@/pages/common/NotFoundPage';
+
+const MyPage = lazy(() => import('@/pages/mypage/mypage'));
+const MyEditPage = lazy(() => import('@/pages/mypage/myeditpage'));
+const NotFoundPage = lazy(() => import('@/pages/common/NotFoundPage'));
 
 const MypageRoutes = () => (
-  <Routes>
-    <Route path="/" element={<MyPage />} />
-    <Route path="edit" element={<MyEditPage />} />
-    <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+  <Suspense fallback={<div>로딩 중...</div>}>
+    <Routes>
+      <Route path="/" element={<MyPage />} />
+      <Route path="edit" element={<MyEditPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Suspense>
 );
 
 export default MypageRoutes;

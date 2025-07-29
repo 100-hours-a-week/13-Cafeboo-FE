@@ -1,14 +1,18 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import DiaryPage from '@/pages/diary/diarypage';
-import DiaryEditPage from '@/pages/diary/diaryeditpage';
-import NotFoundPage from '@/pages/common/NotFoundPage';
+
+const DiaryPage = lazy(() => import('@/pages/diary/diarypage'));
+const DiaryEditPage = lazy(() => import('@/pages/diary/diaryeditpage'));
+const NotFoundPage = lazy(() => import('@/pages/common/NotFoundPage'));
 
 const DiaryRoutes = () => (
-  <Routes>
-    <Route path="/" element={<DiaryPage />} />
-    <Route path="edit/:intakeId" element={<DiaryEditPage />} />
-    <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+  <Suspense fallback={<div>로딩 중...</div>}>
+    <Routes>
+      <Route path="/" element={<DiaryPage />} />
+      <Route path="edit/:intakeId" element={<DiaryEditPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Suspense>
 );
 
 export default DiaryRoutes;
