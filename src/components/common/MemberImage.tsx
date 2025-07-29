@@ -22,6 +22,7 @@ export default function MemberImage({ url, alt, className }: MemberImageProps) {
       width={size.width}
       height={size.height}
       className={`rounded-full object-cover ${className || ''}`}
+      loading="lazy"
     />
   );
 }

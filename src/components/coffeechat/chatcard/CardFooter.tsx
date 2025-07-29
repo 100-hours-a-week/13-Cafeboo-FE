@@ -30,6 +30,7 @@ export default function CardFooter({
               width={1000}
               height={1000}
               className="w-8 h-8 rounded-full object-cover"
+              loading="lazy"
             />
           ) : (
             <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-300" />

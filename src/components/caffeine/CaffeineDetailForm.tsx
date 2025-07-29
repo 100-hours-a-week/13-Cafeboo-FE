@@ -164,6 +164,7 @@ export default function CaffeineDetailForm({
                 width={288}
                 height={500}
                 className="w-12 mb-2 max-h-20 h-auto object-contain"
+                loading="lazy"
               />
             </picture>
               <span className="text-sm font-medium text-gray-700">

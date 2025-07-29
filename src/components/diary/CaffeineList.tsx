@@ -47,7 +47,7 @@ const CaffeineList: React.FC<CaffeineListProps> = ({ records, onEdit }) => {
           onClick={() => onEdit(record.intakeId)}
         >
           <div className="flex items-center gap-2">
-            <img src={Icon} width={36} height={36} alt="CafeBoo Logo" className="h-10 w-auto p-1 mb-1 bg-[#FEF0D7] rounded-sm"/>
+            <img src={Icon} width={36} height={36} alt="CafeBoo Logo" className="h-10 w-auto p-1 mb-1 bg-[#FEF0D7] rounded-sm" loading="lazy"/>
             <div className="flex flex-col gap-1 ml-1">
               <span className="text-[#000000] text-sm font-medium">
                 {record.drinkName} {record.drinkCount}잔

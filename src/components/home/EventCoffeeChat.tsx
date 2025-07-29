@@ -70,6 +70,7 @@ export default function EventCoffeeChat({
                     src={room.writer.profileImageUrl}
                     alt="chat avatar"
                     className="h-15 w-15 object-cover"
+                    loading="lazy"
                   />
                 </div>
 

@@ -75,6 +75,7 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
               width={size?.width}
               height={size?.height}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#FE9400]/20 to-gray-200 flex items-center justify-center">
@@ -87,6 +88,7 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
                   width={Icon.img?.w}
                   height={Icon.img?.h}
                   className="w-13 h-13 object-contain"
+                  loading="lazy"
                 />
               </picture>
             </div>

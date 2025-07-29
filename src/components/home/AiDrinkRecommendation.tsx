@@ -45,6 +45,7 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
                       width={drink.logo.img.w} 
                       height={drink.logo.img.h}
                       className="w-11 h-11 rounded-full object-cover"
+                      loading="lazy"
                     />
                   </picture>
                 ) : (

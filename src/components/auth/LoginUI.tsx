@@ -1,4 +1,4 @@
-import Logo from '@/assets/logo.png';
+import Logo from '@/assets/logo.png?w=96;192;288&format=webp;avif&as=picture';
 import KakaoIcon from './KaKaoIcon';
 import PageLayout from '@/layout/PageLayout';
 
@@ -10,8 +10,17 @@ const LoginUI: React.FC<LoginUIProps> = ({ onKakaoLogin }) => {
   return (
     <PageLayout headerMode="logo" mainClassName='mt-6'>
         <div className="flex flex-col bg-gray-50 shadow-[0_0_5px_rgba(0,0,0,0.15)] rounded items-center px-8 py-6 m-3">
-            <img src={Logo} alt="CafeBoo" width={409} height={188} className="w-24 h-auto mb-2" />
-
+            <picture>
+                <source srcSet={Logo.sources.avif} type="image/avif" />
+                <source srcSet={Logo.sources.webp} type="image/webp" />
+                <img
+                  src={Logo.img.src}
+                  alt="Cafeboo 로고"
+                  width={Logo.img.w}
+                  height={Logo.img.h}
+                  className="w-24 h-auto mb-2"
+                />
+              </picture>
             <p className="text-center mb-6 max-w-xs leading-relaxed font-semibold">
                 일상의 카페인을 기록해보세요! 
             </p>
