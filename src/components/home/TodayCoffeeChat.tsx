@@ -76,6 +76,7 @@ export default function TodayCoffeeChatSection({
                       width={CoffeeChatIcon.img.w}
                       height={CoffeeChatIcon.img.h}
                       className="h-15 w-15 object-contain"
+                      loading="lazy"
                     />
                   </picture>
                 </div>

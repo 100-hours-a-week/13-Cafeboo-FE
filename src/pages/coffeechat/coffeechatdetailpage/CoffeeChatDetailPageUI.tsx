@@ -225,6 +225,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
                   width={1000}
                   height={1000}
                   className="w-8 h-8 rounded-full object-cover bg-gray-200"
+                  loading="lazy"
                 />
               ) : (
                 <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
@@ -268,7 +269,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
           ) : currentMemberCount === maxMemberCount ? (
             <button
               disabled
-              className="w-full py-3 bg-[#FE9400]/60 text-white rounded-lg font-semibold"
+              className="w-full py-3 bg-gray-200 text-gray-400 rounded-lg font-semibold"
             >
               모집이 완료되었습니다
             </button>

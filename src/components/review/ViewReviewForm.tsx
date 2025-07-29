@@ -36,6 +36,7 @@ export default function ViewReviewForm({
               width={64}  
               height={64}
               className="w-full h-full object-cover cursor-pointer"
+              loading="lazy"
               onClick={() => setSelectedImage(url)}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -117,6 +118,7 @@ export default function ViewReviewForm({
                         width={size.width}
                         height={size.height}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
@@ -171,6 +173,7 @@ export default function ViewReviewForm({
           width={size.width}
           height={size.height}
           className="max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg object-contain"
+          loading="lazy"
           onClick={(e) => e.stopPropagation()}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
