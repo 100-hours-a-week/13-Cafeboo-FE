@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
 import { Plus, Minus, MapPin, Clock, Users, Tag, Info } from 'lucide-react';
 import {
   Accordion,
@@ -11,7 +11,8 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from '@/components/ui/popover';
-import LocationSelector, { LocationData } from '@/components/coffeechat/LocationSelector';
+const LocationSelector = React.lazy(() => import('@/components/coffeechat/LocationSelector'));
+import type { LocationData } from '@/components/coffeechat/LocationSelector';
 import { extractAreaUnit } from '@/utils/parseUtils';
 import { format, setMinutes, addHours } from 'date-fns';
 import { z } from 'zod';
@@ -437,7 +438,9 @@ export default function CoffeeChatForm({
                 </div>
               </AccordionTrigger>
               <AccordionContent className="px-2 pb-4">
-                <LocationSelector value={location} onChange={setLocation} />
+                <Suspense fallback={<div>지도 로딩 중...</div>}>
+                  <LocationSelector value={location} onChange={setLocation} />
+                </Suspense>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
