@@ -1,10 +1,11 @@
+import React,{Suspense} from "react";
 import PageLayout from "@/layout/PageLayout";
 import { CalendarIcon, Clock, MapPin, Users, Hash } from "lucide-react";
 import { IoChatbubblesOutline } from "react-icons/io5";
-import TrashCanIcon from '@/assets/TrashCan4.png';
-import CoffeeChat from '@/assets/CoffeeChatIcon.png';
-import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
-import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
+import TrashCanIcon from '@/assets/TrashCan4.png?w=128;256&format=webp;avif&as=picture';
+import CoffeeChat from '@/assets/CoffeeChatIcon.png?w=128;256&format=webp;avif&as=picture';
+const MapBottomSheet = React.lazy(() => import("@/components/coffeechat/MapBottomSheet"));
+const JoinCoffeeChatModal = React.lazy(() => import('@/components/coffeechat/JoinCoffeeChatModal'));
 import AlertModal from "@/components/common/AlertModal";
 import GoogleFormLink from "@/components/event/GoogleFormLinkButton";
 
@@ -240,23 +241,31 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
         {/* 하단 액션 버튼들 */}
         <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-10 h-18 items-center">
           {writer.memberId === membership?.memberId ? (
-            <img
-              src={TrashCanIcon}
-              alt="삭제"
-              width={1024}
-              height={1024}
-              className="h-11 w-auto mr-4 cursor-pointer"
-              onClick={handleAlert2Open} 
-            />
+            <picture>
+              <source srcSet={TrashCanIcon.sources.avif} type="image/avif" />
+              <source srcSet={TrashCanIcon.sources.webp} type="image/webp" />
+              <img
+                src={TrashCanIcon.img.src}
+                alt="삭제"
+                width={TrashCanIcon.img.w}
+                height={TrashCanIcon.img.h}
+                className="h-11 w-auto mr-4 cursor-pointer"
+                onClick={handleAlert2Open}
+              />
+            </picture>
           ) : (
-            <img
-              src={CoffeeChat}
-              alt="커피챗"
-              width={952}
-              height={953}
-              className="h-11 w-auto mr-4 cursor-pointer"
-              onClick={handleGoBackToCoffeeChat}
-            />
+            <picture>
+              <source srcSet={CoffeeChat.sources.avif} type="image/avif" />
+              <source srcSet={CoffeeChat.sources.webp} type="image/webp" />
+              <img
+                src={CoffeeChat.img.src}
+                alt="커피챗"
+                width={CoffeeChat.img.w}
+                height={CoffeeChat.img.h}
+                className="h-11 w-auto mr-4 cursor-pointer"
+                onClick={handleGoBackToCoffeeChat}
+              />
+            </picture>
           )}
           {data.isJoined ? (
             <button
@@ -285,17 +294,23 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
       </div>
 
       {/* 모달들 - PageLayout 내부로 이동 */}
-      <MapBottomSheet
-        open={isSheetOpen}
-        onClose={handleCloseSheet}
-        location={location}
-      />
+      <Suspense fallback={<div>지도 로딩 중...</div>}>
+        {isSheetOpen && (
+          <MapBottomSheet
+            open={isSheetOpen}
+            onClose={handleCloseSheet}
+            location={location}
+          />
+        )}
+      </Suspense>
 
-      <JoinCoffeeChatModal
-        isOpen={joinModalOpen}
-        onClose={() => setJoinModalOpen(false)}
-        onSubmit={handleJoinSubmit}
-      />
+      <Suspense fallback={<div>모달 로딩중...</div>}>
+        <JoinCoffeeChatModal
+          isOpen={joinModalOpen}
+          onClose={() => setJoinModalOpen(false)}
+          onSubmit={handleJoinSubmit}
+        />
+      </Suspense>
 
       <AlertModal
         isOpen={isAlertOpen}
