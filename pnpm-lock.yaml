@@ -136,7 +136,7 @@ importers:
         version: 3.3.0
       ui:
         specifier: git+https://github.com/shadcn/ui.git
-        version: git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: git+https://github.com/shadcn/ui.git#e6778dee87de1a183843f233b3f27fbfb1a700ec(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -246,6 +246,9 @@ importers:
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
+      rollup-plugin-visualizer:
+        specifier: ^6.0.3
+        version: 6.0.3(rollup@4.41.1)
       storybook:
         specifier: 8.6.12
         version: 8.6.12(prettier@3.5.3)
@@ -5167,6 +5170,19 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
+  rollup-plugin-visualizer@6.0.3:
+    resolution: {integrity: sha512-ZU41GwrkDcCpVoffviuM9Clwjy5fcUxlz0oMoTXTYsK+tcIFzbdacnrr2n8TXcHxbGKKXtOdjxM2HUS4HjkwIw==}
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      rolldown: 1.x || ^1.0.0-beta
+      rollup: 2.x || 3.x || 4.x
+    peerDependenciesMeta:
+      rolldown:
+        optional: true
+      rollup:
+        optional: true
+
   rollup@4.41.1:
     resolution: {integrity: sha512-cPmwD3FnFv8rKMBc1MxWCwVQFxwf1JEmSX3iQXrRVVG15zerAIXRjMFVWnd5Q5QvgKF7Aj+5ykXFhUl+QGnyOw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -5333,6 +5349,10 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  source-map@0.7.6:
+    resolution: {integrity: sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==}
+    engines: {node: '>= 12'}
 
   spawn-command@0.0.2:
     resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
@@ -5756,8 +5776,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ui@git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5:
-    resolution: {commit: a9ab05ad83b46e5387c6657f9324edfb9f98a9e5, repo: https://github.com/shadcn/ui.git, type: git}
+  ui@git+https://github.com/shadcn/ui.git#e6778dee87de1a183843f233b3f27fbfb1a700ec:
+    resolution: {commit: e6778dee87de1a183843f233b3f27fbfb1a700ec, repo: https://github.com/shadcn/ui.git, type: git}
     version: 0.0.1
 
   unbox-primitive@1.1.0:
@@ -11285,6 +11305,15 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
+  rollup-plugin-visualizer@6.0.3(rollup@4.41.1):
+    dependencies:
+      open: 8.4.2
+      picomatch: 4.0.2
+      source-map: 0.7.6
+      yargs: 17.7.2
+    optionalDependencies:
+      rollup: 4.41.1
+
   rollup@4.41.1:
     dependencies:
       '@types/estree': 1.0.7
@@ -11513,6 +11542,8 @@ snapshots:
   source-map-js@1.2.1: {}
 
   source-map@0.6.1: {}
+
+  source-map@0.7.6: {}
 
   spawn-command@0.0.2: {}
 
@@ -11976,7 +12007,7 @@ snapshots:
 
   typescript@5.4.5: {}
 
-  ui@git+https://github.com/shadcn/ui.git#a9ab05ad83b46e5387c6657f9324edfb9f98a9e5(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
+  ui@git+https://github.com/shadcn/ui.git#e6778dee87de1a183843f233b3f27fbfb1a700ec(@types/node@24.0.14)(@vitest/browser@3.1.4)(lightningcss@1.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       '@babel/core': 7.27.3
       '@changesets/changelog-github': 0.4.8

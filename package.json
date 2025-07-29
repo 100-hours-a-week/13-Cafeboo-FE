@@ -94,6 +94,7 @@
     "kakao.maps.d.ts": "^0.1.40",
     "playwright": "^1.52.0",
     "prettier": "^3.5.3",
+    "rollup-plugin-visualizer": "^6.0.3",
     "storybook": "8.6.12",
     "tailwindcss": "^4.1.4",
     "tw-animate-css": "^1.2.8",
