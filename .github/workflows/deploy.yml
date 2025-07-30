@@ -46,9 +46,14 @@ jobs:
           echo "===== Assets folder ====="
           ls -lah ./dist/assets || echo "No assets folder found"
 
+      - name: Clean bucket
+        run: |
+          gsutil -m rm -r gs://v2-dev-frontend-bucket/** || true
+
       - name: Upload to GCP Cloud Storage
         run: |
           gsutil -m cp -r ./dist/* gs://v2-dev-frontend-bucket
+          gsutil -m cp -r ./dist/**/*.gz gs://v2-dev-frontend-bucket || true
           
       - name: Invalidate CDN cache
         run: |
