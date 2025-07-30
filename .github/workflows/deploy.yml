@@ -39,6 +39,13 @@ jobs:
           VITE_KAKAO_MAP_KEY="${{ secrets.VITE_KAKAO_MAP_KEY }}" \
           pnpm run build
 
+      - name: Debug build output
+        run: |
+          echo "===== Build output files ====="
+          ls -lah ./dist
+          echo "===== Assets folder ====="
+          ls -lah ./dist/assets || echo "No assets folder found"
+
       - name: Upload to GCP Cloud Storage
         run: |
           gsutil -m rsync -r ./dist gs://v2-dev-frontend-bucket
