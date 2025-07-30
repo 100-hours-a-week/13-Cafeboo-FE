@@ -24,9 +24,9 @@ const ReportSummary: React.FC<ReportSummaryProps> = ({
   const challengeDays = showOverLimit ? overLimitDays || 0 : 0;
 
   return (
-    <div className="rounded-lg shadow-sm border border-gray-200 mb-4">
+    <div className="rounded-lg border border-[#d0ced3] mb-4">
       {/* 평균 섭취 */}
-      <div className="p-4 flex justify-between items-center border-b border-gray-200">
+      <div className="p-4 flex justify-between items-center">
         <div className="flex justify-between items-center">
             <span className="text-md mr-2">🌱</span>
             <span className="text-[#333333] font-medium">
@@ -38,7 +38,7 @@ const ReportSummary: React.FC<ReportSummaryProps> = ({
 
       {/* 카페인 초과일 (주간 리포트일 때만) */}
       {showOverLimit && (
-        <div className="p-4 flex justify-between items-center">
+        <div className="p-4 flex justify-between items-center border-t border-[#d0ced3]">
           <div className="flex justify-between items-center">
             <span className="text-lmd mr-2">🔥</span>
             <span className="text-[#333333] font-medium">카페인 초과일</span>
