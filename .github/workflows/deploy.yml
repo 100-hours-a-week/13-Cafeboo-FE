@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload to GCP Cloud Storage
         run: |
-          gsutil -m rsync -r ./dist gs://v2-dev-frontend-bucket
+          gsutil -m cp -r ./dist gs://v2-dev-frontend-bucket
 
       - name: Invalidate CDN cache
         run: |
