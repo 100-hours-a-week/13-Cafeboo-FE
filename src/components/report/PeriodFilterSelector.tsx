@@ -44,13 +44,14 @@ export default function PeriodFilterSelector({
 
   // 동적으로 생성되는 주차 옵션
   const weeks = useMemo(
-    () => Array.from({ length: weeksofMonth as number}, (_, i) => `${i + 1}주차`),
+    () =>
+      Array.from({ length: weeksofMonth as number }, (_, i) => `${i + 1}주차`),
     [weeksofMonth]
   );
 
   const yearValue = selectedYear;
   const monthValue = selectedMonth;
-  const weekValue = selectedWeek; 
+  const weekValue = selectedWeek;
 
   const firstWeek = weeks[0];
 
@@ -58,7 +59,7 @@ export default function PeriodFilterSelector({
   const handleYear = (y: string) => {
     onYearChange(y.replace('년', ''));
     if (period === 'weekly' && onWeekChange) {
-      onWeekChange(firstWeek);  
+      onWeekChange(firstWeek);
     }
   };
 
@@ -68,7 +69,7 @@ export default function PeriodFilterSelector({
       onWeekChange(firstWeek);
     }
   };
-  
+
   const handleWeek = (w: string) => {
     onWeekChange?.(w.replace('주차', ''));
   };

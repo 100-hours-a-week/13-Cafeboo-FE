@@ -1,8 +1,14 @@
 import { useState, useMemo } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import drinkData from '@/data/cafe_drinks.json';
-import { useUpdateCaffeineIntake, useDeleteCaffeineIntake } from '@/api/caffeine/caffeineApi';
-import type { UpdateCaffeineIntakeRequestDTO, CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
+import {
+  useUpdateCaffeineIntake,
+  useDeleteCaffeineIntake,
+} from '@/api/caffeine/caffeineApi';
+import type {
+  UpdateCaffeineIntakeRequestDTO,
+  CaffeineIntakeRequestDTO,
+} from '@/api/caffeine/caffeine.dto';
 import DiaryEditPageUI from '@/pages/diary/diaryeditpage/DiaryEditPageUI';
 import type { DrinkDetail } from '@/components/caffeine/CaffeineDetailForm';
 
@@ -23,8 +29,10 @@ export default function DiaryEditContainer() {
     return <Navigate to="/diary" replace />;
   }
 
-  const { mutateAsyncFn: updateCaffeine, isLoading: isUpdating } = useUpdateCaffeineIntake(orig.intakeId);
-  const { mutateAsyncFn: deleteIntakeAsync, isLoading: isDeleting } = useDeleteCaffeineIntake(orig.intakeId);
+  const { mutateAsyncFn: updateCaffeine, isLoading: isUpdating } =
+    useUpdateCaffeineIntake(orig.intakeId);
+  const { mutateAsyncFn: deleteIntakeAsync, isLoading: isDeleting } =
+    useDeleteCaffeineIntake(orig.intakeId);
 
   const [drinkId, setDrinkId] = useState<string>(orig.drinkId);
   const [drinkName, setDrinkName] = useState(orig.drinkName);
@@ -37,25 +45,28 @@ export default function DiaryEditContainer() {
   const [selectOpen, setSelectOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState('');
 
-  const [selectedDrink, setSelectedDrink] = useState<{ cafeName: string; drinkId: number } | null>(null);
+  const [selectedDrink, setSelectedDrink] = useState<{
+    cafeName: string;
+    drinkId: number;
+  } | null>(null);
 
   const detail: DrinkDetail | null = useMemo(() => {
     if (!selectedDrink) return null;
-    const cafe = drinkData.find(c => c.cafeName === selectedDrink.cafeName);
-    const d = cafe?.drinks.find(dd => dd.drinkId === selectedDrink.drinkId);
+    const cafe = drinkData.find((c) => c.cafeName === selectedDrink.cafeName);
+    const d = cafe?.drinks.find((dd) => dd.drinkId === selectedDrink.drinkId);
     if (!d) return null;
     return {
       drinkid: d.drinkId,
       name: d.name,
       cafeName: selectedDrink.cafeName,
       temperature: d.temperature,
-      sizes: d.sizes.map(s => ({
+      sizes: d.sizes.map((s) => ({
         drinkSizeId: s.drinkSizeId,
         size: s.size,
         capacity_ml: s.capacity_ml,
-        caffeine_mg: s.caffeine_mg
+        caffeine_mg: s.caffeine_mg,
       })),
     };
   }, [selectedDrink]);
@@ -63,8 +74,11 @@ export default function DiaryEditContainer() {
   const openDetail = () => {
     if (!selectedDrink) {
       for (const cafe of drinkData) {
-        if (cafe.drinks.some(d => d.drinkId === Number(drinkId))) {
-          setSelectedDrink({ cafeName: cafe.cafeName, drinkId: Number(drinkId) });
+        if (cafe.drinks.some((d) => d.drinkId === Number(drinkId))) {
+          setSelectedDrink({
+            cafeName: cafe.cafeName,
+            drinkId: Number(drinkId),
+          });
           break;
         }
       }
@@ -113,7 +127,8 @@ export default function DiaryEditContainer() {
       setTime(rec.intakeTime.slice(11, 16));
     }
     if (rec.drinkCount !== undefined) setCount(String(rec.drinkCount));
-    if (rec.caffeineAmount !== undefined) setAmount(Number(rec.caffeineAmount.toFixed(1)));
+    if (rec.caffeineAmount !== undefined)
+      setAmount(Number(rec.caffeineAmount.toFixed(1)));
     if (rec.drinkSize !== undefined) setSize(rec.drinkSize);
     if (detail) setDrinkName(detail.name);
     setDetailOpen(false);

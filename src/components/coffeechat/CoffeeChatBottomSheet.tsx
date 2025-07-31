@@ -2,11 +2,11 @@ import { useCreateCoffeeChat } from '@/api/coffeechat/coffeechatApi';
 import type { CreateCoffeeChatRequestDTO } from '@/api/coffeechat/coffeechat.dto';
 import FullPageSheet from '@/components/common/FullPageBottomSheet';
 import CoffeeChatForm from '@/components/coffeechat/CoffeeChatCreateForm';
-import { useToastStore } from '@/stores/toastStore'; 
+import { useToastStore } from '@/stores/toastStore';
 
 interface Props {
-    open: boolean;
-    onClose: () => void;
+  open: boolean;
+  onClose: () => void;
 }
 
 export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
@@ -15,7 +15,7 @@ export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
 
   const handleFormSubmit = async (payload: CreateCoffeeChatRequestDTO) => {
     if (!navigator.onLine) {
-      showToast("error", "인터넷 연결을 확인해주세요");
+      showToast('error', '인터넷 연결을 확인해주세요');
       return;
     }
     try {
@@ -24,7 +24,7 @@ export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
       onClose();
     } catch (error: any) {
       console.log(error);
-      showToast('error', error?.message || '생성에 실패했습니다.'); 
+      showToast('error', error?.message || '생성에 실패했습니다.');
     }
   };
 
@@ -34,4 +34,3 @@ export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
     </FullPageSheet>
   );
 }
-  

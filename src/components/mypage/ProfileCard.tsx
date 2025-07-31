@@ -49,7 +49,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         {/* 카페인 권장량 */}
         <div className="flex-1 text-left">
           <p className="text-xs text-gray-500 mb-0.5">일일 카페인 권장량</p>
-          <p className="font-semibold text-gray-900">{dailyCaffeineLimitMg} mg</p>
+          <p className="font-semibold text-gray-900">
+            {dailyCaffeineLimitMg} mg
+          </p>
         </div>
 
         {/* 세로 구분선 */}

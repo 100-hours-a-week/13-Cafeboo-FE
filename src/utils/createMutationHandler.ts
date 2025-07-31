@@ -8,7 +8,7 @@ type MutationHandlerReturn<TData, TError, TVariables> = {
   isError: boolean;
   isSuccess: boolean;
   error: TError | null;
-  data: TData | null; 
+  data: TData | null;
 };
 
 export function createMutationHandler<
@@ -31,6 +31,6 @@ export function createMutationHandler<
     isError: mutation.isError,
     isSuccess: mutation.isSuccess,
     error: mutation.error ?? null,
-    data: mutation.data ?? null, 
+    data: mutation.data ?? null,
   };
 }

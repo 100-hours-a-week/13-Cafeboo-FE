@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 interface ScrollToTopProps {
-  selector?: string; 
+  selector?: string;
   top?: number;
   behavior?: ScrollBehavior;
 }

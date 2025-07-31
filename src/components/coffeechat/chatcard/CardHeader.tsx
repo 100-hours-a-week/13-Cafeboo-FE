@@ -1,5 +1,5 @@
-import { Users } from "lucide-react";
-import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
+import { Users } from 'lucide-react';
+import type { CoffeeChatListItem } from '@/api/coffeechat/coffeechat.dto';
 
 interface CardHeaderProps {
   room: CoffeeChatListItem;
@@ -7,9 +7,9 @@ interface CardHeaderProps {
 }
 
 export default function CardHeader({ room, filter }: CardHeaderProps) {
-  if (filter === "REVIEWABLE") return null;
+  if (filter === 'REVIEWABLE') return null;
 
-  const isJoined = filter === "JOINED" || (filter === "ALL" && room.isJoined);
+  const isJoined = filter === 'JOINED' || (filter === 'ALL' && room.isJoined);
 
   let badge;
   if (isJoined) {

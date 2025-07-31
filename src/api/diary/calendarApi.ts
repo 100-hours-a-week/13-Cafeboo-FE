@@ -1,5 +1,5 @@
 import apiClient from '@/api/apiClient';
-import { createQueryHandler } from '@/utils/createQueryHandler'; 
+import { createQueryHandler } from '@/utils/createQueryHandler';
 import { MonthlyCalendarResponse } from '@/api/diary/calendar.dto';
 
 // ✅ GET 요청
@@ -14,10 +14,7 @@ const fetchCalendar = async (
   return response.data;
 };
 
-export const useCalendar = (
-  year: number,
-  month: number
-) => {
+export const useCalendar = (year: number, month: number) => {
   const yearStr = String(year);
   const monthStr = String(month);
 
@@ -34,4 +31,3 @@ export const useCalendar = (
     }
   );
 };
-

@@ -34,7 +34,9 @@ interface DiaryEditUIPageProps {
     handleUpdate: () => void;
     handleDelete: () => void;
     handleSubmitRecord: (rec: any) => void;
-    setSelectedDrink: (drink: { cafeName: string; drinkId: number } | null) => void;
+    setSelectedDrink: (
+      drink: { cafeName: string; drinkId: number } | null
+    ) => void;
   };
   status: {
     isUpdating: boolean;
@@ -76,10 +78,23 @@ export default function DiaryEditPageUI({
   const { isUpdating, isDeleting, isAlertOpen, alertMessage } = status;
 
   return (
-    <PageLayout headerMode="title" headerTitle="카페인 기록 수정" onBackClick={() => window.history.back()} mainClassName="!space-y-6">
-      <DrinkSelectSection drinkName={drinkName} onOpenSelect={() => setSelectOpen(true)} />
+    <PageLayout
+      headerMode="title"
+      headerTitle="카페인 기록 수정"
+      onBackClick={() => window.history.back()}
+      mainClassName="!space-y-6"
+    >
+      <DrinkSelectSection
+        drinkName={drinkName}
+        onOpenSelect={() => setSelectOpen(true)}
+      />
 
-      <DateTimeInputSection date={date} time={time} setDate={setDate} setTime={setTime} />
+      <DateTimeInputSection
+        date={date}
+        time={time}
+        setDate={setDate}
+        setTime={setTime}
+      />
 
       <CaffeineAmountSection amount={amount} onOpenDetail={openDetail} />
 
@@ -99,7 +114,12 @@ export default function DiaryEditPageUI({
       </button>
 
       {/* 1) 음료 선택 바텀시트 */}
-      <BottomSheet open={selectOpen} onOpenChange={setSelectOpen} title="추가할 음료 선택하세요." hideConfirm>
+      <BottomSheet
+        open={selectOpen}
+        onOpenChange={setSelectOpen}
+        title="추가할 음료 선택하세요."
+        hideConfirm
+      >
         <CaffeineSelectForm
           drinkData={drinkData}
           onSelectDrink={(cafeName, dId) => {
@@ -120,7 +140,7 @@ export default function DiaryEditPageUI({
               drinkSize: detail.sizes[0].size,
               intakeTime: `${date}T${time}`,
               drinkCount: Number(count),
-              caffeineAmount: amount
+              caffeineAmount: amount,
             }}
             onSubmit={handleSubmitRecord}
           />
@@ -140,4 +160,3 @@ export default function DiaryEditPageUI({
     </PageLayout>
   );
 }
-

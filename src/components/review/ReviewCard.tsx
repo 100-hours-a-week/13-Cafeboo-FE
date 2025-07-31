@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { CoffeeChatReviewSummary } from "@/api/coffeechat/coffeechat.dto";
-import SectionCard from "@/components/common/SectionCard";
-import HeartButton from "@/components/review/HeartButton";
-import { useCoffeeChatMembers } from "@/api/coffeechat/coffeechatMemberApi";
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { CoffeeChatReviewSummary } from '@/api/coffeechat/coffeechat.dto';
+import SectionCard from '@/components/common/SectionCard';
+import HeartButton from '@/components/review/HeartButton';
+import { useCoffeeChatMembers } from '@/api/coffeechat/coffeechatMemberApi';
 import Icon from '@/assets/CoffeeChatIcon.png?w=48;64&format=webp;avif&as=picture';
-import { useLikeCoffeeChatReview } from "@/api/coffeechat/coffeechatReviewApi";
+import { useLikeCoffeeChatReview } from '@/api/coffeechat/coffeechatReviewApi';
 import MemberImage from '@/components/common/MemberImage';
 import { useImageSize } from '@/hooks/useImageSize';
-import { useAuthStore } from "@/stores/useAuthStore";
+import { useAuthStore } from '@/stores/useAuthStore';
 
 interface ReviewCardProps {
   item: CoffeeChatReviewSummary;
@@ -16,9 +16,9 @@ interface ReviewCardProps {
 }
 
 export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
-  const [liked, setLiked] = useState(item.liked); 
-  const [likesCount, setLikesCount] = useState(item.likesCount); 
-  const isGuest = useAuthStore(state => state.isGuest());
+  const [liked, setLiked] = useState(item.liked);
+  const [likesCount, setLikesCount] = useState(item.likesCount);
+  const isGuest = useAuthStore((state) => state.isGuest());
 
   const navigate = useNavigate();
   const {
@@ -45,13 +45,13 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
   const handleLikeToggle = (newLiked: boolean) => {
     if (isGuest) {
       onRequireLogin();
-      return; 
+      return;
     }
-  
+
     if (likeMutation.isLoading) return;
-  
+
     likeMutation.mutateFn();
-  
+
     setLiked(newLiked);
     setLikesCount((prev) => prev + (newLiked ? 1 : -1));
   };
@@ -64,7 +64,10 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
   const size = useImageSize(item.previewImageUrl);
 
   return (
-    <SectionCard className="!px-2 cursor-pointer !border-gray-200" onClick={handleClick}>
+    <SectionCard
+      className="!px-2 cursor-pointer !border-gray-200"
+      onClick={handleClick}
+    >
       {/* 이미지 영역 */}
       <div className="mb-3">
         <div className="w-32 h-32 mx-auto rounded-2xl relative overflow-hidden">
@@ -83,7 +86,7 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
                 <source srcSet={Icon.sources?.avif} type="image/avif" />
                 <source srcSet={Icon.sources?.webp} type="image/webp" />
                 <img
-                  src={Icon.img?.src} 
+                  src={Icon.img?.src}
                   alt="icon"
                   width={Icon.img?.w}
                   height={Icon.img?.h}
@@ -117,19 +120,22 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
           ) : (
             <>
               <div className="flex items-center -space-x-2.5">
-                {membersData?.members.slice(0, 2).map((member: any) => (
-                  <MemberImage
-                    key={member.memberId}
-                    url={member.profileImageUrl}
-                    alt={member.chatNickname}
-                    className="w-6 h-6 border border-white"
-                  />
-                ))}
-                {membersData?.totalMemberCounts && membersData?.totalMemberCounts > 2 && (
-                  <div className="w-6 h-6 rounded-full border border-white bg-gray-200 text-[10px] text-gray-600 flex items-center justify-center">
-                    +{membersData.totalMemberCounts - 2}
-                  </div>
-                )}
+                {membersData?.members
+                  .slice(0, 2)
+                  .map((member: any) => (
+                    <MemberImage
+                      key={member.memberId}
+                      url={member.profileImageUrl}
+                      alt={member.chatNickname}
+                      className="w-6 h-6 border border-white"
+                    />
+                  ))}
+                {membersData?.totalMemberCounts &&
+                  membersData?.totalMemberCounts > 2 && (
+                    <div className="w-6 h-6 rounded-full border border-white bg-gray-200 text-[10px] text-gray-600 flex items-center justify-center">
+                      +{membersData.totalMemberCounts - 2}
+                    </div>
+                  )}
               </div>
 
               <HeartButton
@@ -145,4 +151,3 @@ export default function ReviewCard({ item, onRequireLogin }: ReviewCardProps) {
     </SectionCard>
   );
 }
-

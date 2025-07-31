@@ -1,12 +1,12 @@
 import React from 'react';
-import PageLayout from "@/layout/PageLayout";
-import ChatTab from "@/components/coffeechat/ChatTab";
-import ChatCardList from "@/components/coffeechat/ChatCardList";
-import ReviewCardList from "@/components/review/ReviewCardList";
+import PageLayout from '@/layout/PageLayout';
+import ChatTab from '@/components/coffeechat/ChatTab';
+import ChatCardList from '@/components/coffeechat/ChatCardList';
+import ReviewCardList from '@/components/review/ReviewCardList';
 import ScrollToTop from '@/components/common/ScrolltoTop';
-import CoffeeChatBottomSheet from "@/components/coffeechat/CoffeeChatBottomSheet";
+import CoffeeChatBottomSheet from '@/components/coffeechat/CoffeeChatBottomSheet';
 import LoginRequiredModal from '@/components/common/LoginRequiredModal';
-import type { ChatFilter, ReviewFilter } from "@/types/filters";
+import type { ChatFilter, ReviewFilter } from '@/types/filters';
 
 interface StatusProps {
   filter: ChatFilter;
@@ -78,6 +78,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
       mainRef={mainRef}
       showAdd={true}
       onAddClick={onAddClick}
+      mainTagClassName='!mt-12'
     >
       <ChatTab filter={filter} onChange={onTabChange} />
       <ScrollToTop key={filter} selector="main" top={0} />
@@ -89,7 +90,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
             reviewsData={reviewData}
             isLoading={isLoadingReviews}
             isError={isErrorReviews}
-            onRequireLogin={onOpenLoginModal} 
+            onRequireLogin={onOpenLoginModal}
           />
         ) : (
           <ChatCardList

@@ -1,5 +1,5 @@
-import EmptyState from "@/components/common/EmptyState";
-import { AlertTriangle } from "lucide-react";
+import EmptyState from '@/components/common/EmptyState';
+import { AlertTriangle } from 'lucide-react';
 
 const NotFoundPage = () => {
   return (

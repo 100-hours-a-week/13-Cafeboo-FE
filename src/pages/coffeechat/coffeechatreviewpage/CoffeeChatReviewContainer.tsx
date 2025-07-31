@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CoffeeChatReviewPageUI from './CoffeeChatReviewPageUI';
-import { 
-  useCoffeeChatReviewDetail, 
-  useLikeCoffeeChatReview, 
-  useWriteCoffeeChatReview 
+import {
+  useCoffeeChatReviewDetail,
+  useLikeCoffeeChatReview,
+  useWriteCoffeeChatReview,
 } from '@/api/coffeechat/coffeechatReviewApi';
-import { 
+import {
   useCoffeeChatMembers,
   useCoffeeChatMembership,
 } from '@/api/coffeechat/coffeechatMemberApi';
@@ -26,7 +26,7 @@ export default function CoffeeChatReviewPageContainer() {
     : useCoffeeChatDetail(coffeeChatId ?? '');
 
   const { data: membersData } = useCoffeeChatMembers(coffeeChatId ?? '');
-  const { data: membershipData} = useCoffeeChatMembership(coffeeChatId ?? '');
+  const { data: membershipData } = useCoffeeChatMembership(coffeeChatId ?? '');
 
   const [liked, setLiked] = useState<boolean>(false);
   const [likeCount, setLikeCount] = useState<number>(0);
@@ -49,8 +49,11 @@ export default function CoffeeChatReviewPageContainer() {
 
   const writeReviewMutation = useWriteCoffeeChatReview(coffeeChatId ?? '');
 
-
-  const handleWriteReviewSubmit = async (params: { memberId: string; text: string; images: File[] }) => {
+  const handleWriteReviewSubmit = async (params: {
+    memberId: string;
+    text: string;
+    images: File[];
+  }) => {
     try {
       await writeReviewMutation.mutateAsyncFn(params);
       navigate('/coffeechat');

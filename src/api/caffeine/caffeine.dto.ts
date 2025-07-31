@@ -5,23 +5,23 @@ export interface CaffeineInfoResponseDTO {
   dailyCaffeineLimitMg: number;
   sleepSensitiveThresholdMg: number;
   userFavoriteDrinks: string[];
-  createdAt?: string;  
+  createdAt?: string;
   updatedAt?: string;
 }
 
 export interface CaffeineInfoRequestDTO {
   caffeineSensitivity: number;
   averageDailyCaffeineIntake: number;
-  frequentDrinkTime: string; 
+  frequentDrinkTime: string;
   userFavoriteDrinks: string[];
 }
 
 export interface CaffeineIntakeRequestDTO {
-    drinkId: string;
-    drinkSize: string;
-    intakeTime: string;
-    drinkCount: number;
-    caffeineAmount: number;
+  drinkId: string;
+  drinkSize: string;
+  intakeTime: string;
+  drinkCount: number;
+  caffeineAmount: number;
 }
 
 export type UpdateCaffeineInfoRequestDTO = Partial<CaffeineInfoRequestDTO>;

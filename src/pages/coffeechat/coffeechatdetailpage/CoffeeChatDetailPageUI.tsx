@@ -1,13 +1,17 @@
-import React,{Suspense} from "react";
-import PageLayout from "@/layout/PageLayout";
-import { CalendarIcon, Clock, MapPin, Users, Hash } from "lucide-react";
-import { IoChatbubblesOutline } from "react-icons/io5";
+import React, { Suspense } from 'react';
+import PageLayout from '@/layout/PageLayout';
+import { CalendarIcon, Clock, MapPin, Users, Hash } from 'lucide-react';
+import { IoChatbubblesOutline } from 'react-icons/io5';
 import TrashCanIcon from '@/assets/TrashCan4.png?w=128;256&format=webp;avif&as=picture';
 import CoffeeChat from '@/assets/CoffeeChatIcon.png?w=128;256&format=webp;avif&as=picture';
-const MapBottomSheet = React.lazy(() => import("@/components/coffeechat/MapBottomSheet"));
-const JoinCoffeeChatModal = React.lazy(() => import('@/components/coffeechat/JoinCoffeeChatModal'));
-import AlertModal from "@/components/common/AlertModal";
-import GoogleFormLink from "@/components/event/GoogleFormLinkButton";
+const MapBottomSheet = React.lazy(
+  () => import('@/components/coffeechat/MapBottomSheet')
+);
+const JoinCoffeeChatModal = React.lazy(
+  () => import('@/components/coffeechat/JoinCoffeeChatModal')
+);
+import AlertModal from '@/components/common/AlertModal';
+import GoogleFormLink from '@/components/event/GoogleFormLinkButton';
 
 interface Member {
   memberId: string;
@@ -41,7 +45,10 @@ interface StatusProps {
 
 interface HandlersProps {
   handleBackClick: () => void;
-  handleJoinSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
+  handleJoinSubmit: (params: {
+    chatNickname: string;
+    profileImageType: 'DEFAULT' | 'USER';
+  }) => void;
   handleEnterChatRoom: () => void;
   handleDeleteChat: () => void;
   handleJoin: () => void;
@@ -50,7 +57,7 @@ interface HandlersProps {
   handleCloseSheet: () => void;
   handleAlertClose: () => void;
   handleAlert2Close: () => void;
-  handleAlert2Open: () => void; 
+  handleAlert2Open: () => void;
   handleGoBackToCoffeeChat: () => void;
 }
 
@@ -76,7 +83,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     isAlertOpen,
     alertMessage,
     isAlertOpen2,
-    showGoogleForm=false,
+    showGoogleForm = false,
   } = status;
 
   const {
@@ -94,8 +101,20 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     handleGoBackToCoffeeChat,
   } = handlers;
 
-  if (isLoading) return <PageLayout><div className="py-24 text-center">로딩 중...</div></PageLayout>;
-  if (isError || !data) return <PageLayout><div className="py-24 text-center text-red-400">데이터를 불러올 수 없습니다.</div></PageLayout>;
+  if (isLoading)
+    return (
+      <PageLayout>
+        <div className="py-24 text-center">로딩 중...</div>
+      </PageLayout>
+    );
+  if (isError || !data)
+    return (
+      <PageLayout>
+        <div className="py-24 text-center text-red-400">
+          데이터를 불러올 수 없습니다.
+        </div>
+      </PageLayout>
+    );
 
   let badge;
   if (data.isJoined) {
@@ -131,7 +150,12 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
   } = data;
 
   return (
-    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={handleBackClick} mainClassName="pt-2 pb-16">
+    <PageLayout
+      headerMode="title"
+      headerTitle="커피챗"
+      onBackClick={handleBackClick}
+      mainClassName="pt-2 pb-16"
+    >
       <div className="bg-white space-y-4">
         <div className="flex items-center justify-between mb-2">
           <div>{badge}</div>
@@ -163,14 +187,15 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
 
         {/* 설명 */}
         <div className="rounded-sm mb-4">
-          <p className="text-[#333333] text-sm leading-relaxed" style={{ whiteSpace: "pre-line" }}>
+          <p
+            className="text-[#333333] text-sm leading-relaxed"
+            style={{ whiteSpace: 'pre-line' }}
+          >
             {content}
           </p>
         </div>
 
-        {showGoogleForm ? (
-          <GoogleFormLink/>
-        ) : null}
+        {showGoogleForm ? <GoogleFormLink /> : null}
 
         <hr className="border-gray-200 my-4" />
 
@@ -190,12 +215,12 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-3">
               <MapPin className="w-4 h-4 text-gray-500" />
-              <span className="text-sm">{location?.address ?? "-"}</span>
+              <span className="text-sm">{location?.address ?? '-'}</span>
             </div>
 
             <div className="flex gap-2">
               <button
-                onClick={() => window.open(location?.kakaoPlaceUrl, "_blank")}
+                onClick={() => window.open(location?.kakaoPlaceUrl, '_blank')}
                 className="bg-gray-100 hover:bg-gray-200 text-black text-xs px-2 py-1 rounded-sm cursor-pointer"
               >
                 정보 보기
@@ -336,4 +361,3 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     </PageLayout>
   );
 }
-

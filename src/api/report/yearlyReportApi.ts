@@ -3,9 +3,7 @@ import { createQueryHandler } from '@/utils/createQueryHandler';
 import { YearlyReportDTO } from '@/api/report/report.dto';
 
 // ✅ GET 요청
-const fetchYearlyReport = async (
-  year: string
-): Promise<YearlyReportDTO> => {
+const fetchYearlyReport = async (year: string): Promise<YearlyReportDTO> => {
   const response = await apiClient.get('/api/v1/reports/yearly', {
     params: { year },
   });

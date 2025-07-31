@@ -13,7 +13,7 @@ interface DrinkSize {
 interface Drink {
   drinkId: number;
   name: string;
-  type: 'COFFEE' | 'TEA' | 'OTHER' | '몬스터' | '핫식스' | '레드불'; 
+  type: 'COFFEE' | 'TEA' | 'OTHER' | '몬스터' | '핫식스' | '레드불';
   temperature: 'HOT' | 'ICED' | 'BASIC';
   sizes: DrinkSize[];
 }
@@ -32,7 +32,7 @@ interface FilteredDrink {
 }
 
 export interface CaffeineSelectFormProps {
-  drinkData: any[]; 
+  drinkData: any[];
   onSelectDrink: (cafeName: string, drinkId: number) => void;
 }
 
@@ -45,35 +45,41 @@ export default function CaffeineSelectForm({
 }: CaffeineSelectFormProps) {
   const [search, setSearch] = useState<string>('');
   const [typeFilter, setTypeFilter] = useState<string>('ALL');
-  const [brandFilter, setBrandFilter] = useState<string>(drinkData[0]?.cafeName || '');
+  const [brandFilter, setBrandFilter] = useState<string>(
+    drinkData[0]?.cafeName || ''
+  );
 
-  // ✅ 브랜드 옵션 동적 생성 
+  // ✅ 브랜드 옵션 동적 생성
   const brandOptions: TagItem[] = useMemo(() => {
-    return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName))).map((label) => ({
-      label,
-    }));
+    return Array.from(new Set(drinkData.map((cafe) => cafe.cafeName))).map(
+      (label) => ({
+        label,
+      })
+    );
   }, [drinkData]);
 
   const currentTypes = useMemo(() => {
     return brandFilter === '에너지 드링크' ? energyDrinkTypes : baseTypes;
   }, [brandFilter]);
 
-
   // ✅ 필터링 로직 최적화
   const filteredDrinks = useMemo<FilteredDrink[]>(() => {
     if (!brandFilter) return [];
-  
+
     return (
       drinkData
-        .find((cafe:Cafe) => cafe.cafeName === brandFilter)
-        ?.drinks.filter((drink:Drink) => {
+        .find((cafe: Cafe) => cafe.cafeName === brandFilter)
+        ?.drinks.filter((drink: Drink) => {
           if (typeFilter !== 'ALL' && drink.type !== typeFilter) return false;
-          if (search && !drink.name.toLowerCase().includes(search.toLowerCase())) {
+          if (
+            search &&
+            !drink.name.toLowerCase().includes(search.toLowerCase())
+          ) {
             return false;
           }
           return true;
         })
-        .map((drink:Drink) => ({
+        .map((drink: Drink) => ({
           cafeName: brandFilter,
           drinkId: drink.drinkId,
           name: drink.name,
@@ -122,7 +128,9 @@ export default function CaffeineSelectForm({
           <Tag
             items={brandOptions}
             value={[brandFilter]}
-            onChange={(vals) => setBrandFilter(vals[0] || brandOptions[0].label)}
+            onChange={(vals) =>
+              setBrandFilter(vals[0] || brandOptions[0].label)
+            }
             multiple={false}
             scrollable
             className="whitespace-nowrap pb-0.5"
@@ -130,7 +138,7 @@ export default function CaffeineSelectForm({
 
           {/* 타입 필터 */}
           <div className="flex">
-            {currentTypes .map((type) => (
+            {currentTypes.map((type) => (
               <button
                 key={type}
                 onClick={() => setTypeFilter(type)}

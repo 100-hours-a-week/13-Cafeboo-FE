@@ -21,15 +21,16 @@ async function guestLoginApi(): Promise<GuestLoginResponse> {
 export function useGuestLogin() {
   const setAuth = useAuthStore((state) => state.setAuth);
 
-  return createMutationHandler<GuestLoginResponse, ApiResponse<unknown>, void>(guestLoginApi, {
-    onSuccess: (data) => {
-      localStorage.setItem('access_token', data.accessToken);
-      setAuth(data.userId, data.role, getTodayDateString());
-    },
-    onError: (error) => {
-      console.error('비회원 로그인 실패:', error);
-    },
-  });
+  return createMutationHandler<GuestLoginResponse, ApiResponse<unknown>, void>(
+    guestLoginApi,
+    {
+      onSuccess: (data) => {
+        localStorage.setItem('access_token', data.accessToken);
+        setAuth(data.userId, data.role, getTodayDateString());
+      },
+      onError: (error) => {
+        console.error('비회원 로그인 실패:', error);
+      },
+    }
+  );
 }
-
-

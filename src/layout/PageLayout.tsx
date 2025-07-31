@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import FABContainer from "@/components/common/FABContainer";
+import FABContainer from '@/components/common/FABContainer';
 import BottomNavBar from '@/components/common/BottomNavBar';
 import { Member } from '@/components/coffeechat/GroupMemberMenu';
 
@@ -15,6 +15,7 @@ interface PageLayoutProps {
   onDeleteChat?: () => void;
   myMemberId?: string;
   mainClassName?: string;
+  mainTagClassName?: string; 
   nonScrollClassName?: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
 
@@ -22,13 +23,13 @@ interface PageLayoutProps {
   onAddClick?: () => void;
 }
 
-
 export default function PageLayout({
   children,
   headerMode = 'logo',
   headerTitle,
   onBackClick,
   mainClassName,
+  mainTagClassName,
   nonScrollClassName = false,
   mainRef,
 
@@ -43,16 +44,16 @@ export default function PageLayout({
 }: PageLayoutProps) {
   return (
     <div className="flex flex-col h-full">
-    <Header
-      mode={headerMode}
-      title={headerTitle}
-      onBackClick={onBackClick}
-      isGroupChat={isGroupChat}         
-      chatMembers={chatMembers}      
-      onLeaveChat={onLeaveChat}
-      onDeleteChat={onDeleteChat}
-      myMemberId={myMemberId}         
-    />
+      <Header
+        mode={headerMode}
+        title={headerTitle}
+        onBackClick={onBackClick}
+        isGroupChat={isGroupChat}
+        chatMembers={chatMembers}
+        onLeaveChat={onLeaveChat}
+        onDeleteChat={onDeleteChat}
+        myMemberId={myMemberId}
+      />
 
       <main
         id="scroll-container"
@@ -61,13 +62,14 @@ export default function PageLayout({
           mt-14 scrollbar-hide pb-28 h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom)) 
           ${headerMode === 'title' ? 'px-2' : 'pt-2 mb-18'} 
           ${nonScrollClassName ? '!pb-0' : 'overflow-y-auto'}
+          ${mainTagClassName ?? ''}
         `}
-      
       >
-        <div id="observer-target" className="h-[1px] w-full opacity-0 pointer-events-none" />
-        <div className={`space-y-4 ${mainClassName}`}>
-          {children}
-        </div>
+        <div
+          id="observer-target"
+          className="h-[1px] w-full opacity-0 pointer-events-none"
+        />
+        <div className={`space-y-4 ${mainClassName}`}>{children}</div>
       </main>
 
       <FABContainer

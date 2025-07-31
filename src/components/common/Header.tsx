@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Menu, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/assets/logo.png?w=320;640;1280&format=webp;avif&as=picture';
-import GroupMemberMenu, { Member } from '@/components/coffeechat/GroupMemberMenu';
+import GroupMemberMenu, {
+  Member,
+} from '@/components/coffeechat/GroupMemberMenu';
 import { useAuthStore } from '@/stores/useAuthStore';
 import { useUserProfile } from '@/api/mypage/profileApi';
 import { useImageSize } from '@/hooks/useImageSize';
@@ -19,7 +21,7 @@ interface HeaderProps {
   myMemberId?: string;
 }
 
-export default function Header ({
+export default function Header({
   mode,
   title,
   onBackClick,
@@ -31,7 +33,7 @@ export default function Header ({
 }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const isGuest = useAuthStore(state => state.isGuest());
+  const isGuest = useAuthStore((state) => state.isGuest());
   const { data: profileData, isLoading, isError } = useUserProfile();
   const size = useImageSize(profileData?.profileImageUrl || null);
 
@@ -47,11 +49,11 @@ export default function Header ({
     navigate('/');
   };
 
-  const handleKakaoLogin = async() => {
+  const handleKakaoLogin = async () => {
     try {
       await requestKakaoLogin();
     } catch (error) {
-      console.error("카카오 로그인 요청 실패:", error);
+      console.error('카카오 로그인 요청 실패:', error);
     }
   };
 
@@ -61,11 +63,17 @@ export default function Header ({
         <div className="w-full mx-auto px-4 h-full flex items-center justify-between">
           {/* 왼쪽: 로고 또는 뒤로가기 */}
           {mode === 'title' ? (
-            <button onClick={handleBack} className="rounded-full hover:opacity-80">
-              <ChevronLeft className="w-6 h-6 cursor-pointer"/>
+            <button
+              onClick={handleBack}
+              className="rounded-full hover:opacity-80"
+            >
+              <ChevronLeft className="w-6 h-6 cursor-pointer" />
             </button>
           ) : (
-            <div className="h-full flex items-center cursor-pointer" onClick={goHome}>
+            <div
+              className="h-full flex items-center cursor-pointer"
+              onClick={goHome}
+            >
               <picture>
                 <source srcSet={Logo.sources.avif} type="image/avif" />
                 <source srcSet={Logo.sources.webp} type="image/webp" />
@@ -82,9 +90,7 @@ export default function Header ({
 
           {/* 가운데: 타이틀 */}
           {mode === 'title' && (
-            <h1
-              className="text-lg font-bold absolute left-1/2 transform -translate-x-1/2"
-            >
+            <h1 className="text-lg font-bold absolute left-1/2 transform -translate-x-1/2">
               {title}
             </h1>
           )}
@@ -99,7 +105,7 @@ export default function Header ({
                 <Menu className="w-6 h-6" />
               </button>
             ) : (
-              mode !== 'title' && ( 
+              mode !== 'title' && (
                 <>
                   {isGuest ? (
                     <button
@@ -153,4 +159,4 @@ export default function Header ({
       )}
     </>
   );
-};
+}

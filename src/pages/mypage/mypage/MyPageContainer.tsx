@@ -4,7 +4,7 @@ import MyPagePageUI from '@/pages/mypage/mypage/MyPageUI';
 import { useUserProfile, useUpdateUserProfile } from '@/api/mypage/profileApi';
 import { useLogout } from '@/api/mypage/LogoutApi';
 import { useDeleteUser } from '@/api/mypage/deletUserApi';
-import { requestKakaoLogin } from "@/api/auth/authApi";
+import { requestKakaoLogin } from '@/api/auth/authApi';
 import { UpdateUserProfilePayload } from '@/api/mypage/profile.dto';
 import { useToastStore } from '@/stores/toastStore';
 import { useAuthStore } from '@/stores/useAuthStore';
@@ -14,9 +14,15 @@ import { compressImage } from '@/utils/compressImage';
 export default function MyPageContainer() {
   const navigate = useNavigate();
   const { showToast } = useToastStore();
-  const isGuest = useAuthStore(state => state.isGuest());
+  const isGuest = useAuthStore((state) => state.isGuest());
 
-  const { data: userProfile, isLoading, isError, error, refetch } = useUserProfile();
+  const {
+    data: userProfile,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useUserProfile();
   const {
     mutateAsyncFn: updateUserProfileAsync,
     isLoading: isUpdateProfileLoading,
@@ -45,7 +51,8 @@ export default function MyPageContainer() {
 
   const [editNickname, setEditNickname] = useState('');
   const [editProfileImageUrl, setEditProfileImageUrl] = useState('');
-  const [resizedProfileImageBlob, setResizedProfileImageBlob] = useState<Blob | null>(null);
+  const [resizedProfileImageBlob, setResizedProfileImageBlob] =
+    useState<Blob | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isCompressing, setIsCompressing] = useState(false);
 
@@ -58,7 +65,9 @@ export default function MyPageContainer() {
   }, [userProfile]);
 
   // 이미지 변경 핸들러
-  const onProfileImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onProfileImageChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
 
@@ -96,12 +105,16 @@ export default function MyPageContainer() {
     if (editNickname !== userProfile.nickname) {
       payload.nickname = editNickname;
     }
-  if (resizedProfileImageBlob) {
-    const compressedFile = new File([resizedProfileImageBlob], 'profile.webp', { type: 'image/webp' });
-    payload.profileImage = compressedFile;
-  } else if (fileInputRef.current?.files?.[0]) {
-    payload.profileImage = fileInputRef.current.files[0];
-  }
+    if (resizedProfileImageBlob) {
+      const compressedFile = new File(
+        [resizedProfileImageBlob],
+        'profile.webp',
+        { type: 'image/webp' }
+      );
+      payload.profileImage = compressedFile;
+    } else if (fileInputRef.current?.files?.[0]) {
+      payload.profileImage = fileInputRef.current.files[0];
+    }
 
     if (Object.keys(payload).length === 0) {
       showToast('error', '수정된 내용이 없습니다.');
@@ -167,11 +180,11 @@ export default function MyPageContainer() {
   };
 
   if (isGuest) {
-    const handleKakaoLogin = async() => {
+    const handleKakaoLogin = async () => {
       try {
         await requestKakaoLogin();
       } catch (error) {
-        console.error("카카오 로그인 요청 실패:", error);
+        console.error('카카오 로그인 요청 실패:', error);
       }
     };
 

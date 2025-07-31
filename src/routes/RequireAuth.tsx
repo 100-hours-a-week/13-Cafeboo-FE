@@ -22,7 +22,7 @@ export default function RequireAuth() {
   const handleClose = () => {
     setShowModal(false);
     localStorage.removeItem('access_token');
-    clearAuth(); 
+    clearAuth();
     navigate('/mypage', { replace: true });
   };
 
@@ -45,4 +45,3 @@ export default function RequireAuth() {
 
   return <Outlet />;
 }
-

@@ -1,9 +1,9 @@
-import SectionCard from "@/components/common/SectionCard";
+import SectionCard from '@/components/common/SectionCard';
 import type { PictureImage } from '@/types/image';
 
 interface Drink {
   brand: string;
-  logo?: PictureImage; 
+  logo?: PictureImage;
   temperature?: string;
   name: string;
   score: number;
@@ -15,7 +15,11 @@ interface AiDrinkRecommendationProps {
   directKakaoLogin: () => void;
 }
 
-export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, directKakaoLogin }: AiDrinkRecommendationProps) {
+export default function AiDrinkRecommendation({
+  aiDrinks,
+  isGuest = false,
+  directKakaoLogin,
+}: AiDrinkRecommendationProps) {
   if (aiDrinks.length === 0) {
     return (
       <SectionCard>
@@ -26,7 +30,9 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
 
   return (
     <div className="relative">
-      <SectionCard className={`!py-0 ${isGuest ? 'filter blur-sm pointer-events-none select-none' : ''}`}>
+      <SectionCard
+        className={`!py-0 ${isGuest ? 'filter blur-sm pointer-events-none select-none' : ''}`}
+      >
         <div className="flex flex-col">
           {aiDrinks.map((drink, idx) => (
             <div
@@ -37,12 +43,18 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
               <div className="w-12 flex-shrink-0">
                 {drink.logo ? (
                   <picture>
-                    <source srcSet={drink.logo.sources.avif} type="image/avif" />
-                    <source srcSet={drink.logo.sources.webp} type="image/webp" />
+                    <source
+                      srcSet={drink.logo.sources.avif}
+                      type="image/avif"
+                    />
+                    <source
+                      srcSet={drink.logo.sources.webp}
+                      type="image/webp"
+                    />
                     <img
                       src={drink.logo.img.src}
                       alt={drink.brand}
-                      width={drink.logo.img.w} 
+                      width={drink.logo.img.w}
                       height={drink.logo.img.h}
                       className="w-11 h-11 rounded-full object-cover"
                       loading="lazy"
@@ -58,7 +70,9 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
               {/* 가운데: 브랜드명 + 온도 + 이름 */}
               <div className="flex-1 flex flex-col gap-1 min-w-0">
                 <div className="flex items-center gap-1">
-                  <span className="text-xs text-gray-600 font-bold truncate">{drink.brand}</span>
+                  <span className="text-xs text-gray-600 font-bold truncate">
+                    {drink.brand}
+                  </span>
                   {drink.temperature && (
                     <span
                       className={`text-[8px] font-medium px-1.5 rounded-full border ${
@@ -71,7 +85,9 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
                     </span>
                   )}
                 </div>
-                <div className="font-medium text-black leading-tight truncate">{drink.name}</div>
+                <div className="font-medium text-black leading-tight truncate">
+                  {drink.name}
+                </div>
               </div>
 
               {/* 오른쪽: score */}
@@ -83,7 +99,9 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
                 >
                   {drink.score}
                 </span>
-                <span className="text-[10px] text-gray-400 leading-none">score</span>
+                <span className="text-[10px] text-gray-400 leading-none">
+                  score
+                </span>
               </div>
             </div>
           ))}
@@ -108,8 +126,8 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
                 }}
               >
                 로그인
-              </span>
-              {' '}하세요.
+              </span>{' '}
+              하세요.
             </div>
           </div>
         </div>
@@ -117,6 +135,3 @@ export default function AiDrinkRecommendation({ aiDrinks, isGuest = false, direc
     </div>
   );
 }
-
-  
-  

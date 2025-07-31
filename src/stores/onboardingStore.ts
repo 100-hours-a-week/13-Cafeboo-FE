@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export interface HealthInfo {
-  gender:string;
+  gender: string;
   age: number;
   height: number;
   weight: number;
@@ -94,4 +94,3 @@ export const useOnboardingStore = create<OnboardingState>((set) => ({
       sleepInfo: { ...defaultSleepInfo },
     }),
 }));
-

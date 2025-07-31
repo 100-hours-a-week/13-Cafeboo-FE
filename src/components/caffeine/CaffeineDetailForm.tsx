@@ -9,21 +9,21 @@ import Large from '@/assets/large.png?w=64;96;144&format=webp;avif&as=picture';
 import Large_ice from '@/assets/large-ice.png?w=64;96;144&format=webp;avif&as=picture';
 import ExtraLarge from '@/assets/extralarge.png?w=64;96;144&format=webp;avif&as=picture';
 import ExtraLarge_ice from '@/assets/extralarge-ice.png?w=64;96;144&format=webp;avif&as=picture';
-import Stick from '@/assets/stick.png?w=64;96;144&format=webp;avif&as=picture';  
+import Stick from '@/assets/stick.png?w=64;96;144&format=webp;avif&as=picture';
 import Monster from '@/assets/monster.png?w=64;96;144&format=webp;avif&as=picture';
 import Hot6 from '@/assets/hot6.png?w=64;96;144&format=webp;avif&as=picture';
 import Redbull from '@/assets/redbull.png?w=64;96;144&format=webp;avif&as=picture';
-import type { CaffeineIntakeRequestDTO } from "@/api/caffeine/caffeine.dto";
+import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 
 interface ImageSet {
   sources: {
-    avif: string;  
-    webp: string;  
+    avif: string;
+    webp: string;
   };
   img: {
-    src: string; 
-    w: number;  
-    h: number;    
+    src: string;
+    w: number;
+    h: number;
     toString(): string;
   };
   toString(): string;
@@ -60,40 +60,44 @@ export default function CaffeineDetailForm({
   const [count, setCount] = useState<number>(1);
   const todayString = new Date().toISOString().slice(0, 10);
   const initialDate =
-  drink.date && drink.date !== todayString
-    ? new Date(`${drink.date}T12:00`)
-    : new Date();
-  
+    drink.date && drink.date !== todayString
+      ? new Date(`${drink.date}T12:00`)
+      : new Date();
+
   const [intakeTime, setIntakeTime] = useState<Date>(initialDate);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const isMixCoffee = drink.cafeName === '믹스커피';
   const isEnergyDrink = drink.cafeName === '에너지 드링크';
-  
+
   const sizeImages: ImageSet[] = isMixCoffee
-  ? [Stick]
-  : isEnergyDrink
-    ? [(() => {
-        if (drink.name.includes('핫식스')) return Hot6;
-        if (drink.name.includes('레드불')) return Redbull;
-        if (drink.name.includes('몬스터')) return Monster;
-        return Medium; 
-      })()]
-    : (() => {
-        const imgsBase = sizes.length === 4 
-          ? [Small, Medium, Large, ExtraLarge]
-          : [Medium, Large, ExtraLarge];
+    ? [Stick]
+    : isEnergyDrink
+      ? [
+          (() => {
+            if (drink.name.includes('핫식스')) return Hot6;
+            if (drink.name.includes('레드불')) return Redbull;
+            if (drink.name.includes('몬스터')) return Monster;
+            return Medium;
+          })(),
+        ]
+      : (() => {
+          const imgsBase =
+            sizes.length === 4
+              ? [Small, Medium, Large, ExtraLarge]
+              : [Medium, Large, ExtraLarge];
 
-        const imgsIce = sizes.length === 4 
-          ? [Small_ice, Medium_ice, Large_ice, ExtraLarge_ice]
-          : [Medium_ice, Large_ice, ExtraLarge_ice];
+          const imgsIce =
+            sizes.length === 4
+              ? [Small_ice, Medium_ice, Large_ice, ExtraLarge_ice]
+              : [Medium_ice, Large_ice, ExtraLarge_ice];
 
-        if (drink.temperature === 'ICED') {
-          return imgsIce;
-        } else {
-          return imgsBase;
-        }
-      })();
+          if (drink.temperature === 'ICED') {
+            return imgsIce;
+          } else {
+            return imgsBase;
+          }
+        })();
 
   // 카페인 총량 계산 (소수점 첫째 자리까지)
   const caffeineTotal = (selectedSize.caffeine_mg * count).toFixed(1);
@@ -126,18 +130,18 @@ export default function CaffeineDetailForm({
     <div className="flex flex-col h-full px-6 pt-6 justify-center">
       {/* 음료명 */}
       <h2 className="text-xl font-semibold text-gray-800 text-center mb-8 border-b-2 p-2 border-[#FE9400] flex justify-center items-center gap-2">
-      <span>{drink.name}</span>
-      {drink.temperature !== 'BASIC' && (
-        <span
-          className={`text-xs font-medium px-2 py-0.5 rounded-full border ${
-            drink.temperature === 'ICED'
-              ? 'border-blue-600 text-blue-600'
-              : 'border-red-600 text-red-600'
-          }`}
-        >
-          {drink.temperature}
-        </span>
-      )}
+        <span>{drink.name}</span>
+        {drink.temperature !== 'BASIC' && (
+          <span
+            className={`text-xs font-medium px-2 py-0.5 rounded-full border ${
+              drink.temperature === 'ICED'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-red-600 text-red-600'
+            }`}
+          >
+            {drink.temperature}
+          </span>
+        )}
       </h2>
 
       {/* 사이즈 선택 */}
@@ -155,22 +159,24 @@ export default function CaffeineDetailForm({
                   : 'bg-gray-50 border-gray-200'
               }`}
             >
-            <picture>
-              <source srcSet={imgSrc.sources.avif} type="image/avif" />
-              <source srcSet={imgSrc.sources.webp} type="image/webp" />
-              <img
-                src={imgSrc.img.src}
-                alt={`${size.size} cup`}
-                width={288}
-                height={500}
-                className="w-12 mb-2 max-h-20 h-auto object-contain"
-                loading="lazy"
-              />
-            </picture>
+              <picture>
+                <source srcSet={imgSrc.sources.avif} type="image/avif" />
+                <source srcSet={imgSrc.sources.webp} type="image/webp" />
+                <img
+                  src={imgSrc.img.src}
+                  alt={`${size.size} cup`}
+                  width={288}
+                  height={500}
+                  className="w-12 mb-2 max-h-20 h-auto object-contain"
+                  loading="lazy"
+                />
+              </picture>
               <span className="text-sm font-medium text-gray-700">
                 {size.size}
               </span>
-              <span className="text-xs text-gray-500">{size.capacity_ml} ml</span>
+              <span className="text-xs text-gray-500">
+                {size.capacity_ml} ml
+              </span>
             </button>
           );
         })}
@@ -224,7 +230,7 @@ export default function CaffeineDetailForm({
             type="datetime-local"
             ref={inputRef}
             value={format(intakeTime, "yyyy-MM-dd'T'HH:mm")}
-            onChange={e => setIntakeTime(new Date(e.currentTarget.value))}
+            onChange={(e) => setIntakeTime(new Date(e.currentTarget.value))}
             onClick={openNativePicker}
             className="absolute inset-0 w-4 h-4 opacity-0"
           />
@@ -233,4 +239,3 @@ export default function CaffeineDetailForm({
     </div>
   );
 }
-

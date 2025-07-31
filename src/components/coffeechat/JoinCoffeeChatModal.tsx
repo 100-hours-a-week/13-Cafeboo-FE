@@ -1,31 +1,36 @@
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
-import { limitLength } from "@/utils/inputUtils";
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { limitLength } from '@/utils/inputUtils';
 
 interface JoinCoffeeChatModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
-  defaultprofileImageType?: "DEFAULT" | "USER";
+  onSubmit: (params: {
+    chatNickname: string;
+    profileImageType: 'DEFAULT' | 'USER';
+  }) => void;
+  defaultprofileImageType?: 'DEFAULT' | 'USER';
 }
 
 export default function JoinCoffeeChatModal({
   isOpen,
   onClose,
   onSubmit,
-  defaultprofileImageType = "DEFAULT",
+  defaultprofileImageType = 'DEFAULT',
 }: JoinCoffeeChatModalProps) {
-  const [chatNickname, setChatNickname] = useState("");
-  const [profileImageType, setProfileImageType] = useState<"DEFAULT" | "USER">(defaultprofileImageType);
+  const [chatNickname, setChatNickname] = useState('');
+  const [profileImageType, setProfileImageType] = useState<'DEFAULT' | 'USER'>(
+    defaultprofileImageType
+  );
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const appRoot = document.getElementById("alert-modal-container");
+    const appRoot = document.getElementById('alert-modal-container');
     if (!appRoot) return;
-    let el = appRoot.querySelector<HTMLDivElement>("#modal-container");
+    let el = appRoot.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
-      el = document.createElement("div");
-      el.id = "modal-container";
+      el = document.createElement('div');
+      el.id = 'modal-container';
       appRoot.appendChild(el);
     }
     setContainer(el);
@@ -41,21 +46,26 @@ export default function JoinCoffeeChatModal({
   if (!isOpen || !container) return null;
 
   const modal = (
-    <div className="absolute inset-0 z-50 flex items-center justify-center" onClick={onClose}>
+    <div
+      className="absolute inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
       <div className="absolute inset-0 bg-black/50" />
       <div
         className="relative bg-white rounded-lg shadow-lg w-10/12 max-w-xs mx-auto overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col p-6 gap-4">
-          <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">커피챗 참여 신청</h2>
+          <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">
+            커피챗 참여 신청
+          </h2>
           <div>
             <label className="block font-semibold mb-2">채팅방 닉네임</label>
             <input
               className="w-full px-3 py-3 border border-gray-200 rounded-sm focus:outline-none focus:ring-1 focus:ring-[#FE9400] focus:border-transparent"
               placeholder="닉네임을 입력해주세요(최대 10자)"
               value={chatNickname}
-              onChange={e => setChatNickname(limitLength(e.target.value, 10))}
+              onChange={(e) => setChatNickname(limitLength(e.target.value, 10))}
               maxLength={10}
             />
           </div>
@@ -74,12 +84,16 @@ export default function JoinCoffeeChatModal({
                 }`}
               >
                 <div className="flex items-center">
-                  <div className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}>
+                  <div
+                    className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}
+                  >
                     {profileImageType === 'DEFAULT' && (
                       <div className="w-1.5 h-1.5 bg-[#FE9400] rounded-full"></div>
                     )}
                   </div>
-                  <span className="font-medium text-[#333333]">기본 프로필</span>
+                  <span className="font-medium text-[#333333]">
+                    기본 프로필
+                  </span>
                 </div>
               </div>
               <div
@@ -91,7 +105,9 @@ export default function JoinCoffeeChatModal({
                 }`}
               >
                 <div className="flex items-center">
-                  <div className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}>
+                  <div
+                    className={`w-4 h-4 rounded-full border mr-3 flex items-center justify-center border-gray-300`}
+                  >
                     {profileImageType === 'USER' && (
                       <div className="w-1.5 h-1.5 bg-[#FE9400] rounded-full"></div>
                     )}
@@ -112,9 +128,11 @@ export default function JoinCoffeeChatModal({
               onClick={handleConfirm}
               className={`
                 flex-1 px-4 py-2 rounded-md
-                ${chatNickname.trim().length === 0
-                  ? 'bg-[#FE9400]/50 text-white'
-                  : 'bg-[#FE9400] text-white cursor-pointer'}
+                ${
+                  chatNickname.trim().length === 0
+                    ? 'bg-[#FE9400]/50 text-white'
+                    : 'bg-[#FE9400] text-white cursor-pointer'
+                }
               `}
               disabled={chatNickname.trim().length === 0}
             >

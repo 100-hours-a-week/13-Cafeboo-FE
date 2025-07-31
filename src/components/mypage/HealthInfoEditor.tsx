@@ -7,9 +7,9 @@ import { Range } from 'react-range';
 import { AlertCircle, Info } from 'lucide-react';
 import AlertModal from '@/components/common/AlertModal';
 import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const DRINK_OPTIONS = [
   '아메리카노',
@@ -28,21 +28,21 @@ const DRINK_OPTIONS = [
 
 const formSchema = z.object({
   age: z
-    .number({required_error: "나이를 입력해주세요."})
-    .min(1, "나이는 최소 1세 이상이어야 합니다.")
-    .max(123, "나이는 최대 123세 이하이어야 합니다."),
+    .number({ required_error: '나이를 입력해주세요.' })
+    .min(1, '나이는 최소 1세 이상이어야 합니다.')
+    .max(123, '나이는 최대 123세 이하이어야 합니다.'),
   height: z
-    .number({required_error: "신장을 입력해주세요."})
-    .min(63, "신장은 최소 63 cm 이상이어야 합니다.")
-    .max(251, "신장은 최대 251 cm 이하이어야 합니다."),
+    .number({ required_error: '신장을 입력해주세요.' })
+    .min(63, '신장은 최소 63 cm 이상이어야 합니다.')
+    .max(251, '신장은 최대 251 cm 이하이어야 합니다.'),
   weight: z
-    .number(({required_error: "체중을 입력해주세요."}))
-    .min(6.5, "체중은 최소 6.5 kg 이상이어야 합니다.")
-    .max(635, "체중은 최대 635 kg 이하이어야 합니다."),
+    .number({ required_error: '체중을 입력해주세요.' })
+    .min(6.5, '체중은 최소 6.5 kg 이상이어야 합니다.')
+    .max(635, '체중은 최대 635 kg 이하이어야 합니다.'),
   averageDailyCaffeineIntake: z
-    .number(({required_error: "카페인 섭취량을 입력해주세요."}))
-    .min(0, "카페인 섭취량은 최소 0잔 이상이어야 합니다.")
-    .max(15, "카페인 섭취량은 최대 15잔 이하여야 합니다.")
+    .number({ required_error: '카페인 섭취량을 입력해주세요.' })
+    .min(0, '카페인 섭취량은 최소 0잔 이상이어야 합니다.')
+    .max(15, '카페인 섭취량은 최대 15잔 이하여야 합니다.'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -118,7 +118,8 @@ export default function HealthInfoEditor({
       age: initHealth?.age ?? undefined,
       height: initHealth?.height ?? undefined,
       weight: initHealth?.weight ?? undefined,
-      averageDailyCaffeineIntake: initCaffeine?.averageDailyCaffeineIntake ?? undefined,
+      averageDailyCaffeineIntake:
+        initCaffeine?.averageDailyCaffeineIntake ?? undefined,
     },
   });
 
@@ -146,12 +147,20 @@ export default function HealthInfoEditor({
       setUserFavoriteDrinks(initCaffeine.userFavoriteDrinks ?? []);
       setUsualIntakeTimes(initCaffeine.frequentDrinkTime ?? '12:00');
       setCaffeineInput(initCaffeine.averageDailyCaffeineIntake.toString());
-      setValue('averageDailyCaffeineIntake', initCaffeine.averageDailyCaffeineIntake);
+      setValue(
+        'averageDailyCaffeineIntake',
+        initCaffeine.averageDailyCaffeineIntake
+      );
     }
   }, [initCaffeine, setValue]);
 
   const handleSave = async () => {
-    const valid = await trigger(['age', 'height', 'weight', 'averageDailyCaffeineIntake']);
+    const valid = await trigger([
+      'age',
+      'height',
+      'weight',
+      'averageDailyCaffeineIntake',
+    ]);
     if (!valid) return setShowAlertModal(true);
 
     onSave({
@@ -192,7 +201,7 @@ export default function HealthInfoEditor({
         setValue(field, num);
         trigger(field);
       }
-  };
+    };
 
   return (
     <div className="space-y-6">
@@ -276,12 +285,22 @@ export default function HealthInfoEditor({
       <div className="grid grid-cols-2 gap-6">
         {[
           { val: isPregnant, setter: setPregnancy, label: '임신 여부' },
-          { val: isTakingBirthPill, setter: setBirthControl, label: '피임약 복용' },
+          {
+            val: isTakingBirthPill,
+            setter: setBirthControl,
+            label: '피임약 복용',
+          },
           { val: isSmoking, setter: setSmoking, label: '흡연 여부' },
-          { val: hasLiverDisease, setter: setHasLiverDisease, label: '간 질환 여부' },
+          {
+            val: hasLiverDisease,
+            setter: setHasLiverDisease,
+            label: '간 질환 여부',
+          },
         ].map(({ val, setter, label }) => (
           <div key={label}>
-            <Label className="mb-2 block text-base font-semibold">{label}</Label>
+            <Label className="mb-2 block text-base font-semibold">
+              {label}
+            </Label>
             <TwoOptionToggle
               options={[
                 { label: '예', value: 'true' },
@@ -299,95 +318,100 @@ export default function HealthInfoEditor({
         <Label className="text-base mb-2 block font-semibold">
           카페인 민감도
         </Label>
-        <div className='px-3 mt-10'>
-        <Range
-        step={1}
-        min={0}
-        max={100}
-        values={[caffeineSensitivity]} 
-        onChange={([v]) => setCaffeineSensitivity(v)} 
-        renderTrack={({ props, children }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: '6px',
-              width: '100%',
-              background: '#AAAAAA4D',
-              borderRadius: '9999px',
-              position: 'relative',
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                height: '6px',
-                borderRadius: '9999px',
-                backgroundColor: '#FE9400',
-                width: `${caffeineSensitivity}%`,
-                top: 0,
-                left: 0,
-              }}
-            />
-            {children}
-          </div>
-        )}
-        renderThumb={({ props }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: '24px',
-              width: '24px',
-              borderRadius: '50%',
-              backgroundColor: 'white',
-              border: '2px solid #FE9400',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative',
-              boxSizing: 'border-box',
-              cursor: 'pointer',
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                bottom: 'calc(100% + 8px)',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                backgroundColor: '#FE9400',
-                color: 'white',
-                fontSize: '12px',
-                padding: '2px 6px',
-                borderRadius: '9999px',
-                whiteSpace: 'nowrap',
-                userSelect: 'none',
-              }}
-            >
-              {caffeineSensitivity}
-            </div>
-          </div>
-        )}
-      />
-      </div>
+        <div className="px-3 mt-10">
+          <Range
+            step={1}
+            min={0}
+            max={100}
+            values={[caffeineSensitivity]}
+            onChange={([v]) => setCaffeineSensitivity(v)}
+            renderTrack={({ props, children }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: '6px',
+                  width: '100%',
+                  background: '#AAAAAA4D',
+                  borderRadius: '9999px',
+                  position: 'relative',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    height: '6px',
+                    borderRadius: '9999px',
+                    backgroundColor: '#FE9400',
+                    width: `${caffeineSensitivity}%`,
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+                {children}
+              </div>
+            )}
+            renderThumb={({ props }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: '24px',
+                  width: '24px',
+                  borderRadius: '50%',
+                  backgroundColor: 'white',
+                  border: '2px solid #FE9400',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative',
+                  boxSizing: 'border-box',
+                  cursor: 'pointer',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: 'calc(100% + 8px)',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    backgroundColor: '#FE9400',
+                    color: 'white',
+                    fontSize: '12px',
+                    padding: '2px 6px',
+                    borderRadius: '9999px',
+                    whiteSpace: 'nowrap',
+                    userSelect: 'none',
+                  }}
+                >
+                  {caffeineSensitivity}
+                </div>
+              </div>
+            )}
+          />
+        </div>
 
-      {/* 좌우 숫자 표시 */}
-      <div className="flex justify-between mt-2 pl-2 text-[#595959] text-sm select-none">
-        <span>0</span>
-        <span>100</span>
-      </div>
+        {/* 좌우 숫자 표시 */}
+        <div className="flex justify-between mt-2 pl-2 text-[#595959] text-sm select-none">
+          <span>0</span>
+          <span>100</span>
+        </div>
       </div>
 
       {/* 하루 평균 섭취량 */}
       <div className="flex items-center justify-between mt-10 mb-8">
-        <Label className="text-base font-semibold">하루 평균 카페인 음료 섭취량</Label>
+        <Label className="text-base font-semibold">
+          하루 평균 카페인 음료 섭취량
+        </Label>
         <div className="flex items-center">
           <input
             type="text"
             inputMode="decimal"
             value={caffeineInput}
-            onChange={handleDecimalChange(setCaffeineInput, 'averageDailyCaffeineIntake')}
+            onChange={handleDecimalChange(
+              setCaffeineInput,
+              'averageDailyCaffeineIntake'
+            )}
             className="
               w-16 mx-1 py-1 text-center
               border border-[#C7C7CC]
@@ -407,7 +431,9 @@ export default function HealthInfoEditor({
 
       {/* 선호 음료 */}
       <div className="mt-10">
-        <Label className="text-base mt-4 mb-4 block font-semibold">선호하는 종류(중복 선택 가능)</Label>
+        <Label className="text-base mt-4 mb-4 block font-semibold">
+          선호하는 종류(중복 선택 가능)
+        </Label>
         <div className="w-full ">
           <Tag
             items={DRINK_OPTIONS.map((label) => ({ label }))}
@@ -420,7 +446,9 @@ export default function HealthInfoEditor({
 
       {/* 자주 마시는 시간대 */}
       <div>
-        <Label className="text-base mb-2 block font-semibold">가장 자주 마시는 시간대</Label>
+        <Label className="text-base mb-2 block font-semibold">
+          가장 자주 마시는 시간대
+        </Label>
         <Input
           type="time"
           step={60}
@@ -477,4 +505,3 @@ export default function HealthInfoEditor({
     </div>
   );
 }
-

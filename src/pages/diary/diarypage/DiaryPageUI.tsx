@@ -56,9 +56,9 @@ export default function DiaryPageUI({
 
   return (
     <PageLayout
-      headerMode="logo"      
-      showAdd={true}        
-      onAddClick={() => setIsSheetOpen(true)}  
+      headerMode="logo"
+      showAdd={true}
+      onAddClick={() => setIsSheetOpen(true)}
     >
       <SectionCard>
         {calendarStatus.isLoading ? (
@@ -84,7 +84,8 @@ export default function DiaryPageUI({
       </SectionCard>
 
       <h2 className="mt-6 mb-2 text-base text-[#000000] font-semibold">
-        {new Date(selectedDate).getMonth() + 1}월 {new Date(selectedDate).getDate()}일 카페인 기록
+        {new Date(selectedDate).getMonth() + 1}월{' '}
+        {new Date(selectedDate).getDate()}일 카페인 기록
       </h2>
 
       {dailyStatus.isLoading ? (

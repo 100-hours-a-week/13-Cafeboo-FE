@@ -1,4 +1,8 @@
-import { useQuery, UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import type { ApiResponse } from '@/types/api';
 
 export function createQueryHandler<
@@ -8,7 +12,10 @@ export function createQueryHandler<
 >(
   key: TQueryKey,
   queryFn: () => Promise<TData>,
-  options?: Omit<UseQueryOptions<TData, TError, TData, TQueryKey>, 'queryKey' | 'queryFn'>
+  options?: Omit<
+    UseQueryOptions<TData, TError, TData, TQueryKey>,
+    'queryKey' | 'queryFn'
+  >
 ): UseQueryResult<TData, TError> {
   return useQuery<TData, TError, TData, TQueryKey>({
     queryKey: key,

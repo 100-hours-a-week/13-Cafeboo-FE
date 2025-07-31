@@ -27,4 +27,3 @@ export const useMonthlyReport = (year: string, month: string) => {
     }
   );
 };
-

@@ -1,4 +1,4 @@
-import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
+import type { CoffeeChatListItem } from '@/api/coffeechat/coffeechat.dto';
 
 interface CardFooterProps {
   room: CoffeeChatListItem;
@@ -16,7 +16,7 @@ export default function CardFooter({
   onViewClick,
 }: CardFooterProps) {
   // REVIEWABLE 탭에서는 버튼 구조가 다름
-  const isReviewable = filter === "REVIEWABLE";
+  const isReviewable = filter === 'REVIEWABLE';
 
   return (
     <div className="flex items-center justify-between">

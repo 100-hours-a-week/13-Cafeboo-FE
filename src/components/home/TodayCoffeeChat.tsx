@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import HorizontalScroller from "@/components/common/HorizontalScroller";
-import SectionCard from "@/components/common/SectionCard";
+import { useNavigate } from 'react-router-dom';
+import HorizontalScroller from '@/components/common/HorizontalScroller';
+import SectionCard from '@/components/common/SectionCard';
 import CoffeeChatIcon from '@/assets/coffeechat3D.png?w=160;320;480&format=webp;avif&as=picture';
-import { Users, ChevronRight } from "lucide-react";
-import LoginRequiredModal from "@/components/common/LoginRequiredModal";
+import { Users, ChevronRight } from 'lucide-react';
+import LoginRequiredModal from '@/components/common/LoginRequiredModal';
 
 interface TodayCoffeeChatSectionProps {
   rooms: Array<{
@@ -14,7 +14,7 @@ interface TodayCoffeeChatSectionProps {
     currentMemberCount: number;
     maxMemberCount: number;
   }>;
-  isGuest: boolean; 
+  isGuest: boolean;
   isLoginAlertOpen: boolean;
   onLoginAlertOpen: () => void;
   onLoginAlertClose: () => void;
@@ -32,7 +32,6 @@ export default function TodayCoffeeChatSection({
 }) {
   const navigate = useNavigate();
 
-  
   const handleCardClick = (coffeeChatId: string) => {
     if (isGuest) {
       onLoginAlertOpen();
@@ -45,9 +44,11 @@ export default function TodayCoffeeChatSection({
     <div className="mt-6">
       {/* 제목 & 더보기 버튼 */}
       <div className="flex items-center justify-between mb-2 pr-1">
-      <h2 className="text-base font-semibold text-[#333333]">오늘의 커피챗</h2>
+        <h2 className="text-base font-semibold text-[#333333]">
+          오늘의 커피챗
+        </h2>
         <div className="flex text-xs font-medium items-center justify-center">
-          <button onClick={() => navigate("/coffeechat")}>
+          <button onClick={() => navigate('/coffeechat')}>
             <ChevronRight className="w-5 h-5 cursor-pointer text-800" />
           </button>
         </div>
@@ -68,8 +69,14 @@ export default function TodayCoffeeChatSection({
                 {/* 왼쪽 아이콘 영역 */}
                 <div className="flex items-center justify-center w-16 h-16 rounded-md overflow-hidden">
                   <picture>
-                    <source srcSet={CoffeeChatIcon.sources.avif} type="image/avif" />
-                    <source srcSet={CoffeeChatIcon.sources.webp} type="image/webp" />
+                    <source
+                      srcSet={CoffeeChatIcon.sources.avif}
+                      type="image/avif"
+                    />
+                    <source
+                      srcSet={CoffeeChatIcon.sources.webp}
+                      type="image/webp"
+                    />
                     <img
                       src={CoffeeChatIcon.img.src}
                       alt="preview"
@@ -83,7 +90,9 @@ export default function TodayCoffeeChatSection({
 
                 {/* 오른쪽 정보 영역 */}
                 <div className="flex flex-col flex-1 overflow-hidden">
-                  <h3 className="text-sm font-semibold truncate">{room.title}</h3>
+                  <h3 className="text-sm font-semibold truncate">
+                    {room.title}
+                  </h3>
 
                   <p className="text-[8pt] mt-0.5 truncate">
                     {room.time} · {room.address}

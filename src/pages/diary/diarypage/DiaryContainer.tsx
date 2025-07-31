@@ -8,7 +8,9 @@ import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 
 export default function DiaryContainer() {
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState(today.toISOString().slice(0, 10));
+  const [selectedDate, setSelectedDate] = useState(
+    today.toISOString().slice(0, 10)
+  );
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -63,7 +65,10 @@ export default function DiaryContainer() {
       refetchCalendar();
       refetchDaily();
     } catch (error: any) {
-      console.error('카페인 섭취 등록 오류:' + `${error.status}(${error.code}) - ${error.message}`);
+      console.error(
+        '카페인 섭취 등록 오류:' +
+          `${error.status}(${error.code}) - ${error.message}`
+      );
       setAlertMessage(error.message || '카페인 등록에 실패했습니다.');
       setIsAlertOpen(true);
     }

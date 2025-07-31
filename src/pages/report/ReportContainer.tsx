@@ -8,13 +8,14 @@ import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import { getWeekOfMonth } from 'date-fns';
 
 export default function ReportContainer() {
-
   const today = new Date();
   const defaultYear = String(today.getFullYear());
   const defaultMonth = String(today.getMonth() + 1);
   const defaultWeek = `${getWeekOfMonth(today)}`;
 
-  const [periodType, setPeriodType] = useState<'weekly' | 'monthly' | 'yearly'>('weekly');
+  const [periodType, setPeriodType] = useState<'weekly' | 'monthly' | 'yearly'>(
+    'weekly'
+  );
   const [selectedYear, setSelectedYear] = useState(defaultYear);
   const [selectedMonth, setSelectedMonth] = useState(defaultMonth);
   const [selectedWeek, setSelectedWeek] = useState(defaultWeek);
@@ -54,26 +55,47 @@ export default function ReportContainer() {
   }, [periodType, selectedYear, selectedMonth, selectedWeek]);
 
   // 공통 데이터 구조 매핑
-  const reportData = periodType === 'weekly' ? {
-    dailyIntakeTotals: weeklyData?.dailyIntakeTotals,
-    dailyCaffeineLimit: weeklyData?.dailyCaffeineLimit,
-    caffeineAvg: weeklyData?.dailyCaffeineAvg,
-    overLimitDays: weeklyData?.overLimitDays,
-    aiMessage: weeklyData?.aiMessage,
-    weeklyIntakeTotals: monthlyData?.weeklyIntakeTotals,
-  } : periodType === 'monthly' ? {
-    caffeineAvg: monthlyData?.weeklyCaffeineAvg,
-    weeklyIntakeTotals: monthlyData?.weeklyIntakeTotals,
-  } : {
-    caffeineAvg: yearlyData?.monthlyCaffeineAvg,
-    monthlyIntakeTotals: yearlyData?.monthlyIntakeTotals,
-  };
+  const reportData =
+    periodType === 'weekly'
+      ? {
+          dailyIntakeTotals: weeklyData?.dailyIntakeTotals,
+          dailyCaffeineLimit: weeklyData?.dailyCaffeineLimit,
+          caffeineAvg: weeklyData?.dailyCaffeineAvg,
+          overLimitDays: weeklyData?.overLimitDays,
+          aiMessage: weeklyData?.aiMessage,
+          weeklyIntakeTotals: monthlyData?.weeklyIntakeTotals,
+        }
+      : periodType === 'monthly'
+        ? {
+            caffeineAvg: monthlyData?.weeklyCaffeineAvg,
+            weeklyIntakeTotals: monthlyData?.weeklyIntakeTotals,
+          }
+        : {
+            caffeineAvg: yearlyData?.monthlyCaffeineAvg,
+            monthlyIntakeTotals: yearlyData?.monthlyIntakeTotals,
+          };
 
-  const isLoading = periodType === 'weekly' ? loadingWeekly : periodType === 'monthly' ? loadingMonthly : loadingYearly;
-  const isError = periodType === 'weekly' ? errorWeekly : periodType === 'monthly' ? errorMonthly : errorYearly;
-  const errorMessage = periodType === 'weekly' ? weeklyError?.message : periodType === 'monthly' ? monthlyError?.message : yearlyError?.message;
+  const isLoading =
+    periodType === 'weekly'
+      ? loadingWeekly
+      : periodType === 'monthly'
+        ? loadingMonthly
+        : loadingYearly;
+  const isError =
+    periodType === 'weekly'
+      ? errorWeekly
+      : periodType === 'monthly'
+        ? errorMonthly
+        : errorYearly;
+  const errorMessage =
+    periodType === 'weekly'
+      ? weeklyError?.message
+      : periodType === 'monthly'
+        ? monthlyError?.message
+        : yearlyError?.message;
 
-  const handlePeriodChange = (period: 'weekly' | 'monthly' | 'yearly') => setPeriodType(period);
+  const handlePeriodChange = (period: 'weekly' | 'monthly' | 'yearly') =>
+    setPeriodType(period);
 
   const handleSubmitRecord = async (record: CaffeineIntakeRequestDTO) => {
     try {

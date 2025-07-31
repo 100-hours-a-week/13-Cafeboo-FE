@@ -11,7 +11,7 @@ const NotFoundPage = lazy(() => import('@/pages/common/NotFoundPage'));
 const MainRoutes = () => (
   <Suspense fallback={<div>로딩 중...</div>}>
     <Routes>
-      <Route path='event/*' element={<EventPage />} />
+      <Route path="event/*" element={<EventPage />} />
       <Route path="diary/*" element={<DiaryRoutes />} />
       <Route path="report/*" element={<ReportRoutes />} />
       <Route path="mypage/*" element={<MypageRoutes />} />

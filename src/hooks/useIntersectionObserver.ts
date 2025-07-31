@@ -1,7 +1,10 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from 'react';
 
 export const useIntersectionObserver = (
-  onIntersect: (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void,
+  onIntersect: (
+    entry: IntersectionObserverEntry,
+    observer: IntersectionObserver
+  ) => void,
   options?: IntersectionObserverInit
 ) => {
   const ref = useRef<HTMLDivElement>(null);

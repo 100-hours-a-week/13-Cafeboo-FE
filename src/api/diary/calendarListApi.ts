@@ -19,7 +19,7 @@ export const useDailyIntake = (date: string) => {
     () => fetchDailyIntake(date),
     {
       staleTime: 60000,
-      gcTime: 300000, 
+      gcTime: 300000,
       refetchOnMount: 'always',
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
@@ -27,4 +27,3 @@ export const useDailyIntake = (date: string) => {
     }
   );
 };
-

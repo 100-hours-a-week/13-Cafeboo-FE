@@ -28,12 +28,14 @@ const ReportSummary: React.FC<ReportSummaryProps> = ({
       {/* 평균 섭취 */}
       <div className="p-4 flex justify-between items-center">
         <div className="flex justify-between items-center">
-            <span className="text-md mr-2">🌱</span>
-            <span className="text-[#333333] font-medium">
-              {avgLabelMap[period]}
-            </span>
-          </div>
-        <span className="text-[#333333] font-medium">{averageCaffeine.toFixed(1)} mg</span>
+          <span className="text-md mr-2">🌱</span>
+          <span className="text-[#333333] font-medium">
+            {avgLabelMap[period]}
+          </span>
+        </div>
+        <span className="text-[#333333] font-medium">
+          {averageCaffeine.toFixed(1)} mg
+        </span>
       </div>
 
       {/* 카페인 초과일 (주간 리포트일 때만) */}

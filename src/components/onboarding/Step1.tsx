@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import { Label } from '@/components/ui/label';
 import { useOnboardingStore } from '@/stores/onboardingStore';
 import { AlertCircle } from 'lucide-react';
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import TwoOptionToggle from '@/components/common/TwoOptionToggle';
 import { sanitizeIntegerInput, sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   age: z
     .number()
-    .min(1, "나이는 최소 1세 이상이어야 합니다.")
-    .max(123, "나이는 최대 123세 이하이어야 합니다."),
+    .min(1, '나이는 최소 1세 이상이어야 합니다.')
+    .max(123, '나이는 최대 123세 이하이어야 합니다.'),
   height: z
     .number()
-    .min(63, "신장은 최소 63 cm 이상이어야 합니다.")
-    .max(251, "신장은 최대 251 cm 이하이어야 합니다."),
+    .min(63, '신장은 최소 63 cm 이상이어야 합니다.')
+    .max(251, '신장은 최대 251 cm 이하이어야 합니다.'),
   weight: z
     .number()
-    .min(6.5, "체중은 최소 6.5 kg 이상이어야 합니다.")
-    .max(635, "체중은 최대 635 kg 이하이어야 합니다."),
+    .min(6.5, '체중은 최소 6.5 kg 이상이어야 합니다.')
+    .max(635, '체중은 최대 635 kg 이하이어야 합니다.'),
 });
 
 // ✅ React Hook Form에서 타입 정의
@@ -44,7 +44,7 @@ const Step1 = () => {
   });
 
   useEffect(() => {
-    setValue("age", healthInfo.age ?? '');
+    setValue('age', healthInfo.age ?? '');
     setHeightInput(healthInfo.height != null ? String(healthInfo.height) : '');
     setWeightInput(healthInfo.weight != null ? String(healthInfo.weight) : '');
   }, [healthInfo, setValue]);
@@ -74,9 +74,11 @@ const Step1 = () => {
             value={healthInfo.age ?? ''}
             onChange={(e) => {
               const sanitized = sanitizeIntegerInput(e.target.value);
-              updateHealth({ age: sanitized === '' ? undefined : Number(sanitized) });
-              setValue("age", Number(sanitized));
-              trigger("age");
+              updateHealth({
+                age: sanitized === '' ? undefined : Number(sanitized),
+              });
+              setValue('age', Number(sanitized));
+              trigger('age');
             }}
             className="
               w-16             
@@ -93,10 +95,10 @@ const Step1 = () => {
         </div>
       </div>
       {errors.age && (
-          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
-            <AlertCircle className="w-3 h-3" />
-            {errors.age.message}
-          </p>
+        <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+          <AlertCircle className="w-3 h-3" />
+          {errors.age.message}
+        </p>
       )}
 
       {/* 신장 입력 */}
@@ -110,8 +112,8 @@ const Step1 = () => {
             onChange={(e) => {
               const sanitized = sanitizeDecimalInput(e.target.value);
               setHeightInput(sanitized);
-              setValue("height", Number(sanitized));
-              trigger("height");
+              setValue('height', Number(sanitized));
+              trigger('height');
             }}
             onBlur={() => {
               const num = parseFloat(heightInput);
@@ -133,10 +135,10 @@ const Step1 = () => {
         </div>
       </div>
       {errors.height && (
-          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
-            <AlertCircle className="w-3 h-3" />
-            {errors.height.message}
-          </p>
+        <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+          <AlertCircle className="w-3 h-3" />
+          {errors.height.message}
+        </p>
       )}
 
       {/* 체중 입력 */}
@@ -150,8 +152,8 @@ const Step1 = () => {
             onChange={(e) => {
               const sanitized = sanitizeDecimalInput(e.target.value);
               setWeightInput(sanitized);
-              setValue("weight", Number(sanitized));
-              trigger("weight");
+              setValue('weight', Number(sanitized));
+              trigger('weight');
             }}
             onBlur={() => {
               const num = parseFloat(weightInput);
@@ -169,10 +171,10 @@ const Step1 = () => {
         </div>
       </div>
       {errors.weight && (
-          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
-            <AlertCircle className="w-3 h-3" />
-            {errors.weight.message}
-          </p>
+        <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+          <AlertCircle className="w-3 h-3" />
+          {errors.weight.message}
+        </p>
       )}
 
       {/* Boolean 토글 4개 */}
@@ -187,19 +189,19 @@ const Step1 = () => {
 
           return (
             <div key={key}>
-            <Label className="mb-2 block text-base font-semibold">
-              {label}
-            </Label>
-    
-            <TwoOptionToggle
-              options={[
-                { label: '예', value: 'true' },
-                { label: '아니오', value: 'false' },
-              ]}
-              value={String(val)}
-              onChange={(v) => updateHealth({ [key]: v === 'true' })}
-            />
-          </div>
+              <Label className="mb-2 block text-base font-semibold">
+                {label}
+              </Label>
+
+              <TwoOptionToggle
+                options={[
+                  { label: '예', value: 'true' },
+                  { label: '아니오', value: 'false' },
+                ]}
+                value={String(val)}
+                onChange={(v) => updateHealth({ [key]: v === 'true' })}
+              />
+            </div>
           );
         })}
       </div>
