@@ -12,7 +12,7 @@ export default function CustomToast() {
     } else {
       const timeout = setTimeout(() => {
         setShow(false);
-      }, 300); 
+      }, 300);
       return () => clearTimeout(timeout);
     }
   }, [visible]);
@@ -40,5 +40,3 @@ export default function CustomToast() {
     </div>
   );
 }
-
-

@@ -38,7 +38,7 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
 
   if (!hasData) {
     return (
-      <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 mb-4 mx-auto py-4">
+      <div className="w-full bg-white rounded-lg border border-[#d0ced3] mb-4 mx-auto py-4">
         <EmptyState title="데이터가 없습니다" icon={<FileText size={32} />} />
       </div>
     );
@@ -91,8 +91,13 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
 
   const dailyLimit = data.dailyCaffeineLimit ?? 400;
 
+  const exceedLimit = useMemo(() => {
+    if (period !== 'weekly' || !data.dailyIntakeTotals) return false;
+    return data.dailyIntakeTotals.some((item) => item.caffeineMg > dailyLimit);
+  }, [period, data.dailyIntakeTotals, dailyLimit]);
+
   return (
-    <div className="w-full bg-white rounded-lg shadow-sm border border-gray-200 mb-4 mx-auto py-4">
+    <div className="w-full bg-white rounded-lg border border-[#d0ced3] mb-4 mx-auto py-4">
       <h3 className="text-[#000000] font-medium mb-4 text-center">
         {title} 그래프
       </h3>
@@ -137,7 +142,7 @@ export const ReportChart: React.FC<ReportChartProps> = ({ period, data }) => {
         </BarChart>
       </ResponsiveContainer>
 
-      {period === 'weekly' && (
+      {period === 'weekly' && exceedLimit && (
         <div className="flex items-center ml-10 text-xs text-[#333333]">
           <span className="inline-block w-4 border-[#ff4d4f] mr-2 border-b-2 border-dashed" />
           권장량: {dailyLimit} mg

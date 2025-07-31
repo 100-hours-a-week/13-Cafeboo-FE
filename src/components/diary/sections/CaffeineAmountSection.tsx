@@ -1,4 +1,4 @@
-import SectionCard from "@/components/common/SectionCard";
+import SectionCard from '@/components/common/SectionCard';
 
 interface CaffeineAmountSectionProps {
   amount: number;

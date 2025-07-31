@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import { CalendarIcon, Clock, MapPin, Hash, FilePen } from 'lucide-react';
 import SectionCard from '@/components/common/SectionCard';
 import EmptyState from '@/components/common/EmptyState';
@@ -29,13 +29,17 @@ export default function ViewReviewForm({
     return (
       <div className="flex flex-wrap gap-2">
         {imageUrls.map((url, index) => (
-          <div key={index} className="w-16 h-16 bg-gray-50 rounded overflow-hidden">
+          <div
+            key={index}
+            className="w-16 h-16 bg-gray-50 rounded overflow-hidden"
+          >
             <img
               src={url}
               alt={`후기 이미지 ${index + 1}`}
-              width={64}  
+              width={64}
               height={64}
               className="w-full h-full object-cover cursor-pointer"
+              loading="lazy"
               onClick={() => setSelectedImage(url)}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -48,14 +52,20 @@ export default function ViewReviewForm({
         ))}
       </div>
     );
-  };  
+  };
 
   return (
     <>
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-semibold truncate">{coffeeChatData.title}</h1>
-          <HeartButton liked={liked} likeCount={likeCount} onToggle={onLikeToggle} />
+          <h1 className="text-xl font-semibold truncate">
+            {coffeeChatData.title}
+          </h1>
+          <HeartButton
+            liked={liked}
+            likeCount={likeCount}
+            onToggle={onLikeToggle}
+          />
         </div>
         {coffeeChatData.tags && coffeeChatData.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
@@ -117,6 +127,7 @@ export default function ViewReviewForm({
                         width={size.width}
                         height={size.height}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
@@ -126,7 +137,9 @@ export default function ViewReviewForm({
                       <div className="w-full h-full bg-gray-300" />
                     )}
                   </div>
-                  <span className="text-sm font-medium">{review.writer.chatNickname}</span>
+                  <span className="text-sm font-medium">
+                    {review.writer.chatNickname}
+                  </span>
                 </div>
 
                 <p className="text-sm text-[#333333] mb-3">{review.text}</p>
@@ -146,43 +159,47 @@ export default function ViewReviewForm({
           <li key={member.memberId} className="flex items-center gap-3">
             {member.profileImageUrl ? (
               <MemberImage
-              url={member.profileImageUrl}
-              alt={member.chatNickname}
-              className="w-8 h-8"
-            />
+                url={member.profileImageUrl}
+                alt={member.chatNickname}
+                className="w-8 h-8"
+              />
             ) : (
               <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
                 {member.chatNickname}
               </div>
             )}
-            <span className="flex items-center gap-1 text-sm">{member.chatNickname}</span>
+            <span className="flex items-center gap-1 text-sm">
+              {member.chatNickname}
+            </span>
           </li>
         ))}
       </ul>
 
-    {selectedImage && size && (
-      <div
-        className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-10"
-        onClick={() => setSelectedImage(null)}
-      >
-        <img
-          src={selectedImage}
-          alt="사진 확대"
-          width={size.width}
-          height={size.height}
-          className="max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg object-contain"
-          onClick={(e) => e.stopPropagation()}
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            const fallbackDiv = document.createElement('div');
-            fallbackDiv.className = 'max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg bg-gray-300 flex items-center justify-center';
-            fallbackDiv.textContent = '이미지를 불러올 수 없습니다.';
-            target.parentElement?.appendChild(fallbackDiv);
-          }}
-        />
-      </div>
-    )}
+      {selectedImage && size && (
+        <div
+          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-10"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="사진 확대"
+            width={size.width}
+            height={size.height}
+            className="max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg object-contain"
+            loading="lazy"
+            onClick={(e) => e.stopPropagation()}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallbackDiv = document.createElement('div');
+              fallbackDiv.className =
+                'max-w-[80vw] max-h-[80vh] rounded-xl shadow-lg bg-gray-300 flex items-center justify-center';
+              fallbackDiv.textContent = '이미지를 불러올 수 없습니다.';
+              target.parentElement?.appendChild(fallbackDiv);
+            }}
+          />
+        </div>
+      )}
     </>
   );
 }

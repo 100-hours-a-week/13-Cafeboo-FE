@@ -5,7 +5,7 @@ import { useToastStore } from '@/stores/toastStore';
 
 interface ChatMessage {
   messageId: string;
-  messageType?: "TALK" | "JOIN" | "LEAVE";
+  messageType?: 'TALK' | 'JOIN' | 'LEAVE';
   content: string | null;
   sentAt: string;
   sender: { memberId: string; chatNickname: string; profileImageUrl: string };
@@ -48,7 +48,9 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     }
 
     if (stompClient?.connected) {
-      console.log('Zustand: Disconnecting previous connection to connect to new coffeechat.');
+      console.log(
+        'Zustand: Disconnecting previous connection to connect to new coffeechat.'
+      );
       stompClient.deactivate();
       set({ isConnected: false, stompClient: null, currentCoffeechatId: null });
     }
@@ -56,7 +58,8 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     set({ currentCoffeechatId: coffeechatId, messages: [], error: null });
 
     const client = new Client({
-      webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`),
+      webSocketFactory: () =>
+        new SockJS(`${import.meta.env.VITE_API_BASE_URL}ws`),
       reconnectDelay: 5000,
       heartbeatIncoming: 0,
       heartbeatOutgoing: 10000,
@@ -65,11 +68,13 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
         set({ isConnected: true, stompClient: client, error: null });
         const toastStore = useToastStore;
         client.subscribe('/user/queue/errors', (msg: IMessage) => {
-          console.warn("⚠️ Zustand STOMP Error:", msg.body);
-          toastStore.getState().showToast(
-            "error",
-            "부적절한 표현이 감지되어 메시지를 전송할 수 없습니다."
-          );
+          console.warn('⚠️ Zustand STOMP Error:', msg.body);
+          toastStore
+            .getState()
+            .showToast(
+              'error',
+              '부적절한 표현이 감지되어 메시지를 전송할 수 없습니다.'
+            );
         });
 
         if (onConnected) onConnected();
@@ -124,7 +129,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
         isConnected: false,
         stompClient: null,
         currentCoffeechatId: null,
-        error: 'WebSocket 연결이 종료되었습니다.', 
+        error: 'WebSocket 연결이 종료되었습니다.',
       });
     } else {
       console.log('Zustand: Not connected, no need to disconnect.');
@@ -134,12 +139,13 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   retryConnect: () => {
     window.location.reload();
   },
-  
 
   sendMessage: (destination: string, payload: any, onSent?: () => void) => {
     const { stompClient, isConnected } = get();
     if (!stompClient || !isConnected || !stompClient.connected) {
-      console.warn('❌ Zustand: Cannot send message — WebSocket not connected.');
+      console.warn(
+        '❌ Zustand: Cannot send message — WebSocket not connected.'
+      );
       return;
     }
 
@@ -158,7 +164,7 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
   addMessage: (message: ChatMessage) => {
     set((state) => {
       if (state.messages.find((m) => m.messageId === message.messageId)) {
-        return state; 
+        return state;
       }
       return {
         messages: [...state.messages, message],
@@ -169,5 +175,3 @@ export const useWebSocketStore = create<WebSocketState>((set, get) => ({
     set({ messages: [] });
   },
 }));
-
-

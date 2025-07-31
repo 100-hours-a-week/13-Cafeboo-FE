@@ -6,9 +6,9 @@ import EmptyState from '@/components/common/EmptyState';
 import AlertModal from '@/components/common/AlertModal';
 import MemberImage from '@/components/common/MemberImage';
 import { AlertCircle, AlertTriangle } from 'lucide-react';
-import { BiSolidPencil } from "react-icons/bi";
-import { FiLogOut } from "react-icons/fi";
-import { LuCircleUserRound } from "react-icons/lu";
+import { BiSolidPencil } from 'react-icons/bi';
+import { FiLogOut } from 'react-icons/fi';
+import { LuCircleUserRound } from 'react-icons/lu';
 
 interface MyPageUIProps {
   userProfile: any;
@@ -49,6 +49,7 @@ interface MyPageUIProps {
   setEditNickname: (name: string) => void;
   editProfileImageUrl: string;
   setEditProfileImageUrl: (url: string) => void;
+  isCompressing: boolean;
   navigate: any;
 }
 
@@ -62,6 +63,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
   setEditNickname,
   editProfileImageUrl,
   setEditProfileImageUrl,
+  isCompressing,
   navigate,
 }) => {
   const {
@@ -101,9 +103,8 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
 
   return (
     <PageLayout headerMode="logo">
-
       {/* 프로필 섹션 */}
-      <SectionCard className='border-none !px-2'>
+      <SectionCard className="border-none !px-2">
         {isLoading ? (
           <div className="flex justify-center items-center h-32">
             <LoadingSpinner type="clip" size="medium" fullScreen={false} />
@@ -126,7 +127,7 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
       </SectionCard>
 
       {/* 메뉴 섹션 */}
-      <div className='p-1'>
+      <div className="p-1">
         <button
           className="w-full flex items-center text-left px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
           onClick={openEditModal}
@@ -138,8 +139,8 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
           className="w-full flex items-center text-left px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
           onClick={() => navigate('/mypage/edit')}
         >
-          <LuCircleUserRound className="w-4.5 h-4.5 mr-3 text-[#333]" />
-          내 정보 수정
+          <LuCircleUserRound className="w-4.5 h-4.5 mr-3 text-[#333]" />내 정보
+          수정
         </button>
         <button
           className="w-full flex items-center text-left px-4 py-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200"
@@ -161,7 +162,9 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
             className="relative bg-white rounded-lg shadow-lg w-11/12 max-w-xs p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-lg font-semibold mb-4 text-center">프로필 편집</h3>
+            <h3 className="text-lg font-semibold mb-4 text-center">
+              프로필 편집
+            </h3>
 
             <div
               className="relative w-28 h-28 mx-auto my-8 rounded-full overflow-hidden cursor-pointer group"
@@ -183,6 +186,15 @@ const MyPageUI: React.FC<MyPageUIProps> = ({
                 className="hidden"
                 onChange={onProfileImageChange}
               />
+              {isCompressing && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-full z-50">
+                  <LoadingSpinner
+                    fullScreen={false}
+                    size="medium"
+                    type="clip"
+                  />
+                </div>
+              )}
             </div>
 
             <input

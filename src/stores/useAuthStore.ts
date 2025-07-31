@@ -1,14 +1,14 @@
-import { create } from "zustand";
-import { requestKakaoLogin } from "@/api/auth/authApi";
+import { create } from 'zustand';
+import { requestKakaoLogin } from '@/api/auth/authApi';
 
 interface AuthStore {
   userId: string | null;
-  role: "GUEST" | "USER" | null;
-  guestTokenExpiry: string | null; 
+  role: 'GUEST' | 'USER' | null;
+  guestTokenExpiry: string | null;
 
   setAuth: (
     id: string,
-    role: "GUEST" | "USER",
+    role: 'GUEST' | 'USER',
     guestTokenExpiry?: string | null
   ) => void;
   clearAuth: () => void;
@@ -20,32 +20,31 @@ interface AuthStore {
 }
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
-  userId:
-    typeof window !== "undefined" ? localStorage.getItem("userId") : null,
+  userId: typeof window !== 'undefined' ? localStorage.getItem('userId') : null,
   role:
-    typeof window !== "undefined"
-      ? (localStorage.getItem("role") as "GUEST" | "USER" | null)
+    typeof window !== 'undefined'
+      ? (localStorage.getItem('role') as 'GUEST' | 'USER' | null)
       : null,
   guestTokenExpiry:
-    typeof window !== "undefined"
-      ? localStorage.getItem("access_token_expiry")
+    typeof window !== 'undefined'
+      ? localStorage.getItem('access_token_expiry')
       : null,
 
   setAuth: (id, role, guestTokenExpiry = null) => {
-    localStorage.setItem("userId", id);
-    localStorage.setItem("role", role);
+    localStorage.setItem('userId', id);
+    localStorage.setItem('role', role);
     if (guestTokenExpiry) {
-      localStorage.setItem("access_token_expiry", guestTokenExpiry);
+      localStorage.setItem('access_token_expiry', guestTokenExpiry);
     } else {
-      localStorage.removeItem("access_token_expiry");
+      localStorage.removeItem('access_token_expiry');
     }
     set({ userId: id, role, guestTokenExpiry });
   },
 
   clearAuth: () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("role");
-    localStorage.removeItem("access_token_expiry");
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+    localStorage.removeItem('access_token_expiry');
     set({ userId: null, role: null, guestTokenExpiry: null });
   },
 
@@ -57,7 +56,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     const role = get().role;
     const expiry = get().guestTokenExpiry;
 
-    if (role !== "GUEST") {
+    if (role !== 'GUEST') {
       return true;
     }
     if (!expiry) return false;
@@ -67,6 +66,6 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   },
 
   isGuest: () => {
-    return get().role === "GUEST";
+    return get().role === 'GUEST';
   },
 }));

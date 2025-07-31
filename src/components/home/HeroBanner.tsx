@@ -1,18 +1,57 @@
+import React, { useCallback, useMemo } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useNavigate } from 'react-router-dom';
+import type { PictureImage } from '@/types/image';
+
+interface Slide {
+  imageUrl: PictureImage;
+  link: string;
+}
 
 export interface HeroBannerProps {
-  slides: Array<{ imageUrl: string; link: string;}>;
+  slides: Slide[];
   autoSlideInterval?: number;
 }
 
-export default function HeroBanner({
+const HeroBanner = React.memo(function HeroBanner({
   slides,
   autoSlideInterval = 3000,
 }: HeroBannerProps) {
   const navigate = useNavigate();
+
+  const handleSlideClick = useCallback(
+    (link: string) => {
+      navigate(link ?? '/');
+    },
+    [navigate]
+  );
+
+  const slideItems = useMemo(() => {
+    return slides.map((slide, index) => (
+      <div
+        key={index}
+        className="w-full h-full cursor-pointer"
+        onClick={() => handleSlideClick(slide.link)}
+      >
+        <picture>
+          <source srcSet={slide.imageUrl.sources.avif} type="image/avif" />
+          <source srcSet={slide.imageUrl.sources.webp} type="image/webp" />
+          <img
+            src={slide.imageUrl.img.src}
+            alt="이미지"
+            width={slide.imageUrl.img.w}
+            height={slide.imageUrl.img.h}
+            className="w-full h-full object-contain object-center"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </picture>
+      </div>
+    ));
+  }, [slides, handleSlideClick]);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -23,6 +62,7 @@ export default function HeroBanner({
     slidesToShow: 1,
     slidesToScroll: 1,
     rtl: false,
+    lazyLoad: 'ondemand' as const,
     appendDots: (dots: React.ReactNode) => (
       <div className="absolute bottom-2 w-full pointer-events-none">
         <ul className="flex justify-center">{dots}</ul>
@@ -33,19 +73,10 @@ export default function HeroBanner({
   return (
     <div className="relative w-full aspect-16/8 overflow-hidden">
       <Slider {...settings} className="h-full">
-        {slides.map((slide) => (
-          <div key={slide.imageUrl} className="w-full h-full" onClick={() => navigate(slide.link ?? '/')}>
-            <img
-              src={slide.imageUrl}
-              alt={'이미지'}
-              width={574}
-              height={287}
-              className="w-full h-full object-contain object-center"
-            />
-          </div>
-        ))}
+        {slideItems}
       </Slider>
     </div>
   );
-}
+});
 
+export default HeroBanner;

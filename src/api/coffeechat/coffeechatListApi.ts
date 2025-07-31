@@ -1,17 +1,19 @@
-import apiClient from "@/api/apiClient";
+import apiClient from '@/api/apiClient';
 import { createQueryHandler } from '@/utils/createQueryHandler';
-import type { CoffeeChatListResponse } from "@/api/coffeechat/coffeechat.dto";
+import type { CoffeeChatListResponse } from '@/api/coffeechat/coffeechat.dto';
 import { UseQueryOptions } from '@tanstack/react-query';
-import type { ApiResponse } from "@/types/api";
+import type { ApiResponse } from '@/types/api';
 
 export type CoffeeChatStatus = 'ALL' | 'JOINED' | 'REVIEWABLE' | 'ENDED';
 
 // ✅ GET 요청
-export const fetchCoffeeChatList = async (status: string): Promise<CoffeeChatListResponse> => {
-    const response = await apiClient.get('/api/v1/coffee-chats', {
-        params: { status },
-      });
-    return response.data;
+export const fetchCoffeeChatList = async (
+  status: string
+): Promise<CoffeeChatListResponse> => {
+  const response = await apiClient.get('/api/v1/coffee-chats', {
+    params: { status },
+  });
+  return response.data;
 };
 
 export const useCoffeeChatList = (
@@ -37,6 +39,6 @@ export const useCoffeeChatList = (
       refetchInterval: status === 'ALL' ? 5000 : false,
       refetchOnReconnect: true,
       retry: 1,
-      ...options, 
+      ...options,
     }
   );

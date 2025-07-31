@@ -5,17 +5,18 @@ import { useDrinkList } from '@/api/home/drinkListApi';
 import type { CaffeineIntakeRequestDTO } from '@/api/caffeine/caffeine.dto';
 import type { DrinkList } from '@/api/home/drinkList.dto';
 import { requestKakaoLogin } from '@/api/auth/authApi';
-import { findDrinkInfo } from '@/utils/drinkUtils'; 
+import { findDrinkInfo } from '@/utils/drinkUtils';
 import { useAuthStore } from '@/stores/useAuthStore';
 import HomePageUI from '@/pages/home/HomePageUI';
 import cafeList from '@/data/cafe_drinks.json';
 import { brandLogos } from '@/data/brandLogos';
+import type { PictureImage } from '@/types/image';
 
 export default function HomeContainer() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const isGuest = useAuthStore(state => state.isGuest());
+  const isGuest = useAuthStore((state) => state.isGuest());
 
   const {
     data: report,
@@ -27,33 +28,39 @@ export default function HomeContainer() {
 
   const { mutateAsyncFn: recordCaffeineIntake } = useRecordCaffeineIntake();
 
-  const { data: recommendedDrinks = [], isLoading: isDrinksLoading, isError: isDrinksError, error: drinksError } = useDrinkList();
+  const {
+    data: recommendedDrinks = [],
+    isLoading: isDrinksLoading,
+    isError: isDrinksError,
+    error: drinksError,
+  } = useDrinkList();
 
-  const aiDrinks = recommendedDrinks.map((rec: DrinkList) => {
-    const info = findDrinkInfo(cafeList, rec.drink_id);
-    if (!info) return null;
+  const aiDrinks = recommendedDrinks
+    .map((rec: DrinkList) => {
+      const info = findDrinkInfo(cafeList, rec.drink_id);
+      if (!info) return null;
 
-    return {
-      brand: info.cafeName,
-      name: info.name,
-      score: Math.floor(rec.score * 10000),
-      temperature: info.temperature,
-      logo: brandLogos[info.cafeName] ?? undefined,
-    };
-  })
-  .filter(Boolean) as {
+      return {
+        brand: info.cafeName,
+        name: info.name,
+        score: Math.floor(rec.score * 10000),
+        temperature: info.temperature,
+        logo: brandLogos[info.cafeName],
+      };
+    })
+    .filter(Boolean) as {
     brand: string;
     name: string;
     score: number;
     temperature: string;
-    logo?: string;
+    logo?: PictureImage;
   }[];
 
-  const handleKakaoLogin = async() => {
+  const handleKakaoLogin = async () => {
     try {
       await requestKakaoLogin();
     } catch (error) {
-      console.error("카카오 로그인 요청 실패:", error);
+      console.error('카카오 로그인 요청 실패:', error);
     }
   };
 

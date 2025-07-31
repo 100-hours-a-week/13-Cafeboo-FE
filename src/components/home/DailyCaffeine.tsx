@@ -3,7 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from '@/components/ui/popover';
 
 export interface DailyCaffeineProps {
   nickname: string;
@@ -20,7 +20,6 @@ export default function DailyCaffeine({
   dailyCaffeineIntakeRate,
   intakeGuide,
 }: DailyCaffeineProps) {
-  
   const consumed = dailyCaffeineIntakeMg;
 
   // 초록 -> 노랑 -> 빨강으로 섭취량 그라데이션션
@@ -41,7 +40,7 @@ export default function DailyCaffeine({
   }
 
   const percent = Math.min(dailyCaffeineIntakeRate, 100);
-  const consumedColor  = getConsumedColor(percent);
+  const consumedColor = getConsumedColor(percent);
   const remainingColor = '#E5E5E5';
   const consumedAngle = (percent / 100) * 360;
 
@@ -74,9 +73,7 @@ export default function DailyCaffeine({
           </PieChart>
         </ResponsiveContainer>
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-lg font-bold">
-            {consumed} mg
-          </span>
+          <span className="text-lg font-bold">{consumed} mg</span>
           <span className="text-sm text-[#595959]">
             / {dailyCaffeineLimit} mg
           </span>
@@ -86,7 +83,7 @@ export default function DailyCaffeine({
       <div className="w-3/5 pl-4 pr-2">
         <p className="text-base">
           <span className="font-semibold">{nickname}</span>님,
-          <br/>
+          <br />
           현재 권장량의{' '}
           <span className="font-semibold" style={{ color: consumedColor }}>
             {dailyCaffeineIntakeRate}%
@@ -95,15 +92,15 @@ export default function DailyCaffeine({
           섭취 중이에요.
         </p>
         <Popover>
-        <PopoverTrigger asChild>
-          <p className="mt-2 text-sm text-[#595959] overflow-hidden line-clamp-2 cursor-pointer">
-            {intakeGuide}
-          </p>
-        </PopoverTrigger>
-        <PopoverContent className="w-72">
-          <p className="text-sm text-[#595959]">{intakeGuide}</p>
-        </PopoverContent>
-      </Popover>
+          <PopoverTrigger asChild>
+            <p className="mt-2 text-sm text-[#595959] overflow-hidden line-clamp-2 cursor-pointer">
+              {intakeGuide}
+            </p>
+          </PopoverTrigger>
+          <PopoverContent className="w-72">
+            <p className="text-sm text-[#595959]">{intakeGuide}</p>
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   );

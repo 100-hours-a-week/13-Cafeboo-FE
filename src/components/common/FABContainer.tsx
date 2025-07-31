@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Plus, ChevronUp } from "lucide-react";
-
+import { useEffect, useRef, useState } from 'react';
+import { Plus, ChevronUp } from 'lucide-react';
 
 interface FABProps {
   showAdd?: boolean;
@@ -11,42 +10,42 @@ interface FABProps {
 export default function FABContainer({
   showAdd = false,
   onAddClick,
-  scrollTargetSelector = "#scroll-container",
+  scrollTargetSelector = '#scroll-container',
 }: FABProps) {
   const [showToTop, setShowToTop] = useState(false);
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const observerTarget = document.querySelector("#observer-target");
+    const observerTarget = document.querySelector('#observer-target');
     const scrollTarget = document.querySelector(scrollTargetSelector);
     if (!scrollTarget || !observerTarget) return;
-  
+
     const observer = new IntersectionObserver(
       ([entry]) => setShowToTop(!entry.isIntersecting),
       {
         threshold: 0.1,
         root: scrollTarget,
-        rootMargin: "100px 0px 0px 0px",
+        rootMargin: '100px 0px 0px 0px',
       }
     );
-  
+
     requestAnimationFrame(() => {
-        observer.observe(observerTarget);
-      });
+      observer.observe(observerTarget);
+    });
 
     return () => observer.disconnect();
   }, [scrollTargetSelector]);
 
   const scrollToTop = () => {
     const scrollTarget = document.querySelector(scrollTargetSelector);
-    scrollTarget?.scrollTo({ top: 0, behavior: "smooth" });
+    scrollTarget?.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const buttons: { key: string; element: JSX.Element }[] = [];
 
   if (showToTop) {
     buttons.push({
-      key: "top",
+      key: 'top',
       element: (
         <button
           onClick={scrollToTop}
@@ -60,7 +59,7 @@ export default function FABContainer({
 
   if (showAdd) {
     buttons.push({
-      key: "add",
+      key: 'add',
       element: (
         <button
           onClick={onAddClick}
@@ -89,4 +88,3 @@ export default function FABContainer({
     </>
   );
 }
-

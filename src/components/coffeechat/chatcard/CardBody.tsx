@@ -1,5 +1,5 @@
-import { CalendarIcon, Clock, MapPin, Hash } from "lucide-react";
-import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
+import { Hash } from 'lucide-react';
+import type { CoffeeChatListItem } from '@/api/coffeechat/coffeechat.dto';
 
 interface CardBodyProps {
   room: CoffeeChatListItem;
@@ -8,15 +8,13 @@ interface CardBodyProps {
 export default function CardBody({ room }: CardBodyProps) {
   return (
     <div>
-      <h3 className="font-semibold text-lg leading-tight mb-2">
-        {room.title}
-      </h3>
+      <h3 className="font-semibold text-lg leading-tight mb-2">{room.title}</h3>
       <div className="flex items-center text-gray-500 text-[10pt] space-x-1">
-          <span>{room.date}</span>
-          <span>·</span>
-          <span>{room.time}</span>
-          <span>·</span>
-          <span>{room.address}</span>
+        <span>{room.date}</span>
+        <span>·</span>
+        <span>{room.time}</span>
+        <span>·</span>
+        <span>{room.address}</span>
       </div>
 
       {/* 태그 */}
@@ -34,7 +32,9 @@ export default function CardBody({ room }: CardBodyProps) {
         </div>
       )}
 
-      <hr className={`my-2 border-gray-200 ${room.tags.length == 0 ? "mt-4" : ""}`} />
+      <hr
+        className={`my-2 border-gray-200 ${room.tags.length == 0 ? 'mt-4' : ''}`}
+      />
     </div>
   );
 }

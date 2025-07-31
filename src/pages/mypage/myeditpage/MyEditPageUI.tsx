@@ -31,7 +31,11 @@ export default function MyEditPageUI({
   }
 
   return (
-    <PageLayout headerMode="title" headerTitle="내 정보 수정" onBackClick={onBackClick}>
+    <PageLayout
+      headerMode="title"
+      headerTitle="내 정보 수정"
+      onBackClick={onBackClick}
+    >
       <HealthInfoEditor
         initHealth={initHealth}
         initCaffeine={initCaffeine}

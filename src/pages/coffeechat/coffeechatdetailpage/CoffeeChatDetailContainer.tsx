@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useWebSocketStore } from '@/stores/webSocketStore';
 import {
   useDeleteCoffeeChat,
   useCoffeeChatDetail,
-} from "@/api/coffeechat/coffeechatApi";
+} from '@/api/coffeechat/coffeechatApi';
 import {
   useJoinCoffeeChat,
   useCoffeeChatMembership,
   useCoffeeChatMembers,
   useJoinCoffeeChatListener,
-} from "@/api/coffeechat/coffeechatMemberApi";
+} from '@/api/coffeechat/coffeechatMemberApi';
 
-import CoffeeChatDetailPageUI from "@/pages/coffeechat//coffeechatdetailpage/CoffeeChatDetailPageUI";
+import CoffeeChatDetailPageUI from '@/pages/coffeechat//coffeechatdetailpage/CoffeeChatDetailPageUI';
 
 interface Member {
   memberId: string;
@@ -46,7 +46,10 @@ interface StatusProps {
 
 interface HandlersProps {
   handleBackClick: () => void;
-  handleJoinSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
+  handleJoinSubmit: (params: {
+    chatNickname: string;
+    profileImageType: 'DEFAULT' | 'USER';
+  }) => void;
   handleEnterChatRoom: () => void;
   handleDeleteChat: () => void;
   handleJoin: () => void;
@@ -55,7 +58,7 @@ interface HandlersProps {
   handleCloseSheet: () => void;
   handleAlertClose: () => void;
   handleAlert2Close: () => void;
-  handleAlert2Open: () => void; 
+  handleAlert2Open: () => void;
   handleGoBackToCoffeeChat: () => void;
 }
 
@@ -66,43 +69,43 @@ export default function CoffeeChatDetailContainer() {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState('');
   const [isAlertOpen2, setIsAlertOpen2] = useState(false);
 
   const { connect, disconnect, sendMessage } = useWebSocketStore();
 
-  const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? "");
+  const { data, isLoading, isError, refetch } = useCoffeeChatDetail(id ?? '');
   const {
     mutateAsyncFn: joinCoffeeChat,
     isError: isJoinError,
     error: joinError,
-  } = useJoinCoffeeChat(id ?? "");
+  } = useJoinCoffeeChat(id ?? '');
   const {
     data: members,
     isLoading: isMembersLoading,
     isError: isMembersError,
     error: membersError,
     refetch: refetchMembers,
-  } = useCoffeeChatMembers(id ?? "");
+  } = useCoffeeChatMembers(id ?? '');
   const {
     data: membership,
     isLoading: isMembershipLoading,
     isError: isMembershipError,
     error: membershipError,
     refetch: refetchMembership,
-  } = useCoffeeChatMembership(id ?? "");
+  } = useCoffeeChatMembership(id ?? '');
   const {
     mutateAsyncFn: joinListener,
     isLoading: isListenerLoading,
     isError: isListenerError,
     error: listenerError,
-  } = useJoinCoffeeChatListener(id ?? "");
+  } = useJoinCoffeeChatListener(id ?? '');
   const { mutateAsyncFn: deleteChat } = useDeleteCoffeeChat();
 
   const showGoogleForm = id !== undefined && [49, 50, 51].includes(Number(id));
 
   const handleBackClick = () => {
-    navigate('/coffeechat'); 
+    navigate('/coffeechat');
   };
 
   const handleJoinSubmit = async ({
@@ -110,17 +113,17 @@ export default function CoffeeChatDetailContainer() {
     profileImageType,
   }: {
     chatNickname: string;
-    profileImageType: "DEFAULT" | "USER";
+    profileImageType: 'DEFAULT' | 'USER';
   }) => {
     try {
       const result = await joinCoffeeChat({ chatNickname, profileImageType });
 
-      connect(id ?? "", () => {
+      connect(id ?? '', () => {
         const payload = {
           senderId: result.memberId,
           coffeechatId: id,
           message: `${chatNickname}님이 입장했습니다`,
-          type: "ENTER",
+          type: 'ENTER',
         };
 
         sendMessage(`/app/chatrooms/${id}`, payload);
@@ -133,9 +136,10 @@ export default function CoffeeChatDetailContainer() {
       setJoinModalOpen(false);
     } catch (error: any) {
       console.error(
-        "커피챗 참여 오류:" + `${error.status}(${error.code}) - ${error.message}`
+        '커피챗 참여 오류:' +
+          `${error.status}(${error.code}) - ${error.message}`
       );
-      setAlertMessage(error.message || "커피챗 참여에 실패했습니다.");
+      setAlertMessage(error.message || '커피챗 참여에 실패했습니다.');
       setJoinModalOpen(false);
       setIsAlertOpen(true);
     }
@@ -149,7 +153,7 @@ export default function CoffeeChatDetailContainer() {
       const membershipData = freshMembership ?? membership;
 
       if (!membershipData?.isMember || !membershipData?.memberId) {
-        console.log("참여자만 채팅방에 입장할 수 있습니다!");
+        console.log('참여자만 채팅방에 입장할 수 있습니다!');
         return;
       }
 
@@ -161,24 +165,23 @@ export default function CoffeeChatDetailContainer() {
         error?.message ||
           joinError?.message ||
           membershipError?.message ||
-          "입장 중 오류가 발생했습니다."
+          '입장 중 오류가 발생했습니다.'
       );
     }
   };
 
   const handleDeleteChat = async () => {
     try {
-      await deleteChat(id ?? "");
+      await deleteChat(id ?? '');
       setIsAlertOpen2(false);
-      navigate("/coffeechat");
+      navigate('/coffeechat');
     } catch (err: any) {
-      alert(err?.message || "삭제 중 오류가 발생했습니다.");
+      alert(err?.message || '삭제 중 오류가 발생했습니다.');
     }
   };
 
-  
   const handleGoBackToCoffeeChat = () => {
-    navigate("/coffeechat");
+    navigate('/coffeechat');
   };
 
   const handleJoin = () => setJoinModalOpen(true);
@@ -186,7 +189,7 @@ export default function CoffeeChatDetailContainer() {
   const handleCloseSheet = () => setIsSheetOpen(false);
   const handleAlertClose = () => setIsAlertOpen(false);
   const handleAlert2Close = () => setIsAlertOpen2(false);
-  const handleAlert2Open = () => setIsAlertOpen2(true);  
+  const handleAlert2Open = () => setIsAlertOpen2(true);
 
   const status: StatusProps = {
     id,

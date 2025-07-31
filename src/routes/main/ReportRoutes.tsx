@@ -1,12 +1,16 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import ReportPage from '@/pages/report';
-import NotFoundPage from '@/pages/common/NotFoundPage';
+
+const ReportPage = lazy(() => import('@/pages/report'));
+const NotFoundPage = lazy(() => import('@/pages/common/NotFoundPage'));
 
 const ReportRoutes = () => (
-  <Routes>
-    <Route path="/" element={<ReportPage />} />
-    <Route path="*" element={<NotFoundPage />} />
-  </Routes>
+  <Suspense fallback={<div>로딩 중...</div>}>
+    <Routes>
+      <Route path="/" element={<ReportPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Suspense>
 );
 
 export default ReportRoutes;

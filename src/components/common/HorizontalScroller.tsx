@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import { useDraggableScroll } from '@/hooks/useDraggableScroll';
 
 interface HorizontalScrollerProps {

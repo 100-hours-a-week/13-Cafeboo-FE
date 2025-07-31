@@ -89,7 +89,10 @@ export default function DailyCaffeineRemain({
 
   const maxTickValue = Math.max(maxRemaining, MIN_TICK_COUNT * TICK_INTERVAL);
   const tickCount = Math.ceil(maxTickValue / TICK_INTERVAL);
-  const ticks = Array.from({ length: tickCount }, (_, i) => (i + 1) * TICK_INTERVAL);
+  const ticks = Array.from(
+    { length: tickCount },
+    (_, i) => (i + 1) * TICK_INTERVAL
+  );
 
   return (
     <div className="flex">
@@ -128,7 +131,11 @@ export default function DailyCaffeineRemain({
                 barCategoryGap={`${(BAR_GAP / BAR_WIDTH) * 100}%`}
                 syncId="caffeineSync"
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#C7C7CC" vertical={false} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="#C7C7CC"
+                  vertical={false}
+                />
                 <YAxis hide domain={[0, maxRemaining]} ticks={ticks} />
                 <XAxis
                   dataKey="time"
@@ -170,11 +177,3 @@ export default function DailyCaffeineRemain({
     </div>
   );
 }
-
-
-
-
-
-
-
-

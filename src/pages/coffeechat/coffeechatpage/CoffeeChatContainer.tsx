@@ -1,25 +1,25 @@
-import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCoffeeChatFilter } from "@/stores/useCoffeeChatFilter";
-import { useReviewTabStore } from "@/stores/reviewTabStore";
-import { useCoffeeChatList } from "@/api/coffeechat/coffeechatListApi";
-import { useCoffeeChatReviews } from "@/api/coffeechat/coffeechatReviewApi";
-import CoffeeChatPageUI from "./CoffeeChatPageUI";
-import { useAuthStore } from "@/stores/useAuthStore"; 
-import type { ChatFilter, ReviewFilter } from "@/types/filters";
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCoffeeChatFilter } from '@/stores/useCoffeeChatFilter';
+import { useReviewTabStore } from '@/stores/reviewTabStore';
+import { useCoffeeChatList } from '@/api/coffeechat/coffeechatListApi';
+import { useCoffeeChatReviews } from '@/api/coffeechat/coffeechatReviewApi';
+import CoffeeChatPageUI from './CoffeeChatPageUI';
+import { useAuthStore } from '@/stores/useAuthStore';
+import type { ChatFilter, ReviewFilter } from '@/types/filters';
 
 export default function CoffeeChatContainer() {
   const filter = useCoffeeChatFilter((state) => state.filter);
-  const reviewTabFilter = useReviewTabStore(state => state.filter);
+  const reviewTabFilter = useReviewTabStore((state) => state.filter);
   const setFilter = useCoffeeChatFilter((state) => state.setFilter);
-  const setReviewTabFilter = useReviewTabStore(state => state.setFilter);
+  const setReviewTabFilter = useReviewTabStore((state) => state.setFilter);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isLoginAlertOpen, setIsLoginAlertOpen] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const isGuest = useAuthStore(state => state.isGuest());
-  const isReviewTab = filter === "REVIEWS";
+  const isGuest = useAuthStore((state) => state.isGuest());
+  const isReviewTab = filter === 'REVIEWS';
 
   const {
     data: coffeeChatData,

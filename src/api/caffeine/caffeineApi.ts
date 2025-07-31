@@ -1,14 +1,14 @@
-import apiClient from "@/api/apiClient";
+import apiClient from '@/api/apiClient';
 import { useQueryClient } from '@tanstack/react-query';
 import type {
   CaffeineIntakeRequestDTO,
   UpdateCaffeineIntakeRequestDTO,
 } from '@/api/caffeine/caffeine.dto';
-import { createMutationHandler } from "@/utils/createMutationHandler";
+import { createMutationHandler } from '@/utils/createMutationHandler';
 
 // ✅ POST 요청
 export const recordCaffeineIntake = async (data: CaffeineIntakeRequestDTO) => {
-  const response = await apiClient.post("/api/v1/caffeine-intakes", data);
+  const response = await apiClient.post('/api/v1/caffeine-intakes', data);
   return response.data;
 };
 
@@ -52,20 +52,19 @@ export const useUpdateCaffeineIntake = (intakeId: string) => {
 
 // ✅ DELETE 요청
 const deleteCaffeineIntake = async (intakeId: string) => {
-  const response = await apiClient.delete(`/api/v1/caffeine-intakes/${intakeId}`);
+  const response = await apiClient.delete(
+    `/api/v1/caffeine-intakes/${intakeId}`
+  );
   return response.data;
 };
 
 export const useDeleteCaffeineIntake = (intakeId: string) => {
   const queryClient = useQueryClient();
 
-  return createMutationHandler(
-    () => deleteCaffeineIntake(intakeId),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['dailyIntake'] });
-        queryClient.invalidateQueries({ queryKey: ['calendar'] });
-      },
-    }
-  );
+  return createMutationHandler(() => deleteCaffeineIntake(intakeId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['dailyIntake'] });
+      queryClient.invalidateQueries({ queryKey: ['calendar'] });
+    },
+  });
 };

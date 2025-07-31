@@ -1,12 +1,17 @@
-import PageLayout from "@/layout/PageLayout";
-import { CalendarIcon, Clock, MapPin, Users, Hash } from "lucide-react";
-import { IoChatbubblesOutline } from "react-icons/io5";
-import TrashCanIcon from '@/assets/TrashCan4.png';
-import CoffeeChat from '@/assets/CoffeeChatIcon.png';
-import MapBottomSheet from "@/components/coffeechat/MapBottomSheet";
-import JoinCoffeeChatModal from "@/components/coffeechat/JoinCoffeeChatModal";
-import AlertModal from "@/components/common/AlertModal";
-import GoogleFormLink from "@/components/event/GoogleFormLinkButton";
+import React, { Suspense } from 'react';
+import PageLayout from '@/layout/PageLayout';
+import { CalendarIcon, Clock, MapPin, Users, Hash } from 'lucide-react';
+import { IoChatbubblesOutline } from 'react-icons/io5';
+import TrashCanIcon from '@/assets/TrashCan4.png?w=128;256&format=webp;avif&as=picture';
+import CoffeeChat from '@/assets/CoffeeChatIcon.png?w=128;256&format=webp;avif&as=picture';
+const MapBottomSheet = React.lazy(
+  () => import('@/components/coffeechat/MapBottomSheet')
+);
+const JoinCoffeeChatModal = React.lazy(
+  () => import('@/components/coffeechat/JoinCoffeeChatModal')
+);
+import AlertModal from '@/components/common/AlertModal';
+import GoogleFormLink from '@/components/event/GoogleFormLinkButton';
 
 interface Member {
   memberId: string;
@@ -40,7 +45,10 @@ interface StatusProps {
 
 interface HandlersProps {
   handleBackClick: () => void;
-  handleJoinSubmit: (params: { chatNickname: string; profileImageType: "DEFAULT" | "USER" }) => void;
+  handleJoinSubmit: (params: {
+    chatNickname: string;
+    profileImageType: 'DEFAULT' | 'USER';
+  }) => void;
   handleEnterChatRoom: () => void;
   handleDeleteChat: () => void;
   handleJoin: () => void;
@@ -49,7 +57,7 @@ interface HandlersProps {
   handleCloseSheet: () => void;
   handleAlertClose: () => void;
   handleAlert2Close: () => void;
-  handleAlert2Open: () => void; 
+  handleAlert2Open: () => void;
   handleGoBackToCoffeeChat: () => void;
 }
 
@@ -75,7 +83,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     isAlertOpen,
     alertMessage,
     isAlertOpen2,
-    showGoogleForm=false,
+    showGoogleForm = false,
   } = status;
 
   const {
@@ -93,8 +101,20 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     handleGoBackToCoffeeChat,
   } = handlers;
 
-  if (isLoading) return <PageLayout><div className="py-24 text-center">로딩 중...</div></PageLayout>;
-  if (isError || !data) return <PageLayout><div className="py-24 text-center text-red-400">데이터를 불러올 수 없습니다.</div></PageLayout>;
+  if (isLoading)
+    return (
+      <PageLayout>
+        <div className="py-24 text-center">로딩 중...</div>
+      </PageLayout>
+    );
+  if (isError || !data)
+    return (
+      <PageLayout>
+        <div className="py-24 text-center text-red-400">
+          데이터를 불러올 수 없습니다.
+        </div>
+      </PageLayout>
+    );
 
   let badge;
   if (data.isJoined) {
@@ -130,7 +150,12 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
   } = data;
 
   return (
-    <PageLayout headerMode="title" headerTitle="커피챗" onBackClick={handleBackClick} mainClassName="pt-2 pb-16">
+    <PageLayout
+      headerMode="title"
+      headerTitle="커피챗"
+      onBackClick={handleBackClick}
+      mainClassName="pt-2 pb-16"
+    >
       <div className="bg-white space-y-4">
         <div className="flex items-center justify-between mb-2">
           <div>{badge}</div>
@@ -162,14 +187,15 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
 
         {/* 설명 */}
         <div className="rounded-sm mb-4">
-          <p className="text-[#333333] text-sm leading-relaxed" style={{ whiteSpace: "pre-line" }}>
+          <p
+            className="text-[#333333] text-sm leading-relaxed"
+            style={{ whiteSpace: 'pre-line' }}
+          >
             {content}
           </p>
         </div>
 
-        {showGoogleForm ? (
-          <GoogleFormLink/>
-        ) : null}
+        {showGoogleForm ? <GoogleFormLink /> : null}
 
         <hr className="border-gray-200 my-4" />
 
@@ -189,12 +215,12 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-3">
               <MapPin className="w-4 h-4 text-gray-500" />
-              <span className="text-sm">{location?.address ?? "-"}</span>
+              <span className="text-sm">{location?.address ?? '-'}</span>
             </div>
 
             <div className="flex gap-2">
               <button
-                onClick={() => window.open(location?.kakaoPlaceUrl, "_blank")}
+                onClick={() => window.open(location?.kakaoPlaceUrl, '_blank')}
                 className="bg-gray-100 hover:bg-gray-200 text-black text-xs px-2 py-1 rounded-sm cursor-pointer"
               >
                 정보 보기
@@ -225,6 +251,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
                   width={1000}
                   height={1000}
                   className="w-8 h-8 rounded-full object-cover bg-gray-200"
+                  loading="lazy"
                 />
               ) : (
                 <div className="w-8 h-8 flex items-center justify-center bg-gray-300 text-white rounded-full text-base">
@@ -239,23 +266,31 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
         {/* 하단 액션 버튼들 */}
         <div className="absolute bottom-0 left-0 w-full flex px-6 py-3 bg-white border-t border-gray-300 z-10 h-18 items-center">
           {writer.memberId === membership?.memberId ? (
-            <img
-              src={TrashCanIcon}
-              alt="삭제"
-              width={1024}
-              height={1024}
-              className="h-11 w-auto mr-4 cursor-pointer"
-              onClick={handleAlert2Open} 
-            />
+            <picture>
+              <source srcSet={TrashCanIcon.sources.avif} type="image/avif" />
+              <source srcSet={TrashCanIcon.sources.webp} type="image/webp" />
+              <img
+                src={TrashCanIcon.img.src}
+                alt="삭제"
+                width={TrashCanIcon.img.w}
+                height={TrashCanIcon.img.h}
+                className="h-11 w-auto mr-4 cursor-pointer"
+                onClick={handleAlert2Open}
+              />
+            </picture>
           ) : (
-            <img
-              src={CoffeeChat}
-              alt="커피챗"
-              width={952}
-              height={953}
-              className="h-11 w-auto mr-4 cursor-pointer"
-              onClick={handleGoBackToCoffeeChat}
-            />
+            <picture>
+              <source srcSet={CoffeeChat.sources.avif} type="image/avif" />
+              <source srcSet={CoffeeChat.sources.webp} type="image/webp" />
+              <img
+                src={CoffeeChat.img.src}
+                alt="커피챗"
+                width={CoffeeChat.img.w}
+                height={CoffeeChat.img.h}
+                className="h-11 w-auto mr-4 cursor-pointer"
+                onClick={handleGoBackToCoffeeChat}
+              />
+            </picture>
           )}
           {data.isJoined ? (
             <button
@@ -268,7 +303,7 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
           ) : currentMemberCount === maxMemberCount ? (
             <button
               disabled
-              className="w-full py-3 bg-[#FE9400]/60 text-white rounded-lg font-semibold"
+              className="w-full py-3 bg-gray-200 text-gray-400 rounded-lg font-semibold"
             >
               모집이 완료되었습니다
             </button>
@@ -284,17 +319,23 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
       </div>
 
       {/* 모달들 - PageLayout 내부로 이동 */}
-      <MapBottomSheet
-        open={isSheetOpen}
-        onClose={handleCloseSheet}
-        location={location}
-      />
+      <Suspense fallback={<div>지도 로딩 중...</div>}>
+        {isSheetOpen && (
+          <MapBottomSheet
+            open={isSheetOpen}
+            onClose={handleCloseSheet}
+            location={location}
+          />
+        )}
+      </Suspense>
 
-      <JoinCoffeeChatModal
-        isOpen={joinModalOpen}
-        onClose={() => setJoinModalOpen(false)}
-        onSubmit={handleJoinSubmit}
-      />
+      <Suspense fallback={<div>모달 로딩중...</div>}>
+        <JoinCoffeeChatModal
+          isOpen={joinModalOpen}
+          onClose={() => setJoinModalOpen(false)}
+          onSubmit={handleJoinSubmit}
+        />
+      </Suspense>
 
       <AlertModal
         isOpen={isAlertOpen}
@@ -320,4 +361,3 @@ export default function CoffeeChatDetailPageUI({ status, handlers }: Props) {
     </PageLayout>
   );
 }
-

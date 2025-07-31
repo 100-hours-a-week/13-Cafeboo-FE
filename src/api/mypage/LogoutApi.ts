@@ -1,5 +1,5 @@
-import apiClient from "@/api/apiClient";
-import { useNavigate } from "react-router-dom";
+import apiClient from '@/api/apiClient';
+import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { useAuthStore } from '@/stores/useAuthStore';
@@ -18,18 +18,15 @@ export const useLogout = () => {
   const handleAfterLogout = () => {
     localStorage.setItem('afterLogout', 'true');
     localStorage.removeItem('access_token');
-    clearAuth();   
+    clearAuth();
     queryClient.clear();
     navigate('/mypage');
   };
 
-  return createMutationHandler<void, ApiResponse<null>, void>(
-    logout,
-    {
-      onSuccess: handleAfterLogout,
-      onError: (error) => {
-        console.error('로그아웃 중 오류:', error);
-      },
-    }
-  );
+  return createMutationHandler<void, ApiResponse<null>, void>(logout, {
+    onSuccess: handleAfterLogout,
+    onError: (error) => {
+      console.error('로그아웃 중 오류:', error);
+    },
+  });
 };

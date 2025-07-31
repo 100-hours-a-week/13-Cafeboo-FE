@@ -25,12 +25,10 @@ jobs:
           version: latest
 
       - name: Install pnpm
-        run: |
-          npm install -g pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
-        run: |
-          pnpm install
+        run: pnpm install
 
       - name: Build frontend
         run: |
@@ -39,9 +37,19 @@ jobs:
           VITE_KAKAO_MAP_KEY="${{ secrets.VITE_KAKAO_MAP_KEY }}" \
           pnpm run build
 
-      - name: Upload to GCP Cloud Storage
+      - name: Debug build output
         run: |
-          gsutil -m rsync -r ./dist gs://v2-dev-frontend-bucket
+          echo "===== Build output files ====="
+          ls -lah ./dist
+          echo "===== Assets folder ====="
+          ls -lah ./dist/assets || echo "No assets folder found"
+
+      - name: Clean bucket
+        run: gsutil -m rm -r gs://v2-dev-frontend-bucket/** || true
+
+      - name: Upload to GCP Cloud Storage (with gzip)
+        run: |
+          gsutil -m cp -r -Z ./dist/* gs://v2-dev-frontend-bucket
 
       - name: Invalidate CDN cache
         run: |
