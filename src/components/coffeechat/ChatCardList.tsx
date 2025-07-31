@@ -1,5 +1,5 @@
-import ChatCard from "@/components/coffeechat/chatcard";
-import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
+import ChatCard from '@/components/coffeechat/chatcard';
+import type { CoffeeChatListItem } from '@/api/coffeechat/coffeechat.dto';
 
 interface ChatCardListProps {
   rooms: CoffeeChatListItem[];
@@ -24,15 +24,23 @@ export default function ChatCardList({
     return <div className="text-center py-12">로딩 중...</div>;
   }
   if (isError) {
-    return <div className="text-center text-red-400 py-12">목록을 불러오는 데 실패했습니다.</div>;
+    return (
+      <div className="text-center text-red-400 py-12">
+        목록을 불러오는 데 실패했습니다.
+      </div>
+    );
   }
   if (!rooms || rooms.length === 0) {
-    return <div className="text-center text-gray-400 py-12">해당 커피챗 목록이 없습니다.</div>;
+    return (
+      <div className="text-center text-gray-400 py-12">
+        해당 커피챗 목록이 없습니다.
+      </div>
+    );
   }
 
   return (
     <>
-      {rooms.map(room => (
+      {rooms.map((room) => (
         <ChatCard
           key={room.coffeeChatId}
           room={room}

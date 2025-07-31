@@ -1,5 +1,5 @@
-import { createPortal } from "react-dom";
-import { Heart } from "lucide-react";
+import { createPortal } from 'react-dom';
+import { Heart } from 'lucide-react';
 
 export default function FloatHeart({ x, y }: { x: number; y: number }) {
   return createPortal(
@@ -10,7 +10,7 @@ export default function FloatHeart({ x, y }: { x: number; y: number }) {
       style={{
         left: x,
         top: y,
-        transform: "translate(-50%, -50%)",
+        transform: 'translate(-50%, -50%)',
         zIndex: 9999,
       }}
     />,

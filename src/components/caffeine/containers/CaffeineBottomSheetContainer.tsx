@@ -11,26 +11,31 @@ interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSubmitRecord: (record: any) => void;
-  selectedDate?: string; 
+  selectedDate?: string;
 }
 
-export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSubmitRecord, selectedDate }: Props) {
+export default function CaffeineBottomSheetContainer({
+  open,
+  onOpenChange,
+  onSubmitRecord,
+  selectedDate,
+}: Props) {
   const [selected, setSelected] = useState<Selected | null>(null);
 
   const detail = useMemo(() => {
     if (!selected) return null;
 
-    const cafe = drinkData.find(cafe => cafe.cafeName === selected.cafeName);
+    const cafe = drinkData.find((cafe) => cafe.cafeName === selected.cafeName);
     if (!cafe) return null;
 
-    const drink = cafe.drinks.find(d => d.drinkId === selected.drinkId);
+    const drink = cafe.drinks.find((d) => d.drinkId === selected.drinkId);
     if (!drink) return null;
 
     return {
       drinkid: drink.drinkId,
       name: drink.name,
       cafeName: selected.cafeName,
-      sizes: drink.sizes.map(size => ({
+      sizes: drink.sizes.map((size) => ({
         drinkSizeId: size.drinkSizeId,
         caffeine_mg: size.caffeine_mg,
         size: size.size,
@@ -62,4 +67,3 @@ export default function CaffeineBottomSheetContainer({ open, onOpenChange, onSub
     />
   );
 }
-

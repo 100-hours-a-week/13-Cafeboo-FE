@@ -1,7 +1,7 @@
-import { Heart } from "lucide-react";
-import clsx from "clsx";
-import { useRef, useState } from "react";
-import FloatHeart from "./FloatHeart";
+import { Heart } from 'lucide-react';
+import clsx from 'clsx';
+import { useRef, useState } from 'react';
+import FloatHeart from './FloatHeart';
 
 interface HeartButtonProps {
   liked: boolean;
@@ -36,22 +36,22 @@ export default function HeartButton({
       <button
         onClick={(e) => {
           e.stopPropagation();
-          if(!disabled) handleClick();
+          if (!disabled) handleClick();
         }}
         className={clsx(
-          "relative flex items-center px-2 rounded-full transition-all duration-200",
-          liked ? "text-red-500": "text-gray-400",
-          !disabled ? "cursor-pointer hover:text-red-400":''
+          'relative flex items-center px-2 rounded-full transition-all duration-200',
+          liked ? 'text-red-500' : 'text-gray-400',
+          !disabled ? 'cursor-pointer hover:text-red-400' : ''
         )}
       >
         <Heart
           ref={heartRef}
           size={14}
-          fill={liked ? "currentColor" : "none"}
+          fill={liked ? 'currentColor' : 'none'}
           className={clsx(
-            "transition-transform",
-            liked ? "text-red-500" : "text-gray-400",
-            !disabled && "hover:text-red-400"
+            'transition-transform',
+            liked ? 'text-red-500' : 'text-gray-400',
+            !disabled && 'hover:text-red-400'
           )}
         />
         <span className="ml-1 text-sm text-gray-600">{likeCount}</span>
@@ -61,7 +61,3 @@ export default function HeartButton({
     </>
   );
 }
-
-
-
-

@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import HorizontalScroller from "@/components/common/HorizontalScroller";
-import SectionCard from "@/components/common/SectionCard";
-import { Users, ChevronRight } from "lucide-react";
-import LoginRequiredModal from "../common/LoginRequiredModal";
+import { useNavigate } from 'react-router-dom';
+import HorizontalScroller from '@/components/common/HorizontalScroller';
+import SectionCard from '@/components/common/SectionCard';
+import { Users } from 'lucide-react';
+import LoginRequiredModal from '../common/LoginRequiredModal';
 
 interface Writer {
-    memberId: string;
-    chatNickname: string;
-    profileImageUrl: string;
-    isHost: boolean;
+  memberId: string;
+  chatNickname: string;
+  profileImageUrl: string;
+  isHost: boolean;
 }
 
 interface EventCoffeeChatRoom {
@@ -76,7 +76,9 @@ export default function EventCoffeeChat({
 
                 {/* 오른쪽 정보 영역 */}
                 <div className="flex flex-col flex-1 overflow-hidden">
-                  <h3 className="text-sm font-semibold truncate">{room.title}</h3>
+                  <h3 className="text-sm font-semibold truncate">
+                    {room.title}
+                  </h3>
                   <p className="text-[8pt] mt-0.5 truncate">
                     {room.time} · {room.address}
                   </p>

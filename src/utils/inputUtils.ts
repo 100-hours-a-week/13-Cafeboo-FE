@@ -13,13 +13,12 @@ export const sanitizeDecimalInput = (raw: string): string => {
   }
 
   if (parts.length > 1) {
-    parts[1] = parts[1].slice(0, 1); 
+    parts[1] = parts[1].slice(0, 1);
     v = parts[0] + '.' + parts[1];
   }
 
   return v;
 };
-
 
 // 최대 문자열 입력창
 export function limitLength(value: string, max: number) {

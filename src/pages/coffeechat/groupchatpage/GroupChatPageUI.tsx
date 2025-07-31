@@ -1,13 +1,13 @@
-import { FaArrowUp } from "react-icons/fa6";
-import { ChevronLeft } from "lucide-react";
-import ChatMessages from "@/components/coffeechat/ChatMessages";
-import RetryButton from "@/components/coffeechat/RetryButton";
-import PageLayout from "@/layout/PageLayout";
+import { FaArrowUp } from 'react-icons/fa6';
+import { ChevronLeft } from 'lucide-react';
+import ChatMessages from '@/components/coffeechat/ChatMessages';
+import RetryButton from '@/components/coffeechat/RetryButton';
+import PageLayout from '@/layout/PageLayout';
 
 interface StatusProps {
   coffeechatId?: string;
   memberId?: string;
-  connectionStatus: "connecting" | "connected" | "disconnected";
+  connectionStatus: 'connecting' | 'connected' | 'disconnected';
   realtimeMessages: any[];
   input: string;
   inputHeight: number;
@@ -85,7 +85,7 @@ export default function GroupChatPageUI({ status, handlers }: Props) {
         chatMembers={members?.members ?? []}
         onLeaveChat={handleLeaveChat}
         onDeleteChat={handleDeleteChat}
-        myMemberId={memberId ?? ""}
+        myMemberId={memberId ?? ''}
         nonScrollClassName={true}
         mainClassName="h-[calc(100dvh-4rem)]"
       >
@@ -111,7 +111,7 @@ export default function GroupChatPageUI({ status, handlers }: Props) {
                 onChange={(e) => {
                   setInput(e.target.value);
                   const textarea = e.target;
-                  textarea.style.height = "auto";
+                  textarea.style.height = 'auto';
                   const scrollHeight = textarea.scrollHeight;
                   const maxHeight = 60;
                   const newHeight = Math.min(scrollHeight, maxHeight);
@@ -120,7 +120,7 @@ export default function GroupChatPageUI({ status, handlers }: Props) {
                 }}
                 onKeyDown={(e) => {
                   if (
-                    e.key === "Enter" &&
+                    e.key === 'Enter' &&
                     !e.shiftKey &&
                     !e.nativeEvent.isComposing &&
                     input.trim()

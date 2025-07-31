@@ -14,7 +14,11 @@ interface Props {
   liked: boolean;
   likeCount: number;
   onLikeToggle: (newLiked: boolean) => void;
-  onWriteSubmit: (params: { memberId: string; text: string; images: File[] }) => Promise<void>;
+  onWriteSubmit: (params: {
+    memberId: string;
+    text: string;
+    images: File[];
+  }) => Promise<void>;
   writeReviewLoading: boolean;
 }
 
@@ -37,7 +41,11 @@ export default function CoffeeChatReviewPageUI({
 
   if (isLoading) {
     return (
-      <PageLayout headerMode="title" headerTitle={title} onBackClick={() => navigate('/coffeechat')}>
+      <PageLayout
+        headerMode="title"
+        headerTitle={title}
+        onBackClick={() => navigate('/coffeechat')}
+      >
         <div className="py-24 text-center text-gray-500">로딩 중...</div>
       </PageLayout>
     );
@@ -45,14 +53,24 @@ export default function CoffeeChatReviewPageUI({
 
   if (isError || !coffeeChatId) {
     return (
-      <PageLayout headerMode="title" headerTitle={title} onBackClick={() => navigate('/coffeechat')}>
-        <div className="py-24 text-center text-red-500">데이터를 불러오는 데 실패했습니다.</div>
+      <PageLayout
+        headerMode="title"
+        headerTitle={title}
+        onBackClick={() => navigate('/coffeechat')}
+      >
+        <div className="py-24 text-center text-red-500">
+          데이터를 불러오는 데 실패했습니다.
+        </div>
       </PageLayout>
     );
   }
 
   return (
-    <PageLayout headerMode="title" headerTitle={title} onBackClick={() => navigate('/coffeechat')}>
+    <PageLayout
+      headerMode="title"
+      headerTitle={title}
+      onBackClick={() => navigate('/coffeechat')}
+    >
       {viewOnly ? (
         <ViewReviewForm
           coffeeChatData={coffeeChatData}
@@ -64,7 +82,7 @@ export default function CoffeeChatReviewPageUI({
       ) : (
         <WriteReviewForm
           coffeeChatId={coffeeChatId}
-          chatDetail={coffeeChatData} 
+          chatDetail={coffeeChatData}
           memberId={membershipData?.memberId}
           onSubmit={onWriteSubmit}
           writeLoading={writeReviewLoading}
@@ -73,4 +91,3 @@ export default function CoffeeChatReviewPageUI({
     </PageLayout>
   );
 }
-

@@ -1,5 +1,13 @@
 import { useState, useRef } from 'react';
-import { Camera, X, Clock, MapPin, CalendarIcon, Edit, Hash } from 'lucide-react';
+import {
+  Camera,
+  X,
+  Clock,
+  MapPin,
+  CalendarIcon,
+  Edit,
+  Hash,
+} from 'lucide-react';
 import { useToastStore } from '@/stores/toastStore';
 import imageCompression from 'browser-image-compression';
 
@@ -22,7 +30,11 @@ interface Props {
     tags: string[];
   };
   memberId?: string;
-  onSubmit: (params: { memberId: string; text: string; images: File[] }) => Promise<void>;
+  onSubmit: (params: {
+    memberId: string;
+    text: string;
+    images: File[];
+  }) => Promise<void>;
   writeLoading: boolean;
 }
 
@@ -39,7 +51,9 @@ export default function WriteReviewForm({
   const showToast = useToastStore((state) => state.showToast);
   const maxLength = 150;
 
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
     if (!files) return;
 
@@ -164,7 +178,7 @@ export default function WriteReviewForm({
             <div className="flex items-center space-x-1.5">
               <Clock className="w-4 h-4" />
               <span className="text-black">{chatDetail.time}</span>
-            </div>          
+            </div>
             <div className="text-gray-300">|</div>
             <div className="flex items-center space-x-1.5">
               <MapPin className="w-4 h-4" />
@@ -261,10 +275,9 @@ export default function WriteReviewForm({
           className="w-full bg-[#FE9400] text-white py-3 rounded-lg transition-colors cursor-pointer disabled:opacity-50"
           disabled={writeLoading}
         >
-          {writeLoading ? "작성 중..." : "작성완료"}
+          {writeLoading ? '작성 중...' : '작성완료'}
         </button>
       </section>
     </div>
   );
 }
-

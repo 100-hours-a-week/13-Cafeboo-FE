@@ -1,7 +1,11 @@
-import apiClient from "@/api/apiClient";
-import { getUserIdFromStore } from "@/utils/auth";
+import apiClient from '@/api/apiClient';
+import { getUserIdFromStore } from '@/utils/auth';
 import { useQueryClient } from '@tanstack/react-query';
-import type { CaffeineInfoRequestDTO, CaffeineInfoResponseDTO, UpdateCaffeineInfoRequestDTO } from '@/api/caffeine/caffeine.dto';
+import type {
+  CaffeineInfoRequestDTO,
+  CaffeineInfoResponseDTO,
+  UpdateCaffeineInfoRequestDTO,
+} from '@/api/caffeine/caffeine.dto';
 import { createMutationHandler } from '@/utils/createMutationHandler';
 import { createQueryHandler } from '@/utils/createQueryHandler';
 
@@ -24,25 +28,31 @@ export const useCaffeineInfo = () =>
       refetchOnReconnect: true,
       retry: 1,
     }
-);
+  );
 
 // ✅ POST 요청
-export const submitCaffeineInfo = async (data: CaffeineInfoRequestDTO): Promise<void> => {
+export const submitCaffeineInfo = async (
+  data: CaffeineInfoRequestDTO
+): Promise<void> => {
   const userId = getUserIdFromStore();
   await apiClient.post(`/api/v1/users/${userId}/caffeine`, data);
 };
 
 export const useSubmitCaffeineInfo = () => {
   return createMutationHandler(submitCaffeineInfo, {
-    onSuccess: () => {
-    },
+    onSuccess: () => {},
   });
 };
 
 // ✅ PATCH 요청
-export const updateCaffeineInfo = async (updatedData: UpdateCaffeineInfoRequestDTO) => {
+export const updateCaffeineInfo = async (
+  updatedData: UpdateCaffeineInfoRequestDTO
+) => {
   const userId = getUserIdFromStore();
-  const response = await apiClient.patch(`/api/v1/users/${userId}/caffeine`, updatedData);
+  const response = await apiClient.patch(
+    `/api/v1/users/${userId}/caffeine`,
+    updatedData
+  );
   return response.data;
 };
 
@@ -64,7 +74,9 @@ export const useUpdateCaffeineInfo = () => {
 
   return createMutationHandler(
     async (newData: UpdateCaffeineInfoRequestDTO) => {
-      const prev = queryClient.getQueryData<CaffeineInfoRequestDTO>(['caffeineInfo']);
+      const prev = queryClient.getQueryData<CaffeineInfoRequestDTO>([
+        'caffeineInfo',
+      ]);
       if (!prev) return updateCaffeineInfo(newData);
 
       const diff = getDiff(prev, newData);
@@ -79,4 +91,3 @@ export const useUpdateCaffeineInfo = () => {
     }
   );
 };
-

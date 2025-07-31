@@ -1,8 +1,8 @@
-import CardHeader from "./CardHeader";
-import CardBody from "./CardBody";
-import CardFooter from "./CardFooter";
-import SectionCard from "@/components/common/SectionCard";
-import type { CoffeeChatListItem } from "@/api/coffeechat/coffeechat.dto";
+import CardHeader from './CardHeader';
+import CardBody from './CardBody';
+import CardFooter from './CardFooter';
+import SectionCard from '@/components/common/SectionCard';
+import type { CoffeeChatListItem } from '@/api/coffeechat/coffeechat.dto';
 
 interface ChatCardProps {
   room: CoffeeChatListItem;
@@ -19,12 +19,12 @@ export default function ChatCard({
   onReviewClick,
   onViewClick,
 }: ChatCardProps) {
-  const isClickable = filter !== "REVIEWABLE";
+  const isClickable = filter !== 'REVIEWABLE';
   return (
     <SectionCard
       className={
-        "transition-all duration-200 hover:shadow-md !py-3 !border-gray-200" +
-        (isClickable ? " cursor-pointer" : "")
+        'transition-all duration-200 hover:shadow-md !py-3 !border-gray-200' +
+        (isClickable ? ' cursor-pointer' : '')
       }
       onClick={isClickable ? onRoomClick : undefined}
     >
@@ -42,5 +42,3 @@ export default function ChatCard({
     </SectionCard>
   );
 }
-
-

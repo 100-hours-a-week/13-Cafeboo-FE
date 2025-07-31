@@ -2,9 +2,13 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 const CoffeeChatPage = lazy(() => import('@/pages/coffeechat/coffeechatpage'));
-const CoffeeChatDetailPage = lazy(() => import('@/pages/coffeechat/coffeechatdetailpage'));
+const CoffeeChatDetailPage = lazy(
+  () => import('@/pages/coffeechat/coffeechatdetailpage')
+);
 const GroupChatPage = lazy(() => import('@/pages/coffeechat/groupchatpage'));
-const CoffeeChatReviewPage = lazy(() => import('@/pages/coffeechat/coffeechatreviewpage'));
+const CoffeeChatReviewPage = lazy(
+  () => import('@/pages/coffeechat/coffeechatreviewpage')
+);
 const NotFoundPage = lazy(() => import('@/pages/common/NotFoundPage'));
 
 const CoffeeChatRoutes = () => (

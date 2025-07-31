@@ -20,7 +20,7 @@ export default function FullPageSheet({
 
   useEffect(() => {
     if (open) {
-      setShouldRender(true); 
+      setShouldRender(true);
       setTimeout(() => {
         setIsAnimating(true);
         document.body.style.overflow = 'hidden';
@@ -36,7 +36,7 @@ export default function FullPageSheet({
   }, [open]);
 
   const handleTransitionEnd = () => {
-    if (!open) setShouldRender(false); 
+    if (!open) setShouldRender(false);
   };
 
   if (!shouldRender) return null;
@@ -73,6 +73,3 @@ export default function FullPageSheet({
     </div>
   );
 }
-
-
-

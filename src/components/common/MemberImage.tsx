@@ -10,9 +10,7 @@ export default function MemberImage({ url, alt, className }: MemberImageProps) {
   const size = useImageSize(url);
 
   if (!size) {
-    return (
-      <div className={`rounded-full bg-gray-200 ${className || ''}`} />
-    );
+    return <div className={`rounded-full bg-gray-200 ${className || ''}`} />;
   }
 
   return (

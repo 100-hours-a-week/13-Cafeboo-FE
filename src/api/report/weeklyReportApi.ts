@@ -14,11 +14,7 @@ const fetchWeeklyReport = async (
   return response.data;
 };
 
-export const useWeeklyReport = (
-  year: string,
-  month: string,
-  week: string
-) => {
+export const useWeeklyReport = (year: string, month: string, week: string) => {
   return createQueryHandler(
     ['weeklyReport', year, month, week],
     () => fetchWeeklyReport(year, month, week),
@@ -32,4 +28,3 @@ export const useWeeklyReport = (
     }
   );
 };
-

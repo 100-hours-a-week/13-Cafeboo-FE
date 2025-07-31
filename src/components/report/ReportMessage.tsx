@@ -1,4 +1,4 @@
-import SectionCard from "../common/SectionCard";
+import SectionCard from '../common/SectionCard';
 
 interface ReportMessageProps {
   statusMessage: string;
@@ -21,17 +21,13 @@ export default function ReportMessage({ statusMessage }: ReportMessageProps) {
   if (summaryMatch && adviceMatch) {
     return (
       <>
-        <div className="text-base font-semibold mb-2">
-            섭취 기록 요약
-        </div>
+        <div className="text-base font-semibold mb-2">섭취 기록 요약</div>
         <SectionCard>
-            {formatTextWithLineBreaks(summaryMatch[1].trim())}
+          {formatTextWithLineBreaks(summaryMatch[1].trim())}
         </SectionCard>
-        <div className="text-base font-semibold mb-2">
-            AI 맞춤형 조언
-        </div>
+        <div className="text-base font-semibold mb-2">AI 맞춤형 조언</div>
         <SectionCard>
-            {formatTextWithLineBreaks(adviceMatch[1].trim())}
+          {formatTextWithLineBreaks(adviceMatch[1].trim())}
         </SectionCard>
       </>
     );
@@ -39,14 +35,10 @@ export default function ReportMessage({ statusMessage }: ReportMessageProps) {
 
   return (
     <>
-      <div className="text-base font-semibold mb-2">
-        AI 분석
-      </div>
+      <div className="text-base font-semibold mb-2">AI 분석</div>
       <SectionCard>
-          {formatTextWithLineBreaks(statusMessage.trim())}
+        {formatTextWithLineBreaks(statusMessage.trim())}
       </SectionCard>
     </>
   );
 }
-
-

@@ -1,4 +1,4 @@
-import AlertModal from "@/components/common/AlertModal";
+import AlertModal from '@/components/common/AlertModal';
 
 interface LoginRequiredModalProps {
   isOpen: boolean;

@@ -4,18 +4,22 @@ import { Label } from '@/components/ui/label';
 import { Range } from 'react-range';
 import { Tag } from '@/components/common/Tag';
 import { AlertCircle, Info } from 'lucide-react';
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from '@/components/ui/popover';
 import * as PopoverPrimitive from '@radix-ui/react-popover';
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { sanitizeDecimalInput } from '@/utils/inputUtils';
 
 const formSchema = z.object({
   averageDailyCaffeineIntake: z
     .number()
-    .min(0, "카페인 섭취량은 최소 0잔 이상이어야 합니다.")
-    .max(15, "카페인 섭취량은 최대 15잔 이하여야 합니다."),
+    .min(0, '카페인 섭취량은 최소 0잔 이상이어야 합니다.')
+    .max(15, '카페인 섭취량은 최대 15잔 이하여야 합니다.'),
 });
 
 // ✅ React Hook Form에서 타입 정의
@@ -38,22 +42,26 @@ const DRINK_OPTIONS = [
 
 const Step2 = () => {
   const { caffeineInfo, updateCaffeine } = useOnboardingStore();
-  const [averageDailyCaffeineIntake, setAverageDailyCaffeineIntakeInput] = useState(
-    caffeineInfo.averageDailyCaffeineIntake != null ? String(caffeineInfo.averageDailyCaffeineIntake) : ''
-  );
+  const [averageDailyCaffeineIntake, setAverageDailyCaffeineIntakeInput] =
+    useState(
+      caffeineInfo.averageDailyCaffeineIntake != null
+        ? String(caffeineInfo.averageDailyCaffeineIntake)
+        : ''
+    );
 
-    const {
-      trigger,
-      setValue,
-      formState: { errors },
-    } = useForm<FormData>({
-      resolver: zodResolver(formSchema),
-    });
-
+  const {
+    trigger,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
 
   useEffect(() => {
     setAverageDailyCaffeineIntakeInput(
-      caffeineInfo.averageDailyCaffeineIntake != null ? String(caffeineInfo.averageDailyCaffeineIntake) : ''
+      caffeineInfo.averageDailyCaffeineIntake != null
+        ? String(caffeineInfo.averageDailyCaffeineIntake)
+        : ''
     );
   }, [caffeineInfo.averageDailyCaffeineIntake]);
 
@@ -61,25 +69,24 @@ const Step2 = () => {
     <div className="space-y-6 py-4">
       {/* 카페인 민감도 */}
       <div className="mb-10">
-      <div className="flex items-center mb-2">
-          <Label className="text-base font-semibold">
-            카페인 민감도
-          </Label>
+        <div className="flex items-center mb-2">
+          <Label className="text-base font-semibold">카페인 민감도</Label>
           <Popover>
             <PopoverTrigger asChild>
               <button className="p-1 rounded-full ml-1 cursor-pointer">
                 <Info className="w-4 h-4 stroke-2 text-gray-500" />
               </button>
             </PopoverTrigger>
-            <PopoverContent side="top" align="end" className="w-64 px-4 py-2 bg-white rounded-lg shadow-lg border border-gray-200">
+            <PopoverContent
+              side="top"
+              align="end"
+              className="w-64 px-4 py-2 bg-white rounded-lg shadow-lg border border-gray-200"
+            >
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-sm font-medium">
-                  카페인 민감도란?
-                </h3>
+                <h3 className="text-sm font-medium">카페인 민감도란?</h3>
                 <PopoverPrimitive.Close asChild>
                   <button className="text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">닫기</span>
-                    ×
+                    <span className="sr-only">닫기</span>×
                   </button>
                 </PopoverPrimitive.Close>
               </div>
@@ -104,7 +111,7 @@ const Step2 = () => {
             </PopoverContent>
           </Popover>
         </div>
-        <div className='px-3 mt-10'>
+        <div className="px-3 mt-10">
           <Range
             step={1}
             min={0}
@@ -195,12 +202,13 @@ const Step2 = () => {
             onChange={(e) => {
               const sanitized = sanitizeDecimalInput(e.target.value);
               setAverageDailyCaffeineIntakeInput(sanitized);
-              setValue("averageDailyCaffeineIntake", Number(sanitized));
-              trigger("averageDailyCaffeineIntake");
+              setValue('averageDailyCaffeineIntake', Number(sanitized));
+              trigger('averageDailyCaffeineIntake');
             }}
             onBlur={() => {
               const num = parseFloat(averageDailyCaffeineIntake);
-              if (!isNaN(num)) updateCaffeine({ averageDailyCaffeineIntake: num });
+              if (!isNaN(num))
+                updateCaffeine({ averageDailyCaffeineIntake: num });
               else updateCaffeine({ averageDailyCaffeineIntake: undefined });
             }}
             className="
@@ -214,10 +222,10 @@ const Step2 = () => {
         </div>
       </div>
       {errors.averageDailyCaffeineIntake && (
-          <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
-            <AlertCircle className="w-3 h-3" />
-            {errors.averageDailyCaffeineIntake.message}
-          </p>
+        <p className="text-[13px] text-red-500 mt-[-10px] flex items-center gap-1">
+          <AlertCircle className="w-3 h-3" />
+          {errors.averageDailyCaffeineIntake.message}
+        </p>
       )}
 
       {/* 선호하는 카페인 음료 */}

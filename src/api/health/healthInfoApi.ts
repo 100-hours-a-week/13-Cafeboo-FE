@@ -1,9 +1,13 @@
-import apiClient from "@/api/apiClient";
-import { useQueryClient } from "@tanstack/react-query";
-import type { HealthInfoRequestDTO, HealthInfoResponseDTO, UpdateHealthInfoRequestDTO } from "@/api/health/health.dto";
-import { createMutationHandler } from "@/utils/createMutationHandler";
-import { createQueryHandler } from "@/utils/createQueryHandler";
-import { getUserIdFromStore } from "@/utils/auth";
+import apiClient from '@/api/apiClient';
+import { useQueryClient } from '@tanstack/react-query';
+import type {
+  HealthInfoRequestDTO,
+  HealthInfoResponseDTO,
+  UpdateHealthInfoRequestDTO,
+} from '@/api/health/health.dto';
+import { createMutationHandler } from '@/utils/createMutationHandler';
+import { createQueryHandler } from '@/utils/createQueryHandler';
+import { getUserIdFromStore } from '@/utils/auth';
 
 // ✅ GET 요청
 export const fetchHealthInfo = async (): Promise<HealthInfoResponseDTO> => {
@@ -27,7 +31,9 @@ export const useHealthInfo = () =>
   );
 
 // ✅ POST 요청
-export const submitHealthInfo = async (data: HealthInfoRequestDTO): Promise<void> => {
+export const submitHealthInfo = async (
+  data: HealthInfoRequestDTO
+): Promise<void> => {
   const userId = getUserIdFromStore();
   const payload = {
     gender: data.gender,
@@ -47,12 +53,17 @@ export const submitHealthInfo = async (data: HealthInfoRequestDTO): Promise<void
 export const useSubmitHealthInfo = () =>
   createMutationHandler(submitHealthInfo, {
     onSuccess: () => {},
-});
+  });
 
 // ✅ PATCH 요청
-export const updateHealthInfo = async (updatedData: UpdateHealthInfoRequestDTO) => {
+export const updateHealthInfo = async (
+  updatedData: UpdateHealthInfoRequestDTO
+) => {
   const userId = getUserIdFromStore();
-  const res = await apiClient.patch(`/api/v1/users/${userId}/health`, updatedData);
+  const res = await apiClient.patch(
+    `/api/v1/users/${userId}/health`,
+    updatedData
+  );
   return res.data;
 };
 
@@ -74,7 +85,9 @@ export const useUpdateHealthInfo = () => {
 
   return createMutationHandler(
     async (newData: UpdateHealthInfoRequestDTO) => {
-      const prev = queryClient.getQueryData<HealthInfoRequestDTO>(['healthInfo']);
+      const prev = queryClient.getQueryData<HealthInfoRequestDTO>([
+        'healthInfo',
+      ]);
       if (!prev) return updateHealthInfo(newData);
 
       const diff = getDiff(prev, newData);
@@ -89,4 +102,3 @@ export const useUpdateHealthInfo = () => {
     }
   );
 };
-

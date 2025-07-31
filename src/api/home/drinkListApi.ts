@@ -1,10 +1,9 @@
-import apiClient from "@/api/apiClient";
-import type { DrinkListResponse } from "@/api/home/drinkList.dto";
+import apiClient from '@/api/apiClient';
+import type { DrinkListResponse } from '@/api/home/drinkList.dto';
 import { createQueryHandler } from '@/utils/createQueryHandler';
 
-
 export const fetchDrinkList = async (): Promise<DrinkListResponse> => {
-  const response = await apiClient.get("/api/v2/drink-recommendation");
+  const response = await apiClient.get('/api/v2/drink-recommendation');
   return response.data;
 };
 

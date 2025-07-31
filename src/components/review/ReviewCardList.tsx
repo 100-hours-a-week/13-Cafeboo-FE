@@ -1,19 +1,19 @@
-import { useEffect, useRef, useState } from "react";
-import { FilePen } from "lucide-react";
-import EmptyState from "@/components/common/EmptyState";
-import ReviewCard from "@/components/review/ReviewCard";
-import type { ReviewFilter } from "@/types/filters";
+import { useEffect, useRef, useState } from 'react';
+import { FilePen } from 'lucide-react';
+import EmptyState from '@/components/common/EmptyState';
+import ReviewCard from '@/components/review/ReviewCard';
+import type { ReviewFilter } from '@/types/filters';
 
 const REVIEW_TABS: { value: ReviewFilter; label: string }[] = [
-  { value: "ALL", label: "전체 후기" },
-  { value: "MY", label: "참여 후기" },
+  { value: 'ALL', label: '전체 후기' },
+  { value: 'MY', label: '참여 후기' },
 ];
 
 type ReviewCardListProps = {
   filter: ReviewFilter;
   setFilter: (filter: ReviewFilter) => void;
   reviewsData?: {
-    coffeeChatReviews?: Array<{ coffeeChatId: string } & any>; 
+    coffeeChatReviews?: Array<{ coffeeChatId: string } & any>;
   };
   isLoading: boolean;
   isError: boolean;
@@ -62,7 +62,7 @@ export default function ReviewCardList({
         <div className="relative flex w-full rounded-sm p-1 space-x-0.5 bg-gray-100">
           <div
             className={`absolute top-[3px] h-[calc(100%-6px)] rounded-sm shadow bg-white z-0 
-              ${hasSwitched ? "transition-all duration-300 ease-in-out" : ""}
+              ${hasSwitched ? 'transition-all duration-300 ease-in-out' : ''}
             `}
             style={{
               left: indicatorStyle.left,
@@ -75,7 +75,7 @@ export default function ReviewCardList({
               ref={(el) => (tabRefs.current[idx] = el)}
               onClick={() => handleTabClick(tab.value)}
               className={`flex-1 px-3 py-[6px] text-sm font-medium rounded-sm transition-colors duration-200 z-10 cursor-pointer
-                ${filter === tab.value ? "text-black" : "text-gray-500 hover:text-black"}
+                ${filter === tab.value ? 'text-black' : 'text-gray-500 hover:text-black'}
               `}
             >
               {tab.label}
@@ -109,7 +109,11 @@ export default function ReviewCardList({
         {!isLoading &&
           !isError &&
           reviews.map((item) => (
-            <ReviewCard key={item.coffeeChatId} item={item} onRequireLogin={onRequireLogin} />
+            <ReviewCard
+              key={item.coffeeChatId}
+              item={item}
+              onRequireLogin={onRequireLogin}
+            />
           ))}
       </div>
     </>

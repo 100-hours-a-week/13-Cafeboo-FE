@@ -67,10 +67,10 @@ export function Tag({
           >
             {label}
             {isNew && (
-            <span className="absolute -top-1 -right-1 bg-[#FF3B30] text-white text-[10px] px-1.5 py-[1px] rounded-full">
-              new!
-            </span>
-          )}
+              <span className="absolute -top-1 -right-1 bg-[#FF3B30] text-white text-[10px] px-1.5 py-[1px] rounded-full">
+                new!
+              </span>
+            )}
           </ToggleGroupItem>
         </div>
       ))}
@@ -99,10 +99,10 @@ export function Tag({
           >
             {label}
             {isNew && (
-            <span className="absolute -top-1.5 -right-[-5px] bg-[#FF3B30] text-white text-[8px] [animation:pulseScale_2s_infinite] px-1 py-[0.5px] rounded-full">
-              new!
-            </span>
-          )}
+              <span className="absolute -top-1.5 -right-[-5px] bg-[#FF3B30] text-white text-[8px] [animation:pulseScale_2s_infinite] px-1 py-[0.5px] rounded-full">
+                new!
+              </span>
+            )}
           </ToggleGroupItem>
         </div>
       ))}
@@ -110,10 +110,10 @@ export function Tag({
   );
 
   return scrollable ? (
-    <HorizontalScroller className={containerClasses}>{content}</HorizontalScroller>
+    <HorizontalScroller className={containerClasses}>
+      {content}
+    </HorizontalScroller>
   ) : (
     <div className={containerClasses}>{content}</div>
   );
 }
-
-

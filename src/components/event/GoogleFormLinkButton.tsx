@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink } from 'lucide-react';
 
 interface GoogleFormLinkProps {
   url?: string;
@@ -7,9 +7,9 @@ interface GoogleFormLinkProps {
 }
 
 export default function GoogleFormLink({
-  url = "https://docs.google.com/forms/d/e/1FAIpQLSd9uO4jDGWUFXELv8mEUGKLzwam9wEjJRfAgPbtTvXYIxw3tA/viewform?usp=sharing",
-  label = "구글폼 작성하기",
-  className = "",
+  url = 'https://docs.google.com/forms/d/e/1FAIpQLSd9uO4jDGWUFXELv8mEUGKLzwam9wEjJRfAgPbtTvXYIxw3tA/viewform?usp=sharing',
+  label = '구글폼 작성하기',
+  className = '',
 }: GoogleFormLinkProps) {
   return (
     <a

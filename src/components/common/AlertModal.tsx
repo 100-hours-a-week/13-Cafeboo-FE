@@ -27,12 +27,14 @@ export default function AlertModal({
   onCancel,
 }: AlertModalProps) {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
-  const [awaitingConfirm, setAwaitingConfirm] = useState<(() => void) | null>(null);
+  const [awaitingConfirm, setAwaitingConfirm] = useState<(() => void) | null>(
+    null
+  );
 
   useEffect(() => {
-    const container = document.getElementById('alert-modal-container'); 
+    const container = document.getElementById('alert-modal-container');
     if (!container) return;
-  
+
     let el = container.querySelector<HTMLDivElement>('#modal-container');
     if (!el) {
       el = document.createElement('div');
@@ -40,7 +42,7 @@ export default function AlertModal({
       container.appendChild(el);
     }
     setContainer(el);
-  
+
     return () => {
       if (el) {
         el.remove();
@@ -60,7 +62,10 @@ export default function AlertModal({
   if (!isOpen || !container) return null;
 
   const modal = (
-    <div className="absolute inset-0 z-50 flex items-center justify-center" onClick={onClose}>
+    <div
+      className="absolute inset-0 z-50 flex items-center justify-center"
+      onClick={onClose}
+    >
       {/* 반투명 오버레이 */}
       <div className="absolute inset-0 bg-black/50" />
 
@@ -74,13 +79,17 @@ export default function AlertModal({
           {icon && <div>{icon}</div>}
 
           {/* 제목 */}
-          {title && <h2 className="text-lg font-semibold text-gray-800">{title}</h2>}
+          {title && (
+            <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
+          )}
 
           {/* 메시지 */}
           <p className="text-gray-600 whitespace-pre-wrap">{message}</p>
 
           {/* 버튼 그룹 */}
-          <div className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}>
+          <div
+            className={`flex w-full mt-2 ${showCancelButton ? 'gap-2' : ''}`}
+          >
             {showCancelButton && (
               <button
                 onClick={() => {
@@ -106,4 +115,3 @@ export default function AlertModal({
 
   return createPortal(modal, container);
 }
-

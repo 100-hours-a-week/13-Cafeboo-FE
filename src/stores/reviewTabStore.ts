@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type ReviewFilter = "ALL" | "MY";
+type ReviewFilter = 'ALL' | 'MY';
 
 interface ReviewTabState {
   filter: ReviewFilter;
@@ -8,6 +8,6 @@ interface ReviewTabState {
 }
 
 export const useReviewTabStore = create<ReviewTabState>((set) => ({
-  filter: "ALL",
+  filter: 'ALL',
   setFilter: (f) => set({ filter: f }),
 }));

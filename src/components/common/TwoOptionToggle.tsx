@@ -1,7 +1,7 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 interface TwoOptionToggleProps<T extends string> {
-  options: { label: string; value: T }[]; 
+  options: { label: string; value: T }[];
   value: T;
   onChange: (value: T) => void;
 }
@@ -14,7 +14,7 @@ export default function TwoOptionToggle<T extends string>({
   return (
     <ToggleGroup
       type="single"
-      value={String(value)} 
+      value={String(value)}
       onValueChange={(v) => {
         if (v) onChange(v as T);
       }}
@@ -44,5 +44,3 @@ export default function TwoOptionToggle<T extends string>({
     </ToggleGroup>
   );
 }
-
-

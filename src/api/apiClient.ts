@@ -1,21 +1,21 @@
-import axios, { AxiosError } from "axios";
-import type { ApiResponse } from "@/types/api";
-import { useAuthStore } from "@/stores/useAuthStore";
+import axios, { AxiosError } from 'axios';
+import type { ApiResponse } from '@/types/api';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
 const redirectHomePage = () => {
-  localStorage.removeItem("access_token");
+  localStorage.removeItem('access_token');
   const clearAuth = useAuthStore.getState().clearAuth;
-  clearAuth(); 
-  if (typeof window !== "undefined") {
-    window.location.href = "/";
+  clearAuth();
+  if (typeof window !== 'undefined') {
+    window.location.href = '/';
   }
 };
 
@@ -34,11 +34,12 @@ const notifySubscribersError = () => {
 // Axios 요청 인터셉터 (Access Token 자동 추가)
 apiClient.interceptors.request.use((config) => {
   const skipAuth =
-    config.url?.includes("/api/v1/auth/kakao") || config.url?.includes("/api/v1/auth/guest") ||
-    config.url?.includes("/api/v1/auth/refresh");
+    config.url?.includes('/api/v1/auth/kakao') ||
+    config.url?.includes('/api/v1/auth/guest') ||
+    config.url?.includes('/api/v1/auth/refresh');
 
   if (!skipAuth) {
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -51,10 +52,12 @@ apiClient.interceptors.request.use((config) => {
 
 // Axios 응답 인터셉터 (Access Token 만료 처리)
 apiClient.interceptors.response.use(
-  (response) => { // 성공 응답
+  (response) => {
+    // 성공 응답
     return response.data;
   },
-  async (error: AxiosError<ApiResponse>) => { // 실패 응답
+  async (error: AxiosError<ApiResponse>) => {
+    // 실패 응답
     const originalRequest = error.config as any;
     const status = error.response?.status;
     const errorData = error.response?.data;
@@ -64,32 +67,34 @@ apiClient.interceptors.response.use(
     if (!error.response?.data) {
       return Promise.reject({
         status: 0,
-        code: "NETWORK_ERROR",
-        message: error.message || "알 수 없는 네트워크 오류",
+        code: 'NETWORK_ERROR',
+        message: error.message || '알 수 없는 네트워크 오류',
         data: null,
         raw: error,
       } as ApiResponse<null>);
     }
 
     // /auth/refresh 요청 자체는 재발급 로직 대상에서 제외
-    if (originalRequest.url?.includes("/api/v1/auth/refresh")) {
+    if (originalRequest.url?.includes('/api/v1/auth/refresh')) {
       redirectHomePage();
       return Promise.reject(error);
     }
 
     // ✅ 리프레시 응답 에러 코드
     const refreshTokenErrorCodes = [
-      "REFRESH_TOKEN_INVALID",
-      "REFRESH_TOKEN_EXPIRED",
-      "REFRESH_TOKEN_MISMATCH",
+      'REFRESH_TOKEN_INVALID',
+      'REFRESH_TOKEN_EXPIRED',
+      'REFRESH_TOKEN_MISMATCH',
     ];
     if (code && refreshTokenErrorCodes.includes(code)) {
       redirectHomePage();
       return Promise.reject(errorData);
     }
 
-    const isAccessTokenExpired = status === 401 && code === "ACCESS_TOKEN_EXPIRED";
-    const isAccessTokenInvalid = status === 401 && code === "ACCESS_TOKEN_INVALID";
+    const isAccessTokenExpired =
+      status === 401 && code === 'ACCESS_TOKEN_EXPIRED';
+    const isAccessTokenInvalid =
+      status === 401 && code === 'ACCESS_TOKEN_INVALID';
 
     // ✅ 토큰 무효 or 권한 없음
     if (isAccessTokenInvalid) {
@@ -113,11 +118,13 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshRes = await apiClient.post<ApiResponse<{ accessToken: string; userId: string, role: string }>>("/api/v1/auth/refresh");
+        const refreshRes = await apiClient.post<
+          ApiResponse<{ accessToken: string; userId: string; role: string }>
+        >('/api/v1/auth/refresh');
         const { accessToken, userId, role } = refreshRes.data.data;
         const setAuth = useAuthStore.getState().setAuth;
 
-        localStorage.setItem("access_token", accessToken);
+        localStorage.setItem('access_token', accessToken);
         setAuth(userId, role as 'GUEST' | 'USER');
         isRefreshing = false;
         notifySubscribers(accessToken);

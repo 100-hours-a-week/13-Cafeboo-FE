@@ -4,7 +4,7 @@ export interface DrinkList {
 }
 
 export interface DrinkIdsData {
-  drink_ids: DrinkList[];  
+  drink_ids: DrinkList[];
 }
 
 export interface InnerData {

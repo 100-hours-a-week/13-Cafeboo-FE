@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import FABContainer from "@/components/common/FABContainer";
+import FABContainer from '@/components/common/FABContainer';
 import BottomNavBar from '@/components/common/BottomNavBar';
 import { Member } from '@/components/coffeechat/GroupMemberMenu';
 
@@ -22,7 +22,6 @@ interface PageLayoutProps {
   onAddClick?: () => void;
 }
 
-
 export default function PageLayout({
   children,
   headerMode = 'logo',
@@ -43,16 +42,16 @@ export default function PageLayout({
 }: PageLayoutProps) {
   return (
     <div className="flex flex-col h-full">
-    <Header
-      mode={headerMode}
-      title={headerTitle}
-      onBackClick={onBackClick}
-      isGroupChat={isGroupChat}         
-      chatMembers={chatMembers}      
-      onLeaveChat={onLeaveChat}
-      onDeleteChat={onDeleteChat}
-      myMemberId={myMemberId}         
-    />
+      <Header
+        mode={headerMode}
+        title={headerTitle}
+        onBackClick={onBackClick}
+        isGroupChat={isGroupChat}
+        chatMembers={chatMembers}
+        onLeaveChat={onLeaveChat}
+        onDeleteChat={onDeleteChat}
+        myMemberId={myMemberId}
+      />
 
       <main
         id="scroll-container"
@@ -62,12 +61,12 @@ export default function PageLayout({
           ${headerMode === 'title' ? 'px-2' : 'pt-2 mb-18'} 
           ${nonScrollClassName ? '!pb-0' : 'overflow-y-auto'}
         `}
-      
       >
-        <div id="observer-target" className="h-[1px] w-full opacity-0 pointer-events-none" />
-        <div className={`space-y-4 ${mainClassName}`}>
-          {children}
-        </div>
+        <div
+          id="observer-target"
+          className="h-[1px] w-full opacity-0 pointer-events-none"
+        />
+        <div className={`space-y-4 ${mainClassName}`}>{children}</div>
       </main>
 
       <FABContainer

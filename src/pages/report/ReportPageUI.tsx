@@ -56,15 +56,8 @@ export default function ReportPageUI({
   handlers,
   controls,
 }: ReportPageUIProps) {
-  const {
-    isLoading,
-    isError,
-    errorMessage,
-  } = status;
-  const {
-    onPeriodChange,
-    onSubmitRecord,
-  } = handlers;
+  const { isLoading, isError, errorMessage } = status;
+  const { onPeriodChange, onSubmitRecord } = handlers;
   const {
     isSheetOpen,
     setIsSheetOpen,
