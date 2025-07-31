@@ -15,6 +15,7 @@ interface PageLayoutProps {
   onDeleteChat?: () => void;
   myMemberId?: string;
   mainClassName?: string;
+  mainTagClassName?: string; 
   nonScrollClassName?: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
 
@@ -28,6 +29,7 @@ export default function PageLayout({
   headerTitle,
   onBackClick,
   mainClassName,
+  mainTagClassName,
   nonScrollClassName = false,
   mainRef,
 
@@ -60,6 +62,7 @@ export default function PageLayout({
           mt-14 scrollbar-hide pb-28 h-[calc(100dvh-7.5rem-env(safe-area-inset-bottom)) 
           ${headerMode === 'title' ? 'px-2' : 'pt-2 mb-18'} 
           ${nonScrollClassName ? '!pb-0' : 'overflow-y-auto'}
+          ${mainTagClassName ?? ''}
         `}
       >
         <div

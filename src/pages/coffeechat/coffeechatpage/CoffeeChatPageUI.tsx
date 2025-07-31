@@ -78,6 +78,7 @@ export default function CoffeeChatPageUI({ status, handlers }: Props) {
       mainRef={mainRef}
       showAdd={true}
       onAddClick={onAddClick}
+      mainTagClassName='!mt-12'
     >
       <ChatTab filter={filter} onChange={onTabChange} />
       <ScrollToTop key={filter} selector="main" top={0} />
