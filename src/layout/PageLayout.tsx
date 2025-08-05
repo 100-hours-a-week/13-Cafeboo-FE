@@ -15,7 +15,7 @@ interface PageLayoutProps {
   onDeleteChat?: () => void;
   myMemberId?: string;
   mainClassName?: string;
-  mainTagClassName?: string; 
+  mainTagClassName?: string;
   nonScrollClassName?: boolean;
   mainRef?: React.RefObject<HTMLDivElement>;
 

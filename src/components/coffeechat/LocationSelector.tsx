@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import {
   Map,
   MapMarker,
@@ -30,7 +30,6 @@ export default function LocationSelector({ value, onChange }: Props) {
   const listRef = useRef<HTMLUListElement>(null);
   const lastSelectedKeyword = useRef('');
   const hasInitialized = useRef(false);
-  const [finalSelectedPlace, setFinalSelectedPlace] = useState<any>(null);
 
   const isLoaded = useKakaoLoader({
     appkey: import.meta.env.VITE_KAKAO_MAP_KEY!,
@@ -42,21 +41,32 @@ export default function LocationSelector({ value, onChange }: Props) {
     return Math.min(Math.max(5 * level, 5), 200);
   };
 
-  const searchPlaces = (query: string) => {
-    if (!query.trim()) return;
-    const ps = new kakao.maps.services.Places();
-    ps.keywordSearch(query, (data, status) => {
-      if (status === kakao.maps.services.Status.OK) {
-        setPlaces(data);
-        setShowList(true);
-      } else {
-        setPlaces([]);
-        setShowList(false);
+  const searchPlaces = useCallback(
+    (query: string) => {
+      if (!query.trim()) return;
+      if (!isLoaded) {
+        console.warn('카카오 맵 API가 아직 로드되지 않았습니다.');
+        return;
       }
-    });
-  };
 
-  const debounceSearch = useCallback(debounce(searchPlaces, 300), []);
+      const ps = new window.kakao.maps.services.Places();
+      ps.keywordSearch(query, (data, status) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          setPlaces(data);
+          setShowList(true);
+        } else {
+          setPlaces([]);
+          setShowList(false);
+        }
+      });
+    },
+    [isLoaded]
+  );
+
+  const debounceSearch = useMemo(
+    () => debounce(searchPlaces, 300),
+    [searchPlaces]
+  );
 
   const CATEGORIES = [
     'MT1',
@@ -121,7 +131,6 @@ export default function LocationSelector({ value, onChange }: Props) {
     const address = place.address_name?.split(' ').slice(2, 4).join(' ') || '';
     setMapCenter({ lat, lng });
     setSelectedPlace({ ...place, address });
-    setFinalSelectedPlace({ ...place, address });
     setTimeout(() => setShowList(false), 0);
   };
 
@@ -138,7 +147,6 @@ export default function LocationSelector({ value, onChange }: Props) {
         address_name: value.detailAddress,
       };
       setSelectedPlace(place);
-      setFinalSelectedPlace(place);
       setMapCenter({ lat: value.latitude, lng: value.longitude });
       return;
     }
@@ -164,7 +172,7 @@ export default function LocationSelector({ value, onChange }: Props) {
       },
       () => console.error('위치 정보를 가져올 수 없습니다.')
     );
-  }, [isLoaded, map]);
+  }, [isLoaded, map, getPlaceByCoords, value]);
 
   const handleMapClick = (_t: any, mouseEvent: kakao.maps.event.MouseEvent) => {
     if (!map) return;
@@ -181,7 +189,6 @@ export default function LocationSelector({ value, onChange }: Props) {
           updateSelectedPlace(lat, lng, place);
         } else {
           setSelectedPlace(null);
-          setFinalSelectedPlace(null);
         }
       },
       radius
@@ -191,7 +198,10 @@ export default function LocationSelector({ value, onChange }: Props) {
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setKeyword(value);
-    debounceSearch(value);
+
+    if (isLoaded) {
+      debounceSearch(value);
+    }
   };
 
   const handleSelectPlace = (place: any) => {
@@ -308,9 +318,6 @@ export default function LocationSelector({ value, onChange }: Props) {
             onClick={() => {
               const lat = parseFloat(selectedPlace.y);
               const lng = parseFloat(selectedPlace.x);
-              const address =
-                selectedPlace.address_name?.split(' ').slice(2, 4).join(' ') ||
-                '';
 
               onChange({
                 detailAddress: selectedPlace.address_name || '',
@@ -319,7 +326,6 @@ export default function LocationSelector({ value, onChange }: Props) {
                 kakaoPlaceUrl: selectedPlace.place_url || '',
                 placeName: selectedPlace.place_name || selectedPlace.placeName,
               });
-              setFinalSelectedPlace(selectedPlace);
             }}
           >
             장소 선택

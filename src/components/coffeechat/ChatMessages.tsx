@@ -129,7 +129,7 @@ export default function ChatMessages({
         });
       }, 0);
     }
-  }, [data?.pages.length]);
+  }, [data, data?.pages.length]);
 
   // ✅ 내 메시지 오면 스크롤 아래로
   useEffect(() => {
