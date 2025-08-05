@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function CoffeeChatBottomSheet({ open, onClose }: Props) {
-  const { mutateAsyncFn, isLoading } = useCreateCoffeeChat();
+  const { mutateAsyncFn } = useCreateCoffeeChat();
   const { showToast } = useToastStore();
 
   const handleFormSubmit = async (payload: CreateCoffeeChatRequestDTO) => {
